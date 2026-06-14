@@ -262,28 +262,29 @@
         <p>&copy; 2026 Portal Berita Cimak Kota Tangerang. All Rights Reserved.</p>
     </footer>
 
-    <!-- === SKRIP JAVASCRIPT OTOMATISASI WHATSAPP === -->
+     <!-- === JAVASCRIPT FIXED UNTUK OTOMATISASI WHATSAPP === -->
     <script>
         document.getElementById('formIklanWarga').addEventListener('submit', function(event) {
-            event.preventDefault(); // Mencegah halaman memuat ulang otomatis
+            event.preventDefault(); // Mencegah halaman reload otomatis
 
-            // --- PENTING: Ganti nomor di bawah ini dengan Nomor WhatsApp Anda ---
-            // Format wajib menggunakan kode negara (62) tanpa tanda tambah (+), spasi, atau angka 0 di depan.
-            const nomorTujuanWhatsApp = "6281234567890"; 
+            // Nomor Anda sudah dikonversi langsung ke format internasional (62)
+            const nomorTujuanWhatsApp = "6281533331143"; 
 
-            // Mengambil data input dari form
+            // Mengambil data input dari form secara aman
             const nama = document.getElementById('nama').value;
             const waPengirim = document.getElementById('whatsapp').value;
             const layanan = document.getElementById('jenis-layanan').value;
             const pesan = document.getElementById('pesan').value;
 
-            // Merakit teks pesan promosi/iklan
+            // Merakit teks pesan promosi/iklan yang rapi
             const teksPesan = `Halo Admin Portal Berita Cimak,%0A%0ASaya ingin mengajukan permohonan layanan.%0A%0A*Detail Data:*%0A- Nama/Usaha: ${nama}%0A- No. WhatsApp: ${waPengirim}%0A- Jenis Layanan: ${layanan}%0A%0A*Pesan/Deskripsi:*%0A${pesan}`;
 
-            // Membuka jendela WhatsApp baru dengan isi teks otomatis
-            window.open(`https://whatsapp.com{nomorTujuanWhatsApp}&text=${teksPesan}`, '_blank');
+            // Mengirim data ke API WhatsApp resmi
+            const urlWhatsApp = `https://whatsapp.com{nomorTujuanWhatsApp}&text=${teksPesan}`;
+            
+            // Membuka jendela WhatsApp baru
+            window.open(urlWhatsApp, '_blank');
         });
     </script>
-
 </body>
 </html>
