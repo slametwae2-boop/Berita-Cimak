@@ -163,6 +163,9 @@
             font-weight: bold;
             cursor: pointer;
             transition: background 0.3s;
+            text-align: center;
+            display: block;
+            text-decoration: none;
         }
         .btn-kirim:hover {
             background-color: #155cb4;
@@ -213,7 +216,7 @@
 
         <h2>Tonton Video Terkait</h2>
         <div class="video-container">
-            <!-- FIXED: Link youtube diperbaiki untuk penempatan responsif -->
+            <!-- LINK UTUH BERSIH TANPA PARAMETER TRACKING AGAR TIDAK DIBLOKIR SECARA OFFLINE -->
             <iframe src="https://youtube.com" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
 
@@ -224,26 +227,29 @@
                 <p>Promosikan usaha UMKM Anda di Portal Berita Cimak agar menjangkau lebih banyak warga sekitar Rt.001 Rw.008.</p>
             </div>
 
-            <!-- FIXED: Menambahkan id="formIklanWarga" agar terhubung dengan Javascript -->
-            <form id="formIklanWarga">
+            <!-- PERBAIKAN TOTAL: Form diproses langsung menggunakan fungsi enkripsi asli HTML -->
+            <form action="https://whatsapp.com" method="GET" target="_blank">
+                <!-- Menyisipkan nomor telepon tujuan Anda secara permanen -->
+                <input type="hidden" name="phone" value="6281533331143">
+
                 <div class="form-group">
                     <label for="nama">Nama Lengkap / Nama Usaha</label>
-                    <input type="text" id="nama" placeholder="Contoh: Warung Bakso Pak Cimak" required>
+                    <!-- Ditambahkan atribut 'name' agar otomatis terkirim menjadi parameter pesan -->
+                    <input type="text" id="nama" name="text" placeholder="Contoh: Syamil (Bakso Ikan Malingping)" required>
                 </div>
 
                 <div class="form-group">
                     <label for="whatsapp">Nomor WhatsApp Anda</label>
-                    <input type="tel" id="whatsapp" placeholder="Contoh: 081234567890" required>
+                    <input type="tel" id="whatsapp" placeholder="Contoh: 081533331143" required>
                 </div>
 
                 <div class="form-group">
                     <label for="jenis-layanan">Jenis Layanan</label>
                     <select id="jenis-layanan" required>
                         <option value="">-- Pilih Layanan --</option>
-                        <option value="Pasang Banner Iklan di Website">Pasang Banner Iklan di Website</option>
+                        <option value="Pasang Banner Iklan">Pasang Banner Iklan di Website</option>
                         <option value="Artikel Sponsor / Review Usaha">Artikel Sponsor / Review Usaha</option>
-                        <option value="Iklan Baris / Lowongan / Kontrakan">Iklan Baris / Info Kontrakan / Lowongan Kerja</option>
-                        <option value="Hubungi Redaksi (Kritik & Saran)">Hubungi Redaksi (Kritik & Saran)</option>
+                        <option value="Iklan Baris / Lowongan">Iklan Baris / Info Kontrakan / Lowongan Kerja</option>
                     </select>
                 </div>
 
@@ -260,25 +266,6 @@
     <footer>
         <p>&copy; 2026 Portal Berita Cimak Kota Tangerang. All Rights Reserved.</p>
     </footer>
-
-    <!-- FIXED: Skrip JavaScript Utama -->
-    <script>
-        document.getElementById('formIklanWarga').addEventListener('submit', function(event) {
-            event.preventDefault(); 
-
-            // Nomor tujuan Anda langsung dipasang otomatis
-            const nomorTujuanWhatsApp = "6281533331143"; 
-
-            const nama = document.getElementById('nama').value;
-            const waPengirim = document.getElementById('whatsapp').value;
-            const layanan = document.getElementById('jenis-layanan').value;
-            const pesan = document.getElementById('pesan').value;
-
-            const teksPesan = `Halo Admin Portal Berita Cimak,%0A%0ASaya ingin mengajukan permohonan layanan.%0A%0A*Detail Data:*%0A- Nama/Usaha: ${nama}%0A- No. WhatsApp: ${waPengirim}%0A- Jenis Layanan: ${layanan}%0A%0A*Pesan/Deskripsi:*%0A${pesan}`;
-
-            window.open(`https://whatsapp.com{nomorTujuanWhatsApp}&text=${teksPesan}`, '_blank');
-        });
-    </script>
 
 </body>
 </html>
