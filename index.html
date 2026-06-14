@@ -213,7 +213,7 @@
 
         <h2>Tonton Video Terkait</h2>
         <div class="video-container">
-            <!-- PENGATURAN FIXED: Menggunakan domain 'youtube-nocookie' resmi agar diizinkan berputar di website lokal offline -->
+            <!-- LINK SUDAH MENGGUNAKAN SERVER NO-COOKIE RESMI AGAR JALAN GLOBAL -->
             <iframe src="https://youtube-nocookie.com" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
 
@@ -224,30 +224,24 @@
                 <p>Promosikan usaha UMKM Anda di Portal Berita Cimak agar menjangkau lebih banyak warga sekitar Rt.001 Rw.008.</p>
             </div>
 
-            <form onsubmit="panggilWhatsApp(event)">
+            <!-- PERBAIKAN UTAMA: Form diproses native oleh browser ke link WhatsApp Anda -->
+            <form action="https://whatsapp.com" method="GET" target="_blank">
+                <!-- ID Akun Nomor WhatsApp Tujuan Anda -->
+                <input type="hidden" name="phone" value="6281533331143">
+
                 <div class="form-group">
                     <label for="nama">Nama Lengkap / Nama Usaha</label>
-                    <input type="text" id="nama" placeholder="Contoh: Syamil (Bakso Ikan Malingping)" required>
+                    <input type="text" name="text" placeholder="Contoh: Syamil (Bakso Ikan Malingping)" required>
                 </div>
 
                 <div class="form-group">
                     <label for="whatsapp">Nomor WhatsApp Anda</label>
-                    <input type="tel" id="whatsapp" placeholder="Contoh: 081533331143" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="jenis-layanan">Jenis Layanan</label>
-                    <select id="jenis-layanan" required>
-                        <option value="">-- Pilih Layanan --</option>
-                        <option value="Pasang Banner Iklan">Pasang Banner Iklan di Website</option>
-                        <option value="Artikel Sponsor">Artikel Sponsor / Review Usaha</option>
-                        <option value="Iklan Baris">Iklan Baris / Info Kontrakan</option>
-                    </select>
+                    <input type="tel" placeholder="Contoh: 081533331143" required>
                 </div>
 
                 <div class="form-group">
                     <label for="pesan">Detail Pesan / Deskripsi Iklan</label>
-                    <textarea id="pesan" rows="5" placeholder="Tuliskan detail iklan atau pesan Anda di sini..." required></textarea>
+                    <textarea rows="5" placeholder="Tuliskan detail iklan atau pesan Anda di sini..." required></textarea>
                 </div>
 
                 <button type="submit" class="btn-kirim">Kirim Permohonan</button>
@@ -258,27 +252,6 @@
     <footer>
         <p>&copy; 2026 Portal Berita Cimak Kota Tangerang. All Rights Reserved.</p>
     </footer>
-
-    <!-- SCRIPT JAVASCRIPT FIXED JALUR KHUSUS OFFLINE -->
-    <script>
-        function panggilWhatsApp(e) {
-            e.preventDefault();
-            
-            var nomorKu = "6281533331143";
-            var txtNama = document.getElementById('nama').value;
-            var txtWa = document.getElementById('whatsapp').value;
-            var txtLayanan = document.getElementById('jenis-layanan').value;
-            var txtPesan = document.getElementById('pesan').value;
-
-            var isiPesan = "Halo Admin Portal Berita Cimak,%0A%0ASaya ingin pasang iklan:%0A" + 
-                           "- Nama: " + encodeURIComponent(txtNama) + "%0A" +
-                           "- WA: " + encodeURIComponent(txtWa) + "%0A" +
-                           "- Layanan: " + encodeURIComponent(txtLayanan) + "%0A" +
-                           "- Pesan: " + encodeURIComponent(txtPesan);
-
-            window.open("https://whatsapp.com" + nomorKu + "&text=" + isiPesan, "_blank");
-        }
-    </script>
 
 </body>
 </html>
