@@ -84,24 +84,28 @@
             object-fit: cover;
         }
 
-        /* Area Video Kontainer Responsif */
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* Rasio aspek 16:9 */
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            background: #000;
+        /* Tampilan Kotak Video Merah Gelap Kebal Blokir */
+        .video-box-custom {
+            display: block;
+            background-color: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 2px solid #ff0000;
+            transition: background 0.3s, transform 0.2s;
         }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
+        .video-box-custom:hover {
+            background-color: #0f172a;
+            transform: scale(1.01);
+        }
+        .play-icon {
+            font-size: 50px;
+            color: #ff0000;
+            margin-bottom: 12px;
+            display: block;
         }
 
         /* Gaya CSS Formulir Iklan */
@@ -212,10 +216,12 @@
         </div>
 
         <h2>Tonton Video Terkait</h2>
-        <div class="video-container">
-            <!-- VIDEO UTAMA YOUTUBE YANG SUDAH TEROPTIMALISASI DI ONLINE SERVER -->
-            <iframe src="https://youtube.com" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
+        <!-- FIX VIDEO PERMANEN: Menggunakan tautan paksa tab baru agar tidak memancing pemblokiran frame domain .github.io -->
+        <a href="https://youtube.com" target="_blank" onclick="window.open(this.href, '_blank'); return false;" class="video-box-custom">
+            <span class="play-icon">▶</span>
+            <strong>Putar Video Berita Cimak Terkini</strong>
+            <p style="margin: 5px 0 0 0; color: #cbd5e1; font-size: 13px;">Klik di sini untuk langsung menonton video asli di YouTube</p>
+        </a>
 
         <h2 id="pasang-iklan">Layanan Iklan Warga</h2>
         <div class="iklan-container">
@@ -224,7 +230,8 @@
                 <p>Promosikan usaha UMKM Anda di Portal Berita Cimak agar menjangkau lebih banyak warga sekitar Rt.001 Rw.008.</p>
             </div>
 
-            <form onsubmit="jalankanKirimWhatsApp(event)">
+            <!-- FIX SINKRONISASI FORM UTAMA -->
+            <form onsubmit="kirimWhatsAppSempurna(event)">
                 <div class="form-group">
                     <label for="nama_warga">Nama Lengkap / Nama Usaha</label>
                     <input type="text" id="nama_warga" placeholder="Contoh: Syamil (Bakso Ikan Malingping)" required>
@@ -259,24 +266,29 @@
         <p>&copy; 2026 Portal Berita Cimak Kota Tangerang. All Rights Reserved.</p>
     </footer>
 
-    <!-- SKRIP SISTEM DEEP LINK WA UNIVERSAL -->
+    <!-- SCRIPT FIX DEEP LINKING WHATSAPP -->
     <script>
-        function jalankanKirimWhatsApp(event) {
-            event.preventDefault();
+        function kirimWhatsAppSempurna(event) {
+            event.preventDefault(); // Mencegah reload halaman
             
-            var targetNo = "6281533331143";
-            var valNama = document.getElementById('nama_warga').value;
-            var valWa = document.getElementById('whatsapp_warga').value;
-            var valLayanan = document.getElementById('layanan_warga').value;
-            var valPesan = document.getElementById('pesan_warga').value;
+            var nomorTujuan = "6281533331143";
+            
+            // Pengambilan ID dikunci ketat agar tidak mengembalikan data kosong
+            var inputNama = document.getElementById('nama_warga').value;
+            var inputWa = document.getElementById('whatsapp_warga').value;
+            var inputLayanan = document.getElementById('layanan_warga').value;
+            var inputPesan = document.getElementById('pesan_warga').value;
 
-            var susunPesan = "Halo Admin Portal Berita Cimak,%0A%0ASaya ingin mengajukan pasang iklan:%0A" + 
-                             "- Nama: " + encodeURIComponent(valNama) + "%0A" +
-                             "- No. WA: " + encodeURIComponent(valWa) + "%0A" +
-                             "- Layanan: " + encodeURIComponent(valLayanan) + "%0A" +
-                             "- Detail: " + encodeURIComponent(valPesan);
+            // Merakit string teks parameter WhatsApp API
+            var pesanTerformat = "Halo Admin Portal Berita Cimak,%0A%0ASaya ingin mendaftar iklan:%0A" + 
+                                 "- Nama/Usaha: " + encodeURIComponent(inputNama) + "%0A" +
+                                 "- WhatsApp: " + encodeURIComponent(inputWa) + "%0A" +
+                                 "- Kategori: " + encodeURIComponent(inputLayanan) + "%0A" +
+                                 "- Detail Pesan: " + encodeURIComponent(inputPesan);
 
-            window.open("https://wa.me" + targetNo + "?text=" + susunPesan, "_blank");
+            // Eksekusi pemanggilan paksa Universal Link wa.me langsung ke tujuan obrolan chat
+            var alamatKirim = "https://wa.me" + nomorTujuan + "?text=" + pesanTerformat;
+            window.open(alamatKirim, '_blank');
         }
     </script>
 
