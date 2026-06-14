@@ -84,26 +84,18 @@
             object-fit: cover;
         }
 
-        /* Solusi Video: Poster Box Menggantikan Iframe */
-        .video-box-custom {
-            display: block;
-            background-color: #1e293b;
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
+        /* Area Video Native yang Pasti Muncul */
+        .video-wrapper-native {
+            width: 100%;
+            max-width: 100%;
+            background-color: #000000;
             border-radius: 12px;
-            text-decoration: none;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border: 2px dashed #ff0000;
-            transition: background 0.3s;
+            overflow: hidden;
         }
-        .video-box-custom:hover {
-            background-color: #0f172a;
-        }
-        .play-icon {
-            font-size: 48px;
-            color: #ff0000;
-            margin-bottom: 10px;
+        .video-wrapper-native video {
+            width: 100%;
+            height: auto;
             display: block;
         }
 
@@ -215,12 +207,13 @@
         </div>
 
         <h2>Tonton Video Terkait</h2>
-        <!-- FIX VIDEO: Menggunakan Kotak Putar Langsung Tanpa Iframe yang Memancing Blokir Browser -->
-        <a href="https://youtube.com" target="_blank" class="video-box-custom">
-            <span class="play-icon">▶</span>
-            <strong>Putar Video Berita Cimak Terkini</strong>
-            <p style="margin: 5px 0 0 0; color: #cbd5e1; font-size: 13px;">Klik di sini untuk langsung membuka video asli di YouTube</p>
-        </a>
+        <!-- SOLUSI MUTAKHIR: Menggunakan Pemutar Video Internal HTML5 dengan Sampel Server Cloud Publik Terbuka -->
+        <div class="video-wrapper-native">
+            <video controls poster="berita.jpg">
+                <source src="https://googleapis.com" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video langsung.
+            </video>
+        </div>
 
         <h2 id="pasang-iklan">Layanan Iklan Warga</h2>
         <div class="iklan-container">
@@ -229,7 +222,6 @@
                 <p>Promosikan usaha UMKM Anda di Portal Berita Cimak agar menjangkau lebih banyak warga sekitar Rt.001 Rw.008.</p>
             </div>
 
-            <!-- FIX FORMULIR: Menggunakan metode Link Navigasi Murni yang Kebal dari Blokir Keamanan Browser -->
             <form onsubmit="jalankanKirimWhatsApp(event)">
                 <div class="form-group">
                     <label for="nama_warga">Nama Lengkap / Nama Usaha</label>
@@ -265,7 +257,7 @@
         <p>&copy; 2026 Portal Berita Cimak Kota Tangerang. All Rights Reserved.</p>
     </footer>
 
-    <!-- SCRIPT SISTEM LINK LANGSUNG (ANTI-BLOCK DEVICE) -->
+    <!-- SCRIPT DEEP LINK WA TERBARU -->
     <script>
         function jalankanKirimWhatsApp(event) {
             event.preventDefault();
@@ -282,8 +274,7 @@
                              "- Layanan: " + encodeURIComponent(valLayanan) + "%0A" +
                              "- Detail: " + encodeURIComponent(valPesan);
 
-            // Menggunakan penimpaan lokasi jendela langsung untuk menembus proteksi sistem lokal
-            window.location.href = "https://whatsapp.com" + targetNo + "&text=" + susunPesan;
+            window.open("https://wa.me" + targetNo + "?text=" + susunPesan, "_blank");
         }
     </script>
 
