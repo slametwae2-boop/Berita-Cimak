@@ -84,18 +84,27 @@
             object-fit: cover;
         }
 
-        /* Area Video Native yang Pasti Muncul */
-        .video-wrapper-native {
-            width: 100%;
-            max-width: 100%;
-            background-color: #000000;
+        /* Tampilan Kotak Video Merah Gelap */
+        .video-box-custom {
+            display: block;
+            background-color: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
             border-radius: 12px;
+            text-decoration: none;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            overflow: hidden;
+            border: 2px solid #ff0000;
+            transition: background 0.3s, transform 0.2s;
         }
-        .video-wrapper-native video {
-            width: 100%;
-            height: auto;
+        .video-box-custom:hover {
+            background-color: #0f172a;
+            transform: scale(1.01);
+        }
+        .play-icon {
+            font-size: 50px;
+            color: #ff0000;
+            margin-bottom: 12px;
             display: block;
         }
 
@@ -207,13 +216,12 @@
         </div>
 
         <h2>Tonton Video Terkait</h2>
-        <!-- SOLUSI MUTAKHIR: Menggunakan Pemutar Video Internal HTML5 dengan Sampel Server Cloud Publik Terbuka -->
-        <div class="video-wrapper-native">
-            <video controls poster="berita.jpg">
-                <source src="https://googleapis.com" type="video/mp4">
-                Browser Anda tidak mendukung pemutaran video langsung.
-            </video>
-        </div>
+        <!-- LINK VIDEO UTAMA -->
+        <a href="https://youtube.com" target="_blank" class="video-box-custom">
+            <span class="play-icon">▶</span>
+            <strong>Putar Video Berita Cimak Terkini</strong>
+            <p style="margin: 5px 0 0 0; color: #cbd5e1; font-size: 13px;">Klik di sini untuk menonton video langsung di YouTube</p>
+        </a>
 
         <h2 id="pasang-iklan">Layanan Iklan Warga</h2>
         <div class="iklan-container">
@@ -257,7 +265,7 @@
         <p>&copy; 2026 Portal Berita Cimak Kota Tangerang. All Rights Reserved.</p>
     </footer>
 
-    <!-- SCRIPT DEEP LINK WA TERBARU -->
+    <!-- SKRIP UTAMA DEEP LINK -->
     <script>
         function jalankanKirimWhatsApp(event) {
             event.preventDefault();
