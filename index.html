@@ -84,24 +84,27 @@
             object-fit: cover;
         }
 
-        /* Area Video Responsif */
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* Rasio 16:9 */
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            background: #000;
+        /* Solusi Video: Poster Box Menggantikan Iframe */
+        .video-box-custom {
+            display: block;
+            background-color: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 2px dashed #ff0000;
+            transition: background 0.3s;
         }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
+        .video-box-custom:hover {
+            background-color: #0f172a;
+        }
+        .play-icon {
+            font-size: 48px;
+            color: #ff0000;
+            margin-bottom: 10px;
+            display: block;
         }
 
         /* Gaya CSS Formulir Iklan */
@@ -212,10 +215,12 @@
         </div>
 
         <h2>Tonton Video Terkait</h2>
-        <div class="video-container">
-            <!-- LINK SUDAH MENGGUNAKAN SERVER NO-COOKIE RESMI AGAR JALAN GLOBAL -->
-            <iframe src="https://youtube-nocookie.com" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
+        <!-- FIX VIDEO: Menggunakan Kotak Putar Langsung Tanpa Iframe yang Memancing Blokir Browser -->
+        <a href="https://youtube.com" target="_blank" class="video-box-custom">
+            <span class="play-icon">▶</span>
+            <strong>Putar Video Berita Cimak Terkini</strong>
+            <p style="margin: 5px 0 0 0; color: #cbd5e1; font-size: 13px;">Klik di sini untuk langsung membuka video asli di YouTube</p>
+        </a>
 
         <h2 id="pasang-iklan">Layanan Iklan Warga</h2>
         <div class="iklan-container">
@@ -224,24 +229,31 @@
                 <p>Promosikan usaha UMKM Anda di Portal Berita Cimak agar menjangkau lebih banyak warga sekitar Rt.001 Rw.008.</p>
             </div>
 
-            <!-- PERBAIKAN UTAMA: Form diproses native oleh browser ke link WhatsApp Anda -->
-            <form action="https://whatsapp.com" method="GET" target="_blank">
-                <!-- ID Akun Nomor WhatsApp Tujuan Anda -->
-                <input type="hidden" name="phone" value="6281533331143">
-
+            <!-- FIX FORMULIR: Menggunakan metode Link Navigasi Murni yang Kebal dari Blokir Keamanan Browser -->
+            <form onsubmit="jalankanKirimWhatsApp(event)">
                 <div class="form-group">
-                    <label for="nama">Nama Lengkap / Nama Usaha</label>
-                    <input type="text" name="text" placeholder="Contoh: Syamil (Bakso Ikan Malingping)" required>
+                    <label for="nama_warga">Nama Lengkap / Nama Usaha</label>
+                    <input type="text" id="nama_warga" placeholder="Contoh: Syamil (Bakso Ikan Malingping)" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="whatsapp">Nomor WhatsApp Anda</label>
-                    <input type="tel" placeholder="Contoh: 081533331143" required>
+                    <label for="whatsapp_warga">Nomor WhatsApp Anda</label>
+                    <input type="tel" id="whatsapp_warga" placeholder="Contoh: 081533331143" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="pesan">Detail Pesan / Deskripsi Iklan</label>
-                    <textarea rows="5" placeholder="Tuliskan detail iklan atau pesan Anda di sini..." required></textarea>
+                    <label for="layanan_warga">Jenis Layanan</label>
+                    <select id="layanan_warga" required>
+                        <option value="">-- Pilih Layanan --</option>
+                        <option value="Pasang Banner Iklan">Pasang Banner Iklan di Website</option>
+                        <option value="Artikel Sponsor">Artikel Sponsor / Review Usaha</option>
+                        <option value="Iklan Baris">Iklan Baris / Info Kontrakan</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="pesan_warga">Detail Pesan / Deskripsi Iklan</label>
+                    <textarea id="pesan_warga" rows="5" placeholder="Tuliskan detail iklan atau pesan Anda di sini..." required></textarea>
                 </div>
 
                 <button type="submit" class="btn-kirim">Kirim Permohonan</button>
@@ -252,6 +264,28 @@
     <footer>
         <p>&copy; 2026 Portal Berita Cimak Kota Tangerang. All Rights Reserved.</p>
     </footer>
+
+    <!-- SCRIPT SISTEM LINK LANGSUNG (ANTI-BLOCK DEVICE) -->
+    <script>
+        function jalankanKirimWhatsApp(event) {
+            event.preventDefault();
+            
+            var targetNo = "6281533331143";
+            var valNama = document.getElementById('nama_warga').value;
+            var valWa = document.getElementById('whatsapp_warga').value;
+            var valLayanan = document.getElementById('layanan_warga').value;
+            var valPesan = document.getElementById('pesan_warga').value;
+
+            var susunPesan = "Halo Admin Portal Berita Cimak,%0A%0ASaya ingin mengajukan pasang iklan:%0A" + 
+                             "- Nama: " + encodeURIComponent(valNama) + "%0A" +
+                             "- No. WA: " + encodeURIComponent(valWa) + "%0A" +
+                             "- Layanan: " + encodeURIComponent(valLayanan) + "%0A" +
+                             "- Detail: " + encodeURIComponent(valPesan);
+
+            // Menggunakan penimpaan lokasi jendela langsung untuk menembus proteksi sistem lokal
+            window.location.href = "https://whatsapp.com" + targetNo + "&text=" + susunPesan;
+        }
+    </script>
 
 </body>
 </html>
