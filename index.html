@@ -84,24 +84,21 @@
             object-fit: cover;
         }
 
-        /* Area Video Responsif */
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* Rasio 16:9 */
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            background: #000;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        /* Tombol Tonton Video */
+        .btn-video {
+            display: inline-block;
+            background-color: #ff0000;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);
+            transition: background 0.3s;
+            margin-bottom: 20px;
         }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
+        .btn-video:hover {
+            background-color: #cc0000;
         }
 
         /* Gaya CSS Formulir Iklan */
@@ -152,20 +149,19 @@
             border-color: #1a73e8;
             outline: none;
         }
+        
+        /* Tombol Kirim Form Utama */
         .btn-kirim {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             background-color: #1a73e8;
             color: white;
             border: none;
             border-radius: 6px;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             transition: background 0.3s;
-            text-align: center;
-            display: block;
-            text-decoration: none;
         }
         .btn-kirim:hover {
             background-color: #155cb4;
@@ -215,10 +211,8 @@
         </div>
 
         <h2>Tonton Video Terkait</h2>
-        <div class="video-container">
-            <!-- LINK UTUH BERSIH TANPA PARAMETER TRACKING AGAR TIDAK DIBLOKIR SECARA OFFLINE -->
-            <iframe src="https://youtube.com" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
+        <!-- SOLUSI VIDEO: Mengganti iframe yang diblokir laptop dengan Tombol Tautan Langsung ke YouTube -->
+        <a href="https://youtu.be" target="_blank" class="btn-video">▶ Klik di Sini Untuk Menonton Video di YouTube</a>
 
         <h2 id="pasang-iklan">Layanan Iklan Warga</h2>
         <div class="iklan-container">
@@ -227,15 +221,11 @@
                 <p>Promosikan usaha UMKM Anda di Portal Berita Cimak agar menjangkau lebih banyak warga sekitar Rt.001 Rw.008.</p>
             </div>
 
-            <!-- PERBAIKAN TOTAL: Form diproses langsung menggunakan fungsi enkripsi asli HTML -->
-            <form action="https://whatsapp.com" method="GET" target="_blank">
-                <!-- Menyisipkan nomor telepon tujuan Anda secara permanen -->
-                <input type="hidden" name="phone" value="6281533331143">
-
+            <!-- SOLUSI TOMBOL KIRIM: Menggunakan skrip pemanggil fungsi yang paling kompatibel di browser offline -->
+            <form onsubmit="panggilWhatsApp(event)">
                 <div class="form-group">
                     <label for="nama">Nama Lengkap / Nama Usaha</label>
-                    <!-- Ditambahkan atribut 'name' agar otomatis terkirim menjadi parameter pesan -->
-                    <input type="text" id="nama" name="text" placeholder="Contoh: Syamil (Bakso Ikan Malingping)" required>
+                    <input type="text" id="nama" placeholder="Contoh: Syamil (Bakso Ikan Malingping)" required>
                 </div>
 
                 <div class="form-group">
@@ -248,8 +238,8 @@
                     <select id="jenis-layanan" required>
                         <option value="">-- Pilih Layanan --</option>
                         <option value="Pasang Banner Iklan">Pasang Banner Iklan di Website</option>
-                        <option value="Artikel Sponsor / Review Usaha">Artikel Sponsor / Review Usaha</option>
-                        <option value="Iklan Baris / Lowongan">Iklan Baris / Info Kontrakan / Lowongan Kerja</option>
+                        <option value="Artikel Sponsor">Artikel Sponsor / Review Usaha</option>
+                        <option value="Iklan Baris">Iklan Baris / Info Kontrakan</option>
                     </select>
                 </div>
 
@@ -266,6 +256,27 @@
     <footer>
         <p>&copy; 2026 Portal Berita Cimak Kota Tangerang. All Rights Reserved.</p>
     </footer>
+
+    <!-- SCRIPT JAVASCRIPT GLOBAL YANG SANGAT RINGAN -->
+    <script>
+        function panggilWhatsApp(e) {
+            e.preventDefault();
+            
+            var nomorKu = "6281533331143";
+            var txtNama = document.getElementById('nama').value;
+            var txtWa = document.getElementById('whatsapp').value;
+            var txtLayanan = document.getElementById('jenis-layanan').value;
+            var txtPesan = document.getElementById('pesan').value;
+
+            var isiPesan = "Halo Admin Portal Berita Cimak,%0A%0ASaya ingin pasang iklan:%0A" + 
+                           "- Nama: " + encodeURIComponent(txtNama) + "%0A" +
+                           "- WA: " + encodeURIComponent(txtWa) + "%0A" +
+                           "- Layanan: " + encodeURIComponent(txtLayanan) + "%0A" +
+                           "- Pesan: " + encodeURIComponent(txtPesan);
+
+            window.location.href = "https://whatsapp.com" + nomorKu + "&text=" + isiPesan;
+        }
+    </script>
 
 </body>
 </html>
