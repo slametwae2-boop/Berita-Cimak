@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Berita Cimak Terkini</title>
+    
+    <!-- ======================================================================= -->
+    <!-- KODE UTAMA GOOGLE ADSENSE (AKTIF SETELAH PAKAI CUSTOM DOMAIN)           -->
+    <!-- Ganti "ca-pub-XXXXXXXXXXXXXXX" dengan nomor kode dari dashboard AdSense Anda -->
+    <!-- ======================================================================= -->
+    <script async src="https://googlesyndication.com" crossorigin="anonymous"></script>
+    
     <style>
         /* Gaya Dasar Halaman */
         body {
@@ -102,7 +109,76 @@
             transform: scale(1.01);
         }
 
-        /* Gaya CSS Formulir Iklan */
+        /* Area Penempatan Banner Google AdSense */
+        .adsense-banner-box {
+            margin: 25px auto;
+            padding: 15px;
+            background-color: #ffffff;
+            border: 1px dashed #b9b9b9;
+            text-align: center;
+            font-size: 12px;
+            color: #888888;
+            border-radius: 8px;
+            max-width: 100%;
+        }
+
+        /* Kotak Produk Rekomendasi Afiliasi */
+        .afiliasi-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-top: 15px;
+        }
+        .produk-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .produk-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            background: #ffffff;
+        }
+        .produk-card strong {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #1e293b;
+        }
+        .produk-card p {
+            font-size: 14px;
+            color: #64748b;
+            margin: 0 0 15px 0;
+        }
+        .btn-shopee {
+            display: inline-block;
+            background-color: #ee4d2d;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 13px;
+            margin-right: 5px;
+        }
+        .btn-tokopedia {
+            display: inline-block;
+            background-color: #03ac0e;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        .btn-shopee:hover { background-color: #d73c1d; }
+        .btn-tokopedia:hover { background-color: #028a0b; }
+
+        /* Gaya CSS Formulir Iklan Warga */
         .iklan-container {
             background-color: white;
             padding: 25px;
@@ -166,7 +242,7 @@
             background-color: #155cb4;
         }
 
-        /* Footer */
+        /* Bagian Bawah Web / Footer */
         footer {
             background-color: #1e293b;
             color: #cbd5e1;
@@ -176,11 +252,14 @@
             font-size: 14px;
         }
 
-        /* Penyesuaian HP */
+        /* Penyesuaian Responsif HP Warga */
         @media (max-width: 768px) {
             .konten-berita {
                 flex-direction: column-reverse;
                 align-items: flex-start;
+            }
+            .produk-grid {
+                grid-template-columns: 1fr;
             }
             nav {
                 flex-wrap: wrap;
@@ -209,78 +288,29 @@
             <img src="berita.jpg" alt="Gambar Ilustrasi Berita">
         </div>
 
+        <!-- ========================================================== -->
+        <!-- TEMPAT BANNER IKLAN ADSENSE UTAMA                          -->
+        <!-- ========================================================== -->
+        <div class="adsense-banner-box">
+            <p style="margin: 0 0 5px 0;">Spanduk Iklan Google AdSense</p>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXX"
+                 data-ad-slot="YYYYYYYYYY"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
         <h2>Tonton Video Terkait</h2>
-        <!-- LINK VIDEO UTAMA DIUBAH KE REKOMENDASI KULINER KOTA TANGERANG -->
+        <!-- TOMBOL STRATEGIS VIDEO KULINER TANGERANG BEBAS BLOKIR -->
         <a href="https://youtube.com" target="_blank" class="box-video-antiblokir">
             <span style="font-size: 50px; color: #ff0000; display: block; margin-bottom: 10px;">▶</span>
             <strong style="font-size: 18px; display: block; letter-spacing: 0.5px;">TONTON REKOMENDASI KULINER KOTA TANGERANG</strong>
-            <p style="margin: 8px 0 0 0; color: #cbd5e1; font-size: 13px;">Klik di sini untuk menonton petualangan kuliner Tangerang langsung di YouTube (Tab Baru)</p>
+            <p style="margin: 8px 0 0 0; color: #cbd5e1; font-size: 13px;">Klik di sini untuk langsung memutar video petualangan kuliner Pasar Lama di YouTube</p>
         </a>
 
-        <h2 id="pasang-iklan">Layanan Iklan Warga</h2>
-        <div class="iklan-container">
-            <div class="iklan-header">
-                <h3>Hubungi Kami & Pasang Iklan</h3>
-                <p>Promosikan usaha UMKM Anda di Portal Berita Cimak agar menjangkau lebih banyak warga sekitar Rt.001 Rw.008.</p>
-            </div>
-
-            <form onsubmit="kirimKeWhatsApp(event)">
-                <div class="form-group">
-                    <label for="nama_warga">Nama Lengkap / Nama Usaha</label>
-                    <input type="text" id="nama_warga" placeholder="Contoh: Syamil (Bakso Ikan Malingping)" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="whatsapp_warga">Nomor WhatsApp Anda</label>
-                    <input type="tel" id="whatsapp_warga" placeholder="Contoh: 081234567890" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="layanan_warga">Jenis Layanan</label>
-                    <select id="layanan_warga" required>
-                        <option value="">-- Pilih Layanan --</option>
-                        <option value="Pasang Banner Iklan">Pasang Banner Iklan di Website</option>
-                        <option value="Artikel Sponsor">Artikel Sponsor / Review Usaha</option>
-                        <option value="Iklan Baris">Iklan Baris / Info Kontrakan</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="pesan_warga">Detail Pesan / Deskripsi Iklan</label>
-                    <textarea id="pesan_warga" rows="5" placeholder="Tuliskan detail iklan atau pesan Anda di sini..." required></textarea>
-                </div>
-
-                <button type="submit" class="btn-kirim">Kirim via WhatsApp</button>
-            </form>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Portal Berita Cimak Rt.001 Rw.008. All rights reserved.</p>
-    </footer>
-
-    <script>
-        function kirimKeWhatsApp(event) {
-            event.preventDefault();
-            
-            var nama = document.getElementById('nama_warga').value;
-            var wa = document.getElementById('whatsapp_warga').value;
-            var layanan = document.getElementById('layanan_warga').value;
-            var pesan = document.getElementById('pesan_warga').value;
-            
-            var nomorTujuan = "6289699497443"; 
-            
-            var teksPesan = "Halo Admin Berita Cimak,\n\n" +
-                            "Saya ingin mengajukan iklan warga:\n" +
-                            "Nama/Usaha: " + nama + "\n" +
-                            "No. WhatsApp: " + wa + "\n" +
-                            "Jenis Layanan: " + layanan + "\n" +
-                            "Detail Pesan: " + pesan;
-            
-            var urlLengkap = "https://wa.me" + nomorTujuan + "?text=" + encodeURIComponent(teksPesan);
-            window.open(urlLengkap, '_blank');
-        }
-    </script>
-
-</body>
-</html>
+        <!-- ========================================================== -->
+        <!-- SEKSI AFILIASI REKOMENDASI PRODUK     
