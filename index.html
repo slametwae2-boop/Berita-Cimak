@@ -23,6 +23,7 @@
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
+            align-items: center;
         }
         nav a {
             background-color: #1a73e8; 
@@ -61,68 +62,74 @@
             margin-bottom: 15px;
         }
 
-        /* Kotak Artikel Utama Berita Sejarah */
+        /* Kotak Artikel Utama Berita Sejarah Ber-background Menarik */
         .konten-berita {
-            background-color: white; 
-            padding: 30px; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            background: linear-gradient(135deg, #ffffff 0%, #eef5ff 100%); 
+            padding: 35px; 
+            border-radius: 16px; 
+            box-shadow: 0 6px 20px rgba(26, 115, 232, 0.06);
             margin-bottom: 30px;
+            border: 1px solid #e1ecfd;
         }
         .teks-berita {
-            line-height: 1.7;
-            font-size: 15px;
-            color: #444444;
+            line-height: 1.8;
+            font-size: 15.5px;
+            color: #3e4756;
         }
         .teks-berita h2 {
             color: #111111;
-            font-size: 24px;
+            font-size: 26px;
             margin-top: 0;
             margin-bottom: 20px;
-            border-bottom: 2px solid #1a73e8;
-            padding-bottom: 8px;
+            border-bottom: 3px solid #1a73e8;
+            padding-bottom: 10px;
+            font-weight: 800;
         }
         .teks-berita h3 {
             color: #1a73e8;
-            font-size: 18px;
-            margin-top: 25px;
-            margin-bottom: 10px;
+            font-size: 19px;
+            margin-top: 30px;
+            margin-bottom: 12px;
+            font-weight: 700;
         }
         .teks-berita p {
-            margin: 0 0 15px 0;
+            margin: 0 0 18px 0;
             text-align: justify;
         }
-        .teks-berita ul {
-            margin: 0 0 15px 0;
-            padding-left: 20px;
-        }
-        .teks-berita li {
-            margin-bottom: 8px;
+
+        /* Gaya CSS Area Iklan Google AdSense */
+        .adsense-slot {
+            background-color: #ffffff;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+            color: #64748b;
+            font-size: 13px;
+            font-weight: 500;
+            box-sizing: border-box;
         }
 
-        /* Tampilan Kotak Video Merah Gelap Kebal Blokir */
-        .video-box-custom {
-            display: block;
-            background-color: #1e293b;
-            color: white;
-            text-align: center;
-            padding: 50px 20px;
+        /* Tampilan Kontainer Video Responsif */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* Rasio 16:9 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background-color: #000;
             border-radius: 12px;
-            text-decoration: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border: 2px solid #ff0000;
-            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             margin-bottom: 30px;
         }
-        .video-box-custom:hover {
-            background-color: #0f172a;
-            transform: scale(1.01);
-        }
-        .play-icon {
-            font-size: 50px;
-            color: #ff0000;
-            margin-bottom: 12px;
-            display: block;
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
 
         /* Gaya CSS Formulir Iklan Warga */
@@ -197,22 +204,23 @@
             display: block;
         }
 
-        /* Footer Bagian Bawah */
+        /* Footer Kaki Halaman & Copyright */
         footer {
             background-color: #1e293b;
-            color: #cbd5e1;
+            color: #94a3b8;
             text-align: center;
-            padding: 30px 20px;
+            padding: 25px 20px;
             margin-top: 60px;
             font-size: 14px;
+            border-top: 3px solid #1a73e8;
         }
-        
-        /* Gaya Visual saat Mode Edit Aktif */
-        [contenteditable="true"] {
-            outline: 2px dashed #ff9800;
-            background-color: #fffde7;
-            padding: 4px;
-            border-radius: 4px;
+        footer p {
+            margin: 5px 0;
+        }
+        footer .footer-brand {
+            color: #ffffff;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -225,18 +233,24 @@
         <a href="#">Teknologi</a>
         <a href="#">Hiburan</a>
         <a onclick="bukaHalaman('iklan')" style="background-color: #34a853;">Pasang Iklan</a> 
-        <!-- TOMBOL KUNCI KHUSUS ADMIN UNTUK MENGEDIT LANGSUNG -->
-        <a id="btn-mode-edit" onclick="aktifkanModeEdit()" style="background-color: #ff9800; margin-left: auto;">
     </nav>
 
     <div class="container">
         <h1 id="judul-utama">Selamat Datang di Portal Berita Cimak</h1>
 
+        <!-- SLOT IKLAN ADSENSE ATAS (RESPONSIF) -->
+        <div class="adsense-slot">
+            <p>— RUANG IKLAN GOOGLE ADSENSE —</p>
+            <!-- Tempelkan kode script AdSense Anda di bawah ini nanti -->
+            <small style="color: #94a3b8;">Saran ukuran: Banner Responsif / 728x90</small>
+        </div>
+
         <!-- TAB 1: HALAMAN UTAMA (HOME) -->
         <div id="tab-home" class="halaman-tab aktif">
+            
+            <!-- KONTEN BERITA DENGAN BACKGROUND BARU -->
             <div class="konten-berita">
-                <!-- ELEMEN DI BAWAH INI BISA DIEDIT KAPAN SAJA KETIKA TOMBOL EDIT DIAKTIFKAN -->
-                <div class="teks-berita" id="area-sejarah-kamu">
+                <div class="teks-berita">
                     <h2>Sejarah & Asal-Usul Cipondoh Makmur</h2>
                     
                     <h3>1. Asal-Usul Nama Cipondoh (Cai Mondok)</h3>
@@ -246,26 +260,29 @@
                     <p>Pada masa kolonial Belanda tahun 1930, dibangun bendungan buatan yang kini dikenal sebagai Situ Cipondoh untuk irigasi persawahan dan pengendalian banjir. Seiring berjalannya waktu, wilayah rawa raksasa tersebut mengalami penyusutan akibat kekeringan panjang. Area tepian rawa yang mengering kemudian dimanfaatkan oleh warga setempat untuk pertanian, perikanan, hingga akhirnya berkembang menjadi area pemukiman padat penduduk.</p>
                     
                     <h3>3. Pemekaran Wilayah dan Lahirnya Cipondoh Makmur</h3>
-                    <p>Awalnya, Cipondoh merupakan satu kampung atau desa yang sangat luas. Namun, seiring pesatnya laju urbanisasi, pertumbuhan ekonomi, dan bertambahnya jumlah penduduk di Kota Tangerang, wilayah administratif ini harus dipecah.</p>
-                    <ul>
-                        <li><strong>Pemekaran Tiga Kelurahan:</strong> Kampung Cipondoh yang luas tersebut akhirnya dimekarkan menjadi tiga kelurahan mandiri, yaitu Kelurahan Cipondoh (sebagai kelurahan induk), Kelurahan Cipondoh Indah, dan Kelurahan Cipondoh Makmur.</li>
-                        <li><strong>Batasan Wilayah:</strong> Berdasarkan penataan ruang Kota Tangerang, posisi geografis Kelurahan Cipondoh Makmur terletak tepat di sebelah utara Kelurahan Cipondoh.</li>
-                    </ul>
+                    <p>Awalnya, Cipondoh merupakan satu kampung atau desa yang sangat luas. Namun, seiring pesatnya laju urbanisasi, pertumbuhan ekonomi, serta melonjaknya jumlah penduduk di Kota Tangerang, wilayah ini mengalami pemekaran struktural. Guna meningkatkan efisiensi pelayanan masyarakat dan pembangunan daerah, lahirlah kelurahan Cipondoh Makmur sebagai kawasan pemukiman tertata yang terus berkembang makmur hingga saat ini.</p>
                 </div>
             </div>
 
-            <h2>Tonton Video Terkait</h2>
-            <a href="https://youtube.com" target="_blank" class="video-box-custom">
-                <span class="play-icon">▶</span>
-                <strong>Tonton Rekomendasi Kuliner Kota Tangerang</strong>
-                <p style="margin: 5px 0 0 0; color: #cbd5e1; font-size: 13px;">Klik di sini untuk langsung menonton video asli di YouTube</p>
-            </a>
+            <h2>Tonton Video Terkini</h2>
+            <!-- KONTEN VIDEO UTAMA (RESPONSIF YOUTUBE) -->
+            <div class="video-container">
+                <!-- Ganti ID 'dQw4w9WgXcQ' di bawah dengan ID video YouTube seputar Cipondoh pilihan Anda -->
+                <iframe src="https://youtube.com" allowfullscreen></iframe>
+            </div>
+
         </div>
 
-        <!-- TAB 2: HALAMAN KHUSUS PASANG IKLAN -->
+        <!-- TAB 2: HALAMAN PASANG IKLAN -->
         <div id="tab-iklan" class="halaman-tab">
-            <h2>Fasilitas Layanan Iklan Warga</h2>
             <div class="iklan-container">
                 <div class="iklan-header">
-                    <h3>Hubungi Kami & Pasang Iklan</h3>
-                    <p>Promosikan usaha UMKM Anda di Portal Berita Cimak agar menjangkau lebih banyak warga sekitar Rt.001 Rw.008. Anda juga bisa menghubungi Admin langsung via WhatsApp ke nomor <a href="https://wa.me" target="_blank" style="color: #1a73e8; font-weight: bold; text-decoration: none;">0896-9949-7443</a>.</p>
+                    <h3>Formulir Pemasangan Iklan Warga</h3>
+                    <p>Mempromosikan usaha atau produk Anda langsung di Portal Berita Cimak untuk menjangkau pembaca lokal Cipondoh.</p>
+                </div>
+                <form action="#">
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" placeholder="Masukkan nama Anda" required>
+                    </div>
+                    <div class="form-group">
