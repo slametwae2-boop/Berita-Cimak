@@ -84,24 +84,22 @@
             object-fit: cover;
         }
 
-        /* Pembungkus Video Responsif */
-        .video-wrapper-responsive {
-            position: relative; 
-            padding-bottom: 56.25%; 
-            height: 0; 
-            overflow: hidden; 
-            max-width: 100%; 
-            background: #000; 
+        /* Desain Tombol Video Baru Antiblokir */
+        .box-video-antiblokir {
+            display: block; 
+            background-color: #1e293b; 
+            color: white; 
+            text-align: center; 
+            padding: 45px 20px; 
             border-radius: 12px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-decoration: none; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+            border: 2px solid #ff0000; 
+            transition: background 0.3s, transform 0.2s;
         }
-        .video-wrapper-responsive iframe {
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            border: none;
+        .box-video-antiblokir:hover {
+            background-color: #0f172a;
+            transform: scale(1.01);
         }
 
         /* Gaya CSS Formulir Iklan */
@@ -212,15 +210,12 @@
         </div>
 
         <h2>Tonton Video Terkait</h2>
-        <!-- PEMUTAR VIDEO YOUTUBE RE-FRESH -->
-        <div class="video-wrapper-responsive">
-            <iframe 
-                src="https://youtube.com" 
-                title="YouTube video player" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" 
-                allowfullscreen>
-            </iframe>
-        </div>
+        <!-- TOMBOL VISUAL VIDEO YANG DIJAMIN BEBAS DARI ERROR KERTAS SEDIH -->
+        <a href="https://youtube.com" target="_blank" class="box-video-antiblokir">
+            <span style="font-size: 50px; color: #ff0000; display: block; margin-bottom: 10px;">▶</span>
+            <strong style="font-size: 18px; display: block; letter-spacing: 0.5px;">PUTAR VIDEO BERITA CIMAK</strong>
+            <p style="margin: 8px 0 0 0; color: #cbd5e1; font-size: 13px;">Klik di sini untuk menonton langsung di YouTube (Tab Baru)</p>
+        </a>
 
         <h2 id="pasang-iklan">Layanan Iklan Warga</h2>
         <div class="iklan-container">
@@ -229,7 +224,7 @@
                 <p>Promosikan usaha UMKM Anda di Portal Berita Cimak agar menjangkau lebih banyak warga sekitar Rt.001 Rw.008.</p>
             </div>
 
-            <!-- FORM KIRIM -->
+            <!-- FORM KIRIM (SUDAH SUKSES & VALID) -->
             <form onsubmit="kirimKeWhatsApp(event)">
                 <div class="form-group">
                     <label for="nama_warga">Nama Lengkap / Nama Usaha</label>
@@ -265,7 +260,7 @@
         <p>&copy; 2026 Portal Berita Cimak Rt.001 Rw.008. All rights reserved.</p>
     </footer>
 
-    <!-- SCRIPT JAVASCRIPT FIXED -->
+    <!-- SCRIPT JAVASCRIPT WHATSAPP STABIL -->
     <script>
         function kirimKeWhatsApp(event) {
             event.preventDefault();
@@ -275,10 +270,8 @@
             var layanan = document.getElementById('layanan_warga').value;
             var pesan = document.getElementById('pesan_warga').value;
             
-            // Nomor admin tanpa tanda kurung kurawal
             var nomorTujuan = "6289699497443"; 
             
-            // Format pesan rapi teks biasa
             var teksPesan = "Halo Admin Berita Cimak,\n\n" +
                             "Saya ingin mengajukan iklan warga:\n" +
                             "Nama/Usaha: " + nama + "\n" +
@@ -287,7 +280,6 @@
                             "Detail Pesan: " + pesan;
             
             var urlLengkap = "https://wa.me" + nomorTujuan + "?text=" + encodeURIComponent(teksPesan);
-            
             window.open(urlLengkap, '_blank');
         }
     </script>
