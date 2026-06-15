@@ -1,14 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Berita Cimak Terkini</title>
-    
-    <!-- JALUR UTAMA GOOGLE ADSENSE -->
-    <script async src="https://googlesyndication.com" crossorigin="anonymous"></script>
-    
     <style>
         /* Gaya Dasar Halaman */
         body {
@@ -44,7 +39,7 @@
 
         /* Pembungkus Konten Utama */
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 30px auto;
             padding: 0 20px;
         }
@@ -60,17 +55,17 @@
         h2 {
             color: #222222;
             font-size: 22px;
-            margin-top: 35px;
+            margin-top: 40px;
             margin-bottom: 15px;
         }
 
-        /* Kotak Artikel Utama Berita Sejarah */
+        /* Kotak Artikel Utama Berita Sejarah (Bus Dihapus Total) */
         .konten-berita {
             background-color: white; 
             padding: 30px; 
             border-radius: 12px; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
         .teks-berita {
             line-height: 1.7;
@@ -103,99 +98,37 @@
             margin-bottom: 8px;
         }
 
-        /* Desain Tombol Video Antiblokir */
-        .box-video-antiblokir {
-            display: block; 
-            background-color: #1e293b; 
-            color: white; 
-            text-align: center; 
-            padding: 45px 20px; 
-            border-radius: 12px; 
-            text-decoration: none; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
-            border: 2px solid #ff0000; 
+        /* Tampilan Kotak Video Merah Gelap Kebal Blokir */
+        .video-box-custom {
+            display: block;
+            background-color: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 2px solid #ff0000;
             transition: background 0.3s, transform 0.2s;
-            margin-bottom: 25px;
         }
-        .box-video-antiblokir:hover {
+        .video-box-custom:hover {
             background-color: #0f172a;
             transform: scale(1.01);
         }
-
-        /* Area Google AdSense */
-        .adsense-banner-box {
-            margin: 25px auto;
-            padding: 15px;
-            background-color: #ffffff;
-            border: 1px dashed #b9b9b9;
-            text-align: center;
-            font-size: 12px;
-            color: #888888;
-            border-radius: 8px;
-            margin-bottom: 25px;
-        }
-
-        /* Kotak Rekomendasi Afiliasi */
-        .afiliasi-container {
-            background-color: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            margin-bottom: 25px;
-        }
-        .produk-card {
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 15px;
-            background: #ffffff;
-            text-align: left;
-        }
-        .produk-card strong {
+        .play-icon {
+            font-size: 50px;
+            color: #ff0000;
+            margin-bottom: 12px;
             display: block;
-            font-size: 16px;
-            margin-bottom: 5px;
-            color: #1e293b;
         }
-        .produk-card p {
-            font-size: 14px;
-            color: #64748b;
-            margin: 0 0 15px 0;
-        }
-        .btn-shopee {
-            display: inline-block;
-            background-color: #ee4d2d;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 14px;
-            margin-right: 8px;
-            margin-bottom: 5px;
-        }
-        .btn-tokopedia {
-            display: inline-block;
-            background-color: #03ac0e;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-        .btn-shopee:hover { background-color: #d73c1d; }
-        .btn-tokopedia:hover { background-color: #028a0b; }
 
-        /* JALUR FORMULIR UTAMA */
+        /* Gaya CSS Formulir Iklan Warga */
         .iklan-container {
             background-color: white;
             padding: 25px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            margin-top: 20px;
-            margin-bottom: 30px;
+            margin-top: 15px;
         }
         .iklan-header h3 {
             color: #1a73e8;
@@ -223,11 +156,12 @@
         .form-group select, 
         .form-group textarea {
             width: 100%;
-            padding: 11px;
+            padding: 10px;
             border: 1px solid #cccccc;
             border-radius: 6px;
             font-size: 14px;
             box-sizing: border-box;
+            transition: border-color 0.3s;
             font-family: inherit;
         }
         .form-group input:focus, 
@@ -252,14 +186,25 @@
             background-color: #155cb4;
         }
 
-        /* DESAIN COPYRIGHT FOOTER */
+        /* Footer / Bagian Bawah */
         footer {
             background-color: #1e293b;
             color: #cbd5e1;
             text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
+            padding: 20px;
+            margin-top: 60px;
             font-size: 14px;
+        }
+
+        /* Penyesuaian Tampilan HP */
+        @media (max-width: 768px) {
+            .konten-berita {
+                padding: 20px;
+            }
+            nav {
+                flex-wrap: wrap;
+                padding: 15px;
+            }
         }
     </style>
 </head>
@@ -270,13 +215,13 @@
         <a href="politik.html">Politik</a>
         <a href="#">Teknologi</a>
         <a href="#">Hiburan</a>
-        <a href="#area-pasang-iklan" style="background-color: #34a853;">Pasang Iklan</a> 
+        <a href="#pasang-iklan" style="background-color: #34a853;">Pasang Iklan</a> 
     </nav>
 
     <div class="container">
-        <h1>Portal Berita Cimak</h1>
+        <h1>Selamat Datang di Portal Berita Cimak</h1>
 
-        <!-- KOTAK ARTIKEL UTAMA: ISI SEJARAH LENGKAP -->
+        <!-- KOTAK ARTIKEL UTAMA: ISI SEJARAH LENGKAP SECARA MANDIRI -->
         <div class="konten-berita">
             <div class="teks-berita">
                 <h2>Sejarah & Asal-Usul Cipondoh Makmur</h2>
@@ -296,5 +241,35 @@
             </div>
         </div>
 
-        <!-- BANNER GOOGLE ADSENSE -->
-        <div class="adsense-banner-box">
+        <!-- REVISI VIDEO KULINER TANGERANG ANTIBLOKIR -->
+        <h2>Tonton Video Terkait</h2>
+        <a href="https://youtube.com" target="_blank" class="video-box-custom">
+            <span class="play-icon">▶</span>
+            <strong>Tonton Rekomendasi Kuliner Kota Tangerang</strong>
+            <p style="margin: 5px 0 0 0; color: #cbd5e1; font-size: 13px;">Klik di sini untuk langsung menonton video asli di YouTube</p>
+        </a>
+
+        <!-- LAYANAN FORMULIR IKLAN WARGA -->
+        <h2 id="pasang-iklan">Layanan Iklan Warga</h2>
+        <div class="iklan-container">
+            <div class="iklan-header">
+                <h3>Hubungi Kami & Pasang Iklan</h3>
+                <p>Promosikan usaha UMKM Anda di Portal Berita Cimak agar menjangkau lebih banyak warga sekitar Rt.001 Rw.008.</p>
+            </div>
+
+            <form onsubmit="kirimWhatsAppSempurna(event)">
+                <div class="form-group">
+                    <label for="nama_warga">Nama Lengkap / Nama Usaha</label>
+                    <input type="text" id="nama_warga" placeholder="Contoh: Syamil (Bakso Ikan Malingping)" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="whatsapp_warga">Nomor WhatsApp Anda</label>
+                    <input type="tel" id="whatsapp_warga" placeholder="Contoh: 081234567890" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="layanan_warga">Jenis Layanan</label>
+                    <select id="layanan_warga" required>
+                        <option value="">-- Pilih Layanan --</option>
+                        <option value="Pasang Banner Iklan">Pasang Banner Iklan di Website</option>
