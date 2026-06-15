@@ -22,6 +22,7 @@
             padding: 15px 5%;
             display: flex;
             gap: 12px;
+            flex-wrap: wrap;
         }
         nav a {
             background-color: #1a73e8; 
@@ -31,6 +32,7 @@
             border-radius: 6px; 
             font-weight: bold; 
             font-size: 14px;
+            cursor: pointer;
             transition: background 0.3s;
         }
         nav a:hover {
@@ -59,7 +61,7 @@
             margin-bottom: 15px;
         }
 
-        /* Kotak Artikel Utama Berita Sejarah (Bus Dihapus Total) */
+        /* Kotak Artikel Utama Berita Sejarah */
         .konten-berita {
             background-color: white; 
             padding: 30px; 
@@ -110,6 +112,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             border: 2px solid #ff0000;
             transition: background 0.3s, transform 0.2s;
+            margin-bottom: 30px;
         }
         .video-box-custom:hover {
             background-color: #0f172a;
@@ -186,90 +189,83 @@
             background-color: #155cb4;
         }
 
-        /* Footer / Bagian Bawah */
+        /* Logika Sembunyi Tampilkan Tab */
+        .halaman-tab {
+            display: none;
+        }
+        .halaman-tab.aktif {
+            display: block;
+        }
+
+        /* Footer Bagian Bawah */
         footer {
             background-color: #1e293b;
             color: #cbd5e1;
             text-align: center;
-            padding: 20px;
+            padding: 30px 20px;
             margin-top: 60px;
             font-size: 14px;
         }
-
-        /* Penyesuaian Tampilan HP */
-        @media (max-width: 768px) {
-            .konten-berita {
-                padding: 20px;
-            }
-            nav {
-                flex-wrap: wrap;
-                padding: 15px;
-            }
+        
+        /* Gaya Visual saat Mode Edit Aktif */
+        [contenteditable="true"] {
+            outline: 2px dashed #ff9800;
+            background-color: #fffde7;
+            padding: 4px;
+            border-radius: 4px;
         }
     </style>
 </head>
 <body>
 
+    <!-- NAVIGASI ATAS -->
     <nav>
-        <a href="index.html">Home</a>
+        <a onclick="bukaHalaman('home')">Home</a>
         <a href="politik.html">Politik</a>
         <a href="#">Teknologi</a>
         <a href="#">Hiburan</a>
-        <a href="#pasang-iklan" style="background-color: #34a853;">Pasang Iklan</a> 
+        <a onclick="bukaHalaman('iklan')" style="background-color: #34a853;">Pasang Iklan</a> 
+        <!-- TOMBOL KUNCI KHUSUS ADMIN UNTUK MENGEDIT LANGSUNG -->
+        <a id="btn-mode-edit" onclick="aktifkanModeEdit()" style="background-color: #ff9800; margin-left: auto;">📝 Mode Edit Konten</a>
     </nav>
 
     <div class="container">
-        <h1>Selamat Datang di Portal Berita Cimak</h1>
+        <h1 id="judul-utama">Selamat Datang di Portal Berita Cimak</h1>
 
-        <!-- KOTAK ARTIKEL UTAMA: ISI SEJARAH LENGKAP SECARA MANDIRI -->
-        <div class="konten-berita">
-            <div class="teks-berita">
-                <h2>Sejarah & Asal-Usul Cipondoh Makmur</h2>
-                
-                <h3>1. Asal-Usul Nama Cipondoh (Cai Mondok)</h3>
-                <p>Berdasarkan buku “Melacak Asal Muasal Kampung di Kota Tangerang” karya Burhanudin, identitas seluruh wilayah Cipondoh berakar dari bentang alam berupa rawa atau genangan air raksasa. Nama Cipondoh berasal dari istilah bahasa Sunda, yaitu "Cai Mondok" yang berarti air yang menggenang atau menetap. Karena pengaruh dialek lidah masyarakat Betawi yang tinggal di wilayah sekitarnya, pelafalan Cai Mondok lambat laun berubah menjadi Cipondoh.</p>
-                
-                <h3>2. Transformasi Rawa Menjadi Pemukiman</h3>
-                <p>Pada masa kolonial Belanda tahun 1930, dibangun bendungan buatan yang kini dikenal sebagai Situ Cipondoh untuk irigasi persawahan dan pengendalian banjir. Seiring berjalannya waktu, wilayah rawa raksasa tersebut mengalami penyusutan akibat kekeringan panjang. Area tepian rawa yang mengering kemudian dimanfaatkan oleh warga setempat untuk pertanian, perikanan, hingga akhirnya berkembang menjadi area pemukiman padat penduduk.</p>
-                
-                <h3>3. Pemekaran Wilayah dan Lahirnya Cipondoh Makmur</h3>
-                <p>Awalnya, Cipondoh merupakan satu kampung atau desa yang sangat luas. Namun, seiring pesatnya laju urbanisasi, pertumbuhan ekonomi, dan bertambahnya jumlah penduduk di Kota Tangerang, wilayah administratif ini harus dipecah.</p>
-                <ul>
-                    <li><strong>Pemekaran Tiga Kelurahan:</strong> Kampung Cipondoh yang luas tersebut akhirnya dimekarkan menjadi tiga kelurahan mandiri, yaitu Kelurahan Cipondoh (sebagai kelurahan induk), Kelurahan Cipondoh Indah, dan Kelurahan Cipondoh Makmur.</li>
-                    <li><strong>Batasan Wilayah:</strong> Berdasarkan penataan ruang Kota Tangerang, posisi geografis Kelurahan Cipondoh Makmur terletak tepat di sebelah utara Kelurahan Cipondoh.</li>
-                </ul>
+        <!-- TAB 1: HALAMAN UTAMA (HOME) -->
+        <div id="tab-home" class="halaman-tab aktif">
+            <div class="konten-berita">
+                <!-- ELEMEN DI BAWAH INI BISA DIEDIT KAPAN SAJA KETIKA TOMBOL EDIT DIAKTIFKAN -->
+                <div class="teks-berita" id="area-sejarah-kamu">
+                    <h2>Sejarah & Asal-Usul Cipondoh Makmur</h2>
+                    
+                    <h3>1. Asal-Usul Nama Cipondoh (Cai Mondok)</h3>
+                    <p>Berdasarkan buku “Melacak Asal Muasal Kampung di Kota Tangerang” karya Burhanudin, identitas seluruh wilayah Cipondoh berakar dari bentang alam berupa rawa atau genangan air raksasa. Nama Cipondoh berasal dari istilah bahasa Sunda, yaitu "Cai Mondok" yang berarti air yang menggenang atau menetap. Karena pengaruh dialek lidah masyarakat Betawi yang tinggal di wilayah sekitarnya, pelafalan Cai Mondok lambat laun berubah menjadi Cipondoh.</p>
+                    
+                    <h3>2. Transformasi Rawa Menjadi Pemukiman</h3>
+                    <p>Pada masa kolonial Belanda tahun 1930, dibangun bendungan buatan yang kini dikenal sebagai Situ Cipondoh untuk irigasi persawahan dan pengendalian banjir. Seiring berjalannya waktu, wilayah rawa raksasa tersebut mengalami penyusutan akibat kekeringan panjang. Area tepian rawa yang mengering kemudian dimanfaatkan oleh warga setempat untuk pertanian, perikanan, hingga akhirnya berkembang menjadi area pemukiman padat penduduk.</p>
+                    
+                    <h3>3. Pemekaran Wilayah dan Lahirnya Cipondoh Makmur</h3>
+                    <p>Awalnya, Cipondoh merupakan satu kampung atau desa yang sangat luas. Namun, seiring pesatnya laju urbanisasi, pertumbuhan ekonomi, dan bertambahnya jumlah penduduk di Kota Tangerang, wilayah administratif ini harus dipecah.</p>
+                    <ul>
+                        <li><strong>Pemekaran Tiga Kelurahan:</strong> Kampung Cipondoh yang luas tersebut akhirnya dimekarkan menjadi tiga kelurahan mandiri, yaitu Kelurahan Cipondoh (sebagai kelurahan induk), Kelurahan Cipondoh Indah, dan Kelurahan Cipondoh Makmur.</li>
+                        <li><strong>Batasan Wilayah:</strong> Berdasarkan penataan ruang Kota Tangerang, posisi geografis Kelurahan Cipondoh Makmur terletak tepat di sebelah utara Kelurahan Cipondoh.</li>
+                    </ul>
+                </div>
             </div>
+
+            <h2>Tonton Video Terkait</h2>
+            <a href="https://youtube.com" target="_blank" class="video-box-custom">
+                <span class="play-icon">▶</span>
+                <strong>Tonton Rekomendasi Kuliner Kota Tangerang</strong>
+                <p style="margin: 5px 0 0 0; color: #cbd5e1; font-size: 13px;">Klik di sini untuk langsung menonton video asli di YouTube</p>
+            </a>
         </div>
 
-        <!-- REVISI VIDEO KULINER TANGERANG ANTIBLOKIR -->
-        <h2>Tonton Video Terkait</h2>
-        <a href="https://youtube.com" target="_blank" class="video-box-custom">
-            <span class="play-icon">▶</span>
-            <strong>Tonton Rekomendasi Kuliner Kota Tangerang</strong>
-            <p style="margin: 5px 0 0 0; color: #cbd5e1; font-size: 13px;">Klik di sini untuk langsung menonton video asli di YouTube</p>
-        </a>
-
-        <!-- LAYANAN FORMULIR IKLAN WARGA -->
-        <h2 id="pasang-iklan">Layanan Iklan Warga</h2>
-        <div class="iklan-container">
-            <div class="iklan-header">
-                <h3>Hubungi Kami & Pasang Iklan</h3>
-                <p>Promosikan usaha UMKM Anda di Portal Berita Cimak agar menjangkau lebih banyak warga sekitar Rt.001 Rw.008.</p>
-            </div>
-
-            <form onsubmit="kirimWhatsAppSempurna(event)">
-                <div class="form-group">
-                    <label for="nama_warga">Nama Lengkap / Nama Usaha</label>
-                    <input type="text" id="nama_warga" placeholder="Contoh: Syamil (Bakso Ikan Malingping)" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="whatsapp_warga">Nomor WhatsApp Anda</label>
-                    <input type="tel" id="whatsapp_warga" placeholder="Contoh: 081234567890" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="layanan_warga">Jenis Layanan</label>
-                    <select id="layanan_warga" required>
-                        <option value="">-- Pilih Layanan --</option>
-                        <option value="Pasang Banner Iklan">Pasang Banner Iklan di Website</option>
+        <!-- TAB 2: HALAMAN KHUSUS PASANG IKLAN -->
+        <div id="tab-iklan" class="halaman-tab">
+            <h2>Fasilitas Layanan Iklan Warga</h2>
+            <div class="iklan-container">
+                <div class="iklan-header">
+                    <h3>Hubungi Kami & Pasang Iklan</h3>
+                    <p>Promosikan usaha UMKM Anda di Portal Berita Cimak agar menjangkau lebih banyak warga sekitar Rt.001 Rw.008. Anda juga bisa menghubungi Admin langsung via WhatsApp ke nomor <a href="https://wa.me" target="_blank" style="color: #1a73e8; font-weight: bold; text-decoration: none;">0896-9949-7443</a>.</p>
