@@ -63,7 +63,7 @@
             margin-bottom: 15px;
         }
 
-        /* Kotak Artikel Berita */
+        /* Kotak Artikel Berita Utama */
         .konten-berita {
             background-color: white; 
             padding: 25px; 
@@ -84,6 +84,36 @@
             max-width: 100%;
             height: auto;
             object-fit: cover;
+        }
+
+        /* Kotak Tambahan Sejarah */
+        .sejarah-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+        .sejarah-container h3 {
+            color: #1a73e8;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 4px;
+        }
+        .sejarah-container p {
+            color: #4a5568;
+            font-size: 15px;
+            margin: 0 0 12px 0;
+            text-align: justify;
+        }
+        .sejarah-container ul {
+            margin: 0 0 12px 0;
+            padding-left: 20px;
+            color: #4a5568;
+            font-size: 15px;
         }
 
         /* Desain Tombol Video Baru Antiblokir */
@@ -170,14 +200,84 @@
         .btn-shopee:hover { background-color: #d73c1d; }
         .btn-tokopedia:hover { background-color: #028a0b; }
 
-        /* Bagian Bawah Web / Footer */
+        /* JALUR FORMULIR UTAMA */
+        .iklan-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        .iklan-header h3 {
+            color: #1a73e8;
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+        .iklan-header p {
+            color: #666666;
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #333333;
+            font-size: 14px;
+        }
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus {
+            border-color: #1a73e8;
+            outline: none;
+        }
+        .btn-kirim {
+            width: 100%;
+            padding: 14px;
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-kirim:hover {
+            background-color: #155cb4;
+        }
+
+        /* FIXED: Bagian Bawah Web / Footer (Dipaksa Tampil Jelas) */
         footer {
             background-color: #1e293b;
             color: #cbd5e1;
             text-align: center;
-            padding: 25px;
-            margin-top: 50px;
+            padding: 30px 20px;
+            margin-top: 60px;
             font-size: 14px;
+            clear: both;
+            display: block !important;
+        }
+        footer p {
+            margin: 0;
+            padding: 0;
         }
     </style>
 </head>
@@ -188,13 +288,13 @@
         <a href="politik.html">Politik</a>
         <a href="#">Teknologi</a>
         <a href="#">Hiburan</a>
-        <!-- DIARAHKAN KE HALAMAN FORMULIR BARU -->
-        <a href="pasang-iklan.html" style="background-color: #34a853;">Pasang Iklan</a> 
+        <a href="#area-pasang-iklan" style="background-color: #34a853;">Pasang Iklan</a> 
     </nav>
 
     <div class="container">
         <h1>Selamat Datang di Portal Berita Cimak</h1>
 
+        <!-- BERITA UTAMA LAMA (BUS) -->
         <div class="konten-berita">
             <div class="teks-berita">
                 <p>Ini adalah artikel berita cimak khususnya Rt.001 Rw.008.</p>
@@ -202,50 +302,13 @@
             <img src="berita.jpg" alt="Gambar Ilustrasi Berita">
         </div>
 
-        <!-- BANNER GOOGLE ADSENSE -->
-        <div class="adsense-banner-box">
-            <p style="margin: 0 0 5px 0;">Spanduk Iklan Google AdSense</p>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-XXXXXXXXXXXXXXX"
-                 data-ad-slot="YYYYYYYYYY"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-
-        <h2>Tonton Video Terkait</h2>
-        <a href="https://youtube.com" target="_blank" class="box-video-antiblokir">
-            <span style="font-size: 50px; color: #ff0000; display: block; margin-bottom: 10px;">▶</span>
-            <strong style="font-size: 18px; display: block; letter-spacing: 0.5px;">TONTON REKOMENDASI KULINER KOTA TANGERANG</strong>
-            <p style="margin: 8px 0 0 0; color: #cbd5e1; font-size: 13px;">Klik di sini untuk langsung memutar video petualangan kuliner Pasar Lama di YouTube</p>
-        </a>
-
-        <h2>Rekomendasi Perlengkapan Dapur Warga</h2>
-        <div class="afiliasi-container">
-            <p style="color: #666666; margin: 0; font-size: 14px;">Beli perlengkapan UMKM dan dapur terbaik lewat tautan resmi kami:</p>
+        <!-- ARTIKEL TAMBAHAN BARU: SEJARAH CIPONDOH MAKMUR -->
+        <h2>Sejarah Cipondoh Makmur</h2>
+        <div class="sejarah-container">
+            <h3>1. Asal-Usul Nama Cipondoh (Cai Mondok)</h3>
+            <p>Berdasarkan buku “Melacak Asal Muasal Kampung di Kota Tangerang” karya Burhanudin, identitas seluruh wilayah Cipondoh berakar dari bentang alam berupa rawa atau genangan air raksasa. Nama Cipondoh berasal dari istilah bahasa Sunda, yaitu "Cai Mondok" yang berarti air yang menggenang atau menetap. Karena pengaruh dialek lidah masyarakat Betawi yang tinggal di wilayah sekitarnya, pelafalan Cai Mondok lambat laun berubah menjadi Cipondoh.</p>
             
-            <div class="produk-card">
-                <strong>Panci Bakso Stainless Steel</strong>
-                <p>Bahan tebal anti karat, cocok untuk usaha kuliner.</p>
-                <a href="#" target="_blank" class="btn-shopee">Beli di Shopee</a>
-                <a href="#" target="_blank" class="btn-tokopedia">Tokopedia</a>
-            </div>
-
-            <div class="produk-card">
-                <strong>Mangkok Bakso Keramik (1 Lusin)</strong>
-                <p>Desain klasik ayam jago pelengkap meja makan.</p>
-                <a href="#" target="_blank" class="btn-shopee">Beli di Shopee</a>
-                <a href="#" target="_blank" class="btn-tokopedia">Tokopedia</a>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <p>copryght &copy; 2026 Portal Berita Cimak. All rights reserved.</p>
-    </footer>
-
-</body>
-</html>
+            <h3>2. Transformasi Rawa Menjadi Pemukiman</h3>
+            <p>Pada masa kolonial Belanda tahun 1930, dibangun bendungan buatan yang kini dikenal sebagai Situ Cipondoh untuk irigasi persawahan dan pengendalian banjir. Seiring berjalannya waktu, wilayah rawa raksasa tersebut mengalami penyusutan akibat kekeringan panjang. Area tepian rawa yang mengering kemudian dimanfaatkan oleh warga setempat untuk pertanian, perikanan, hingga akhirnya berkembang menjadi area pemukiman padat penduduk.</p>
+            
+            <h3>3. Pemekaran Wilayah dan Lahirnya Cipondoh Makmur</h3>
