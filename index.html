@@ -168,7 +168,7 @@
             background-color: #155cb4;
         }
 
-        /* Footer / Bagian Bawah */
+        /* Footer */
         footer {
             background-color: #1e293b;
             color: #cbd5e1;
@@ -178,7 +178,7 @@
             font-size: 14px;
         }
 
-        /* Penyesuaian Tampilan HP */
+        /* Penyesuaian HP */
         @media (max-width: 768px) {
             .konten-berita {
                 flex-direction: column-reverse;
@@ -212,7 +212,6 @@
         </div>
 
         <h2>Tonton Video Terkait</h2>
-        <!-- PEMUTAR VIDEO YOUTUBE RESPONSIF -->
         <div class="video-wrapper-responsive">
             <iframe 
                 src="https://youtube.com" 
@@ -230,21 +229,21 @@
                 <p>Promosikan usaha UMKM Anda di Portal Berita Cimak agar menjangkau lebih banyak warga sekitar Rt.001 Rw.008.</p>
             </div>
 
-            <!-- FORM KIRIM DIRECT WHATSAPP (METODE BARU & DIJAMIN BISA DIKLIK) -->
-            <form action="https://wa.me" method="GET" target="_blank">
+            <!-- FORM KIRIM -->
+            <form onsubmit="kirimKeWhatsApp(event)">
                 <div class="form-group">
                     <label for="nama_warga">Nama Lengkap / Nama Usaha</label>
-                    <input type="text" name="text" placeholder="Contoh: Syamil (Bakso Ikan Malingping)" required>
+                    <input type="text" id="nama_warga" placeholder="Contoh: Syamil (Bakso Ikan Malingping)" required>
                 </div>
 
                 <div class="form-group">
                     <label for="whatsapp_warga">Nomor WhatsApp Anda</label>
-                    <input type="tel" placeholder="Contoh: 081234567890" required>
+                    <input type="tel" id="whatsapp_warga" placeholder="Contoh: 081234567890" required>
                 </div>
 
                 <div class="form-group">
                     <label for="layanan_warga">Jenis Layanan</label>
-                    <select required>
+                    <select id="layanan_warga" required>
                         <option value="">-- Pilih Layanan --</option>
                         <option value="Pasang Banner Iklan">Pasang Banner Iklan di Website</option>
                         <option value="Artikel Sponsor">Artikel Sponsor / Review Usaha</option>
@@ -254,7 +253,7 @@
 
                 <div class="form-group">
                     <label for="pesan_warga">Detail Pesan / Deskripsi Iklan</label>
-                    <textarea rows="5" placeholder="Tuliskan detail iklan atau pesan Anda di sini..." required></textarea>
+                    <textarea id="pesan_warga" rows="5" placeholder="Tuliskan detail iklan atau pesan Anda di sini..." required></textarea>
                 </div>
 
                 <button type="submit" class="btn-kirim">Kirim via WhatsApp</button>
@@ -265,6 +264,33 @@
     <footer>
         <p>&copy; 2026 Portal Berita Cimak Rt.001 Rw.008. All rights reserved.</p>
     </footer>
+
+    <!-- SCRIPT JAVASCRIPT FIXED -->
+    <script>
+        function kirimKeWhatsApp(event) {
+            event.preventDefault();
+            
+            var nama = document.getElementById('nama_warga').value;
+            var wa = document.getElementById('whatsapp_warga').value;
+            var layanan = document.getElementById('layanan_warga').value;
+            var pesan = document.getElementById('pesan_warga').value;
+            
+            // Nomor admin tanpa tanda kurung kurawal
+            var nomorTujuan = "62896999497443"; 
+            
+            // Format pesan rapi teks biasa
+            var teksPesan = "Halo Admin Berita Cimak,\n\n" +
+                            "Saya ingin mengajukan iklan warga:\n" +
+                            "Nama/Usaha: " + nama + "\n" +
+                            "No. WhatsApp: " + wa + "\n" +
+                            "Jenis Layanan: " + layanan + "\n" +
+                            "Detail Pesan: " + pesan;
+            
+            var urlLengkap = "https://wa.me" + nomorTujuan + "?text=" + encodeURIComponent(teksPesan);
+            
+            window.open(urlLengkap, '_blank');
+        }
+    </script>
 
 </body>
 </html>
