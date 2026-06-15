@@ -212,7 +212,7 @@
         </div>
 
         <h2>Tonton Video Terkait</h2>
-        <!-- VIDEO YOUTUBE RESPONSIF -->
+        <!-- PEMUTAR VIDEO YOUTUBE PERMANEN (RESPONSIF) -->
         <div class="video-wrapper-responsive">
             <iframe 
                 src="https://youtube.com" 
@@ -230,7 +230,7 @@
                 <p>Promosikan usaha UMKM Anda di Portal Berita Cimak agar menjangkau lebih banyak warga sekitar Rt.001 Rw.008.</p>
             </div>
 
-            <!-- FORM KIRIM WHATSAPP -->
+            <!-- FORM KIRIM PERMOHONAN -->
             <form onsubmit="kirimWhatsAppSempurna(event)">
                 <div class="form-group">
                     <label for="nama_warga">Nama Lengkap / Nama Usaha</label>
@@ -257,33 +257,34 @@
                     <textarea id="pesan_warga" rows="5" placeholder="Tuliskan detail iklan atau pesan Anda di sini..." required></textarea>
                 </div>
 
-                <button type="submit" class="btn-kirim">Kirim via WhatsApp</button>
+                <button type="submit" class="btn-kirim">Kirim Permohonan Iklan</button>
             </form>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Google LLC - Portal Berita Cimak Rt.001 Rw.008</p>
+        <p>&copy; 2026 Portal Berita Cimak Rt.001 Rw.008. All rights reserved.</p>
     </footer>
 
+    <!-- SCRIPT LOGIK WHATSAPP YANG SUDAH DIPERBAIKI -->
     <script>
         function kirimWhatsAppSempurna(event) {
             event.preventDefault();
             
-            // Ambil data dari form
+            // Ambil data dari elemen form input
             const nama = document.getElementById('nama_warga').value;
             const wa = document.getElementById('whatsapp_warga').value;
             const layanan = document.getElementById('layanan_warga').value;
             const pesan = document.getElementById('pesan_warga').value;
             
-            // Nomor WhatsApp tujuan pengelola web Berita Cimak (Ganti angka di bawah jika ingin mengubah nomor tujuan)
+            // Nomor WhatsApp tujuan admin terverifikasi dari gambar
             const nomorTujuan = "6289699497443"; 
             
-            // Format teks pesan WhatsApp otomatis
-            const teksWA = `Halo Admin Berita Cimak,%0A%0ASaya ingin mengajukan iklan warga:%0A%0A*Nama/Usaha:* ${nama}%0A*No. WhatsApp:* ${wa}%0A*Jenis Layanan:* ${layanan}%0A*Detail Pesan:* ${pesan}`;
+            // Mengubah spasi dan enter menjadi kode url-safe (%0A untuk baris baru)
+            const teksWA = `Halo Admin Berita Cimak,%0A%0ASaya ingin mengajukan iklan warga:%0A%0A*Nama/Usaha:* ${encodeURIComponent(nama)}%0A*No. WhatsApp:* ${encodeURIComponent(wa)}%0A*Jenis Layanan:* ${encodeURIComponent(layanan)}%0A*Detail Pesan:* ${encodeURIComponent(pesan)}`;
             
-            // Buka WhatsApp di tab baru
-            window.open(`https://whatsapp.com{nomorTujuan}&text=${teksWA}`, '_blank');
+            // Eksekusi membuka chatroom WhatsApp resmi tanpa eror tautan
+            window.open(`https://wa.me{nomorTujuan}?text=${teksWA}`, '_blank');
         }
     </script>
 
