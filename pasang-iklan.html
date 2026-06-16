@@ -7,19 +7,19 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f4f8; /* Latar belakang soft & terang */
+            background-color: #f0f4f8;
             color: #334155;
             margin: 0;
             padding: 20px;
         }
         .form-container {
             max-width: 600px;
-            background: #ffffff; /* Kotak formulir putih bersih */
+            background: #ffffff;
             margin: 40px auto;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            border-top: 4px solid #1a73e8; /* Aksen garis biru profesional */
+            border-top: 4px solid #1a73e8;
         }
         h2 {
             margin-top: 0;
@@ -56,6 +56,19 @@
             border-color: #1a73e8;
             box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
         }
+        .norek-box {
+            display: none; /* Tersembunyi di awal, muncul via JavaScript */
+            background-color: #fffbeb;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 12px;
+            border: 1px dashed #f59e0b;
+            font-size: 14px;
+            color: #b45309;
+        }
+        .norek-item {
+            margin-bottom: 5px;
+        }
         .payment-info {
             background-color: #f8fafc;
             padding: 15px;
@@ -86,7 +99,7 @@
 
     <div class="form-container">
         <h2>Formulir Pengajuan Iklan</h2>
-        <p>Silakan isi data dan pilih metode pembayaran di bawah ini. Info rekening tujuan akan kami kirimkan ke email/WhatsApp Anda setelah pengajuan dikirim.</p>
+        <p>Silakan isi data dan selesaikan pembayaran di bawah ini. Tim kami akan segera memproses iklan Anda setelah formulir dikirim.</p>
         
         <form action="https://formsubmit.co" method="POST">
             
@@ -112,16 +125,16 @@
                 <label for="jenis-iklan">Jenis Paket Iklan & Tarif</label>
                 <select id="jenis-iklan" name="Jenis_Paket_Iklan" required>
                     <option value="" disabled selected>-- Pilih Posisi & Tarif Iklan --</option>
-                    <option value="Banner Atas - Rp500.000/Bulan">Banner Atas Website / Header (Rp500.000 / Bulan)</option>
-                    <option value="Banner Samping - Rp300.000/Bulan">Banner Samping Artikel / Sidebar (Rp300.000 / Bulan)</option>
-                    <option value="Artikel Sponsor - Rp250.000/Tayang">Artikel Berita Sponsor / Paid Promote (Rp250.000 / Tayang)</option>
-                    <option value="Iklan Pop-up - Rp750.000/Bulan">Iklan Melayang / Pop-up Halaman Depan (Rp750.000 / Bulan)</option>
+                    <option value="Banner Atas - Rp250.000/Bulan">Banner Atas Website / Header (Rp250.000 / Bulan)</option>
+                    <option value="Banner Samping - Rp150.000/Bulan">Banner Samping Artikel / Sidebar (Rp150.000 / Bulan)</option>
+                    <option value="Artikel Sponsor - Rp100.000/Tayang">Artikel Berita Sponsor / Paid Promote (Rp100.000 / Tayang)</option>
+                    <option value="Iklan Pop-up - Rp350.000/Bulan">Iklan Melayang / Pop-up Halaman Depan (Rp350.000 / Bulan)</option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="metode-bayar">Pilihan Metode Pembayaran</label>
-                <select id="metode-bayar" name="Metode_Pembayaran" required>
+                <select id="metode-bayar" name="Metode_Pembayaran" onchange="tampilkanNorek()" required>
                     <option value="" disabled selected>-- Pilih Metode Pembayaran --</option>
                     <option value="QRIS (All Payment)">QRIS (Scan pakai e-Wallet / Mobile Banking)</option>
                     <option value="DANA">DANA (E-Wallet)</option>
@@ -130,10 +143,16 @@
                     <option value="SeaBank">SeaBank (Transfer Bank)</option>
                     <option value="Bank Jago">Bank Jago (Transfer Bank)</option>
                 </select>
+
+                <!-- KOTAK INFORMASI REKENING (Silakan ganti nomor rekening di bawah ini) -->
+                <div id="box-norek" class="norek-box">
+                    <div id="teks-norek"></div>
+                    <div style="margin-top: 5px; font-size: 12px; color: #78350f;">*Mohon simpan bukti transfer untuk dilampirkan/dikonfirmasi nanti.</div>
+                </div>
             </div>
 
             <div class="payment-info">
-                <strong>💡 Catatan Penting:</strong> Setelah Anda menekan tombol Kirim di bawah, sistem kami akan langsung mencatat invoice iklan Anda. Mohon siapkan bukti bayar setelah instruksi rekening terkirim ke WhatsApp Anda.
+                <strong>💡 Catatan Penting:</strong> Setelah melakukan transfer ke rekening yang tertera di atas, klik tombol <strong>Kirim Pengajuan Iklan</strong> di bawah ini agar slot iklan Anda langsung dipesan di sistem kami.
             </div>
 
             <div class="form-group">
@@ -144,6 +163,34 @@
             <button type="submit" class="btn-submit">Kirim Pengajuan Iklan</button>
         </form>
     </div>
+
+    <!-- SCRIPT JAVASCRIPT UNTUK MEMUNCULKAN NO REKENING -->
+    <script>
+        function tampilkanNorek() {
+            var pilihan = document.getElementById("metode-bayar").value;
+            var boxNorek = document.getElementById("box-norek");
+            var teksNorek = document.getElementById("teks-norek");
+
+            boxNorek.style.display = "block";
+
+            // SILAKAN GANTI NOMOR REKENING DAN NAMA PEMILIK DI BAWAH INI:
+            if (pilihan === "QRIS (All Payment)") {
+                teksNorek.innerHTML = "<strong>Metode QRIS:</strong><br>Silakan hubungi kami via WhatsApp setelah submit untuk mendapatkan kode QRIS terbaru.";
+            } else if (pilihan === "DANA") {
+                teksNorek.innerHTML = "<strong>Akun DANA:</strong><br>Nomor: 0812-3456-7890<br>Atas Nama: Berita Cimak";
+            } else if (pilihan === "OVO") {
+                teksNorek.innerHTML = "<strong>Akun OVO:</strong><br>Nomor: 0812-3456-7890<br>Atas Nama: Berita Cimak";
+            } else if (pilihan === "Krom Bank") {
+                teksNorek.innerHTML = "<strong>Krom Bank (Kode Bank: 013):</strong><br>No. Rekening: 1234567890<br>Atas Nama: Berita Cimak";
+            } else if (pilihan === "SeaBank") {
+                teksNorek.innerHTML = "<strong>SeaBank (Kode Bank: 535):</strong><br>No. Rekening: 9876543210<br>Atas Nama: Berita Cimak";
+            } else if (pilihan === "Bank Jago") {
+                teksNorek.innerHTML = "<strong>Bank Jago (Kode Bank: 542):</strong><br>No. Rekening: 5544332211<br>Atas Nama: Berita Cimak";
+            } else {
+                boxNorek.style.display = "none";
+            }
+        }
+    </script>
 
 </body>
 </html>
