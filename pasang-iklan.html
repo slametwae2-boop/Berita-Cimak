@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulir Pasang Iklan - Portal Berita Cipondoh Makmur</title>
+    <title>Formulir Pasang Iklan - Portal Berita Cipondoh</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -144,6 +144,11 @@
         .btn-submit:hover {
             background-color: #2cc055;
         }
+        .btn-submit:disabled {
+            background-color: #cbd5e1;
+            color: #94a3b8;
+            cursor: not-allowed;
+        }
 
         .ad-large-box {
             background-color: #f8fafc;
@@ -173,7 +178,7 @@
             margin-top: 8px;
         }
 
-        /* STYLE BARU: KOTAK IKLAN BERJALAN MEMANJANG (DI BAWAH) */
+        /* KOTAK IKLAN BERJALAN MEMANJANG (DI BAWAH) */
         .running-ads-container {
             max-width: 1250px;
             margin: 30px auto 40px auto;
@@ -185,7 +190,6 @@
             box-sizing: border-box;
         }
         
-        /* 1. Baris Teks Berjalan (Running Text) */
         .ticker-wrapper {
             display: flex;
             background: #1e293b;
@@ -206,7 +210,6 @@
             width: 100%;
         }
 
-        /* 2. Baris Banner Gambar Berjalan Memanjang */
         .image-marquee-wrapper {
             overflow: hidden;
             background: #f8fafc;
@@ -232,13 +235,12 @@
 <body>
 
     <div class="nav-container">
-        <a href="index.html" class="btn-home">Home</a>
+        <a href="index.html" class="btn-home">← Kembali ke Home</a>
     </div>
 
-    <!-- AREA ATAS: TIGA KOLOM APITAN -->
     <div class="main-layout">
         
-        <!-- KOLOM 1: SAMPING KIRI -->
+        <!-- KOLOM KIRI -->
         <div class="side-ads-column">
             <h3>📊 Iklan Aktif (Kiri)</h3>
             <p style="font-size: 12.5px; margin-bottom: 15px;">Daftar banner aktif di sisi kiri halaman utama:</p>
@@ -251,12 +253,12 @@
             </div>
         </div>
 
-        <!-- KOLOM 2: TENGAH (FORMULIR) -->
+        <!-- KOLOM TENGAH (FORMULIR DENGAN ID AMAN) -->
         <div class="form-column">
             <h2>Formulir Pengajuan Iklan</h2>
             <p>Silakan isi data dan selesaikan pembayaran di bawah ini. Tim kami akan segera memproses iklan Anda setelah formulir dikirim.</p>
             
-            <form action="https://formsubmit.co" method="POST">
+            <form id="iklanForm" method="POST">
                 <input type="text" name="_honey" style="display:none">
                 <input type="hidden" name="_template" value="table">
                 
@@ -289,3 +291,4 @@
                 <div class="form-group">
                     <label for="metode-bayar">Pilihan Metode Pembayaran</label>
                     <select id="metode-bayar" name="Metode_Pembayaran" onchange="tampilkanNorek()" required>
+                        <option value="" disabled selected>-- Pilih Metode Pembayaran --</option>
