@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulir Pasang Iklan - Portal Berita Cipondoh Makmur</title>
+    <title>Formulir Pasang Iklan - Portal Berita Cimak</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8fafc;
-            color: #334155;
+            background-color: #0f172a;
+            color: #cbd5e1;
             margin: 0;
             padding: 20px;
         }
         .form-container {
             max-width: 600px;
-            background: #ffffff;
+            background: #1e293b;
             margin: 40px auto;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            border-top: 5px solid #28a745;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            border-top: 4px solid #1a73e8;
         }
         h2 {
             margin-top: 0;
-            color: #1e293b;
+            color: #ffffff;
             font-size: 24px;
         }
         p {
-            color: #64748b;
+            color: #94a3b8;
             font-size: 14px;
             margin-bottom: 25px;
         }
@@ -39,26 +39,41 @@
             font-weight: 600;
             margin-bottom: 8px;
             font-size: 14px;
+            color: #e2e8f0;
         }
         input[type="text"], input[type="email"], input[type="tel"], select, textarea {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #cbd5e1;
+            padding: 12px;
+            background-color: #0f172a;
+            border: 1px solid #334155;
             border-radius: 6px;
             box-sizing: border-box;
             font-size: 15px;
-            color: #334155;
+            color: #ffffff;
         }
         input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: #28a745;
-            box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.25);
+        }
+        select option {
+            background-color: #1e293b;
+            color: #ffffff;
+        }
+        .payment-info {
+            background-color: #0f172a;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 4px solid #1a73e8;
+            font-size: 13.5px;
+            color: #94a3b8;
         }
         .btn-submit {
-            background-color: #28a745;
+            background-color: #34a853;
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 14px 20px;
             font-size: 16px;
             font-weight: bold;
             border-radius: 6px;
@@ -67,7 +82,7 @@
             transition: background 0.2s;
         }
         .btn-submit:hover {
-            background-color: #218838;
+            background-color: #2cc055;
         }
     </style>
 </head>
@@ -75,12 +90,10 @@
 
     <div class="form-container">
         <h2>Formulir Pengajuan Iklan</h2>
-        <p>Silakan isi data di bawah ini. Tim Hubungan Masyarakat kami akan segera menghubungi Anda dalam waktu maksimal 1x24 jam.</p>
+        <p>Silakan isi data dan pilih metode pembayaran di bawah ini. Info rekening tujuan akan kami kirimkan ke email/WhatsApp Anda setelah pengajuan dikirim.</p>
         
-        <!-- Pemroses menggunakan layanan FormSubmit gratis -->
         <form action="https://formsubmit.co" method="POST">
             
-            <!-- Pencegahan Spam / Captcha Otomatis -->
             <input type="text" name="_honey" style="display:none">
             <input type="hidden" name="_template" value="table">
             
@@ -100,13 +113,31 @@
             </div>
 
             <div class="form-group">
-                <label for="jenis-iklan">Jenis Paket Iklan</label>
+                <label for="jenis-iklan">Jenis Paket Iklan & Tarif</label>
                 <select id="jenis-iklan" name="Jenis_Paket_Iklan" required>
-                    <option value="" disabled selected>-- Pilih Posisi Iklan --</option>
-                    <option value="Banner Atas (Header)">Banner Atas Website (Header)</option>
-                    <option value="Banner Samping (Sidebar)">Banner Samping Artikel (Sidebar)</option>
-                    <option value="Artikel Sponsor (Content)">Artikel Berita Sponsor (Paid Promote)</option>
+                    <option value="" disabled selected>-- Pilih Posisi & Tarif Iklan --</option>
+                    <option value="Banner Atas - Rp500.000/Bulan">Banner Atas Website / Header (Rp500.000 / Bulan)</option>
+                    <option value="Banner Samping - Rp300.000/Bulan">Banner Samping Artikel / Sidebar (Rp300.000 / Bulan)</option>
+                    <option value="Artikel Sponsor - Rp250.000/Tayang">Artikel Berita Sponsor / Paid Promote (Rp250.000 / Tayang)</option>
+                    <option value="Iklan Pop-up - Rp750.000/Bulan">Iklan Melayang / Pop-up Halaman Depan (Rp750.000 / Bulan)</option>
                 </select>
+            </div>
+
+            <div class="form-group">
+                <label for="metode-bayar">Pilihan Metode Pembayaran</label>
+                <select id="metode-bayar" name="Metode_Pembayaran" required>
+                    <option value="" disabled selected>-- Pilih Metode Pembayaran --</option>
+                    <option value="QRIS (All Payment)">QRIS (Scan pakai e-Wallet / Mobile Banking)</option>
+                    <option value="DANA">DANA (E-Wallet)</option>
+                    <option value="OVO">OVO (E-Wallet)</option>
+                    <option value="Krom Bank">Krom Bank (Transfer Bank)</option>
+                    <option value="SeaBank">SeaBank (Transfer Bank)</option>
+                    <option value="Bank Jago">Bank Jago (Transfer Bank)</option>
+                </select>
+            </div>
+
+            <div class="payment-info">
+                <strong>💡 Catatan Penting:</strong> Setelah Anda menekan tombol Kirim di bawah, sistem kami akan langsung mencatat invoice iklan Anda. Mohon siapkan bukti bayar setelah instruksi rekening terkirim ke WhatsApp Anda.
             </div>
 
             <div class="form-group">
