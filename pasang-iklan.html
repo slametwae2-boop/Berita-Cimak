@@ -12,7 +12,6 @@
             margin: 0;
             padding: 20px;
         }
-        /* Style untuk Menu Navigasi Atas */
         .nav-container {
             max-width: 600px;
             margin: 10px auto 0 auto;
@@ -32,11 +31,10 @@
         .btn-home:hover {
             background-color: #155cb4;
         }
-        /* Style Kontainer Formulir */
         .form-container {
             max-width: 600px;
             background: #ffffff;
-            margin: 15px auto 40px auto;
+            margin: 15px auto 30px auto;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
@@ -120,13 +118,55 @@
         .btn-submit:hover {
             background-color: #2cc055;
         }
+
+        /* STYLE BARU: DAFTAR IKLAN YANG SEDANG TAYANG */
+        .ads-container {
+            max-width: 600px;
+            background: #ffffff;
+            margin: 30px auto 40px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid #34a853;
+        }
+        .ads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .ad-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+            color: #64748b;
+        }
+        .ad-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            background-color: #cbd5e1;
+        }
+        .ad-status {
+            display: inline-block;
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 10.5px;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
 
-    <!-- TOMBOL MENU HOME ATAS -->
     <div class="nav-container">
-        <a href="index.html" class="btn-home">← Home</a>
+        <a href="index.html" class="btn-home">← Kembali ke Home</a>
     </div>
 
     <!-- FORM UTAMA -->
@@ -135,7 +175,6 @@
         <p>Silakan isi data dan selesaikan pembayaran di bawah ini. Tim kami akan segera memproses iklan Anda setelah formulir dikirim.</p>
         
         <form action="https://formsubmit.co" method="POST">
-            
             <input type="text" name="_honey" style="display:none">
             <input type="hidden" name="_template" value="table">
             
@@ -158,10 +197,10 @@
                 <label for="jenis-iklan">Jenis Paket Iklan & Tarif</label>
                 <select id="jenis-iklan" name="Jenis_Paket_Iklan" required>
                     <option value="" disabled selected>-- Pilih Posisi & Tarif Iklan --</option>
-                    <option value="Banner Atas - Rp350.000/Bulan">Banner Atas Website / Header (Rp350.000 / Bulan)</option>
-                    <option value="Banner Samping - Rp200.000/Bulan">Banner Samping Artikel / Sidebar (Rp200.000 / Bulan)</option>
-                    <option value="Artikel Sponsor - Rp100.000/Tayang">Artikel Berita Sponsor / Paid Promote (Rp100.000 / Tayang)</option>
-                    <option value="Iklan Pop-up - Rp400.000/Bulan">Iklan Melayang / Pop-up Halaman Depan (Rp400.000 / Bulan)</option>
+                    <option value="Banner Atas - Rp500.000/Bulan">Banner Atas Website / Header (Rp500.000 / Bulan)</option>
+                    <option value="Banner Samping - Rp300.000/Bulan">Banner Samping Artikel / Sidebar (Rp300.000 / Bulan)</option>
+                    <option value="Artikel Sponsor - Rp250.000/Tayang">Artikel Berita Sponsor / Paid Promote (Rp250.000 / Tayang)</option>
+                    <option value="Iklan Pop-up - Rp750.000/Bulan">Iklan Melayang / Pop-up Halaman Depan (Rp750.000 / Bulan)</option>
                 </select>
             </div>
 
@@ -196,31 +235,24 @@
         </form>
     </div>
 
-    <script>
-        function tampilkanNorek() {
-            var pilihan = document.getElementById("metode-bayar").value;
-            var boxNorek = document.getElementById("box-norek");
-            var teksNorek = document.getElementById("teks-norek");
-
-            boxNorek.style.display = "block";
-
-            if (pilihan === "QRIS (All Payment)") {
-                teksNorek.innerHTML = "<strong>Silakan Scan QRIS di Bawah Ini:</strong><br><img src='qris.jpg' alt='Barcode QRIS' class='qris-image'><br><strong>Atas Nama:</strong> Berita Cimak";
-            } else if (pilihan === "DANA") {
-                teksNorek.innerHTML = "<strong>Akun DANA:</strong><br>Nomor: 0812-3456-7890<br>Atas Nama: Berita Cimak";
-            } else if (pilihan === "OVO") {
-                teksNorek.innerHTML = "<strong>Akun OVO:</strong><br>Nomor: 0812-3456-7890<br>Atas Nama: Berita Cimak";
-            } else if (pilihan === "Krom Bank") {
-                teksNorek.innerHTML = "<strong>Krom Bank (Kode Bank: 013):</strong><br>No. Rekening: 1234567890<br>Atas Nama: Berita Cimak";
-            } else if (pilihan === "SeaBank") {
-                teksNorek.innerHTML = "<strong>SeaBank (Kode Bank: 535):</strong><br>No. Rekening: 9876543210<br>Atas Nama: Berita Cimak";
-            } else if (pilihan === "Bank Jago") {
-                teksNorek.innerHTML = "<strong>Bank Jago (Kode Bank: 542):</strong><br>No. Rekening: 5544332211<br>Atas Nama: Berita Cimak";
-            } else {
-                boxNorek.style.display = "none";
-            }
-        }
-    </script>
-
-</body>
-</html>
+    <!-- BAGIAN BARU: DAFTAR IKLAN YANG SEDANG TAYANG -->
+    <div class="ads-container">
+        <h3 style="margin-top:0; color: #1e293b;">📊 Slot Iklan yang Sedang Tayang</h3>
+        <p style="margin-bottom:0; font-size:13px;">Berikut adalah daftar slot iklan aktif saat ini di Portal Berita Cimak:</p>
+        
+        <div class="ads-grid">
+            <!-- Iklan 1 -->
+            <div class="ad-box">
+                <img src="iklan1.jpg" alt="Slot Banner Atas" onerror="this.src='https://placehold.co'">
+                <strong>Banner Atas</strong><br>
+                PT Maju Sejahtera
+                <br><span class="ad-status">● Active</span>
+            </div>
+            
+            <!-- Iklan 2 -->
+            <div class="ad-box">
+                <img src="iklan2.jpg" alt="Slot Banner Samping" onerror="this.src='https://placehold.co'">
+                <strong>Banner Samping</strong><br>
+                Kuliner Cimak
+                <br><span class="ad-status">● Active</span>
+            </div>
