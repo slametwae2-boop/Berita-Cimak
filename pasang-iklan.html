@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulir Pasang Iklan - Portal Berita Cimak</title>
+    <title>Formulir Pasang Iklan - Portal Berita Cipondoh</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -118,8 +118,6 @@
         .btn-submit:hover {
             background-color: #2cc055;
         }
-
-        /* STYLE BARU: DAFTAR IKLAN YANG SEDANG TAYANG */
         .ads-container {
             max-width: 600px;
             background: #ffffff;
@@ -174,6 +172,7 @@
         <h2>Formulir Pengajuan Iklan</h2>
         <p>Silakan isi data dan selesaikan pembayaran di bawah ini. Tim kami akan segera memproses iklan Anda setelah formulir dikirim.</p>
         
+        <!-- PENTING: Jika email belum diubah, data tetap masuk ke email beritacimak -->
         <form action="https://formsubmit.co" method="POST">
             <input type="text" name="_honey" style="display:none">
             <input type="hidden" name="_template" value="table">
@@ -235,13 +234,12 @@
         </form>
     </div>
 
-    <!-- BAGIAN BARU: DAFTAR IKLAN YANG SEDANG TAYANG -->
+    <!-- DAFTAR IKLAN YANG SEDANG TAYANG -->
     <div class="ads-container">
         <h3 style="margin-top:0; color: #1e293b;">📊 Slot Iklan yang Sedang Tayang</h3>
-        <p style="margin-bottom:0; font-size:13px;">Berikut adalah daftar slot iklan aktif saat ini di Portal Berita Cimak:</p>
+        <p style="margin-bottom:0; font-size:13px;">Berikut adalah daftar slot iklan aktif saat ini di Portal Berita Cipondoh:</p>
         
         <div class="ads-grid">
-            <!-- Iklan 1 -->
             <div class="ad-box">
                 <img src="iklan1.jpg" alt="Slot Banner Atas" onerror="this.src='https://placehold.co'">
                 <strong>Banner Atas</strong><br>
@@ -249,10 +247,11 @@
                 <br><span class="ad-status">● Active</span>
             </div>
             
-            <!-- Iklan 2 -->
             <div class="ad-box">
                 <img src="iklan2.jpg" alt="Slot Banner Samping" onerror="this.src='https://placehold.co'">
                 <strong>Banner Samping</strong><br>
-                Kuliner Cimak
+                Kuliner Cipondoh
                 <br><span class="ad-status">● Active</span>
             </div>
+
+            <div class="ad-box" style="border: 1px dashed #cbd5e1; background-color: #f8fafc;">
