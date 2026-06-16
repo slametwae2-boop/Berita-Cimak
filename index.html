@@ -3,53 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berita Cipondoh Makmur</title>
+    <title>Berita Cipondoh - Media Informasi Terkini</title>
     <style>
-        body {
-            background-color: #f4f6f9; 
-            font-family: 'Segoe UI', Arial, sans-serif; 
-            color: #333333; 
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            scroll-behavior: smooth;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        nav {
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-            padding: 15px 5%;
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
+        body {
+            background-color: #f0f4f8;
+            color: #333;
+            padding-bottom: 70px; /* Jarak agar konten tidak tertutup running text */
+        }
+        
+        /* HEADER BAR BIRU PENH (SESUAI GAMBAR BARU) */
+        header {
+            background-color: #1e73be; /* Warna biru penuh */
+            padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        nav a {
-            background-color: #1a73e8; 
-            color: white; 
-            padding: 10px 20px; 
-            text-decoration: none; 
-            border-radius: 6px; 
-            font-weight: bold; 
-            font-size: 14px;
-            transition: background 0.3s;
-        }
-        nav a:hover { background-color: #155cb4; }
-        
-        /* Pembungkus Layout Utama Tiga Kolom Maksimal */
-        .main-layout {
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
             display: flex;
-            max-width: 1440px;
+            justify-content: space-between;
+            align-items: center;
+        }
+        /* Logo Teks Sebelah Kiri */
+        .logo-text {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        /* Menu Sebelah Kanan */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 5px;
+            align-items: center;
+        }
+        /* Gaya Teks Menu Minimalis */
+        .nav-item {
+            background: none;
+            border: none;
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-block;
+        }
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        /* Efek Kotak Sorot Menu Aktif (Spt Tombol Home di Gambar) */
+        .nav-item.active {
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* AREA KONTEN UTAMA */
+        .container {
+            max-width: 1100px;
             margin: 30px auto;
             padding: 0 20px;
-            gap: 25px;
-            box-sizing: border-box;
         }
         
-        /* Kolom Konten Tengah */
-        .container {
+        /* Halaman Konten Toggle */
+        .page-content {
+            display: none;
+        }
+        .page-content.active {
+            display: block;
+        }
+        .main-content {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* BAGIAN KIRI: STATUS IKLAN */
+        .sidebar {
             flex: 1;
-            min-width: 0;
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .card-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #28a745;
+            padding-bottom: 5px;
+        }
+        .slot-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 13px;
+            color: #555;
+        }
+        .status-aktif {
+            color: #28a745;
+            font-weight: bold;
+            margin-top: 5px;
+            display: block;
+        }
+        .slot-kosong {
+            background: white;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 40px 20px;
+            text-align: center;
+            color: #888;
+            font-size: 14px;
+        }
+        .slot-kosong h4 {
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        /* BAGIAN KANAN: FORMULIR PENGAJUAN IKLAN */
+        .form-container {
+            flex: 2;
+            min-width: 320px;
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid #1e73be;
+        }
+        .form-container h2 {
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        .form-container p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #444;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            background-color: #fff;
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #1e73be;
+            box-shadow: 0 0 5px rgba(30,115,190,0.2);
+        }
+        .btn-submit {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .btn-submit:hover {
+            background-color: #218838;
         }
         
         /* Gaya Kotak Iklan Samping Kiri & Kanan Ber-Border Jelas */
