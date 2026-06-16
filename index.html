@@ -36,13 +36,14 @@
         }
         nav a:hover { background-color: #155cb4; }
         
-        /* Pembungkus Layout Utama Tiga Kolom */
+        /* Pembungkus Layout Utama Tiga Kolom Maksimal */
         .main-layout {
             display: flex;
-            max-width: 1400px;
+            max-width: 1440px;
             margin: 30px auto;
             padding: 0 20px;
-            gap: 20px;
+            gap: 25px;
+            box-sizing: border-box;
         }
         
         /* Kolom Konten Tengah */
@@ -51,74 +52,28 @@
             min-width: 0;
         }
         
-          <!-- MULAI LAYOUT TIGA KOLOM BARU (IKLAN KIRI DUA KOTAK BESAR) -->
-    <div class="main-layout">
-        
-        <!-- KOLOM IKLAN SAMPING KIRI (2 KOTAK BERTUMPUK BESAR) -->
-        <div style="width: 200px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; align-self: flex-start; position: sticky; top: 80px;">
-            <!-- Kotak Kiri Atas -->
-            <div style="background-color: white; border: 2px dashed #cbd5e1; border-radius: 8px; padding: 20px 10px; text-align: center; color: #64748b; font-size: 13px; min-height: 280px; display: flex; flex-direction: column; justify-content: center; box-sizing: border-box; font-weight: bold;">
-                <p>IKLAN KIRI 1</p>
-                <p style="font-size: 11px; color: #94a3b8; margin-top: 5px; font-weight: normal;">(Kotak Besar 200x280)</p>
-            </div>
-            <!-- Kotak Kiri Bawah -->
-            <div style="background-color: white; border: 2px dashed #cbd5e1; border-radius: 8px; padding: 20px 10px; text-align: center; color: #64748b; font-size: 13px; min-height: 280px; display: flex; flex-direction: column; justify-content: center; box-sizing: border-box; font-weight: bold;">
-                <p>IKLAN KIRI 2</p>
-                <p style="font-size: 11px; color: #94a3b8; margin-top: 5px; font-weight: normal;">(Kotak Besar 200x280)</p>
-            </div>
-        </div>
-
-        <!-- KOLOM KONTEN UTAMA (TENGAH) -->
-        <div class="container">
-            <h1 id="home">Portal Berita Cimak Terkini</h1>
-
-            <!-- BAGIAN 1: ARTIKEL UTAMA -->
-            <div class="konten-box">
-                <h2>Sejarah & Asal-Usul Cipondoh Makmur</h2>
-                <h3>1. Asal-Usul Nama Cipondoh (Cai Mondok)</h3>
-                <p>Berdasarkan buku “Melacak Asal Muasal Kampung di Kota Tangerang” karya Burhanudin, identitas seluruh wilayah Cipondoh berakar dari bentang alam berupa rawa atau genangan air raksasa. Nama Cipondoh berasal dari istilah bahasa Sunda, yaitu "Cai Mondok" yang berarti air yang menggenang atau menetap. Karena pengaruh dialek lidah masyarakat Betawi yang tinggal di wilayah sekitarnya, pelafalan Cai Mondok lambat laun berubah menjadi Cipondoh.</p>
-                
-                <h3>2. Transformasi Rawa Menjadi Pemukiman</h3>
-                <p>Pada masa kolonial Belanda tahun 1930, dibangun bendungan buatan yang kini dikenal sebagai Situ Cipondoh untuk irigasi persawahan dan pengendalian banjir. Seiring berjalannya waktu, wilayah rawa raksasa tersebut mengalami penyusutan akibat kekeringan panjang. Area tepian rawa yang mengering kemudian dimanfaatkan oleh warga setempat untuk pertanian, perikanan, hingga akhirnya berkembang menjadi area pemukiman padat penduduk.</p>
-                
-                <h3>3. Pemekaran Wilayah dan Lahirnya Cipondoh Makmur</h3>
-                <p>Awalnya, Cipondoh merupakan satu kampung atau desa yang sangat luas. Namun, seiring pesatnya laju urbanisasi, pertumbuhan ekonomi, serta melonjaknya jumlah penduduk di Kota Tangerang, wilayah ini mengalami pemekaran struktural. Guna meningkatkan efisiensi pelayanan masyarakat dan pembangunan daerah, lahirlah kelurahan Cipondoh Makmur sebagai kawasan pemukiman tertata yang terus berkembang makmur hingga saat ini.</p>
-            </div>
-
-            <!-- SLOT IKLAN GOOGLE ADSENSE TENGAH -->
-            <div class="adsense-slot">
-                <p>— RUANG IKLAN GOOGLE ADSENSE TENGAH —</p>
-            </div>
-
-            <h2>Tonton Video Terkini</h2>
-            <a href="https://youtube.com" target="_blank" class="video-box">
-                <span style="font-size: 30px; color: red; display: block;">▶</span>
-                KLIK UNTUK TONTON VIDEO SEJARAH SITU CIPONDOH DI YOUTUBE
-            </a>
-
-            <!-- BAGIAN 3: KOTAK LAYANAN IKLAN -->
-            <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 30px;">
-                <div class="konten-box" style="flex: 1; min-width: 220px; padding: 20px; font-size: 14px; margin-bottom: 0;">
-                    <h3 style="color: #1a73e8; margin-top: 0; margin-bottom: 8px; font-size: 16px; border-bottom: 1px solid #cbd5e1; padding-bottom: 5px;">Layanan Iklan & Informasi</h3>
-                    <p style="margin: 0 0 12px 0; text-align: justify;">Punya pertanyaan atau ingin memasarkan produk usaha Anda di wilayah Cipondoh? Hubungi redaksi kami atau kirimkan draf materi iklan Anda secara langsung ke kontak resmi kami.</p>
-                    <p style="margin: 0; font-weight: bold; color: #1e293b;">Email Redaksi: <span style="color: #1a73e8;">beritacimak@gmail.com</span></p>
-                </div>
-            </div>
-
-        </div> <!-- PENUTUP KOLOM TENGAH -->
-
-        <!-- KOLOM IKLAN SAMPING KANAN (TETAP MEMANJANG MEMBENTANG) -->
-        <div class="sidebar-ad" style="width: 200px; min-height: 580px; font-weight: bold;">
-            <p>RUANG IKLAN KANAN</p>
-            <p style="font-size: 11px; color: #94a3b8; margin-top: 10px; font-weight: normal;">(Skyscraper Besar 200x580)</p>
-        </div>
-
-    </div> <!-- PENUTUP LAYOUT TIGA KOLOM BARU -->
+        /* Gaya Kotak Iklan Samping Kiri & Kanan Ber-Border Jelas */
+        .ads-box-sidebar {
+            background-color: white;
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 20px 10px;
+            text-align: center;
+            color: #64748b;
+            font-size: 13px;
+            box-sizing: border-box;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         h1 {
             color: #111111;
             font-size: 28px;
+            margin-top: 0;
             margin-bottom: 25px;
             border-left: 5px solid #1a73e8;
             padding-left: 15px;
@@ -138,6 +93,7 @@
             line-height: 1.8;
         }
         .konten-box h2 { margin-top: 0; border-bottom: 2px solid #1a73e8; padding-bottom: 10px; }
+        
         .adsense-slot {
             background-color: #ffffff;
             border: 2px dashed #cbd5e1;
@@ -172,13 +128,14 @@
         footer a { color: #cbd5e1; text-decoration: none; margin: 0 10px; }
         footer a:hover { color: #1a73e8; }
 
-        /* Sembunyikan iklan samping di layar HP agar tampilan tengah tetap luas */
-        @media (max-width: 1100px) {
-            .sidebar-ad {
-                display: none;
-            }
+        /* Sembunyikan iklan samping otomatis jika dibuka di HP */
+        @media (max-width: 1150px) {
             .main-layout {
+                display: block;
                 margin: 15px auto;
+            }
+            .sidebar-left-wrapper, .sidebar-right-box {
+                display: none !important;
             }
         }
     </style>
@@ -191,20 +148,27 @@
         <a href="#iklan" style="background-color: #34a853;">Pasang Iklan</a> 
     </nav>
 
-    <!-- MULAI LAYOUT TIGA KOLOM -->
+    <!-- STRUKTUR TIGA KOLOM FINAL -->
     <div class="main-layout">
         
-        <!-- KOLOM IKLAN SAMPING KIRI -->
-        <div class="sidebar-ad">
-            <p>RUANG IKLAN KIRI</p>
-            <p style="font-size: 11px; color: #94a3b8; margin-top: 10px;">(Skyscraper 160x600)</p>
+        <!-- KOLOM KIRI: 2 KOTAK IKLAN BERTUMPUK (LEBAR & BESAR) -->
+        <div class="sidebar-left-wrapper" style="width: 220px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; align-self: flex-start; position: sticky; top: 80px;">
+            <!-- Kotak Kiri Atas -->
+            <div class="ads-box-sidebar" style="min-height: 290px;">
+                <p>RUANG IKLAN KIRI 1</p>
+                <p style="font-size: 11px; color: #94a3b8; margin-top: 8px; font-weight: normal;">(Kotak Besar 220x290)</p>
+            </div>
+            <!-- Kotak Kiri Bawah -->
+            <div class="ads-box-sidebar" style="min-height: 290px;">
+                <p>RUANG IKLAN KIRI 2</p>
+                <p style="font-size: 11px; color: #94a3b8; margin-top: 8px; font-weight: normal;">(Kotak Besar 220x290)</p>
+            </div>
         </div>
 
-        <!-- KOLOM KONTEN UTAMA (TENGAH) -->
+        <!-- KOLOM TENGAH: KONTEN UTAMA PORTAL BERITA -->
         <div class="container">
             <h1 id="home">Portal Berita Cimak Terkini</h1>
 
-            <!-- BAGIAN 1: ARTIKEL UTAMA -->
             <div class="konten-box">
                 <h2>Sejarah & Asal-Usul Cipondoh Makmur</h2>
                 <h3>1. Asal-Usul Nama Cipondoh (Cai Mondok)</h3>
@@ -222,14 +186,13 @@
                 <p>— RUANG IKLAN GOOGLE ADSENSE TENGAH —</p>
             </div>
 
-            <!-- BAGIAN 2: VIDEO -->
             <h2>Tonton Video Terkini</h2>
             <a href="https://youtube.com" target="_blank" class="video-box">
                 <span style="font-size: 30px; color: red; display: block;">▶</span>
                 KLIK UNTUK TONTON VIDEO SEJARAH SITU CIPONDOH DI YOUTUBE
             </a>
 
-            <!-- BAGIAN 3: KOTAK LAYANAN IKLAN -->
+            <!-- KOTAK LAYANAN IKLAN -->
             <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 30px;">
                 <div class="konten-box" style="flex: 1; min-width: 220px; padding: 20px; font-size: 14px; margin-bottom: 0;">
                     <h3 style="color: #1a73e8; margin-top: 0; margin-bottom: 8px; font-size: 16px; border-bottom: 1px solid #cbd5e1; padding-bottom: 5px;">Layanan Iklan & Informasi</h3>
@@ -237,13 +200,14 @@
                     <p style="margin: 0; font-weight: bold; color: #1e293b;">Email Redaksi: <span style="color: #1a73e8;">beritacimak@gmail.com</span></p>
                 </div>
             </div>
-
         </div> <!-- PENUTUP KOLOM TENGAH -->
 
-        <!-- KOLOM IKLAN SAMPING KANAN -->
-        <div class="sidebar-ad">
-            <p>RUANG IKLAN KANAN</p>
-            <p style="font-size: 11px; color: #94a3b8; margin-top: 10px;">(Skyscraper 160x600)</p>
+        <!-- KOLOM KANAN: 1 KOTAK IKLAN PANJANG MEMBENTANG (SKYSCRAPER) -->
+        <div class="sidebar-right-box " style="width: 220px; flex-shrink: 0; align-self: flex-start; position: sticky; top: 80px;">
+            <div class="ads-box-sidebar" style="min-height: 600px;">
+                <p>RUANG IKLAN KANAN</p>
+                <p style="font-size: 11px; color: #94a3b8; margin-top: 10px; font-weight: normal;">(Skyscraper Besar 220x600)</p>
+            </div>
         </div>
 
     </div> <!-- PENUTUP LAYOUT TIGA KOLOM -->
