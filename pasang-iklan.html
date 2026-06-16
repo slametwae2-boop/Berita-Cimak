@@ -174,6 +174,7 @@
         <h2>Formulir Pengajuan Iklan</h2>
         <p>Silakan isi data dan selesaikan pembayaran di bawah ini. Tim kami akan segera memproses iklan Anda setelah formulir dikirim.</p>
         
+        <!-- PENTING: Ganti email@anda.com dengan email aktif Anda agar formsubmit berfungsi -->
         <form action="https://formsubmit.co" method="POST">
             <input type="text" name="_honey" style="display:none">
             <input type="hidden" name="_template" value="table">
@@ -223,36 +224,41 @@
             </div>
 
             <div class="payment-info">
-                <strong>💡 Catatan Penting:</strong> Setelah melakukan transfer ke rekening yang tertera di atas, klik tombol <strong>Kirim Pengajuan Iklan</strong> di bawah ini agar slot iklan Anda langsung dipesan di sistem kami.
-            </div>
-
-            <div class="form-group">
-                <label for="pesan">Detail Tambahan / Pesan</label>
-                <textarea id="pesan" name="Catatan_Tambahan" rows="4" placeholder="Tuliskan detail produk atau tautan yang ingin Anda iklankan..."></textarea>
+                <strong>💡 Catatan Penting:</strong> Silakan lakukan pembayaran sesuai nominal paket, lalu kirim formulir ini.
             </div>
 
             <button type="submit" class="btn-submit">Kirim Pengajuan Iklan</button>
         </form>
     </div>
 
-    <!-- BAGIAN BARU: DAFTAR IKLAN YANG SEDANG TAYANG -->
+    <!-- DAFTAR IKLAN -->
     <div class="ads-container">
-        <h3 style="margin-top:0; color: #1e293b;">📊 Slot Iklan yang Sedang Tayang</h3>
-        <p style="margin-bottom:0; font-size:13px;">Berikut adalah daftar slot iklan aktif saat ini di Portal Berita Cimak:</p>
-        
+        <h2>Iklan yang Sedang Tayang</h2>
         <div class="ads-grid">
-            <!-- Iklan 1 -->
             <div class="ad-box">
-                <img src="iklan1.jpg" alt="Slot Banner Atas" onerror="this.src='https://placehold.co'">
-                <strong>Banner Atas</strong><br>
-                PT Maju Sejahtera
-                <br><span class="ad-status">● Active</span>
+                <img src="https://placeholder.com" alt="Iklan 1">
+                <span>Slot Iklan Banner Atas</span>
+                <div class="ad-status">Aktif</div>
             </div>
+            <div class="ad-box">
+                <img src="https://placeholder.com" alt="Iklan 2">
+                <span>Slot Iklan Sidebar</span>
+                <div class="ad-status">Aktif</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT UNTUK METODE PEMBAYARAN -->
+    <script>
+        function tampilkanNorek() {
+            var metode = document.getElementById("metode-bayar").value;
+            var boxNorek = document.getElementById("box-norek");
+            var teksNorek = document.getElementById("teks-norek");
             
-            <!-- Iklan 2 -->
-            <div class="ad-box">
-                <img src="iklan2.jpg" alt="Slot Banner Samping" onerror="this.src='https://placehold.co'">
-                <strong>Banner Samping</strong><br>
-                Kuliner Cimak
-                <br><span class="ad-status">● Active</span>
-            </div>
+            boxNorek.style.display = "block";
+            
+            if (metode === "QRIS (All Payment)") {
+                teksNorek.innerHTML = "<strong>Scan QRIS Resmi Kami:</strong><br><img src='https://placeholder.com' class='qris-image' alt='QRIS'>";
+            } else if (metode === "DANA") {
+                teksNorek.innerHTML = "<strong>DANA:</strong> 0812-3456-7890 (a.n. Portal Berita Cimak)";
+            } else if (metode === "OVO") {
