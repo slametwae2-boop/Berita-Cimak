@@ -3,308 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berita Cimak Terkini</title>
-    
-    <!-- JALUR UTAMA GOOGLE ADSENSE -->
-    <script async src="https://googlesyndication.com" crossorigin="anonymous"></script>
-    
+    <title>Formulir Pasang Iklan - Portal Berita Cimak</title>
     <style>
-        /* Gaya Dasar Halaman */
         body {
-            background-color: #f4f6f9; 
-            font-family: 'Segoe UI', Arial, sans-serif; 
-            color: #333333; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
             margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-        }
-
-        /* Menu Navigasi */
-        nav {
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-            padding: 15px 5%;
-            display: flex;
-            gap: 12px;
-        }
-        nav a {
-            background-color: #1a73e8; 
-            color: white; 
-            padding: 10px 20px; 
-            text-decoration: none; 
-            border-radius: 6px; 
-            font-weight: bold; 
-            font-size: 14px;
-            transition: background 0.3s;
-        }
-        nav a:hover {
-            background-color: #155cb4; 
-        }
-
-        /* Pembungkus Konten Utama */
-        .container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        h1 {
-            color: #111111;
-            font-size: 28px;
-            margin-bottom: 25px;
-            border-left: 5px solid #1a73e8;
-            padding-left: 15px;
-        }
-
-        h2 {
-            color: #222222;
-            font-size: 22px;
-            margin-top: 35px;
-            margin-bottom: 15px;
-        }
-
-        /* Kotak Artikel Berita */
-        .konten-berita {
-            background-color: white; 
-            padding: 25px; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            margin-bottom: 25px;
-            text-align: center;
-        }
-        .teks-berita {
-            line-height: 1.6;
-            font-size: 16px;
-            color: #555555;
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        .konten-berita img {
-            border-radius: 8px;
-            max-width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-
-        /* Desain Tombol Video Baru Antiblokir */
-        .box-video-antiblokir {
-            display: block; 
-            background-color: #1e293b; 
-            color: white; 
-            text-align: center; 
-            padding: 45px 20px; 
-            border-radius: 12px; 
-            text-decoration: none; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
-            border: 2px solid #ff0000; 
-            transition: background 0.3s, transform 0.2s;
-            margin-bottom: 25px;
-        }
-        .box-video-antiblokir:hover {
-            background-color: #0f172a;
-            transform: scale(1.01);
-        }
-
-        /* Area Penempatan Banner Google AdSense */
-        .adsense-banner-box {
-            margin: 25px auto;
-            padding: 15px;
-            background-color: #ffffff;
-            border: 1px dashed #b9b9b9;
-            text-align: center;
-            font-size: 12px;
-            color: #888888;
-            border-radius: 8px;
-        }
-
-        /* Kotak Produk Rekomendasi Afiliasi */
-        .afiliasi-container {
-            background-color: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            margin-bottom: 25px;
-        }
-        .produk-card {
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
             padding: 20px;
-            margin-top: 15px;
+        }
+        .form-container {
+            max-width: 600px;
             background: #ffffff;
-            text-align: left;
-        }
-        .produk-card strong {
-            display: block;
-            font-size: 16px;
-            margin-bottom: 5px;
-            color: #1e293b;
-        }
-        .produk-card p {
-            font-size: 14px;
-            color: #64748b;
-            margin: 0 0 15px 0;
-        }
-        .btn-shopee {
-            display: inline-block;
-            background-color: #ee4d2d;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 14px;
-            margin-right: 8px;
-            margin-bottom: 5px;
-        }
-        .btn-tokopedia {
-            display: inline-block;
-            background-color: #03ac0e;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-        .btn-shopee:hover { background-color: #d73c1d; }
-        .btn-tokopedia:hover { background-color: #028a0b; }
-
-        /* JALUR FORMULIR UTAMA (Wajib Terlihat) */
-        .iklan-container {
-            background-color: white;
-            padding: 25px;
+            margin: 40px auto;
+            padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            margin-top: 20px;
-            margin-bottom: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-top: 5px solid #28a745;
         }
-        .iklan-header h3 {
-            color: #1a73e8;
+        h2 {
             margin-top: 0;
-            margin-bottom: 8px;
-            font-size: 20px;
+            color: #1e293b;
+            font-size: 24px;
         }
-        .iklan-header p {
-            color: #666666;
+        p {
+            color: #64748b;
             font-size: 14px;
-            margin-bottom: 20px;
-            line-height: 1.5;
+            margin-bottom: 25px;
         }
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
-        .form-group label {
+        label {
             display: block;
-            margin-bottom: 6px;
-            font-weight: bold;
-            color: #333333;
+            font-weight: 600;
+            margin-bottom: 8px;
             font-size: 14px;
         }
-        .form-group input, 
-        .form-group select, 
-        .form-group textarea {
+        input[type="text"], input[type="email"], input[type="tel"], select, textarea {
             width: 100%;
-            padding: 11px;
-            border: 1px solid #cccccc;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
             border-radius: 6px;
-            font-size: 14px;
             box-sizing: border-box;
-            font-family: inherit;
+            font-size: 15px;
+            color: #334155;
         }
-        .form-group input:focus, 
-        .form-group select:focus, 
-        .form-group textarea:focus {
-            border-color: #1a73e8;
+        input:focus, select:focus, textarea:focus {
             outline: none;
+            border-color: #28a745;
+            box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
         }
-        .btn-kirim {
-            width: 100%;
-            padding: 14px;
-            background-color: #1a73e8;
+        .btn-submit {
+            background-color: #28a745;
             color: white;
             border: none;
-            border-radius: 6px;
+            padding: 12px 20px;
             font-size: 16px;
             font-weight: bold;
+            border-radius: 6px;
             cursor: pointer;
-            transition: background 0.3s;
+            width: 100%;
+            transition: background 0.2s;
         }
-        .btn-kirim:hover {
-            background-color: #155cb4;
-        }
-
-        /* Bagian Bawah Web / Footer */
-        footer {
-            background-color: #1e293b;
-            color: #cbd5e1;
-            text-align: center;
-            padding: 25px;
-            margin-top: 50px;
-            font-size: 14px;
+        .btn-submit:hover {
+            background-color: #218838;
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="politik.html">Politik</a>
-        <a href="#">Teknologi</a>
-        <a href="#">Hiburan</a>
-        <!-- Tautan ini akan otomatis meluncurkan layar ke area bawah formulir -->
-        <a href="#area-pasang-iklan" style="background-color: #34a853;">Pasang Iklan</a> 
-    </nav>
-
-    <div class="container">
-        <h1>Selamat Datang di Portal Berita Cimak</h1>
-
-        <div class="konten-berita">
-            <div class="teks-berita">
-                <p>Ini adalah artikel berita cimak khususnya Rt.001 Rw.008.</p>
-            </div>
-            <img src="berita.jpg" alt="Gambar Ilustrasi Berita">
-        </div>
-
-        <!-- BANNER GOOGLE ADSENSE -->
-        <div class="adsense-banner-box">
-            <p style="margin: 0 0 5px 0;">Spanduk Iklan Google AdSense</p>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-XXXXXXXXXXXXXXX"
-                 data-ad-slot="YYYYYYYYYY"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-
-        <h2>Tonton Video Terkait</h2>
-        <!-- TOMBOL STRATEGIS VIDEO KULINER TANGERANG -->
-        <a href="https://youtube.com" target="_blank" class="box-video-antiblokir">
-            <span style="font-size: 50px; color: #ff0000; display: block; margin-bottom: 10px;">▶</span>
-            <strong style="font-size: 18px; display: block; letter-spacing: 0.5px;">TONTON REKOMENDASI KULINER KOTA TANGERANG</strong>
-            <p style="margin: 8px 0 0 0; color: #cbd5e1; font-size: 13px;">Klik di sini untuk langsung memutar video petualangan kuliner Pasar Lama di YouTube</p>
-        </a>
-
-        <h2>Rekomendasi Perlengkapan Dapur Warga</h2>
-        <div class="afiliasi-container">
-            <p style="color: #666666; margin: 0; font-size: 14px;">Beli perlengkapan UMKM dan dapur terbaik lewat tautan resmi kami:</p>
+    <div class="form-container">
+        <h2>Formulir Pengajuan Iklan</h2>
+        <p>Silakan isi data di bawah ini. Tim Hubungan Masyarakat kami akan segera menghubungi Anda dalam waktu maksimal 1x24 jam.</p>
+        
+        <!-- Pemroses menggunakan layanan FormSubmit gratis -->
+        <form action="https://formsubmit.co" method="POST">
             
-            <!-- Produk 1 -->
-            <div class="produk-card">
-                <strong>Panci Bakso Stainless Steel</strong>
-                <p>Bahan tebal anti karat, cocok untuk usaha kuliner.</p>
-                <a href="#" target="_blank" class="btn-shopee">Beli di Shopee</a>
-                <a href="#" target="_blank" class="btn-tokopedia">Tokopedia</a>
+            <!-- Pencegahan Spam / Captcha Otomatis -->
+            <input type="text" name="_honey" style="display:none">
+            <input type="hidden" name="_template" value="table">
+            
+            <div class="form-group">
+                <label for="nama">Nama Lengkap / Nama Perusahaan</label>
+                <input type="text" id="nama" name="Nama_Pengiklan" placeholder="Contoh: PT Maju Jaya atau Ahmad" required>
             </div>
 
-            <!-- Produk 2 -->
-            <div class="produk-card">
-                <strong>Mangkok Bakso Keramik (1 Lusin)</strong>
-                <p>Desain klasik ayam jago pelengkap meja makan.</p>
-                <a href="#" target="_blank" class="btn-shopee">Beli di Shopee</a>
-                <a href="#" target="_blank" class="btn-tokopedia">Tokopedia</a>
+            <div class="form-group">
+                <label for="email">Alamat Email Aktif</label>
+                <input type="email" id="email" name="Email_Kontak" placeholder="Contoh: nama@email.com" required>
             </div>
-        </div>
+
+            <div class="form-group">
+                <label for="whatsapp">Nomor WhatsApp (Aktif)</label>
+                <input type="tel" id="whatsapp" name="No_WhatsApp" placeholder="Contoh: 08123456789" required>
+            </div>
+
+            <div class="form-group">
+                <label for="jenis-iklan">Jenis Paket Iklan</label>
+                <select id="jenis-iklan" name="Jenis_Paket_Iklan" required>
+                    <option value="" disabled selected>-- Pilih Posisi Iklan --</option>
+                    <option value="Banner Atas (Header)">Banner Atas Website (Header)</option>
+                    <option value="Banner Samping (Sidebar)">Banner Samping Artikel (Sidebar)</option>
+                    <option value="Artikel Sponsor (Content)">Artikel Berita Sponsor (Paid Promote)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="pesan">Detail Tambahan / Pesan</label>
+                <textarea id="pesan" name="Catatan_Tambahan" rows="4" placeholder="Tuliskan detail produk atau tautan yang ingin Anda iklankan..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">Kirim Pengajuan Iklan</button>
+        </form>
+    </div>
+
+</body>
+</html>
