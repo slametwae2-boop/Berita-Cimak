@@ -3,292 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulir Pasang Iklan - Portal Berita Cimak</title>
+    <title>Formulir Pengajuan Iklan - Berita Cipondoh</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f4f8;
-            color: #334155;
+        * {
+            box-sizing: border-box;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .nav-container {
-            max-width: 1000px;
-            margin: 10px auto;
-            padding: 0 10px;
+        body {
+            background-color: #f0f4f8;
+            color: #333;
+            padding: 20px;
+            padding-bottom: 70px; /* Jarak agar konten utama tidak tertutup iklan berjalan */
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
         }
         .btn-home {
-            display: inline-block;
-            background-color: #1a73e8;
+            background-color: #007bff;
             color: white;
-            padding: 8px 16px;
             text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
             font-weight: bold;
-            border-radius: 6px;
-            font-size: 14px;
-            transition: background 0.2s;
-        }
-        .btn-home:hover {
-            background-color: #155cb4;
-        }
-
-        /* TATA LETAK UTAMA */
-        .main-layout {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-            align-items: start;
-        }
-
-        /* BAGIAN KIRI: DAFTAR IKLAN & SLOT KOSONG */
-        .ads-container {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            border-top: 4px solid #34a853;
-        }
-        .ads-container h3 {
-            margin-top: 0;
-            color: #1e293b;
-            font-size: 18px;
-            margin-bottom: 15px;
-        }
-        .ads-grid {
-            display: grid;
-            grid-template-columns: 1fr; 
-            gap: 15px;
-        }
-        .ad-box {
-            background-color: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 12px;
-            text-align: center;
-            font-size: 12px;
-            color: #64748b;
-        }
-        .ad-box img {
-            width: 100%;
-            height: auto;
-            border-radius: 4px;
-            margin-bottom: 6px;
-            background-color: #cbd5e1;
-        }
-        .ad-status {
             display: inline-block;
-            background-color: #d1fae5;
-            color: #065f46;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 10.5px;
-        }
-
-        /* BANNER KOSONG UNTUK MENGISI RUANG SEBELAH KIRI */
-        .available-slot-banner {
-            margin-top: 15px;
-            background-color: #f1f5f9;
-            border: 2px dashed #cbd5e1;
-            border-radius: 8px;
-            padding: 40px 15px;
-            text-align: center;
-            color: #94a3b8;
-            font-weight: bold;
+            margin-bottom: 20px;
             font-size: 14px;
         }
-
-        /* BAGIAN KANAN: FORMULIR UTAMA */
-        .form-container {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            border-top: 4px solid #1a73e8;
+        .main-content {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
         }
-        h2 {
-            margin-top: 0;
-            color: #1e293b;
+        /* Bagian Kiri: Status Iklan */
+        .sidebar {
+            flex: 1;
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .card-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #28a745;
+            padding-bottom: 5px;
+        }
+        .slot-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 13px;
+            color: #555;
+        }
+        .status-aktif {
+            color: #28a745;
+            font-weight: bold;
+            margin-top: 5px;
+            display: block;
+        }
+        .slot-kosong {
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 40px 20px;
+            text-align: center;
+            color: #888;
+            font-size: 14px;
+        }
+        .slot-kosong h4 {
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        /* Bagian Kanan: Formulir */
+        .form-container {
+            flex: 2;
+            min-width: 320px;
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid #007bff;
+        }
+        .form-container h2 {
+            margin-bottom: 10px;
             font-size: 24px;
         }
-        p {
-            color: #64748b;
+        .form-container p {
             font-size: 14px;
+            color: #666;
             margin-bottom: 25px;
+            line-height: 1.5;
         }
         .form-group {
             margin-bottom: 20px;
         }
-        label {
+        .form-group label {
             display: block;
+            font-size: 14px;
             font-weight: 600;
             margin-bottom: 8px;
-            font-size: 14px;
-            color: #475569;
+            color: #444;
         }
-        input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+        .form-group input, .form-group select {
             width: 100%;
             padding: 12px;
-            background-color: #ffffff;
-            border: 1px solid #cbd5e1;
+            border: 1px solid #ccc;
             border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 15px;
-            color: #334155;
-        }
-        /* Style khusus untuk tombol upload file */
-        input[type="file"] {
-            width: 100%;
-            padding: 8px;
-            background-color: #f8fafc;
-            border: 1px dashed #cbd5e1;
-            border-radius: 6px;
-            box-sizing: border-box;
-        }
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #1a73e8;
-            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
-        }
-        .norek-box {
-            display: none;
-            background-color: #fffbeb;
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 12px;
-            border: 1px dashed #f59e0b;
             font-size: 14px;
-            color: #b45309;
-            text-align: center;
+            background-color: #fff;
         }
-        .payment-info {
-            background-color: #f8fafc;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            border-left: 4px solid #1a73e8;
-            font-size: 13.5px;
-            color: #64748b;
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0,123,255,0.2);
         }
         .btn-submit {
-            background-color: #34a853;
+            background-color: #28a745;
             color: white;
             border: none;
-            padding: 14px 20px;
+            padding: 12px 20px;
             font-size: 16px;
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
             width: 100%;
-            transition: background 0.2s;
+            margin-top: 10px;
         }
         .btn-submit:hover {
-            background-color: #2cc055;
+            background-color: #218838;
         }
 
-        /* BAGIAN BAWAH: KOLOM IKLAN BERJALAN */
+        /* AKHIR HALAMAN: DOCK IKLAN BERJALAN (STICKY RUNNING TEXT) */
         .running-text-container {
-            max-width: 1000px;
-            margin: 25px auto 40px auto;
-            background-color: #1e293b;
-            color: #ffffff;
-            padding: 12px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            background: #1e73be; 
+            color: #ffffff; 
+            padding: 12px 0; 
             font-size: 14px;
-            display: flex;
-            align-items: center;
-        }
-        .running-title {
-            background-color: #ef4444;
-            padding: 4px 10px;
-            font-weight: bold;
-            border-radius: 4px;
-            margin-right: 15px;
-            white-space: nowrap;
-        }
-        marquee {
-            font-weight: 500;
-        }
-        .marquee-item {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        @media (max-width: 768px) {
-            .main-layout {
-                grid-template-columns: 1fr;
-            }
+            font-weight: bold; 
+            width: 100%; 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            z-index: 9999;
+            box-shadow: 0 -3px 10px rgba(0,0,0,0.15);
         }
     </style>
 </head>
 <body>
 
-    <div class="nav-container">
-        <a href="index.html" class="btn-home">← Kembali ke Home</a>
-    </div>
+<div class="container">
+    <!-- Tombol Kembali -->
+    <a href="#" class="btn-home">Home</a>
 
-    <div class="main-layout">
+    <div class="main-content">
         
-        <!-- BAGIAN KIRI -->
-        <div>
-            <div class="ads-container">
-                <h3>Iklan Sedang Tayang</h3>
-                <div class="ads-grid">
-                    <div class="ad-box">
-                        <img src="https://placeholder.com" alt="Iklan 1">
-                        <span>Slot Iklan Banner Atas</span>
-                        <div><span class="ad-status">Aktif</span></div>
-                    </div>
-                    <div class="ad-box">
-                        <img src="https://placeholder.com" alt="Iklan 2">
-                        <span>Slot Iklan Sidebar</span>
-                        <div><span class="ad-status">Aktif</span></div>
-                    </div>
+        <!-- BAGIAN KIRI: STATUS IKLAN -->
+        <div class="sidebar">
+            <div class="card">
+                <div class="card-title">Iklan Sedang Tayang</div>
+                
+                <div class="slot-item">
+                    <span>🖼️ Slot Iklan Banner Atas</span>
+                    <span class="status-aktif">Aktif</span>
+                </div>
+                
+                <div class="slot-item">
+                    <span>🖼️ Slot Iklan Sidebar</span>
+                    <span class="status-aktif">Aktif</span>
                 </div>
             </div>
 
-            <div class="available-slot-banner">
-                 SLOT IKLAN VERTIKAL <br> MASIH TERSEDIA <br><br>
-                <span style="font-size: 11px; font-weight: normal; color: #a1a1aa;">Hubungi Kami untuk Pasang Spanduk Ukuran 300x600 px Disini</span>
+            <div class="slot-kosong">
+                <h4>Slot Iklan Vertikal<br>Masih Tersedia</h4>
+                <p style="font-size: 12px; margin-top: 10px;">Hubungi Kami untuk Pasang Spanduk Ukuran 300x600 px Disini</p>
             </div>
         </div>
 
-        <!-- BAGIAN KANAN: FORMULIR UTAMA -->
+        <!-- BAGIAN KANAN: FORMULIR PENGAJUAN -->
         <div class="form-container">
             <h2>Formulir Pengajuan Iklan</h2>
             <p>Silakan isi data dan selesaikan pembayaran di bawah ini. Tim kami akan segera memproses iklan Anda setelah formulir dikirim.</p>
             
-            <!-- PENTING: Ditambahkan enctype="multipart/form-data" agar pengiriman file bisa berjalan -->
-            <form action="https://formsubmit.co" method="POST" enctype="multipart/form-data">
+            <form action="#" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="nama">Nama Lengkap / Nama Perusahaan</label>
-                    <input type="text" id="nama" name="Nama_Pengiklan" placeholder="Contoh: PT Maju Jaya atau Ahmad" required>
+                    <label>Nama Lengkap / Nama Perusahaan</label>
+                    <input type="text" placeholder="Contoh: PT Maju Jaya atau Ahmad" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Alamat Email Aktif</label>
-                    <input type="email" id="email" name="Email_Kontak" placeholder="Contoh: nama@email.com" required>
+                    <label>Alamat Email Aktif</label>
+                    <!-- Menggunakan default value email Anda sesuai permintaan -->
+                    <input type="email" value="beritacipondoh@gmail.com" placeholder="Contoh: nama@email.com" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="whatsapp">Nomor WhatsApp (Aktif)</label>
-                    <input type="tel" id="whatsapp" name="No_WhatsApp" placeholder="Contoh: 08123456789" required>
+                    <label>Nomor WhatsApp (Aktif)</label>
+                    <input type="tel" placeholder="Contoh: 08123456789" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="jenis-iklan">Jenis Paket Iklan & Tarif</label>
-                    <select id="jenis-iklan" name="Jenis_Paket_Iklan" required>
-                        <option value="" disabled selected>-- Pilih Posisi & Tarif Iklan --</option>
-                        <option value="Banner Atas">Banner Atas Website / Header (Rp500.000 / Bulan)</option>
-                        <option value="Banner Samping">Banner Samping Artikel / Sidebar (Rp300.000 / Bulan)</option>
-                        <option value="Iklan Teks Berjalan">Iklan Teks Berjalan / Marquee (Rp150.000 / Bulan)</option>
+                    <label>Jenis Paket Iklan & Tarif</label>
+                    <select required>
+                        <option value="">-- Pilih Posisi & Tarif Iklan --</option>
+                        <option value="banner-atas">Banner Atas - Rp 150.000 / Bulan</option>
+                        <option value="sidebar">Sidebar - Rp 100.000 / Bulan</option>
+                        <option value="vertikal">Vertikal (300x600) - Rp 200.000 / Bulan</option>
                     </select>
                 </div>
 
-                <!-- BARU: FITUR UNGGAH GAMBAR SPANDUK / MATERI IKLAN -->
                 <div class="form-group">
-                    <label for="materi-iklan">Unggah Gambar Spanduk / Bukti Bayar</label>
+                    <label>Unggah Gambar Spanduk / Bukti Bayar</label>
+                    <input type="file" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Kirim Pengajuan Iklan</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<!-- ======================================================================= -->
+<!-- KODE KURSOR / FITUR IKLAN BERJALAN AUTOMATIS DI BAGIAN BAWAH WEBSITE    -->
+<!-- ======================================================================= -->
+<div class="running-text-container">
+    <marquee direction="left" scrollamount="6" onmouseover="this.stop();" onmouseout="this.start();">
+        🔥 PROMO RAMADHAN/TAHUN BARU: Slot Iklan Vertikal Masih Tersedia Ukuran 300x600 px! Hubungi Email Resmi: beritacipondoh@gmail.com atau Melalui WhatsApp Aktif Kami Segera! Hubungi Kami untuk Pasang Spanduk Menarik Disini! 🔥
+    </marquee>
+</div>
+
+</body>
+</html>
