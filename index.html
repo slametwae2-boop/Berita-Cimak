@@ -14,20 +14,19 @@
             scroll-behavior: smooth;
         }
 
-        /* --- REVISI STRUKTUR NAVBAR --- */
+        /* --- NAVIGASI BIRU BARU --- */
         nav {
-            background-color: #1565c0; /* Warna biru solid sesuai gambar */
+            background-color: #1565c0; 
             padding: 15px 5%;
             display: flex;
-            justify-content: space-between; /* Memisah logo di kiri, menu di kanan */
-            align-items: center; /* Menyejajarkan teks secara vertikal */
+            justify-content: space-between; 
+            align-items: center; 
             position: sticky;
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        /* Gaya teks logo di sebelah kiri */
         .nav-logo {
             color: white;
             font-weight: bold;
@@ -35,14 +34,12 @@
             text-decoration: none;
         }
 
-        /* Pembungkus menu di sebelah kanan */
         .nav-menu {
             display: flex;
             gap: 15px;
             align-items: center;
         }
 
-        /* Gaya umum tombol menu */
         nav a {
             color: white; 
             padding: 8px 14px; 
@@ -53,18 +50,15 @@
             transition: background 0.2s;
         }
 
-        /* Efek hover untuk menu biasa */
         nav .nav-menu a:hover { 
             background-color: rgba(255, 255, 255, 0.15); 
         }
 
-        /* Gaya khusus tombol aktif/terpilih (Tombol Home pada gambar) */
         nav a.active {
             background-color: rgba(255, 255, 255, 0.25);
         }
-        /* ------------------------------ */
         
-        /* Pembungkus Layout Utama Tiga Kolom Maksimal */
+        /* --- LAYOUT UTAMA --- */
         .main-layout {
             display: flex;
             max-width: 1440px;
@@ -74,13 +68,11 @@
             box-sizing: border-box;
         }
         
-        /* Kolom Konten Tengah */
         .container {
             flex: 1;
             min-width: 0;
         }
         
-        /* Gaya Kotak Iklan Samping Kiri & Kanan Ber-Border Jelas */
         .ads-box-sidebar {
             background-color: white;
             border: 2px dashed #cbd5e1;
@@ -156,13 +148,12 @@
         footer a { color: #cbd5e1; text-decoration: none; margin: 0 10px; }
         footer a:hover { color: #1a73e8; }
 
-        /* Sembunyikan iklan samping otomatis jika dibuka di HP */
         @media (max-width: 1150px) {
             .main-layout {
                 display: block;
                 margin: 15px auto;
             }
-            .sidebar-left-wrapper, .sidebar-right-box {
+            .sidebar-left-wrapper {
                 display: none !important;
             }
         }
@@ -170,7 +161,6 @@
 </head>
 <body>
 
-    <!-- REVISI STRUKTUR TAG NAV (DENGAN MENU PASANG IKLAN) -->
     <nav>
         <a href="#home" class="nav-logo">Berita Cipondoh</a>
         <div class="nav-menu">
@@ -179,15 +169,13 @@
             <a href="berita.html">Berita</a>
             <a href="hiburan-olahraga.html">Hiburan & Olahraga</a>
             <a href="kuliner.html">Kuliner</a>
-            <!-- TAMBAHAN MENU PASANG IKLAN HIJAU -->
             <a href="pasang-iklan.html" style="background-color: #34a853; color: white;">Pasang Iklan</a>
         </div>
     </nav>
 
-    <!-- STRUKTUR TIGA KOLOM FINAL -->
     <div class="main-layout">
         
-        <!-- KOLOM KIRI: 2 KOTAK IKLAN BERTUMPUK -->
+        <!-- KOLOM KIRI -->
         <div class="sidebar-left-wrapper" style="width: 220px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; align-self: flex-start; position: sticky; top: 80px;">
             <div class="ads-box-sidebar" style="min-height: 290px;">
                 <p>RUANG IKLAN KIRI 1</p>
@@ -199,7 +187,7 @@
             </div>
         </div>
 
-        <!-- KOLOM TENGAH: KONTEN UTAMA PORTAL BERITA -->
+        <!-- KOLOM TENGAH -->
         <div class="container">
             <h1 id="home">Portal Berita Cipondoh Makmur</h1>
 
@@ -225,11 +213,20 @@
                 <span style="font-size: 30px; color: red; display: block;">▶</span>
                 KLIK UNTUK TONTON VIDEO SEJARAH SITU CIPONDOH DI YOUTUBE
             </a>
+
+            <!-- KONTEN LAYANAN IKLAN (DIPERBAIKI AGAR TIDAK TERPOTONG) -->
+            <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 30px;">
+                <div class="konten-box" style="flex: 1; min-width: 220px; padding: 20px; font-size: 14px; margin-bottom: 0;">
+                    <h3 style="color: #1a73e8; margin-top: 0; margin-bottom: 8px; font-size: 16px; border-bottom: 1px solid #cbd5e1; padding-bottom: 5px;">Layanan Iklan & Informasi</h3>
+                    <p style="margin: 0 0 12px 0; text-align: justify;">Untuk pemasangan iklan mandiri, informasi peliputan berita, atau kerja sama kemitraan di wilayah Cipondoh Makmur, silakan hubungi tim redaksi kami melalui halaman Pasang Iklan.</p>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <footer>
-        <p>copryght &copy; 2026 Portal Berita Cipondoh Makmur. All rights reserved.</p>
+        <p>&copy; 2026 Portal Berita Cipondoh Makmur. <a href="#home">Kebijakan Privasi</a> | <a href="#home">Kontak Kami</a></p>
     </footer>
 
 </body>
