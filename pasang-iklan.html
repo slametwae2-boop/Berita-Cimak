@@ -292,3 +292,64 @@
                     <label for="metode-bayar">Pilihan Metode Pembayaran</label>
                     <select id="metode-bayar" name="Metode_Pembayaran" onchange="tampilkanNorek()" required>
                         <option value="" disabled selected>-- Pilih Metode Pembayaran --</option>
+                        
+                         <!-- SCRIPT JAVASCRIPT REKENING & REDIRECT WHATSAPP -->
+    <script>
+        function tampilkanNorek() {
+            var pilihan = document.getElementById("metode-bayar").value;
+            var boxNorek = document.getElementById("box-norek");
+            var teksNorek = document.getElementById("teks-norek");
+            
+            if (!boxNorek) return; // Keamanan jika elemen belum dibuat
+            boxNorek.style.display = "block";
+
+            if (pilihan === "QRIS (All Payment)") {
+                teksNorek.innerHTML = "<strong>Silakan Scan QRIS di Bawah Ini:</strong><br><img src='qris.jpg' alt='Barcode QRIS' class='qris-image'><br><strong>Atas Nama:</strong> Berita Cipondoh";
+            } else if (pilihan === "DANA") {
+                teksNorek.innerHTML = "<strong>Akun DANA:</strong><br>Nomor: 0812-3456-7890<br>Atas Nama: Berita Cipondoh";
+            } else if (pilihan === "OVO") {
+                teksNorek.innerHTML = "<strong>Akun OVO:</strong><br>Nomor: 0812-3456-7890<br>Atas Nama: Berita Cipondoh";
+            } else if (pilihan === "Krom Bank") {
+                teksNorek.innerHTML = "<strong>Krom Bank (Kode Bank: 013):</strong><br>No. Rekening: 1234567890<br>Atas Nama: Berita Cipondoh";
+            } else if (pilihan === "SeaBank") {
+                teksNorek.innerHTML = "<strong>SeaBank (Kode Bank: 535):</strong><br>No. Rekening: 9876543210<br>Atas Nama: Berita Cipondoh";
+            } else if (pilihan === "Bank Jago") {
+                teksNorek.innerHTML = "<strong>Bank Jago (Kode Bank: 542):</strong><br>No. Rekening: 5544332211<br>Atas Nama: Berita Cipondoh";
+            } else {
+                boxNorek.style.display = "none";
+            }
+        }
+
+        // SISTEM KIRIM LANGSUNG KE CHAT WHATSAPP
+        document.getElementById('iklanForm').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            
+            // 🚨 GANTI JADI NOMOR WHATSAPP ANDA (Gunakan kode 62 di depan, bukan 0)
+            var nomorWA = "6281234567890"; 
+
+            var nama = document.getElementById('nama').value;
+            var email = document.getElementById('email').value;
+            var whatsapp = document.getElementById('whatsapp').value;
+            var paket = document.getElementById('jenis-iklan').value;
+            var metode = document.getElementById('metode-bayar').value;
+            var pesan = document.getElementById('pesan').value;
+
+            var textMessage = "*KONFIRMASI PASANG IKLAN - BERITA CIPONDOH*\n\n" +
+                              "• *Nama:* " + nama + "\n" +
+                              "• *Email:* " + email + "\n" +
+                              "• *No. WA Klien:* " + whatsapp + "\n" +
+                              "• *Paket Iklan:* " + paket + "\n" +
+                              "• *Metode Bayar:* " + metode + "\n" +
+                              "• *Catatan Tambahan:* " + pesan + "\n\n" +
+                              "Halo Admin, saya sudah mengisi form pengajuan iklan. Mohon segera diproses.";
+
+            var urlToClick = "https://whatsapp.com" + nomorWA + "&text=" + encodeURIComponent(textMessage);
+            
+            window.open(urlToClick, '_blank');
+            
+            document.getElementById('iklanForm').reset();
+            if (boxNorek) boxNorek.style.display = "none";
+        });
+    </script>
+</body>
+</html>
