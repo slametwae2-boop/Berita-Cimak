@@ -20,6 +20,9 @@
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         nav a {
             background-color: #1a73e8; 
@@ -32,11 +35,43 @@
             transition: background 0.3s;
         }
         nav a:hover { background-color: #155cb4; }
-        .container {
-            max-width: 900px;
+        
+        /* Pembungkus Layout Utama Tiga Kolom */
+        .main-layout {
+            display: flex;
+            max-width: 1400px;
             margin: 30px auto;
             padding: 0 20px;
+            gap: 20px;
         }
+        
+        /* Kolom Konten Tengah */
+        .container {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        /* Kolom Iklan Samping Kiri & Kanan (Melayang) */
+        .sidebar-ad {
+            width: 160px;
+            flex-shrink: 0;
+            align-self: flex-start;
+            position: sticky;
+            top: 80px;
+            background-color: white;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 15px 10px;
+            text-align: center;
+            color: #64748b;
+            font-size: 12px;
+            box-sizing: border-box;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
         h1 {
             color: #111111;
             font-size: 28px;
@@ -84,13 +119,24 @@
             background-color: #1e293b;
             color: #94a3b8;
             text-align: center;
-            padding: 40px 20px;
+            padding: 20px;
             margin-top: 60px;
-            font-size: 14px;
+            font-size: 13px;
             border-top: 3px solid #1a73e8;
+            line-height: 1.6;
         }
         footer a { color: #cbd5e1; text-decoration: none; margin: 0 10px; }
         footer a:hover { color: #1a73e8; }
+
+        /* Sembunyikan iklan samping di layar HP agar tampilan tengah tetap luas */
+        @media (max-width: 1100px) {
+            .sidebar-ad {
+                display: none;
+            }
+            .main-layout {
+                margin: 15px auto;
+            }
+        }
     </style>
 </head>
 <body>
@@ -101,60 +147,75 @@
         <a href="#iklan" style="background-color: #34a853;">Pasang Iklan</a> 
     </nav>
 
-    <div class="container">
-        <h1 id="home">Portal Berita Cimak Terkini</h1>
-
-        <!-- BAGIAN 1: ARTIKEL UTAMA (HOME) -->
-        <div class="konten-box">
-            <h2>Sejarah & Asal-Usul Cipondoh Makmur</h2>
-            <h3>1. Asal-Usul Nama Cipondoh (Cai Mondok)</h3>
-            <p>Berdasarkan buku “Melacak Asal Muasal Kampung di Kota Tangerang” karya Burhanudin, identitas seluruh wilayah Cipondoh berakar dari bentang alam berupa rawa atau genangan air raksasa. Nama Cipondoh berasal dari istilah bahasa Sunda, yaitu "Cai Mondok" yang berarti air yang menggenang atau menetap. Karena pengaruh dialek lidah masyarakat Betawi yang tinggal di wilayah sekitarnya, pelafalan Cai Mondok lambat laun berubah menjadi Cipondoh.</p>
-            
-            <h3>2. Transformasi Rawa Menjadi Pemukiman</h3>
-            <p>Pada masa kolonial Belanda tahun 1930, dibangun bendungan buatan yang kini dikenal sebagai Situ Cipondoh untuk irigasi persawahan dan pengendalian banjir. Seiring berjalannya waktu, wilayah rawa raksasa tersebut mengalami penyusutan akibat kekeringan panjang. Area tepian rawa yang mengering kemudian dimanfaatkan oleh warga setempat untuk pertanian, perikanan, hingga akhirnya berkembang menjadi area pemukiman padat penduduk.</p>
-            
-            <h3>3. Pemekaran Wilayah dan Lahirnya Cipondoh Makmur</h3>
-            <p>Awalnya, Cipondoh merupakan satu kampung atau desa yang sangat luas. Namun, seiring pesatnya laju urbanisasi, pertumbuhan ekonomi, serta melonjaknya jumlah penduduk di Kota Tangerang, wilayah ini mengalami pemekaran struktural. Guna meningkatkan efisiensi pelayanan masyarakat dan pembangunan daerah, lahirlah kelurahan Cipondoh Makmur sebagai kawasan pemukiman tertata yang terus berkembang makmur hingga saat ini.</p>
+    <!-- MULAI LAYOUT TIGA KOLOM -->
+    <div class="main-layout">
+        
+        <!-- KOLOM IKLAN SAMPING KIRI -->
+        <div class="sidebar-ad">
+            <p>RUANG IKLAN KIRI</p>
+            <p style="font-size: 11px; color: #94a3b8; margin-top: 10px;">(Skyscraper 160x600)</p>
         </div>
 
-        <!-- SLOT IKLAN GOOGLE ADSENSE -->
-        <div class="adsense-slot">
-            <p>— RUANG IKLAN GOOGLE ADSENSE —</p>
-        </div>
+        <!-- KOLOM KONTEN UTAMA (TENGAH) -->
+        <div class="container">
+            <h1 id="home">Portal Berita Cimak Terkini</h1>
 
-        <!-- BAGIAN 2: VIDEO -->
-        <h2>Tonton Video Terkini</h2>
-        <a href="https://youtube.com" target="_blank" class="video-box">
-            <span style="font-size: 30px; color: red; display: block;">▶</span>
-            KLIK UNTUK TONTON VIDEO SEJARAH SITU CIPONDOH DI YOUTUBE
-        </a>
-
-      <!-- BAGIAN : KOTAK RAMPING BERSEBELAHAN (DANGKAL & HEMAT RUANG) -->
-        <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 30px;">
-            
-            <!-- KOLOM KANAN: PASANG IKLAN & KONTAK -->
-            <div class="konten-box" style="flex: 1; min-width: 220px; padding: 20px; font-size: 14px; margin-bottom: 0;">
-                <h3 style="color: #1a73e8; margin-top: 0; margin-bottom: 8px; font-size: 16px; border-bottom: 1px solid #cbd5e1; padding-bottom: 5px;">Layanan Iklan & Informasi</h3>
-                <p style="margin: 0 0 12px 0; text-align: justify;">Punya pertanyaan atau ingin memasarkan produk usaha Anda di wilayah Cipondoh? Hubungi redaksi kami atau kirimkan draf materi iklan Anda secara langsung ke kontak resmi kami.</p>
-                <p style="margin: 0; font-weight: bold; color: #1e293b;">Email Redaksi: <span style="color: #1a73e8;">beritacimak@gmail.com</span></p>
+            <!-- BAGIAN 1: ARTIKEL UTAMA -->
+            <div class="konten-box">
+                <h2>Sejarah & Asal-Usul Cipondoh Makmur</h2>
+                <h3>1. Asal-Usul Nama Cipondoh (Cai Mondok)</h3>
+                <p>Berdasarkan buku “Melacak Asal Muasal Kampung di Kota Tangerang” karya Burhanudin, identitas seluruh wilayah Cipondoh berakar dari bentang alam berupa rawa atau genangan air raksasa. Nama Cipondoh berasal dari istilah bahasa Sunda, yaitu "Cai Mondok" yang berarti air yang menggenang atau menetap. Karena pengaruh dialek lidah masyarakat Betawi yang tinggal di wilayah sekitarnya, pelafalan Cai Mondok lambat laun berubah menjadi Cipondoh.</p>
+                
+                <h3>2. Transformasi Rawa Menjadi Pemukiman</h3>
+                <p>Pada masa kolonial Belanda tahun 1930, dibangun bendungan buatan yang kini dikenal sebagai Situ Cipondoh untuk irigasi persawahan dan pengendalian banjir. Seiring berjalannya waktu, wilayah rawa raksasa tersebut mengalami penyusutan akibat kekeringan panjang. Area tepian rawa yang mengering kemudian dimanfaatkan oleh warga setempat untuk pertanian, perikanan, hingga akhirnya berkembang menjadi area pemukiman padat penduduk.</p>
+                
+                <h3>3. Pemekaran Wilayah dan Lahirnya Cipondoh Makmur</h3>
+                <p>Awalnya, Cipondoh merupakan satu kampung atau desa yang sangat luas. Namun, seiring pesatnya laju urbanisasi, pertumbuhan ekonomi, serta melonjaknya jumlah penduduk di Kota Tangerang, wilayah ini mengalami pemekaran struktural. Guna meningkatkan efisiensi pelayanan masyarakat dan pembangunan daerah, lahirlah kelurahan Cipondoh Makmur sebagai kawasan pemukiman tertata yang terus berkembang makmur hingga saat ini.</p>
             </div>
 
+            <!-- SLOT IKLAN GOOGLE ADSENSE TENGAH -->
+            <div class="adsense-slot">
+                <p>— RUANG IKLAN GOOGLE ADSENSE TENGAH —</p>
+            </div>
+
+            <!-- BAGIAN 2: VIDEO -->
+            <h2>Tonton Video Terkini</h2>
+            <a href="https://youtube.com" target="_blank" class="video-box">
+                <span style="font-size: 30px; color: red; display: block;">▶</span>
+                KLIK UNTUK TONTON VIDEO SEJARAH SITU CIPONDOH DI YOUTUBE
+            </a>
+
+            <!-- BAGIAN 3: KOTAK LAYANAN IKLAN -->
+            <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 30px;">
+                <div class="konten-box" style="flex: 1; min-width: 220px; padding: 20px; font-size: 14px; margin-bottom: 0;">
+                    <h3 style="color: #1a73e8; margin-top: 0; margin-bottom: 8px; font-size: 16px; border-bottom: 1px solid #cbd5e1; padding-bottom: 5px;">Layanan Iklan & Informasi</h3>
+                    <p style="margin: 0 0 12px 0; text-align: justify;">Punya pertanyaan atau ingin memasarkan produk usaha Anda di wilayah Cipondoh? Hubungi redaksi kami atau kirimkan draf materi iklan Anda secara langsung ke kontak resmi kami.</p>
+                    <p style="margin: 0; font-weight: bold; color: #1e293b;">Email Redaksi: <span style="color: #1a73e8;">beritacimak@gmail.com</span></p>
+                </div>
+            </div>
+
+        </div> <!-- PENUTUP KOLOM TENGAH -->
+
+        <!-- KOLOM IKLAN SAMPING KANAN -->
+        <div class="sidebar-ad">
+            <p>RUANG IKLAN KANAN</p>
+            <p style="font-size: 11px; color: #94a3b8; margin-top: 10px;">(Skyscraper 160x600)</p>
         </div>
 
-    </div> <!-- PENUTUP CONTAINER UTAMA -->
+    </div> <!-- PENUTUP LAYOUT TIGA KOLOM -->
 
-    <!-- FOOTER RAMPING, KEBIJAKAN PRIVASI & HAK CIPTA SEJAJAR -->
+    <!-- FOOTER RAMPING, KEBIJAKAN PRIVASI & COPYRIGHT SEJAJAR -->
     <footer style="background-color: #1e293b; color: #94a3b8; text-align: center; padding: 20px; margin-top: 50px; font-size: 13px; border-top: 3px solid #1a73e8; line-height: 1.6;">
-        <!-- BARIS INFORMASI UTAMA YANG MEMANJANG -->
         <p style="margin: 0 0 8px 0; color: #cbd5e1;">
             <strong>Portal Berita Cimak</strong> | 
             <span>Kebijakan Privasi & Log Standar</span> | 
-            <span>Kontak Redaksi:<a href="mailto:beritacimak@gmail.com" style="color: #cbd5e1; text-decoration: underline;">beritacimak@gmail.com</a></span>
+            <span>Kontak Redaksi: <a href="mailto:beritacimak@gmail.com" style="color: #cbd5e1; text-decoration: underline;">beritacimak@gmail.com</a></span>
         </p>
-        
-        <!-- BARIS HAK CIPTA & NAVIGASI -->
         <p style="margin: 0; font-size: 12px; color: #64748b;">
-            copryght © 2026 Berita Cimak Terkini. All Rights Reserved. | 
+            Copyright © 2026 Berita Cimak Terkini. All Rights Reserved. | 
             <a href="#home" style="color: #64748b; text-decoration: none; margin-left: 10px;">Kembali ke Atas</a>
         </p>
     </footer>
+
+</body>
+</html>
