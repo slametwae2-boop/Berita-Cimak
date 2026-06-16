@@ -1,1 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Pasang Iklan - Portal Berita Cimak</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            color: #334155;
+            margin: 0;
+            padding: 20px;
+        }
+        .nav-container {
+            max-width: 600px;
+            margin: 10px auto 0 auto;
+            padding: 0 10px;
+        }
+        .btn-home {
+            display: inline-block;
+            background-color: #1a73e8;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .btn-home:hover {
+            background-color: #155cb4;
+        }
+        .form-container {
+            max-width: 600px;
+            background: #ffffff;
+            margin: 15px auto 30px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border-top: 4px solid #1a73e8;
+        }
+        h2 {
+            margin-top: 0;
+            color: #1e293b;
+            font-size: 24px;
+        }
+        p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #475569;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 15px;
+            color: #334155;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+        }
+        .norek-box {
+            display: none;
+            background-color: #fffbeb;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 12px;
+            border: 1px dashed #f59e0b;
+            font-size: 14px;
+            color: #b45309;
+            text-align: center;
+        }
+        .qris-image {
+            max-width: 220px;
+            width: 100%;
+            margin: 10px auto;
+            display: block;
+            border: 4px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .payment-info {
+            background-color: #f8fafc;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 4px solid #1a73e8;
+            font-size: 13.5px;
+            color: #64748b;
+        }
+        .btn-submit {
+            background-color: #34a853;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+        .btn-submit:hover {
+            background-color: #2cc055;
+        }
 
+        /* STYLE BARU: DAFTAR IKLAN YANG SEDANG TAYANG */
+        .ads-container {
+            max-width: 600px;
+            background: #ffffff;
+            margin: 30px auto 40px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid #34a853;
+        }
+        .ads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .ad-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+            color: #64748b;
+        }
+        .ad-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            background-color: #cbd5e1;
+        }
+        .ad-status {
+            display: inline-block;
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 10.5px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-container">
+        <a href="index.html" class="btn-home">← Kembali ke Home</a>
+    </div>
+
+    <!-- FORM UTAMA -->
+    <div class="form-container">
+        <h2>Formulir Pengajuan Iklan</h2>
+        <p>Silakan isi data dan selesaikan pembayaran di bawah ini. Tim kami akan segera memproses iklan Anda setelah formulir dikirim.</p>
+        
+        <form action="https://formsubmit.co" method="POST">
+            <input type="text" name="_honey" style="display:none">
+            <input type="hidden" name="_template" value="table">
+            
+            <div class="form-group">
+                <label for="nama">Nama Lengkap / Nama Perusahaan</label>
+                <input type="text" id="nama" name="Nama_Pengiklan" placeholder="Contoh: PT Maju Jaya atau Ahmad" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Alamat Email Aktif</label>
+                <input type="email" id="email" name="Email_Kontak" placeholder="Contoh: nama@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="whatsapp">Nomor WhatsApp (Aktif)</label>
+                <input type="tel" id="whatsapp" name="No_WhatsApp" placeholder="Contoh: 08123456789" required>
+            </div>
+
+            <div class="form-group">
+                <label for="jenis-iklan">Jenis Paket Iklan & Tarif</label>
+                <select id="jenis-iklan" name="Jenis_Paket_Iklan" required>
+                    <option value="" disabled selected>-- Pilih Posisi & Tarif Iklan --</option>
+                    <option value="Banner Atas - Rp500.000/Bulan">Banner Atas Website / Header (Rp500.000 / Bulan)</option>
+                    <option value="Banner Samping - Rp300.000/Bulan">Banner Samping Artikel / Sidebar (Rp300.000 / Bulan)</option>
+                    <option value="Artikel Sponsor - Rp250.000/Tayang">Artikel Berita Sponsor / Paid Promote (Rp250.000 / Tayang)</option>
+                    <option value="Iklan Pop-up - Rp750.000/Bulan">Iklan Melayang / Pop-up Halaman Depan (Rp750.000 / Bulan)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="metode-bayar">Pilihan Metode Pembayaran</label>
+                <select id="metode-bayar" name="Metode_Pembayaran" onchange="tampilkanNorek()" required>
+                    <option value="" disabled selected>-- Pilih Metode Pembayaran --</option>
+                    <option value="QRIS (All Payment)">QRIS (Scan pakai e-Wallet / Mobile Banking)</option>
+                    <option value="DANA">DANA (E-Wallet)</option>
+                    <option value="OVO">OVO (E-Wallet)</option>
+                    <option value="Krom Bank">Krom Bank (Transfer Bank)</option>
+                    <option value="SeaBank">SeaBank (Transfer Bank)</option>
+                    <option value="Bank Jago">Bank Jago (Transfer Bank)</option>
+                </select>
+
+                <div id="box-norek" class="norek-box">
+                    <div id="teks-norek"></div>
+                    <div style="margin-top: 5px; font-size: 12px; color: #78350f; text-align: center;">*Mohon simpan bukti transfer untuk dikonfirmasi nanti.</div>
+                </div>
+            </div>
+
+            <div class="payment-info">
+                <strong>💡 Catatan Penting:</strong> Setelah melakukan transfer ke rekening yang tertera di atas, klik tombol <strong>Kirim Pengajuan Iklan</strong> di bawah ini agar slot iklan Anda langsung dipesan di sistem kami.
+            </div>
+
+            <div class="form-group">
+                <label for="pesan">Detail Tambahan / Pesan</label>
+                <textarea id="pesan" name="Catatan_Tambahan" rows="4" placeholder="Tuliskan detail produk atau tautan yang ingin Anda iklankan..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">Kirim Pengajuan Iklan</button>
+        </form>
+    </div>
+
+    <!-- BAGIAN BARU: DAFTAR IKLAN YANG SEDANG TAYANG -->
+    <div class="ads-container">
+        <h3 style="margin-top:0; color: #1e293b;">📊 Slot Iklan yang Sedang Tayang</h3>
+        <p style="margin-bottom:0; font-size:13px;">Berikut adalah daftar slot iklan aktif saat ini di Portal Berita Cimak:</p>
+        
+        <div class="ads-grid">
+            <!-- Iklan 1 -->
+            <div class="ad-box">
+                <img src="iklan1.jpg" alt="Slot Banner Atas" onerror="this.src='https://placehold.co'">
+                <strong>Banner Atas</strong><br>
+                PT Maju Sejahtera
+                <br><span class="ad-status">● Active</span>
+            </div>
+            
+            <!-- Iklan 2 -->
+            <div class="ad-box">
+                <img src="iklan2.jpg" alt="Slot Banner Samping" onerror="this.src='https://placehold.co'">
+                <strong>Banner Samping</strong><br>
+                Kuliner Cimak
+                <br><span class="ad-status">● Active</span>
+            </div>
