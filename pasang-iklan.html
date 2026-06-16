@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulir Pasang Iklan - Portal Berita Cipondoh Makmur</title>
+    <title>Formulir Pasang Iklan - Portal Berita Cipondoh</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -144,11 +144,6 @@
         .btn-submit:hover {
             background-color: #2cc055;
         }
-        .btn-submit:disabled {
-            background-color: #cbd5e1;
-            color: #94a3b8;
-            cursor: not-allowed;
-        }
 
         .ad-large-box {
             background-color: #f8fafc;
@@ -253,103 +248,46 @@
             </div>
         </div>
 
-        <!-- KOLOM TENGAH (FORMULIR DENGAN ID AMAN) -->
+        <!-- KOLOM TENGAH -->
         <div class="form-column">
             <h2>Formulir Pengajuan Iklan</h2>
             <p>Silakan isi data dan selesaikan pembayaran di bawah ini. Tim kami akan segera memproses iklan Anda setelah formulir dikirim.</p>
             
+            <!-- Menggunakan ID iklanForm untuk memicu skrip jalurnya -->
             <form id="iklanForm" method="POST">
-                <input type="text" name="_honey" style="display:none">
-                <input type="hidden" name="_template" value="table">
                 
                 <div class="form-group">
                     <label for="nama">Nama Lengkap / Nama Perusahaan</label>
-                    <input type="text" id="nama" name="Nama_Pengiklan" placeholder="Contoh: PT Maju Jaya atau Ahmad" required>
+                    <input type="text" id="nama" placeholder="Contoh: PT Maju Jaya atau Ahmad" required>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Alamat Email Aktif</label>
-                    <input type="email" id="email" name="Email_Kontak" placeholder="Contoh: nama@email.com" required>
+                    <input type="email" id="email" placeholder="Contoh: nama@email.com" required>
                 </div>
 
                 <div class="form-group">
                     <label for="whatsapp">Nomor WhatsApp (Aktif)</label>
-                    <input type="tel" id="whatsapp" name="No_WhatsApp" placeholder="Contoh: 08123456789" required>
+                    <input type="tel" id="whatsapp" placeholder="Contoh: 08123456789" required>
                 </div>
 
                 <div class="form-group">
                     <label for="jenis-iklan">Jenis Paket Iklan & Tarif</label>
-                    <select id="jenis-iklan" name="Jenis_Paket_Iklan" required>
+                    <select id="jenis-iklan" required>
                         <option value="" disabled selected>-- Pilih Posisi & Tarif Iklan --</option>
-                        <option value="Banner Atas - Rp500.000/Bulan">Banner Atas Website / Header (Rp500.000 / Bulan)</option>
-                        <option value="Banner Samping - Rp300.000/Bulan">Banner Samping Artikel / Sidebar (Rp300.000 / Bulan)</option>
-                        <option value="Artikel Sponsor - Rp250.000/Tayang">Artikel Berita Sponsor / Paid Promote (Rp250.000 / Tayang)</option>
-                        <option value="Iklan Pop-up - Rp750.000/Bulan">Iklan Melayang / Pop-up Halaman Depan (Rp750.000 / Bulan)</option>
+                        <option value="Banner Atas (Rp500.000/Bulan)">Banner Atas Website / Header (Rp500.000 / Bulan)</option>
+                        <option value="Banner Samping (Rp300.000/Bulan)">Banner Samping Artikel / Sidebar (Rp300.000 / Bulan)</option>
+                        <option value="Artikel Sponsor (Rp250.000/Tayang)">Artikel Berita Sponsor / Paid Promote (Rp250.000 / Tayang)</option>
+                        <option value="Iklan Pop-up (Rp750.000/Bulan)">Iklan Melayang / Pop-up Halaman Depan (Rp750.000 / Bulan)</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="metode-bayar">Pilihan Metode Pembayaran</label>
-                    <select id="metode-bayar" name="Metode_Pembayaran" onchange="tampilkanNorek()" required>
+                    <select id="metode-bayar" onchange="tampilkanNorek()" required>
                         <option value="" disabled selected>-- Pilih Metode Pembayaran --</option>
-                        
-                         <!-- SCRIPT JAVASCRIPT REKENING & REDIRECT WHATSAPP -->
-    <script>
-        function tampilkanNorek() {
-            var pilihan = document.getElementById("metode-bayar").value;
-            var boxNorek = document.getElementById("box-norek");
-            var teksNorek = document.getElementById("teks-norek");
-            
-            if (!boxNorek) return; // Keamanan jika elemen belum dibuat
-            boxNorek.style.display = "block";
-
-            if (pilihan === "QRIS (All Payment)") {
-                teksNorek.innerHTML = "<strong>Silakan Scan QRIS di Bawah Ini:</strong><br><img src='qris.jpg' alt='Barcode QRIS' class='qris-image'><br><strong>Atas Nama:</strong> Berita Cipondoh";
-            } else if (pilihan === "DANA") {
-                teksNorek.innerHTML = "<strong>Akun DANA:</strong><br>Nomor: 0812-3456-7890<br>Atas Nama: Berita Cipondoh";
-            } else if (pilihan === "OVO") {
-                teksNorek.innerHTML = "<strong>Akun OVO:</strong><br>Nomor: 0812-3456-7890<br>Atas Nama: Berita Cipondoh";
-            } else if (pilihan === "Krom Bank") {
-                teksNorek.innerHTML = "<strong>Krom Bank (Kode Bank: 013):</strong><br>No. Rekening: 1234567890<br>Atas Nama: Berita Cipondoh";
-            } else if (pilihan === "SeaBank") {
-                teksNorek.innerHTML = "<strong>SeaBank (Kode Bank: 535):</strong><br>No. Rekening: 9876543210<br>Atas Nama: Berita Cipondoh";
-            } else if (pilihan === "Bank Jago") {
-                teksNorek.innerHTML = "<strong>Bank Jago (Kode Bank: 542):</strong><br>No. Rekening: 5544332211<br>Atas Nama: Berita Cipondoh";
-            } else {
-                boxNorek.style.display = "none";
-            }
-        }
-
-        // SISTEM KIRIM LANGSUNG KE CHAT WHATSAPP
-        document.getElementById('iklanForm').addEventListener('submit', function(e) {
-            e.preventDefault(); 
-            
-            // 🚨 GANTI JADI NOMOR WHATSAPP ANDA (Gunakan kode 62 di depan, bukan 0)
-            var nomorWA = "6281234567890"; 
-
-            var nama = document.getElementById('nama').value;
-            var email = document.getElementById('email').value;
-            var whatsapp = document.getElementById('whatsapp').value;
-            var paket = document.getElementById('jenis-iklan').value;
-            var metode = document.getElementById('metode-bayar').value;
-            var pesan = document.getElementById('pesan').value;
-
-            var textMessage = "*KONFIRMASI PASANG IKLAN - BERITA CIPONDOH*\n\n" +
-                              "• *Nama:* " + nama + "\n" +
-                              "• *Email:* " + email + "\n" +
-                              "• *No. WA Klien:* " + whatsapp + "\n" +
-                              "• *Paket Iklan:* " + paket + "\n" +
-                              "• *Metode Bayar:* " + metode + "\n" +
-                              "• *Catatan Tambahan:* " + pesan + "\n\n" +
-                              "Halo Admin, saya sudah mengisi form pengajuan iklan. Mohon segera diproses.";
-
-            var urlToClick = "https://whatsapp.com" + nomorWA + "&text=" + encodeURIComponent(textMessage);
-            
-            window.open(urlToClick, '_blank');
-            
-            document.getElementById('iklanForm').reset();
-            if (boxNorek) boxNorek.style.display = "none";
-        });
-    </script>
-</body>
-</html>
+                        <option value="QRIS (All Payment)">QRIS (Scan pakai e-Wallet / Mobile Banking)</option>
+                        <option value="DANA">DANA (E-Wallet)</option>
+                        <option value="OVO">OVO (E-Wallet)</option>
+                        <option value="Krom Bank">Krom Bank (Transfer Bank)</option>
+                        <option value="SeaBank">SeaBank (Transfer Bank)</option>
