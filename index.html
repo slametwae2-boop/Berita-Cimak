@@ -6,10 +6,8 @@
     <title>Halaman Utama Web Anda</title>
     
     <style>
-        /* ==========================================================================
-           1. PENGATURAN DASAR & TAMPILAN (CSS)
-           ========================================================================== */
-         * {
+        /* Pengaturan Dasar */
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -78,13 +76,13 @@
             display: flex;
             flex-direction: column;
             gap: 24px;
-            min-width: 0; /* Mencegah konten meluap */
+            min-width: 0;
         }
 
         /* Sisi Kanan: Kalender Sidebar */
         .sidebar {
             flex: 1;
-            min-width: 280px; /* Memastikan lebar kalender cukup */
+            min-width: 280px;
         }
 
         /* Desain Kotak Komponen (Card) */
@@ -260,7 +258,6 @@
             font-size: 14px;
         }
 
-        /* Responsif Tampilan Layar yang Lebih Akurat */
         @media (max-width: 900px) {
             .container {
                 flex-direction: column;
@@ -282,10 +279,13 @@
                 height: 250px; 
             }
         }
+    </style>
+</head>
+<body>
 
     <!-- Menu Navigasi Atas -->
     <header>
-        <div class="logo">PortalUtama</div>
+        <div class="logo">Berita Cimak</div>
         <nav>
             <ul>
                 <li><a href="#" class="active">Home</a></li>
@@ -300,30 +300,28 @@
     <!-- Konten Utama Halaman Home -->
     <main class="container">
         
-        <!-- Bagian Utama (Foto Slideshow & Video) -->
         <section class="main-content">
-            
-            <!-- PEMBARUAN: Wadah Galeri Foto Utama dengan Fitur Geser -->
+            <!-- Komponen Slideshow Galeri Foto Utama -->
             <div class="card">
                 <h2>Galeri Foto Utama</h2>
                 
                 <div class="slideshow-container">
-                    <!-- Slide 1 -->
+                    <!-- Slide 1: Foto Masjid -->
                     <div class="mySlides fade">
-                        <img src="https://unsplash.com" alt="Foto Pantai">
-                        <div class="slide-text">Keindahan Destinasi Wisata Pantai Pesisir Utama</div>
+                        <img src="masjid.jpg" alt="Masjid Jami' Daarul Ma'mur">
+                        <div class="slide-text">Keindahan Arsitektur Masjid Jami' Daarul Ma'mur</div>
                     </div>
 
-                    <!-- Slide 2 -->
+                    <!-- Slide 2: Foto Gym Outdoor -->
                     <div class="mySlides fade">
-                        <img src="https://unsplash.com" alt="Foto Pegunungan">
-                        <div class="slide-text">Pesona Pegunungan dan Keasrian Alam Hijau</div>
+                        <img src="gym.jpg" alt="Taman Olahraga Outdoor">
+                        <div class="slide-text">Fasilitas Olahraga Luar Ruangan bagi Kenyamanan Warga</div>
                     </div>
 
-                    <!-- Slide 3 -->
+                    <!-- Slide 3: Foto Tenis Meja -->
                     <div class="mySlides fade">
-                        <img src="https://unsplash.com" alt="Foto Hutan">
-                        <div class="slide-text">Eksplorasi Kedamaian di Dalam Hutan Lindung</div>
+                        <img src="pingpong.jpg" alt="Kegiatan Tenis Meja">
+                        <div class="slide-text">Keseruan Latihan Tenis Meja Bersama PTM RW 05 Cipondoh Makmur</div>
                     </div>
 
                     <!-- Tombol Navigasi Manual -->
@@ -342,5 +340,16 @@
                 </div>
                 <p>Sajikan tayangan multimedia atau video promosi menarik untuk memanjakan pengunjung situs web Anda langsung dari halaman depan.</p>
             </div>
-            
         </section>
+
+        <!-- Sisi Kanan: Kalender -->
+        <aside class="sidebar">
+            <div class="card">
+                <h2>Kalender Kegiatan</h2>
+                <div class="calendar">
+                    <div class="calendar-header">Memuat...</div>
+                    <div class="calendar-days">
+                        <span>S</span><span>S</span><span>R</span><span>K</span><span>J</span><span>S</span><span>M</span>
+                    </div>
+                    <div class="calendar-dates"></div>
+                </div>
