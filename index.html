@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Berita Cimak - Portal Utama</title>
     
+    <!-- Link CSS Swiper Slider untuk Galeri Geser -->
+    <link rel="stylesheet" href="https://jsdelivr.net" />
+
     <style>
         /* Pengaturan Dasar */
         * {
@@ -108,19 +111,19 @@
             margin-top: 12px;
         }
 
-        /* Desain Galeri Foto Grid (Stabil Tanpa Macet) */
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+        /* Penyesuaian Kustom untuk Swiper Slider */
+        .swiper {
+            width: 100%;
+            padding-bottom: 25px;
         }
 
         .photo-item {
             position: relative;
-            height: 200px;
+            height: 230px;
             border-radius: 6px;
             overflow: hidden;
             background-color: #e2e8f0;
+            width: 100%;
         }
 
         .photo-item img {
@@ -138,6 +141,13 @@
             font-size: 12px;
             padding: 6px 10px;
             text-align: center;
+        }
+
+        /* Tombol Navigasi Slider Panah Biru Kecil */
+        .swiper-button-next, .swiper-button-prev {
+            color: #38bdf8 !important;
+            transform: scale(0.6);
+            top: 45%;
         }
 
         /* Pengaturan Media Video */
@@ -188,6 +198,12 @@
             justify-content: center;
             align-items: center;
             color: #333;
+            height: 38px;
+        }
+
+        /* Class khusus untuk menyelaraskan tanggal kosong */
+        .calendar-dates .empty-day {
+            content: "";
         }
 
         .calendar-dates .today {
@@ -240,9 +256,6 @@
             nav ul li {
                 margin: 0 8px;
             }
-            .photo-grid {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
@@ -266,31 +279,46 @@
     <main class="container">
         
         <section class="main-content">
-            <!-- Galeri Foto Utama Grid Layout -->
+            <!-- Galeri Foto Utama - Slider Carousel Swiper -->
             <div class="card">
                 <h2>Galeri Foto Utama</h2>
-                <div class="photo-grid">
-                    <!-- Foto 1 -->
-                    <div class="photo-item">
-                        <img src="masjid.jpg" alt="Masjid Jami' Daarul Ma'mur">
-                        <div class="photo-caption">Masjid Jami' Daarul Ma'mur</div>
+                
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <!-- Foto 1 -->
+                        <div class="swiper-slide">
+                            <div class="photo-item">
+                                <img src="masjid.jpg" alt="Masjid Jami' Daarul Ma'mur">
+                                <div class="photo-caption">Masjid Jami' Daarul Ma'mur</div>
+                            </div>
+                        </div>
+                        <!-- Foto 2 -->
+                        <div class="swiper-slide">
+                            <div class="photo-item">
+                                <img src="gym.jpg" alt="Taman Olahraga Outdoor">
+                                <div class="photo-caption">Fasilitas Gym Outdoor</div>
+                            </div>
+                        </div>
+                        <!-- Foto 3 -->
+                        <div class="swiper-slide">
+                            <div class="photo-item">
+                                <img src="pingpong.jpg" alt="Kegiatan Tenis Meja">
+                                <div class="photo-caption">PTM RW 05 Cipondoh Makmur</div>
+                            </div>
+                        </div>
+                        <!-- Foto 4 -->
+                        <div class="swiper-slide">
+                            <div class="photo-item">
+                                <img src="lapanganbola.jpg" alt="Lapangan Bola">
+                                <div class="photo-caption">Area Lapangan Sepak Bola</div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Foto 2 -->
-                    <div class="photo-item">
-                        <img src="gym.jpg" alt="Taman Olahraga Outdoor">
-                        <div class="photo-caption">Fasilitas Gym Outdoor</div>
-                    </div>
-                    <!-- Foto 3 -->
-                    <div class="photo-item">
-                        <img src="pingpong.jpg" alt="Kegiatan Tenis Meja">
-                        <div class="photo-caption">PTM RW 05 Cipondoh Makmur</div>
-                    </div>
-                    <!-- Foto 4 -->
-                    <div class="photo-item">
-                        <img src="lapanganbola.jpg" alt="Lapangan Bola">
-                        <div class="photo-caption">Area Lapangan Sepak Bola</div>
-                    </div>
+                    <!-- Tombol Navigasi Panah -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
+
                 <p>Dokumentasi foto kegiatan warga dan fasilitas umum di wilayah Cipondoh Makmur secara berkala.</p>
             </div>
 
@@ -298,39 +326,15 @@
             <div class="card">
                 <h2>Video Terkini</h2>
                 <div class="video-container">
-                    <iframe src="https://youtube.com" title="Video Utama" frameborder="0" allowfullscreen></iframe>
+                    <!-- Melengkapi tag iframe video yang terpotong sebelumnya -->
+                    <iframe src="https://youtube.com" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-                <p>Sajikan tayangan multimedia atau tayangan promosi menarik langsung dari halaman depan.</p>
             </div>
         </section>
 
-        <!-- Sisi Kanan: Kalender Kegiatan Juni 2026 -->
+        <!-- Sisi Kanan: Kalender Dinamis Sidebar -->
         <aside class="sidebar">
             <div class="card">
                 <h2>Kalender Kegiatan</h2>
-                <div class="calendar">
-                    <div class="calendar-header">Juni 2026</div>
-                    <div class="calendar-days">
-                        <span>S</span><span>S</span><span>R</span><span>K</span><span>J</span><span>S</span><span>M</span>
-                    </div>
-                    <div class="calendar-dates">
-                        <span class="empty"></span><span class="empty"></span>
-                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-                        <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
-                        <span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
-                        <span>16</span><span class="today">17</span><span>18</span><span>19</span><span>20</span>
-                        <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span>
-                        <span>26</span><span>27</span><span>28</span><span>29</span><span>30</span>
-                    </div>
-                </div>
-                <div class="cal-footer">Hari ini tanggal 17 Juni 2026.</div>
-            </div>
-        </aside>
-    </main>
-
-    <!-- Kaki Halaman Berisi Hak Cipta Resmi -->
-    <footer>
-        <p>&copy; 2026 Berita Cimak. Copyright All Rights Reserved.</p>
-    </footer>
-
-</body>
+                <!-- ID diisi otomatis lewat JS -->
+                <div class="calendar-header" id="monthYear">-</div>
