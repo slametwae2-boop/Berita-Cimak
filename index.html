@@ -14,6 +14,34 @@
             scroll-behavior: smooth;
         }
 
+        <!-- Elemen tempat tanggal akan muncul -->
+<div style="background-color: #1a73e8; padding: 10px; text-align: left;">
+    <span id="tanggal-hari-ini" style="color: #ffffff; font-family: sans-serif; font-size: 14px; font-weight: 500;"></span>
+</div>
+
+<!-- Script untuk memproses tanggal otomatis dalam Bahasa Indonesia -->
+<script>
+    function tampilkanTanggal() {
+        const namaHari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+        const namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        
+        const sekarang = new Date();
+        const hari = namaHari[sekarang.getDay()];
+        const tanggal = sekarang.getDate();
+        const bulan = namaBulan[sekarang.getMonth()];
+        const tahun = sekarang.getFullYear();
+        
+        // Menggabungkan teks tanggal
+        const tanggalLengkap = `${hari}, ${tanggal} ${bulan} ${tahun}`;
+        
+        // Memasukkan hasil ke dalam elemen HTML
+        document.getElementById("tanggal-hari-ini").innerText = tanggalLengkap;
+    }
+
+    // Jalankan fungsi saat halaman website dibuka
+    tampilkanTanggal();
+</script>
+        
         /* --- NAVIGASI BIRU BARU --- */
         nav {
             background-color: #1565c0; 
