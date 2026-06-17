@@ -1,1 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita Cipondoh Makmur</title>
+    <style>
+        body {
+            background-color: #f4f6f9; 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            color: #333333; 
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
 
+        /* --- 1. BARIS TANGGAL (TOP BAR) --- */
+        .top-date-bar {
+            background-color: #114482; 
+            padding: 8px 5%; 
+            text-align: left; 
+            width: 100%; 
+            box-sizing: border-box;
+        }
+        .top-date-bar span {
+            color: #ffffff; 
+            font-size: 13px; 
+            font-weight: 500; 
+            letter-spacing: 0.3px;
+        }
+   
+        /* --- 2. NAVIGASI UTAMA (MENU) --- */
+        nav {
+            background-color: #1565c0; 
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between; 
+            align-items: center; 
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-logo {
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        nav a {
+            color: white; 
+            padding: 8px 14px; 
+            text-decoration: none; 
+            border-radius: 4px; 
+            font-weight: 600; 
+            font-size: 13px;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        nav .nav-menu a:hover { 
+            background-color: rgba(255, 255, 255, 0.15); 
+        }
+
+        nav a.active {
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+        
+        /* --- 3. LAYOUT HALAMAN --- */
+        .main-layout {
+            display: flex;
+            max-width: 1440px;
+            margin: 30px auto;
+            padding: 0 20px;
+            gap: 25px;
+            box-sizing: border-box;
+        }
+        
+        .container {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .ads-box-sidebar {
+            background-color: white;
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 20px 10px;
+            text-align: center;
+            color: #64748b;
+            font-size: 13px;
+            box-sizing: border-box;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            color: #111111;
+            font-size: 28px;
+            margin-top: 0;
+            margin-bottom: 25px;
+            border-left: 5px solid #1a73e8;
+            padding-left: 15px;
+        }
+        h2 {
+            color: #222222;
+            font-size: 22px;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+        .konten-box {
+            background-color: white; 
+            padding: 35px; 
+            border-radius: 16px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        .konten-box h2 { margin-top: 0; border-bottom: 2px solid #1a73e8; padding-bottom: 10px; }
+        
+        .adsense-slot {
+            background-color: #ffffff;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 20px auto;
+            text-align: center;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        /* --- 4. FOOTER STANDARD --- */
+        footer {
+            background-color: #1e293b;
+            color: #94a3b8;
+            text-align: center;
+            padding: 20px;
+            margin-top: 60px;
+            font-size: 13px;
+            border-top: 3px solid #1a73e8;
+            line-height: 1.6;
+        }
+        footer a { color: #cbd5e1; text-decoration: none; margin: 0 10px; }
+        footer a:hover { color: #1a73e8; }
+
+        @media (max-width: 1150px) {
+            .main-layout {
+                display: block;
+                margin: 15px auto;
+            }
+            .sidebar-left-wrapper {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+ 
+    <!-- TOP BAR TANGGAL -->
+    <div class="top-date-bar">
+        <span id="tanggal-hari-ini">Memuat tanggal...</span>
+    </div>
+
+    <!-- HEADER MENU -->
+    <nav>
+        <a href="index.html" class="nav-logo">Berita Cipondoh</a>
+        <div class="nav-menu">
+            <a href="index.html" class="active">Home</a>
+            <a href="berita.html">Berita</a>
+            <a href="hiburan-olahraga.html">Hiburan & Olahraga</a>
+            <a href="wisata-kuliner.html">Wisata & Kuliner</a>
+            <a href="pasang-iklan.html">Pasang Iklan</a>
+        </div>
+    </nav>
+
+    <!-- KONTEN UTAMA -->
+    <div class="main-layout">
+        
+        <!-- KOLOM IKLAN KIRI -->
+        <div class="sidebar-left-wrapper" style="width: 220px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; align-self: flex-start; position: sticky; top: 80px;">
+            <div class="ads-box-sidebar" style="min-height: 290px;">
+                <p>RUANG IKLAN KIRI 1</p>
+                <p style="font-size: 11px; color: #94a3b8; margin-top: 8px; font-weight: normal;">(Kotak Besar 220x290)</p>
+            </div>
+            <div class="ads-box-sidebar" style="min-height: 290px;">
+                <p>RUANG IKLAN KIRI 2</p>
+                <p style="font-size: 11px; color: #94a3b8; margin-top: 8px; font-weight: normal;">(Kotak Besar 220x290)</p>
+            </div>
+        </div>
+
+        <!-- KOLOM ISI TENGAH -->
+        <div class="container">
+            <h1>Selamat Datang di Berita Cipondoh Makmur</h1>
+
+            <div class="konten-box">
+                <h2>Portal Berita Utama</h2>
+                <p>Ini adalah halaman beranda resmi kami. Kami siap menyajikan informasi menarik seputar kawasan Cipondoh dan sekitarnya.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER DASAR -->
+    <footer>
+        <p>Copyright &copy; 2026 Berita Cipondoh Makmur. All Rights Reserved.</p>
+    </footer>
+
+    <!-- SCRIPT TANGGAL AKTIF -->
+    <script>
+        function tampilkanTanggal() {
+            const namaHari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+            const namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            
+            const sekarang = new Date();
+            const hari = namaHari[sekarang.getDay()];
+            const tanggal = sekarang.getDate();
+            const bulan = namaBulan[sekarang.getMonth()];
+            const tahun = sekarang.getFullYear();
+            
+            const target = document.getElementById("tanggal-hari-ini");
+            if (target) {
+                target.innerText = `${hari}, ${tanggal} ${bulan} ${tahun}`;
+            }
+        }
+        tampilkanTanggal();
+    </script>
+
+</body>
+</html>
