@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+html<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berita - Berita Cipondoh Makmur</title>
+    <title>Berita Cipondoh Makmur</title>
     <style>
         body {
             background-color: #f4f6f9; 
@@ -34,12 +34,19 @@
             background-color: #1565c0; 
             padding: 15px 5%;
             display: flex;
-            justify-content: flex-start; /* Menggeser seluruh menu ke kiri */
+            justify-content: space-between; 
             align-items: center; 
             position: sticky;
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-logo {
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: none;
         }
 
         .nav-menu {
@@ -133,19 +140,8 @@
             color: #64748b;
             font-size: 12px;
         }
-        .video-box {
-            background: #1e293b;
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-            border-radius: 12px;
-            text-decoration: none;
-            display: block;
-            border: 2px solid #ff0000;
-            font-weight: bold;
-        }
 
-        /* --- FOOTER RAMPI --- */
+        /* --- FOOTER RAMPI & SEJAJAR TENGAH --- */
         footer {
             background-color: #1e293b;
             color: #94a3b8;
@@ -177,11 +173,12 @@
         <span id="tanggal-hari-ini">Memuat tanggal...</span>
     </div>
 
-    <!-- 2. NAVIGASI UTAMA (Logo Hilang & Bergeser Ke Kiri) -->
+    <!-- 2. NAVIGASI UTAMA (Home Diberi Efek Aktif) -->
     <nav>
+        <a href="index.html" class="nav-logo">Berita Cipondoh</a>
         <div class="nav-menu">
-            <a href="index.html">Home</a>
-            <a href="berita.html" class="active">Berita</a>
+            <a href="index.html" class="active">Home</a>
+            <a href="berita.html">Berita</a>
             <a href="hiburan-olahraga.html">Hiburan & Olahraga</a>
             <a href="wisata-kuliner.html">Wisata & Kuliner</a>
             <a href="pasang-iklan.html">Pasang Iklan</a>
@@ -203,20 +200,14 @@
             </div>
         </div>
 
-        <!-- KOLOM TENGAH -->
+        <!-- KOLOM TENGAH (Penyambut Halaman Home) -->
         <div class="container">
-            <h1 id="home">Portal Berita Cipondoh Makmur</h1>
+            <h1>Selamat Datang di Berita Cipondoh Makmur</h1>
 
             <div class="konten-box">
-                <h2>Sejarah & Asal-Usul Cipondoh Makmur</h2>
-                <h3>1. Asal-Usul Nama Cipondoh (Cai Mondok)</h3>
-                <p>Berdasarkan buku “Melacak Asal Muasal Kampung di Kota Tangerang” karya Burhanudin, identitas seluruh wilayah Cipondoh berakar dari bentang alam berupa rawa atau genangan air raksasa. Nama Cipondoh berasal dari istilah bahasa Sunda, yaitu "Cai Mondok" yang berarti air yang menggenang atau menetap. Karena pengaruh dialek lidah masyarakat Betawi yang tinggal di wilayah sekitarnya, pelafalan Cai Mondok lambat laun berubah menjadi Cipondoh.</p>
-                
-                <h3>2. Transformasi Rawa Menjadi Pemukiman</h3>
-                <p>Pada masa kolonial Belanda tahun 1930, dibangun bendungan buatan yang kini dikenal sebagai Situ Cipondoh untuk irigasi persawahan dan pengendalian banjir. Seiring berjalannya waktu, wilayah rawa raksasa tersebut mengalami penyusutan akibat kekeringan panjang. Area tepian rawa yang mengering kemudian dimanfaatkan oleh warga setempat untuk pertanian, perikanan, hingga akhirnya berkembang menjadi area pemukiman padat penduduk.</p>
-                
-                <h3>3. Pemekaran Wilayah dan Lahirnya Cipondoh Makmur</h3>
-                <p>Awalnya, Cipondoh merupakan satu kampung atau desa yang sangat luas. Namun, seiring pesatnya laju urbanisasi, pertumbuhan ekonomi, serta melonjaknya jumlah penduduk di Kota Tangerang, wilayah ini mengalami pemekaran struktural. Guna meningkatkan efisiensi pelayanan masyarakat dan pembangunan daerah, lahirlah kelurahan Cipondoh Makmur sebagai kawasan pemukiman tertata yang terus berkembang makmur hingga saat ini.</p>
+                <h2>Portal Berita Terpercaya Anda</h2>
+                <p>Dapatkan informasi terhangat, berita seputar warga, kegiatan kelurahan, serta perkembangan terkini di kawasan Cipondoh Makmur dan sekitarnya.</p>
+                <p>Silakan klik menu <strong>Berita</strong> pada navigasi di atas untuk membaca sejarah dan asal-usul lengkap wilayah Cipondoh.</p>
             </div>
 
             <!-- SLOT IKLAN GOOGLE ADSENSE TENGAH -->
@@ -224,11 +215,14 @@
                 <p>— RUANG IKLAN GOOGLE ADSENSE TENGAH —</p>
             </div>
 
-            <h2>Tonton Video Terkini</h2>
-            <a href="https://youtube.com" target="_blank" class="video-box">
-                <span style="font-size: 30px; color: red; display: block;">▶</span>
-                KLIK UNTUK TONTON VIDEO SEJARAH SITU CIPONDOH DI YOUTUBE
-            </a>
+            <!-- KONTEN FORMULIR LAYANAN IKLAN -->
+            <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 30px;">
+                <div class="konten-box" style="flex: 1; min-width: 220px; padding: 20px; font-size: 14px; margin-bottom: 0;">
+                    <h3 style="color: #1a73e8; margin-top: 0; margin-bottom: 10px;">Layanan Pasang Iklan</h3>
+                    <p style="margin-bottom: 0;">Hubungi tim redaksi kami untuk mempromosikan bisnis atau usaha Anda di portal utama Berita Cipondoh Makmur.</p>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -247,3 +241,29 @@
     <footer>
         <p style="margin: 0 0 4px 0;">
             <span>Kebijakan & Privasi</span> | 
+            <span>Kontak: <a href="mailto:beritacipondoh@gmail.com" style="margin: 0;">beritacipondoh@gmail.com</a></span>
+        </p>
+        <p style="margin: 0; color: #B4BDCA; opacity: 0.8;">
+            Copyright © 2026 Berita Cipondoh Makmur. All Rights Reserved.
+        </p>
+    </footer>
+
+    <!-- 6. JAVASCRIPT DETEKSI TANGGAL OTOMATIS -->
+    <script>
+        function tampilkanTanggal() {
+            const namaHari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+            const namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            
+            const sekarang = new Date();
+            const hari = namaHari[sekarang.getDay()];
+            const tanggal = sekarang.getDate();
+            const bulan = namaBulan[sekarang.getMonth()];
+            const tahun = sekarang.getFullYear();
+            
+            document.getElementById("tanggal-hari-ini").innerText = `${hari}, ${tanggal} ${bulan} ${tahun}`;
+        }
+        tampilkanTanggal();
+    </script>
+
+</body>
+</html>
