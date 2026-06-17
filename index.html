@@ -9,7 +9,7 @@
         /* ==========================================================================
            1. PENGATURAN DASAR & TAMPILAN (CSS)
            ========================================================================== */
-        * {
+         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -29,7 +29,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 10%;
+            padding: 20px 5%;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -78,11 +78,13 @@
             display: flex;
             flex-direction: column;
             gap: 24px;
+            min-width: 0; /* Mencegah konten meluap */
         }
 
         /* Sisi Kanan: Kalender Sidebar */
         .sidebar {
             flex: 1;
+            min-width: 280px; /* Memastikan lebar kalender cukup */
         }
 
         /* Desain Kotak Komponen (Card) */
@@ -107,7 +109,7 @@
             margin-top: 12px;
         }
 
-        /* FITUR BARU: Desain Slideshow / Carousel */
+        /* Desain Slideshow / Carousel */
         .slideshow-container {
             position: relative;
             max-width: 100%;
@@ -129,7 +131,6 @@
             object-fit: cover;
         }
 
-        /* Tombol Panah Kiri & Kanan */
         .prev, .next {
             cursor: pointer;
             position: absolute;
@@ -155,7 +156,6 @@
             background-color: rgba(0,0,0,0.8);
         }
 
-        /* Teks Keterangan di Dalam Foto */
         .slide-text {
             color: #f2f2f2;
             font-size: 14px;
@@ -166,7 +166,6 @@
             background: linear-gradient(transparent, rgba(0,0,0,0.8));
         }
 
-        /* Efek Animasi Memudar (Fade) saat Foto Berganti */
         .fade {
             animation-name: fade;
             animation-duration: 0.8s;
@@ -180,7 +179,7 @@
         /* Pengaturan Media Video */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* Rasio Aspek Video 16:9 */
+            padding-bottom: 56.25%; 
             height: 0;
             overflow: hidden;
             border-radius: 6px;
@@ -238,6 +237,9 @@
             width: 32px;
             height: 32px;
             margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .cal-footer {
@@ -246,9 +248,9 @@
             margin-top: 15px;
             border-top: 1px dashed #e2e8f0;
             padding-top: 10px;
+            font-size: 13px;
         }
 
-        /* Bagian Kaki Halaman (Footer) */
         footer {
             background-color: #1e293b;
             color: #94a3b8;
@@ -258,8 +260,8 @@
             font-size: 14px;
         }
 
-        /* Responsif Tampilan Layar Handphone */
-        @media (max-width: 768px) {
+        /* Responsif Tampilan Layar yang Lebih Akurat */
+        @media (max-width: 900px) {
             .container {
                 flex-direction: column;
             }
@@ -277,12 +279,9 @@
                 margin: 0 8px;
             }
             .slideshow-container {
-                height: 250px; /* Perkecil tinggi slider di layar HP */
+                height: 250px; 
             }
         }
-    </style>
-</head>
-<body>
 
     <!-- Menu Navigasi Atas -->
     <header>
