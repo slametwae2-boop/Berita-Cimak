@@ -322,6 +322,6 @@
         function moveSlide(direction) {
             // Reset timer otomatis saat tombol manual diklik
             clearInterval(autoSlideInterval);
-    currentSlide += direction;if (currentSlide >= totalSlides) {currentSlide = 0;} else if (currentSlide < 0) {currentSlide = totalSlides - 1;}// Geser slider berdasarkan persentase indeks fotosliderElement.style.transform = translateX(-${currentSlide * 100}%);// Jalankan kembali timer otomatis setelah interaksi manualautoSlideInterval = setInterval(() => moveSlide(1), 5000);}
+    
 </body>
 </html>
