@@ -19,7 +19,6 @@
 
         /* 1. Header & Menu Navigasi */
         header {
-            /* Menggunakan contain agar gambar logo cimak muncul utuh tanpa terpotong */
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('logo.jpg') no-repeat center center;
             background-size: contain;
             color: white;
@@ -99,7 +98,7 @@
             font-size: 1.3rem;
         }
 
-        /* 2. Tampilan Foto Bergeser Manual & Otomatis */
+        /* 2. Tampilan Foto Bergeser */
         .slider-container {
             position: relative;
             width: 100%;
@@ -147,10 +146,10 @@
         .prev-btn { left: 10px; }
         .next-btn { right: 10px; }
 
-        /* 3. Widget Jam & Kalender dengan Background Baru */
+        /* 3. Widget Jam & Kalender */
         .widget-time {
             text-align: center;
-            background: linear-gradient(135deg, #fff3e0, #ffe0b2); /* Gradasi warna peach/oranye lembut */
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
             border: 1px solid #ffcc80;
         }
         #clock {
@@ -162,7 +161,7 @@
         }
         #date {
             color: #4e342e;
-            font-weight: bold; /* Tulisan tanggal ditebalkan */
+            font-weight: bold;
             font-size: 1.05rem;
         }
 
@@ -203,7 +202,7 @@
             border-radius: 4px;
         }
 
-        /* 7. Kolom Hak Cipta (Footer dengan warna Navy yang modern) */
+        /* 7. Kolom Hak Cipta */
         footer {
             background-color: #1a252f; 
             color: white;
@@ -211,13 +210,13 @@
             padding: 25px;
             margin-top: 40px;
             font-size: 0.9rem;
-            border-top: 4px solid #ff9900; /* Garis pembatas oranye agar serasi */
+            border-top: 4px solid #ff9900;
         }
     </style>
 </head>
 <body>
 
-     <!-- 1. HEADER DENGAN BACKGROUND UTUH & NAVIGASI -->
+    <!-- 1. HEADER & NAVIGASI -->
     <header>
         <h1>Portal Informasi & Berita</h1>
         <nav>
@@ -230,9 +229,8 @@
     </header>
 
     <div class="container">
-        <!-- AREA KONTEN UTAMA (KIRI) -->
         <main>
-            <!-- 2. TAMPILAN FOTO BERGESER MANUAL < > & OTOMATIS -->
+            <!-- 2. TAMPILAN FOTO BERGESER -->
             <section class="slider-container">
                 <button class="slide-btn prev-btn" onclick="moveSlide(-1)">&lt;</button>
                 <div class="slider" id="slider">
@@ -259,9 +257,8 @@
             </section>
         </main>
 
-        <!-- AREA SIDEBAR (KANAN) -->
         <aside>
-            <!-- 3. JAM DIGITAL & KALENDER (BACKGROUND & TEBAL BARU) -->
+            <!-- 3. JAM DIGITAL & KALENDER -->
             <section class="card widget-time">
                 <h2>Waktu & Tanggal</h2>
                 <div id="clock">00:00:00</div>
@@ -287,41 +284,58 @@
         </aside>
     </div>
 
-    <!-- 7. KOLOM HAK CIPTA (FOOTER NAVY & ORANYE) -->
+    <!-- 7. KOLOM HAK CIPTA -->
     <footer>
         <p>&copy; 2026 Portal Berita Anda. Hak Cipta Dilindungi Undang-Undang.</p>
     </footer>
 
+    <!-- JAVASCRIPT AMAN DI DALAM TAG SCRIPT -->
     <script>
-        // JAVASCRIPT JAM DIGITAL & KALENDER LIVE
+        // Fungsi Jam & Kalender
         function updateDateTime() {
             const now = new Date();
             let hours = String(now.getHours()).padStart(2, '0');
             let minutes = String(now.getMinutes()).padStart(2, '0');
             let seconds = String(now.getSeconds()).padStart(2, '0');
-            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+            document.getElementById('clock').textContent = hours + ':' + minutes + ':' + seconds;
             
             const opsiHari = { weekday: 'long' };
             const opsiTanggal = { day: 'numeric', month: 'long', year: 'numeric' };
             
             let hari = now.toLocaleDateString('id-ID', opsiHari);
             let tanggal = now.toLocaleDateString('id-ID', opsiTanggal);
-            document.getElementById('date').textContent = `${hari}, ${tanggal}`;
+            document.getElementById('date').textContent = hari + ', ' + tanggal;
         }
         setInterval(updateDateTime, 1000);
-        updateDateTime(); // Jalankan langsung saat halaman dimuat
-    </script>
+        updateDateTime();
 
-    // JAVASCRIPT SLIDER FOTO (MANUAL & OTOMATIS)
+        // Fungsi Slider Foto Manual & Otomatis
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slider img');
         const totalSlides = slides.length;
         const sliderElement = document.getElementById('slider');
-        let autoSlideInterval = setInterval(() => moveSlide(1), 5000); // Otomatis bergeser setiap 5 detik
+        
+        let autoSlideInterval = setInterval(function() {
+            moveSlide(1);
+        }, 5000);
 
         function moveSlide(direction) {
-            // Reset timer otomatis saat tombol manual diklik
             clearInterval(autoSlideInterval);
-    
+            
+            currentSlide += direction;
+
+            if (currentSlide >= totalSlides) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = totalSlides - 1;
+            }
+
+            sliderElement.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+            
+            autoSlideInterval = setInterval(function() {
+                moveSlide(1);
+            }, 5000);
+        }
+    </script>
 </body>
 </html>
