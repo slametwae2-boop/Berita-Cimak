@@ -159,9 +159,15 @@
             flex: 1;
         }
 
-        /* --- MAIN CONTENT AREA --- */
+        /* --- MAIN CONTENT AREA WITH LOGO BACKGROUND --- */
         main {
-            background: #fff;
+            background-color: #fff;
+            /* Lapisan putih transparan 85% di atas gambar logo agar teks berita tajam & mudah dibaca */
+            background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('logo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
             padding: 25px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
@@ -169,6 +175,10 @@
 
         .content-section {
             margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
         .content-section h2 {
@@ -292,7 +302,7 @@
     <div class="slider-container">
         <div class="slider">
             <div class="slides" id="sliderSlides">
-                <!-- Slide 1: Menggunakan gambar masjid.jpg dari GitHub Anda -->
+                <!-- Slide 1 -->
                 <div class="slide">
                     <img src="masjid.jpg" alt="Wisata Religi">
                     <div class="slide-caption">
@@ -300,7 +310,7 @@
                         <p>Jelajahi destinasi religi menarik dan ragam informasi terkini bersama Berita Cimak.</p>
                     </div>
                 </div>
-                <!-- Slide 2: Menggunakan gambar lapanganbola.jpg dari GitHub Anda -->
+                <!-- Slide 2 -->
                 <div class="slide">
                     <img src="lapanganbola.jpg" alt="Hiburan & Olahraga">
                     <div class="slide-caption">
@@ -308,7 +318,7 @@
                         <p>Simak terus perkembangan seputar kompetisi olahraga lokal dan internasional.</p>
                     </div>
                 </div>
-                <!-- Slide 3: Menggunakan gambar gym.jpg dari GitHub Anda -->
+                <!-- Slide 3 -->
                 <div class="slide">
                     <img src="gym.jpg" alt="Gaya Hidup Sehat">
                     <div class="slide-caption">
@@ -335,12 +345,4 @@
 
             <section id="berita" class="content-section">
                 <h2>Berita Terbaru</h2>
-                <p>Menampilkan ringkasan berita terhangat hari ini dari berbagai penjuru tanah air dan informasi global terpercaya.</p>
-            </section>
-
-            <section id="wisata-kuliner" class="content-section">
-                <h2>Wisata & Kuliner</h2>
-                <p>Temukan destinasi wisata eksotis tersembunyi serta referensi tempat makan legendaris dengan cita rasa nusantara.</p>
-            </section>
-
-            Waktu & Tanggal00:00:00Hari, 00 Bulan 0000SponsorTempat Iklan AdSenseGoogle AdSense Slot©  Berita Cimak. Hak Cipta Dilindungi Undang-Undang.// --- SCRIPT JAM & KALENDER ---function updateDateTime() {const now = new Date();let hours = String(now.getHours()).padStart(2, '0');let minutes = String(now.getMinutes()).padStart(2, '0');let seconds = String(now.getSeconds()).padStart(2, '0');document.getElementById('clock').textContent = hours + ":" + minutes + ":" + seconds;const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];let dayName = days[now.getDay()];let dayNum = now.getDate();let monthName = months[now.getMonth()];let year = now.getFullYear();document.getElementById('calendar').textContent = dayName + ", " + dayNum + " " + monthName + " " + year;document.getElementById('year').textContent = year;}setInterval(updateDateTime, 1000);updateDateTime();// --- SCRIPT SLIDER BERGESER ---let currentSlide = 0;const slidesContainer = document.getElementById('sliderSlides');const totalSlides = slidesContainer.children.length;function showSlide(index) {if (index >= totalSlides) {currentSlide = 0;} else if (index < 0) {currentSlide = totalSlides - 1;} else {currentSlide = index;}const offset = -currentSlide * 100;slidesContainer.style.transform = "translateX(" + offset + "%)";}function moveSlide(step) {showSlide(currentSlide + step);}// Jalankan slide otomatis setiap 4 detiksetInterval(function() {moveSlide(1);}, 4000);
+Use code with caution.Menampilkan ringkasan berita terhangat hari ini dari berbagai penjuru tanah air dan informasi global terpercaya.Wisata & KulinerTemukan destinasi wisata eksotis tersembunyi serta referensi tempat makan legendaris dengan cita rasa nusantara.Waktu & Tanggal00:00:00Hari, 00 Bulan 0000SponsorTempat Iklan AdSenseGoogle AdSense Slot©  Berita Cimak. Hak Cipta Dilindungi Undang-Undang.// --- SCRIPT JAM & KALENDER ---function updateDateTime() {var now = new Date();var hours = String(now.getHours()).padStart(2, '0');var minutes = String(now.getMinutes()).padStart(2, '0');var seconds = String(now.getSeconds()).padStart(2, '0');document.getElementById('clock').textContent = hours + ":" + minutes + ":" + seconds;var days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];var dayName = days[now.getDay()];var dayNum = now.getDate();var monthName = months[now.getMonth()];var year = now.getFullYear();document.getElementById('calendar').textContent = dayName + ", " + dayNum + " " + monthName + " " + year;document.getElementById('year').textContent = year;}setInterval(updateDateTime, 1000);updateDateTime();// --- SCRIPT SLIDER BERGESER ---var currentSlide = 0;var slidesContainer = document.getElementById('sliderSlides');var totalSlides = slidesContainer.children.length;function showSlide(index) {if (index >= totalSlides) {currentSlide = 0;} else if (index < 0) {currentSlide = totalSlides - 1;} else {currentSlide = index;}var offset = -currentSlide * 100;slidesContainer.style.transform = "translateX(" + offset + "%)";}function moveSlide(step) {showSlide(currentSlide + step);}// Jalankan slide otomatis setiap 4 detiksetInterval(function() {moveSlide(1);}, 4000);
