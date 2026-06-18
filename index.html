@@ -17,24 +17,22 @@
             color: #333;
         }
         
-        /* 1. Header Diperlebar Maksimal agar Logo Terlihat Utuh */
+        /* 1. Header dengan Latar Belakang */
         header {
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('logo.jpg') no-repeat center center;
             background-size: cover;
             color: white;
-            /* Padding atas dan bawah dinaikkan menjadi 220px agar tulisan "CIMAK" di bawah terlihat penuh */
-            padding: 440px 20px 40px 20px; 
+            padding: 160px 20px 40px 20px; 
             position: relative;
         }
 
-        /* Diubah menjadi kolom vertikal ke bawah agar menu berada di bawah judul teks */
         .header-container {
-            max-width: 1400px;
+            max-width: 1400px; 
             margin: 0 auto;
             display: flex;
             flex-direction: column; 
-            align-items: flex-start; /* Meratakan judul dan menu ke sebelah kiri */
-            gap: 20px; /* Jarak antara teks judul dengan barisan menu di bawahnya */
+            align-items: flex-start; 
+            gap: 20px; 
         }
         
         header h1 {
@@ -46,57 +44,106 @@
 
         /* Menu Navigasi Tanpa Background Samar */
         nav {
-            background-color: transparent; /* Menghilangkan background samar hitam */
+            background-color: transparent; 
             display: flex;
             justify-content: flex-start; 
             flex-wrap: wrap;
-            padding: 8px 0; /* Padding samping dinolkan agar lurus dengan judul */
+            padding: 8px 0; 
             border-radius: 0;
-            backdrop-filter: none; /* Menghilangkan efek blur */
-            box-shadow: none; /* Menghilangkan bayangan kotak */
+            backdrop-filter: none; 
+            box-shadow: none; 
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            padding: 10px 20px;
+            padding: 10px 18px;
             font-weight: bold;
+            font-size: 1rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8); 
             transition: 0.3s;
         }
 
         nav a:hover {
             background-color: #ff9900;
             border-radius: 4px;
+            color: #111;
+            text-shadow: none;
         }
-
-        /* Tata Letak Utama */
+        
+        /* Tata Letak Utama - 3 Kolom yang Seimbang */
         .container {
-            max-width: 1400px;
+            max-width: 1400px; 
             margin: 30px auto;
             padding: 0 15px;
             display: grid;
-            grid-template-columns: 220px 1fr 300px;
+            /* Kolom 1 (Kiri): 200px, Kolom 2 (Tengah): Mengambil sisa ruang terbesar (3fr), Kolom 3 (Kanan): 320px */
+            grid-template-columns: 200px 3fr 320px;
             gap: 25px;
         }
 
-        @media (max-width: 768px) {
+        /* Layout Responsif untuk Layar Tablet dan HP */
+        @media (max-width: 1100px) {
             .container {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 320px; /* Sembunyikan iklan kiri di layar tanggung */
+            }
+            .sidebar-left {
+                display: none;
             }
         }
 
+        @media (max-width: 768px) {
+            header {
+                padding: 100px 15px 30px 15px; 
+            }
+            .header-container {
+                align-items: center;
+                text-align: center;
+            }
+            nav {
+                justify-content: center;
+                width: 100%;
+            }
+        .container {
+                grid-template-columns: 1fr; /* Menjadi 1 kolom bertumpuk penuh di HP */
+            }
+        }
+
+        /* Kolom Kiri (Ruang Iklan Banner Vertikal) */
+        .sidebar-left {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .ads-vertical-placeholder {
+            background-color: #fff3cd;
+            border: 2px dashed #ffeeba;
+            padding: 30px 10px;
+            text-align: center;
+            color: #856404;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            min-height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* Area Konten Tengah (Diperlebar & Fleksibel) */
         main {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
+            min-width: 0; /* Mencegah konten di dalamnya merusak grid luar */
         }
-
+        /* Area Konten Kanan */
         aside {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
         }
-
+        
         .card {
             background: white;
             padding: 20px;
