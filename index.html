@@ -27,9 +27,11 @@
             width: 100%;
         }
 
+        /* Membuat wadah teks judul mepet penuh ke sebelah kiri layar browser */
         .header-container {
             width: 100%; 
             padding-left: 20px; 
+            text-align: left;
         }
 
         header h1 {
@@ -40,12 +42,12 @@
             display: inline-block;
         }
 
-        /* BARIS NAVIGASI: TRANSPARAN TOTAL (TANPA BACKGROUND KOTAK GELAP) */
+        /* BARIS NAVIGASI: BACKGROUND GELAP DIHILANGKAN TOTAL (TRANSPARAN) */
         .nav-bar {
             background-color: transparent; 
             width: 100%;
             box-shadow: none; 
-            padding-left: 20px; 
+            padding-left: 20px; /* Ikut mepet ke kiri sejajar judul */
         }
 
         nav {
@@ -57,6 +59,7 @@
         }
 
         nav a {
+            /* Teks berwarna gelap agar sangat jelas terbaca di atas warna dasar abu-abu web */
             color: #1a252f; 
             text-decoration: none;
             padding: 12px 20px;
@@ -71,7 +74,7 @@
             border-radius: 4px;
         }
 
-        /* Tata Letak Utama Menggunakan Flexbox yang Fleksibel & Stabil */
+        /* Tata Letak Utama Menggunakan Flexbox yang Kokoh & Stabil */
         .container {
             max-width: 1400px; 
             margin: 10px auto 30px auto; 
@@ -80,16 +83,16 @@
             gap: 25px;
         }
 
-        /* Kolom Kiri (Sekarang Menampung Kurs & Iklan) */
+        /* KOLOM 1: SISI SEBELAH KIRI (Lebar Tetap 220px) */
         .sidebar-left {
-            width: 220px; /* Sedikit diperlebar agar tabel kurs muat dengan lega */
+            width: 220px;
             flex-shrink: 0; 
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        /* Tampilan Widget Kurs Rupiah */
+        /* Widget Tampilan Kurs Rupiah */
         .widget-kurs {
             background: white;
             border-radius: 8px;
@@ -143,7 +146,7 @@
             font-style: italic;
         }
 
-        /* Ruang Iklan Banner Vertikal Kiri */
+        /* Ruang Banner Iklan Vertikal Kiri */
         .ads-vertical-placeholder {
             background-color: #fff3cd;
             border: 2px dashed #ffeeba;
@@ -160,7 +163,7 @@
             justify-content: center;
         }
 
-        /* Area Konten Tengah */
+        /* KOLOM 2: AREA TENGAH KONTEN (Melebar Dinamis Mengikuti Monitor) */
         main {
             flex: 1; 
             display: flex;
@@ -169,7 +172,7 @@
             min-width: 0; 
         }
 
-        /* Area Konten Kanan (Widget) */
+        /* KOLOM 3: AREA SEBELAH KANAN WIDGET (Lebar Tetap 320px) */
         aside {
             width: 320px;
             flex-shrink: 0; 
@@ -330,14 +333,14 @@
 </head>
 <body>
 
-    <!-- HEADER -->
+    <!-- HEADER: MEPEK PENUH KE KIRI -->
     <header>
         <div class="header-container">
             <h1>Portal Informasi & Berita</h1>
         </div>
     </header>
 
-    <!-- BARIS NAVIGASI -->
+    <!-- BARIS NAVIGASI: TRANSPARAN TOTAL -->
     <div class="nav-bar">
         <nav>
             <a href="#home">Home</a>
@@ -348,12 +351,12 @@
         </nav>
     </div>
 
-    <!-- KONTEN UTAMA -->
+    <!-- KONTEN UTAMA 3 KOLOM SEJAJAR (STRUKTUR DIV SUDAH DIPERBAIKI TOTAL) -->
     <div class="container">
         
-        <!-- KOLOM 1: RUANG SEBELAH KIRI (KURS RUPIAH & BANNER IKLAN) -->
+        <!-- KOLOM 1: SISI SEBELAH KIRI (KURS & BANNER) -->
         <aside class="sidebar-left">
-            <!-- Widget Kurs Rupiah Terkini -->
+            <!-- Widget Kurs Rupiah -->
             <div class="widget-kurs">
                 <h3>Kurs Rupiah (BI)</h3>
                 <table class="table-kurs">
@@ -364,14 +367,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="currency">USD (Dolar AS)</td>
-                            <td class="value">17.814</td>
-                        </tr>
-                        <tr>
-                            <td class="currency">SGD (Dolar Sing)</td>
-                            <td class="value">13.185</td>
-                        </tr>
                         <tr>
         
         <!-- KOLOM 1: RUANG IKLAN KIRI -->
