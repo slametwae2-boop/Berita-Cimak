@@ -17,7 +17,7 @@
             color: #333;
         }
 
-        /* 1. Header Khusus Gambar Latar Belakang (Bersih dari Teks Menu) */
+        /* 1. Header Khusus Gambar Latar Belakang */
         header {
             background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('logo.jpg') no-repeat center center;
             background-size: cover; 
@@ -27,9 +27,10 @@
             width: 100%;
         }
 
+        /* Menghilangkan max-width agar teks judul mepet ke kiri layar browser */
         .header-container {
-            max-width: 1400px; 
-            margin: 0 auto;
+            width: 100%; 
+            padding-left: 20px; 
         }
 
         header h1 {
@@ -40,24 +41,25 @@
             display: inline-block;
         }
 
-        /* BARIS BARU: Menu Navigasi Diletakkan di Bawah Gambar Header (Sangat Rapi & Terbaca) */
+        /* BARIS NAVIGASI: BACKGROUND GELAP DIHILANGKAN TOTAL (MENJADI TRANSPARAN) */
         .nav-bar {
-            background-color: #1a252f; /* Warna navy gelap yang elegan */
+            background-color: transparent; /* Menghilangkan background gelap menu */
             width: 100%;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: none; /* Menghilangkan bayangan garis menu */
+            padding-left: 20px; /* Agar menu ikut mepet ke kiri sejajar dengan judul */
         }
 
         nav {
-            max-width: 1400px;
-            margin: 0 auto;
+            width: 100%;
             display: flex;
             justify-content: flex-start; 
             flex-wrap: wrap;
-            padding: 5px 15px;
+            padding: 15px 0;
         }
 
         nav a {
-            color: white;
+            /* Mengubah warna teks menjadi hitam/gelap agar terbaca jelas di atas background abu-abu web */
+            color: #1a252f; 
             text-decoration: none;
             padding: 12px 20px;
             font-weight: bold;
@@ -68,12 +70,13 @@
         nav a:hover {
             background-color: #ff9900;
             color: #111;
+            border-radius: 4px;
         }
 
         /* Tata Letak Utama Menggunakan Flexbox yang Fleksibel & Stabil */
         .container {
             max-width: 1400px; 
-            margin: 30px auto;
+            margin: 10px auto 30px auto; /* Mengurangi margin atas agar menu lebih rapat ke konten */
             padding: 0 15px;
             display: flex;
             gap: 25px;
@@ -82,7 +85,7 @@
         /* Kolom Kiri (Iklan Banner Vertikal) */
         .sidebar-left {
             width: 200px;
-            flex-shrink: 0; /* Mencegah iklan menekan kolom tengah */
+            flex-shrink: 0; 
         }
 
         .ads-vertical-placeholder {
@@ -101,9 +104,9 @@
             justify-content: center;
         }
 
-        /* Area Konten Tengah (Mendominasi Lebar Layar Sempurna) */
+        /* Area Konten Tengah */
         main {
-            flex: 1; /* Otomatis melebar mengambil sisa ruang terbesar */
+            flex: 1; 
             display: flex;
             flex-direction: column;
             gap: 25px;
@@ -113,7 +116,7 @@
         /* Area Konten Kanan (Widget) */
         aside {
             width: 320px;
-            flex-shrink: 0; /* Mencegah widget menekan kolom tengah */
+            flex-shrink: 0; 
             display: flex;
             flex-direction: column;
             gap: 25px;
@@ -133,7 +136,7 @@
             font-size: 1.3rem;
         }
 
-        /* 2. Tampilan Foto Bergeser (Lebar Sempurna & Tidak Gepeng) */
+        /* 2. Tampilan Foto Bergeser */
         .slider-container {
             position: relative;
             width: 100%;
@@ -249,7 +252,7 @@
             border-top: 4px solid #ff9900;
         }
 
-        /* Responsif untuk Layar HP / Komputer Kecil */
+        /* Responsif untuk Layar HP */
         @media (max-width: 1024px) {
             .container {
                 flex-direction: column;
@@ -260,19 +263,25 @@
             .slider-container {
                 height: 350px;
             }
+            .nav-bar {
+                padding-left: 0;
+            }
+            nav {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER: FOKUS MENAMPILKAN GAMBAR LOGO UTUH -->
+    <!-- HEADER: TEKS JUDUL SEKARANG MEPEK PENUH KE KIRI LAYAR -->
     <header>
         <div class="header-container">
             <h1>Portal Informasi & Berita</h1>
         </div>
     </header>
 
-    <!-- BARIS NAVIGASI BARU: BERADA DI BAWAH HEADER (TIDAK MENUTUPI LOGO) -->
+    <!-- BARIS NAVIGASI: TRANSPARAN TOTAL (TANPA BACKGROUND KOTAK GELAP) -->
     <div class="nav-bar">
         <nav>
             <a href="#home">Home</a>
@@ -283,7 +292,7 @@
         </nav>
     </div>
 
-    <!-- KONTEN UTAMA 3 KOLOM YANG SEIMBANG -->
+    <!-- KONTEN UTAMA -->
     <div class="container">
         
         <!-- KOLOM 1: RUANG IKLAN KIRI -->
@@ -294,7 +303,7 @@
             </div>
         </aside>
 
-        <!-- KOLOM 2: AREA TENGAH (FOTO BERGESER MELEBAR MAKSIMAL) -->
+        <!-- KOLOM 2: AREA TENGAH -->
         <main>
             <!-- 2. TAMPILAN FOTO BERGESER -->
             <section class="slider-container">
