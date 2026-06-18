@@ -41,12 +41,12 @@
             display: inline-block;
         }
 
-        /* BARIS NAVIGASI: BACKGROUND GELAP DIHILANGKAN TOTAL (MENJADI TRANSPARAN) */
+        /* BARIS NAVIGASI */
         .nav-bar {
-            background-color: transparent; /* Menghilangkan background gelap menu */
+            background-color: transparent; 
             width: 100%;
-            box-shadow: none; /* Menghilangkan bayangan garis menu */
-            padding-left: 20px; /* Agar menu ikut mepet ke kiri sejajar dengan judul */
+            box-shadow: none; 
+            padding-left: 20px; 
         }
 
         nav {
@@ -58,7 +58,6 @@
         }
 
         nav a {
-            /* Mengubah warna teks menjadi hitam/gelap agar terbaca jelas di atas background abu-abu web */
             color: #1a252f; 
             text-decoration: none;
             padding: 12px 20px;
@@ -73,7 +72,7 @@
             border-radius: 4px;
         }
 
-        /* Tata Letak Utama Menggunakan Flexbox yang Fleksibel & Stabil */
+        /* Tata Letak Utama */
         .container {
             max-width: 1400px; 
             margin: 30px auto;
@@ -85,7 +84,7 @@
         /* Kolom Kiri (Iklan Banner Vertikal) */
         .sidebar-left {
             width: 200px;
-            flex-shrink: 0; /* Mencegah iklan menekan kolom tengah */
+            flex-shrink: 0; 
         }
 
         .ads-vertical-placeholder {
@@ -104,9 +103,9 @@
             justify-content: center;
         }
 
-        /* Area Konten Tengah (Mendominasi Lebar Layar Sempurna) */
+        /* Area Konten Tengah */
         main {
-            flex: 1; /* Otomatis melebar mengambil sisa ruang terbesar */
+            flex: 1; 
             display: flex;
             flex-direction: column;
             gap: 25px;
@@ -116,7 +115,7 @@
         /* Area Konten Kanan (Widget) */
         aside {
             width: 320px;
-            flex-shrink: 0; /* Mencegah widget menekan kolom tengah */
+            flex-shrink: 0; 
             display: flex;
             flex-direction: column;
             gap: 25px;
@@ -136,7 +135,7 @@
             font-size: 1.3rem;
         }
 
-        /* 2. Tampilan Foto Bergeser (Lebar Sempurna & Tidak Gepeng) */
+        /* 2. Tampilan Foto Bergeser */
         .slider-container {
             position: relative;
             width: 100%;
@@ -185,6 +184,65 @@
         .prev-btn { left: 10px; }
         .next-btn { right: 10px; } 
 
+        /* Tambahan CSS Pelengkap yang Hilang */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .widget-time {
+            text-align: center;
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+        }
+        #clock {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #856404;
+        }
+        #date {
+            font-size: 1rem;
+            color: #856404;
+            margin-top: 5px;
+        }
+        .adsense-placeholder {
+            background: #eee;
+            padding: 30px 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            border: 1px dashed #bbb;
+        }
+        .banner-iklan {
+            background: #fff;
+            border: 1px solid #ff9900;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            color: #ff9900;
+            border-radius: 4px;
+        }
+        footer {
+            background-color: #1a252f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
     <!-- HEADER: FOKUS MENAMPILKAN GAMBAR LOGO UTUH -->
     <header>
         <div class="header-container">
@@ -192,7 +250,7 @@
         </div>
     </header>
 
-    <!-- BARIS NAVIGASI BARU: BERADA DI BAWAH HEADER (TIDAK MENUTUPI LOGO) -->
+    <!-- BARIS NAVIGASI BARU -->
     <div class="nav-bar">
         <nav>
             <a href="#home">Home</a>
@@ -214,7 +272,7 @@
             </div>
         </aside>
 
-        <!-- KOLOM 2: AREA TENGAH (FOTO BERGESER MELEBAR MAKSIMAL) -->
+        <!-- KOLOM 2: AREA TENGAH -->
         <main>
             <!-- 2. TAMPILAN FOTO BERGESER -->
             <section class="slider-container">
@@ -260,7 +318,7 @@
             </section>
 
             <!-- 5. KOLOM IKLAN -->
-            <section class="card" id="iklan">
+            <section class="card">
                 <h2>Ruang Iklan Anda</h2>
                 <div class="banner-iklan">
                     IKLAN HUBUNGI KAMI<br>
@@ -269,7 +327,7 @@
             </section>
 
             <!-- 6. KOLOM IKLAN -->
-            <section class="card" id="iklan">
+            <section class="card">
                 <h2>Ruang Iklan Anda</h2>
                 <div class="banner-iklan">
                     IKLAN HUBUNGI KAMI<br>
@@ -281,8 +339,15 @@
 
     <!-- 7. KOLOM HAK CIPTA -->
     <footer>
-        <p>&copy; 2026 Portal Berita Cimak. Copryght All Right Reserved.</p>
+        <p>&copy; 2026 Portal Berita Cimak. Copyright All Rights Reserved.</p>
     </footer>
+
+    <!-- JAVASCRIPT AMAN DI DALAM TAG SCRIPT -->
+    <script>
+        // Fungsi Jam & Kalender
+        function updateDateTime() {
+            const now = new Date();
+            let hours = String(now.getHours()).padStart(2, '0');
 
     <!-- JAVASCRIPT AMAN DI DALAM TAG SCRIPT -->
     <script>
