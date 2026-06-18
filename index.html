@@ -162,7 +162,6 @@
         /* --- MAIN CONTENT AREA WITH LOGO BACKGROUND --- */
         main {
             background-color: #fff;
-            /* Lapisan putih transparan 85% di atas gambar logo agar teks berita tajam & mudah dibaca */
             background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('logo.jpg');
             background-size: cover;
             background-position: center;
@@ -302,7 +301,6 @@
     <div class="slider-container">
         <div class="slider">
             <div class="slides" id="sliderSlides">
-                <!-- Slide 1 -->
                 <div class="slide">
                     <img src="masjid.jpg" alt="Wisata Religi">
                     <div class="slide-caption">
@@ -310,7 +308,6 @@
                         <p>Jelajahi destinasi religi menarik dan ragam informasi terkini bersama Berita Cimak.</p>
                     </div>
                 </div>
-                <!-- Slide 2 -->
                 <div class="slide">
                     <img src="lapanganbola.jpg" alt="Hiburan & Olahraga">
                     <div class="slide-caption">
@@ -318,7 +315,6 @@
                         <p>Simak terus perkembangan seputar kompetisi olahraga lokal dan internasional.</p>
                     </div>
                 </div>
-                <!-- Slide 3 -->
                 <div class="slide">
                     <img src="gym.jpg" alt="Gaya Hidup Sehat">
                     <div class="slide-caption">
@@ -327,7 +323,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Tombol Navigasi Manual -->
             <button class="slider-btn prev" onclick="moveSlide(-1)">&#10094;</button>
             <button class="slider-btn next" onclick="moveSlide(1)">&#10095;</button>
         </div>
@@ -345,4 +340,8 @@
 
             <section id="berita" class="content-section">
                 <h2>Berita Terbaru</h2>
-Use code with caution.Menampilkan ringkasan berita terhangat hari ini dari berbagai penjuru tanah air dan informasi global terpercaya.Wisata & KulinerTemukan destinasi wisata eksotis tersembunyi serta referensi tempat makan legendaris dengan cita rasa nusantara.Waktu & Tanggal00:00:00Hari, 00 Bulan 0000SponsorTempat Iklan AdSenseGoogle AdSense Slot©  Berita Cimak. Hak Cipta Dilindungi Undang-Undang.// --- SCRIPT JAM & KALENDER ---function updateDateTime() {var now = new Date();var hours = String(now.getHours()).padStart(2, '0');var minutes = String(now.getMinutes()).padStart(2, '0');var seconds = String(now.getSeconds()).padStart(2, '0');document.getElementById('clock').textContent = hours + ":" + minutes + ":" + seconds;var days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];var dayName = days[now.getDay()];var dayNum = now.getDate();var monthName = months[now.getMonth()];var year = now.getFullYear();document.getElementById('calendar').textContent = dayName + ", " + dayNum + " " + monthName + " " + year;document.getElementById('year').textContent = year;}setInterval(updateDateTime, 1000);updateDateTime();// --- SCRIPT SLIDER BERGESER ---var currentSlide = 0;var slidesContainer = document.getElementById('sliderSlides');var totalSlides = slidesContainer.children.length;function showSlide(index) {if (index >= totalSlides) {currentSlide = 0;} else if (index < 0) {currentSlide = totalSlides - 1;} else {currentSlide = index;}var offset = -currentSlide * 100;slidesContainer.style.transform = "translateX(" + offset + "%)";}function moveSlide(step) {showSlide(currentSlide + step);}// Jalankan slide otomatis setiap 4 detiksetInterval(function() {moveSlide(1);}, 4000);
+                <p>Menampilkan ringkasan berita terhangat hari ini dari berbagai penjuru tanah air dan informasi global terpercaya.</p>
+            </section>
+            <section id="wisata-kuliner" class="content-section">
+Wisata & KulinerTemukan destinasi wisata eksotis tersembunyi serta referensi tempat makan legendaris dengan cita rasa nusantara.Waktu & Tanggal00:00:00Hari, 00 Bulan 0000SponsorTempat Iklan AdSenseGoogle AdSense Slot©  Berita Cimak. Hak Cipta Dilindungi Undang-Undang.function updateDateTime() {var now = new Date();var hours = String(now.getHours()).padStart(2, '0');var minutes = String(now.getMinutes()).padStart(2, '0');var seconds = String(now.getSeconds()).padStart(2, '0');document.getElementById('clock').textContent = hours + ":" + minutes + ":" + seconds;var days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];var dayName = days[now.getDay()];var dayNum = now.getDate();var monthName = months[now.getMonth()];var year = now.getFullYear();document.getElementById('calendar').textContent = dayName + ", " + dayNum + " " + monthName + " " + year;document.getElementById('year').textContent = year;}setInterval(updateDateTime, 1000);updateDateTime();var currentSlide = 0;var slidesContainer = document.getElementById('sliderSlides');var totalSlides = slidesContainer.children.length;function showSlide(index) {if (index >= totalSlides) {currentSlide = 0;} else if (index < 0) {currentSlide = totalSlides - 1;} else {currentSlide = index;}var offset = -currentSlide * 100;slidesContainer.style.transform = "translateX(" + offset + "%)";}function moveSlide(step) {showSlide(currentSlide + step);}setInterval(function() {moveSlide(1);}, 4000);
+                
