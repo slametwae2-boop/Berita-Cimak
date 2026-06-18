@@ -40,21 +40,20 @@
         header h1 {
             font-size: 2.3rem;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
-            flex: 1;
-            min-width: 280px;
             font-weight: bold;
             letter-spacing: 1px;
         }
-        
+
+        /* Menu Navigasi Ditempatkan di Bawah Judul Teks (Sisi Kiri) */
         nav {
-            background-color: rgba(51, 51, 51, 0.9);
+            background-color: rgba(20, 20, 20, 0.85); 
             display: flex;
-            justify-content: center;
+            justify-content: flex-start; /* Mengatur menu berderet mulai dari kiri */
             flex-wrap: wrap;
-            padding: 10px;
-            border-radius: 5px;
-            max-width: 800px;
-            margin: 0 auto;
+            padding: 8px 12px;
+            border-radius: 6px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
         nav a {
