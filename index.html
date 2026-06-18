@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Multimedia & Informasi</title>
+    <title>Berita Cimak - Portal Informasi</title>
     <style>
         /* --- RESET & BASIC STYLES --- */
         * {
@@ -81,6 +81,7 @@
             overflow: hidden;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background-color: #e0e0e0;
         }
 
         .slides {
@@ -111,6 +112,7 @@
             color: #fff;
             padding: 20px;
             text-align: left;
+            z-index: 10;
         }
 
         .slide-caption h3 {
@@ -136,6 +138,7 @@
             align-items: center;
             justify-content: center;
             transition: background 0.3s;
+            z-index: 20;
         }
 
         .slider-btn:hover {
@@ -273,7 +276,7 @@
     <header>
         <nav class="navbar">
             <div class="logo">
-                <h1>Info<span>Nusantara</span></h1>
+                <h1>Berita<span>Cimak</span></h1>
             </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
@@ -289,28 +292,28 @@
     <div class="slider-container">
         <div class="slider">
             <div class="slides" id="sliderSlides">
-                <!-- Slide 1 -->
+                <!-- Slide 1: Menggunakan gambar masjid.jpg dari GitHub Anda -->
                 <div class="slide">
-                    <img src="https://picsum.photos" alt="Wisata Indonesia">
+                    <img src="masjid.jpg" alt="Wisata Religi">
                     <div class="slide-caption">
-                        <h3>Pesona Keindahan Alam Nusantara</h3>
-                        <p>Jelajahi destinasi wisata terbaik yang menanti petualangan Anda.</p>
+                        <h3>Pesona Wisata dan Sejarah Olahraga</h3>
+                        <p>Jelajahi destinasi religi menarik dan ragam informasi terkini bersama Berita Cimak.</p>
                     </div>
                 </div>
-                <!-- Slide 2 -->
+                <!-- Slide 2: Menggunakan gambar lapanganbola.jpg dari GitHub Anda -->
                 <div class="slide">
-                    <img src="https://picsum.photos" alt="Kuliner Nusantara">
+                    <img src="lapanganbola.jpg" alt="Hiburan & Olahraga">
                     <div class="slide-caption">
-                        <h3>Cita Rasa Kuliner Tradisional</h3>
-                        <p>Nikmati kelezatan makanan khas dengan rempah-rempah pilihan asli Indonesia.</p>
+                        <h3>Info Olahraga & Hiburan Terkini</h3>
+                        <p>Simak terus perkembangan seputar kompetisi olahraga lokal dan internasional.</p>
                     </div>
                 </div>
-                <!-- Slide 3 -->
+                <!-- Slide 3: Menggunakan gambar gym.jpg dari GitHub Anda -->
                 <div class="slide">
-                    <img src="https://picsum.photos" alt="Olahraga & Hiburan">
+                    <img src="gym.jpg" alt="Gaya Hidup Sehat">
                     <div class="slide-caption">
-                        <h3>Semangat Olahraga & Hiburan</h3>
-                        <p>Dapatkan update event olahraga terbaru dan panggung hiburan menarik.</p>
+                        <h3>Kesehatan & Gaya Hidup</h3>
+                        <p>Tips menjaga kebugaran tubuh serta informasi seputar aktivitas harian Anda.</p>
                     </div>
                 </div>
             </div>
@@ -326,7 +329,7 @@
         <!-- KOLOM UTAMA -->
         <main>
             <section id="home" class="content-section">
-                <h2>Selamat Datang di Portal Info</h2>
+                <h2>Selamat Datang di Portal Berita Cimak</h2>
                 <p>Ini adalah halaman utama website informasi multi-kategori. Anda dapat menjelajahi menu di atas untuk melihat berita terbaru, rekomendasi wisata, tips kuliner, hingga info hiburan dan olahraga.</p>
             </section>
 
@@ -339,9 +342,5 @@
                 <h2>Wisata & Kuliner</h2>
                 <p>Temukan destinasi wisata eksotis tersembunyi serta referensi tempat makan legendaris dengan cita rasa nusantara.</p>
             </section>
-        </main>
 
-        <!-- KOLOM KANAN (SIDEBAR) -->
-        <aside>
-            <!-- WIDGET JAM DAN KALENDER -->
-            Waktu & Tanggal00:00:00Hari, 00 Bulan 0000SponsorTempat Iklan AdSenseGoogle AdSense Slot©  InfoNusantara. Hak Cipta Dilindungi Undang-Undang.// --- SCRIPT JAM & KALENDER ---function updateDateTime() {const now = new Date();let hours = String(now.getHours()).padStart(2, '0');let minutes = String(now.getMinutes()).padStart(2, '0');let seconds = String(now.getSeconds()).padStart(2, '0');document.getElementById('clock').textContent = ${hours}:${minutes}:${seconds};const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];let dayName = days[now.getDay()];let dayNum = now.getDate();let monthName = months[now.getMonth()];let year = now.getFullYear();document.getElementById('calendar').textContent = ${dayName}, ${dayNum} ${monthName} ${year};document.getElementById('year').textContent = year;}setInterval(updateDateTime, 1000);updateDateTime();// --- SCRIPT SLIDER BERGESER ---let currentSlide = 0;const slidesContainer = document.getElementById('sliderSlides');const totalSlides = slidesContainer.children.length;function showSlide(index) {if (index >= totalSlides) {currentSlide = 0;} else if (index < 0) {currentSlide = totalSlides - 1;} else {currentSlide = index;}const offset = -currentSlide * 100;slidesContainer.style.transform = translateX(${offset}%);}function moveSlide(step) {showSlide(currentSlide + step);}// Jalankan slide otomatis setiap 4 detiksetInterval(() => {moveSlide(1);}, 4000);
+            Waktu & Tanggal00:00:00Hari, 00 Bulan 0000SponsorTempat Iklan AdSenseGoogle AdSense Slot©  Berita Cimak. Hak Cipta Dilindungi Undang-Undang.// --- SCRIPT JAM & KALENDER ---function updateDateTime() {const now = new Date();let hours = String(now.getHours()).padStart(2, '0');let minutes = String(now.getMinutes()).padStart(2, '0');let seconds = String(now.getSeconds()).padStart(2, '0');document.getElementById('clock').textContent = hours + ":" + minutes + ":" + seconds;const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];let dayName = days[now.getDay()];let dayNum = now.getDate();let monthName = months[now.getMonth()];let year = now.getFullYear();document.getElementById('calendar').textContent = dayName + ", " + dayNum + " " + monthName + " " + year;document.getElementById('year').textContent = year;}setInterval(updateDateTime, 1000);updateDateTime();// --- SCRIPT SLIDER BERGESER ---let currentSlide = 0;const slidesContainer = document.getElementById('sliderSlides');const totalSlides = slidesContainer.children.length;function showSlide(index) {if (index >= totalSlides) {currentSlide = 0;} else if (index < 0) {currentSlide = totalSlides - 1;} else {currentSlide = index;}const offset = -currentSlide * 100;slidesContainer.style.transform = "translateX(" + offset + "%)";}function moveSlide(step) {showSlide(currentSlide + step);}// Jalankan slide otomatis setiap 4 detiksetInterval(function() {moveSlide(1);}, 4000);
