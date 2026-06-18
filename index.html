@@ -3,345 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berita Cimak - Portal Informasi</title>
+    <title>Website Berita & Informasi</title>
     <style>
-        /* --- RESET & BASIC STYLES --- */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
         }
 
         body {
-            background-color: #f4f6f9;
+            background-color: #f4f4f4;
             color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
         }
 
-        /* --- HEADER & NAVIGATION --- */
+        /* 1. Header & Menu Navigasi */
         header {
-            background-color: #1a252f;
-            color: #fff;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 15px 20px;
-        }
-
-        .logo h1 {
-            font-size: 24px;
-            color: #3498db;
-        }
-
-        .logo span {
-            color: #fff;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #3498db;
-        }
-
-        /* --- SLIDER / FOTO BERGESER --- */
-        .slider-container {
-            max-width: 1200px;
-            margin: 20px auto 0 auto;
-            padding: 0 20px;
-            width: 100%;
-        }
-
-        .slider {
-            position: relative;
-            width: 100%;
-            height: 400px;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            background-color: #e0e0e0;
-        }
-
-        .slides {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .slide {
-            min-width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .slide-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.6);
-            color: #fff;
-            padding: 20px;
-            text-align: left;
-            z-index: 10;
-        }
-
-        .slide-caption h3 {
-            margin-bottom: 5px;
-            font-size: 20px;
-        }
-
-        /* Tombol Navigasi Slider */
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
+            /* Menggunakan latar belakang logo.jpg seperti yang diminta */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('logo.jpg') no-repeat center center;
+            background-size: cover;
             color: white;
-            border: none;
-            padding: 15px;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        nav {
+            background-color: rgba(51, 51, 51, 0.9);
             display: flex;
-            align-items: center;
             justify-content: center;
-            transition: background 0.3s;
-            z-index: 20;
+            flex-wrap: wrap;
+            padding: 10px;
+            border-radius: 5px;
         }
 
-        .slider-btn:hover {
-            background: #3498db;
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            transition: 0.3s;
         }
 
-        .prev { left: 20px; }
-        .next { right: 20px; }
+        nav a:hover {
+            background-color: #ff9900;
+            border-radius: 4px;
+        }
 
-        /* --- MAIN LAYOUT --- */
+        /* Tata Letak Utama */
         .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
             display: grid;
             grid-template-columns: 3fr 1fr;
             gap: 20px;
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-            flex: 1;
         }
 
-        /* --- MAIN CONTENT AREA WITH LOGO BACKGROUND --- */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
         main {
-            background-color: #fff;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('logo.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: scroll;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .content-section {
-            margin-bottom: 30px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 6px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        }
-
-        .content-section h2 {
-            border-left: 5px solid #3498db;
-            padding-left: 10px;
-            margin-bottom: 15px;
-            color: #2c3e50;
-        }
-
-        /* --- SIDEBAR AREA --- */
         aside {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        .widget {
-            background: #fff;
+        .card {
+            background: white;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .widget h3 {
+        .card h2 {
             margin-bottom: 15px;
-            color: #2c3e50;
-            font-size: 18px;
-            border-bottom: 2px solid #eee;
+            border-bottom: 2px solid #ff9900;
             padding-bottom: 5px;
+            font-size: 1.3rem;
         }
 
-        /* --- WIDGET CLOCK & CALENDAR --- */
-        .digital-clock {
-            font-size: 28px;
+        /* 2. Tampilan Foto Bergeser (Slider / Carousel) */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .slider {
+            display: flex;
+            width: 500%; /* Mengakomodasi 5 foto dari aset Anda */
+            height: 100%;
+            animation: slide 20s infinite;
+        }
+
+        .slider img {
+            width: 20%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes slide {
+            0% { margin-left: 0%; }
+            20% { margin-left: 0%; }
+            25% { margin-left: -100%; }
+            45% { margin-left: -100%; }
+            50% { margin-left: -200%; }
+            70% { margin-left: -200%; }
+            75% { margin-left: -300%; }
+            95% { margin-left: -300%; }
+            100% { margin-left: -400%; }
+        }
+
+        /* 3. Widget Jam & Kalender */
+        .widget-time {
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        #clock {
+            font-size: 2rem;
             font-weight: bold;
-            color: #e74c3c;
-            text-align: center;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
+            color: #ff9900;
+            margin-bottom: 5px;
+        }
+        #date {
+            color: #666;
         }
 
-        .digital-calendar {
-            font-size: 16px;
-            text-align: center;
-            color: #7f8c8d;
-            font-weight: 500;
-        }
-
-        /* --- GOOGLE ADSENSE PLACEHOLDER --- */
+        /* 4 & 6. Kolom Iklan & Google AdSense */
         .adsense-placeholder {
             background-color: #f9f9f9;
-            border: 2px dashed #bdc3c7;
-            padding: 20px;
+            border: 2px dashed #ccc;
+            padding: 40px 10px;
             text-align: center;
-            min-height: 250px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #7f8c8d;
-            font-size: 14px;
-            border-radius: 6px;
+            color: #888;
+            font-style: italic;
         }
 
-        .adsense-placeholder span {
+        .banner-iklan {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 20px;
+            text-align: center;
+            color: #856404;
             font-weight: bold;
-            display: block;
-            margin-top: 5px;
-            color: #27ae60;
         }
 
-        /* --- FOOTER --- */
+        /* 5. Kolom Video */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* Rasio 16:9 */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 4px;
+        }
+
+        /* 7. Kolom Hak Cipta (Footer) */
         footer {
-            background-color: #1a252f;
-            color: #fff;
+            background-color: #333;
+            color: white;
             text-align: center;
             padding: 20px;
-            margin-top: auto;
-            font-size: 14px;
-        }
-
-        /* --- RESPONSIVE DESIGN --- */
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-            .navbar {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px;
-            }
-            .slider {
-                height: 250px;
-            }
+            margin-top: 40px;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER DAN MENU NAVIGASI -->
+    <!-- 1. HEADER DENGAN BACKGROUND LOGO & MENU NAVIGASI -->
     <header>
-        <nav class="navbar">
-            <div class="logo">
-                <h1>Berita<span>Cimak</span></h1>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#berita">Berita</a></li>
-                <li><a href="#wisata-kuliner">Wisata & Kuliner</a></li>
-                <li><a href="#hiburan-olahraga">Hiburan & Olahraga</a></li>
-                <li><a href="#pasang-iklan">Pasang Iklan</a></li>
-            </ul>
+        <h1>Portal Informasi & Berita</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#berita">Berita</a>
+            <a href="#olahraga">Hiburan & Olahraga</a>
+            <a href="#wisata">Wisata & Kuliner</a>
+            <a href="#iklan">Pasang Iklan</a>
         </nav>
     </header>
 
-    <!-- KOLOM FOTO/GAMBAR BERGESER (SLIDER) -->
-    <div class="slider-container">
-        <div class="slider">
-            <div class="slides" id="sliderSlides">
-                <div class="slide">
-                    <img src="masjid.jpg" alt="Wisata Religi">
-                    <div class="slide-caption">
-                        <h3>Pesona Wisata dan Sejarah Olahraga</h3>
-                        <p>Jelajahi destinasi religi menarik dan ragam informasi terkini bersama Berita Cimak.</p>
-                    </div>
+    <div class="container">
+        <!-- AREA KONTEN UTAMA (KIRI) -->
+        <main>
+            <!-- 2. TAMPILAN FOTO BERGESER (MENGGUNAKAN ASET GAMBAR ANDA) -->
+            <section class="slider-container">
+                <div class="slider">
+                    <img src="gym.jpg" alt="Gym">
+                    <img src="lapanganbola.jpg" alt="Lapangan Bola">
+                    <img src="masjid.jpg" alt="Masjid">
+                    <img src="pingpong.jpg" alt="Pingpong">
+                    <img src="gym.jpg" alt="Gym Loop"> <!-- Duplikat foto pertama untuk transisi smooth -->
                 </div>
-                <div class="slide">
-                    <img src="lapanganbola.jpg" alt="Hiburan & Olahraga">
-                    <div class="slide-caption">
-                        <h3>Info Olahraga & Hiburan Terkini</h3>
-                        <p>Simak terus perkembangan seputar kompetisi olahraga lokal dan internasional.</p>
-                    </div>
+            </section>
+
+            <!-- 5. KOLOM VIDEO -->
+            <section class="card">
+                <h2>Video Terkini</h2>
+                <div class="video-container">
+                    <!-- Ganti ID video youtube (dQw4w9WgXcQ) dengan ID video Anda sendiri -->
+                    <iframe src="https://youtube.com" allowfullscreen></iframe>
                 </div>
-                <div class="slide">
-                    <img src="gym.jpg" alt="Gaya Hidup Sehat">
-                    <div class="slide-caption">
-                        <h3>Kesehatan & Gaya Hidup</h3>
-                        <p>Tips menjaga kebugaran tubuh serta informasi seputar aktivitas harian Anda.</p>
-                    </div>
+            </section>
+
+            <!-- KONTEN BERITA (TAMBAHAN UNTUK PELENGKAP) -->
+            <section class="card" id="berita">
+                <h2>Berita Utama</h2>
+                <p>Selamat datang di portal informasi kami. Temukan berita terupdate seputar olahraga, destinasi wisata menarik, kuliner lezat, hingga hiburan terkini di sini.</p>
+            </section>
+        </main>
+
+        <!-- AREA SIDEBAR (KANAN) -->
+        <aside>
+            <!-- 3. JAM DIGITAL & KALENDER -->
+            <section class="card widget-time">
+                <h2>Waktu & Tanggal</h2>
+                <div id="clock">00:00:00</div>
+                <div id="date">Hari, Tanggal Bulan Tahun</div>
+            </section>
+
+            <!-- 4. KOLOM GOOGLE ADSENSE -->
+            <section class="card">
+                <h2>Sponsor (Google AdSense)</h2>
+                <div class="adsense-placeholder">
+                    <!-- Tempatkan kode script HTML AdSense Anda di bawah ini -->
+                    [ Tempatkan Kode Iklan Google AdSense Di Sini ]
                 </div>
-            </div>
-            <button class="slider-btn prev" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="slider-btn next" onclick="moveSlide(1)">&#10095;</button>
-        </div>
+            </section>
+
+            <!-- 6. KOLOM IKLAN MANDIRI -->
+            <section class="card" id="iklan">
+                <h2>Ruang Iklan Anda</h2>
+                <div class="banner-iklan">
+                    IKLAN HUBUNGI KAMI<br>
+                    WA: 0812-XXXX-XXXX
+                </div>
+            </section>
+        </aside>
     </div>
 
-    <!-- KONTEN UTAMA & SIDEBAR -->
-    <div class="container">
-        
-        <!-- KOLOM UTAMA -->
-        <main>
-            <section id="home" class="content-section">
-                <h2>Selamat Datang di Portal Berita Cimak</h2>
-                <p>Ini adalah halaman utama website informasi multi-kategori. Anda dapat menjelajahi menu di atas untuk melihat berita terbaru, rekomendasi wisata, tips kuliner, hingga info hiburan dan olahraga.</p>
-            </section>
+    <!-- 7. KOLOM HAK CIPTA (FOOTER) -->
+    <footer>
+        <p>&copy; 2026 Portal Berita Anda. Hak Cipta Dilindungi Undang-Undang.</p>
+    </footer>
 
-            <section id="berita" class="content-section">
-                <h2>Berita Terbaru</h2>
-                <p>Menampilkan ringkasan berita terhangat hari ini dari berbagai penjuru tanah air dan informasi global terpercaya.</p>
-            </section>
-            <section id="wisata-kuliner" class="content-section">
-Wisata & KulinerTemukan destinasi wisata eksotis tersembunyi serta referensi tempat makan legendaris dengan cita rasa nusantara.Waktu & Tanggal00:00:00Hari, 00 Bulan 0000SponsorTempat Iklan AdSenseGoogle AdSense Slot©  Berita Cimak. Hak Cipta Dilindungi Undang-Undang.function updateDateTime() {var now = new Date();var hours = String(now.getHours()).padStart(2, '0');var minutes = String(now.getMinutes()).padStart(2, '0');var seconds = String(now.getSeconds()).padStart(2, '0');document.getElementById('clock').textContent = hours + ":" + minutes + ":" + seconds;var days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];var dayName = days[now.getDay()];var dayNum = now.getDate();var monthName = months[now.getMonth()];var year = now.getFullYear();document.getElementById('calendar').textContent = dayName + ", " + dayNum + " " + monthName + " " + year;document.getElementById('year').textContent = year;}setInterval(updateDateTime, 1000);updateDateTime();var currentSlide = 0;var slidesContainer = document.getElementById('sliderSlides');var totalSlides = slidesContainer.children.length;function showSlide(index) {if (index >= totalSlides) {currentSlide = 0;} else if (index < 0) {currentSlide = totalSlides - 1;} else {currentSlide = index;}var offset = -currentSlide * 100;slidesContainer.style.transform = "translateX(" + offset + "%)";}function moveSlide(step) {showSlide(currentSlide + step);}setInterval(function() {moveSlide(1);}, 4000);
-                
+    <!-- JAVASCRIPT UNTUK JAM & KALENDER LIVE -->
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            
+            // Format Jam Digital
+            let hours = String(now.getHours()).padStart(2, '0');
+            let minutes = String(now.getMinutes()).padStart(2, '0');
+            let seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+            
+            // Format Kalender Indonesia
+            const opsiHari = { weekday: 'long' };
+            const opsiTanggal = { day: 'numeric', month: 'long', year: 'numeric' };
+            
+            let hari = now.toLocaleDateString('id-ID', opsiHari);
+            let tanggal = now.toLocaleDateString('id-ID', opsiTanggal);
+            
+            document.getElementById('date').textContent = `${hari}, ${tanggal}`;
+        }
+
+        // Jalankan fungsi setiap 1 detik
+        setInterval(updateDateTime, 1000);
+        updateDateTime(); // Jalankan langsung saat halaman dimuat
+    </script>
+</body>
+</html>
