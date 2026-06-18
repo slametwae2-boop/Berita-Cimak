@@ -17,96 +17,106 @@
             color: #333;
         }
 
-        /* 1. Header dengan Latar Belakang di Sebelah Kiri & Diperpanjang */
+        /* 1. Header Khusus Gambar Latar Belakang (Bersih dari Teks Menu) */
         header {
-            /* Posisi background diganti ke 'left center' agar gambar merapat ke kiri */
-            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('logo.jpg') no-repeat left center;
-            /* Menggunakan 'cover' agar gambar memanjang dan memenuhi seluruh tinggi/lebar header */
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('logo.jpg') no-repeat center center;
             background-size: cover; 
             color: white;
-            /* Padding atas dinaikkan ke 240px untuk memperpanjang ruang ke bawah agar tulisan CIMAK tidak terpotong */
-            padding: 240px 20px 40px 20px; 
+            padding: 180px 20px 60px 20px; 
             position: relative;
             width: 100%;
         }
+
         .header-container {
             max-width: 1400px; 
             margin: 0 auto;
-            display: flex;
-            flex-direction: column; 
-            align-items: flex-start; 
-            gap: 15px; 
-        }
-        
-        header h1 {
-            font-size: 2.3rem;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
-            font-weight: bold;
-            letter-spacing: 1px;
         }
 
-        /* Menu Navigasi - Total Tanpa Background Samar Kotak Abu-Abu */
+        header h1 {
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+
+        /* BARIS BARU: Menu Navigasi Diletakkan di Bawah Gambar Header (Sangat Rapi & Terbaca) */
+        .nav-bar {
+            background-color: #1a252f; /* Warna navy gelap yang elegan */
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
         nav {
-            background-color: transparent !important; /* Menghapus warna latar belakang samar total */
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
             justify-content: flex-start; 
             flex-wrap: wrap;
-            padding: 5px 0; 
-            border-radius: 0;
-            backdrop-filter: none !important; /* Menghilangkan efek blur abu-abu */
-            box-shadow: none !important; /* Menghilangkan bayangan kotak */
-        }
-        
-        nav {
-            background-color: rgba(51, 51, 51, 0.9);
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            padding: 10px;
-            border-radius: 5px;
-            max-width: 800px;
-            margin: 0 auto;
+            padding: 5px 15px;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            padding: 10px 20px;
+            padding: 12px 20px;
             font-weight: bold;
+            font-size: 1rem;
             transition: 0.3s;
         }
 
         nav a:hover {
             background-color: #ff9900;
-            border-radius: 4px;
+            color: #111;
         }
 
-        /* Tata Letak Utama - 3 Kolom Seimbang */
+        /* Tata Letak Utama Menggunakan Flexbox yang Fleksibel & Stabil */
         .container {
             max-width: 1400px; 
             margin: 30px auto;
             padding: 0 15px;
-            display: grid;
-            grid-template-columns: 200px 3fr 320px;
+            display: flex;
             gap: 25px;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
+        /* Kolom Kiri (Iklan Banner Vertikal) */
+        .sidebar-left {
+            width: 200px;
+            flex-shrink: 0; /* Mencegah iklan menekan kolom tengah */
         }
 
+        .ads-vertical-placeholder {
+            background-color: #fff3cd;
+            border: 2px dashed #ffeeba;
+            padding: 30px 10px;
+            text-align: center;
+            color: #856404;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Area Konten Tengah (Mendominasi Lebar Layar Sempurna) */
         main {
+            flex: 1; /* Otomatis melebar mengambil sisa ruang terbesar */
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
+            min-width: 0; 
         }
 
+        /* Area Konten Kanan (Widget) */
         aside {
+            width: 320px;
+            flex-shrink: 0; /* Mencegah widget menekan kolom tengah */
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
         }
 
         .card {
@@ -123,11 +133,11 @@
             font-size: 1.3rem;
         }
 
-        /* 2. Tampilan Foto Bergeser */
+        /* 2. Tampilan Foto Bergeser (Lebar Sempurna & Tidak Gepeng) */
         .slider-container {
             position: relative;
             width: 100%;
-            height: 400px;
+            height: 480px; 
             overflow: hidden;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -143,7 +153,7 @@
         .slider img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; 
             flex-shrink: 0;
         }
 
@@ -166,6 +176,7 @@
 
         .slide-btn:hover {
             background-color: #ff9900;
+            color: #111;
         }
 
         .prev-btn { left: 10px; }
@@ -237,13 +248,32 @@
             font-size: 0.9rem;
             border-top: 4px solid #ff9900;
         }
+
+        /* Responsif untuk Layar HP / Komputer Kecil */
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar-left, aside {
+                width: 100%;
+            }
+            .slider-container {
+                height: 350px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- 1. HEADER & NAVIGASI -->
+    <!-- HEADER: FOKUS MENAMPILKAN GAMBAR LOGO UTUH -->
     <header>
-        <h1>Portal Informasi & Berita</h1>
+        <div class="header-container">
+            <h1>Portal Informasi & Berita</h1>
+        </div>
+    </header>
+
+    <!-- BARIS NAVIGASI BARU: BERADA DI BAWAH HEADER (TIDAK MENUTUPI LOGO) -->
+    <div class="nav-bar">
         <nav>
             <a href="#home">Home</a>
             <a href="#berita">Berita</a>
@@ -251,9 +281,20 @@
             <a href="#wisata">Wisata & Kuliner</a>
             <a href="#iklan">Pasang Iklan</a>
         </nav>
-    </header>
+    </div>
 
+    <!-- KONTEN UTAMA 3 KOLOM YANG SEIMBANG -->
     <div class="container">
+        
+        <!-- KOLOM 1: RUANG IKLAN KIRI -->
+        <aside class="sidebar-left">
+            <div class="ads-vertical-placeholder">
+                RUANG IKLAN<br>BANNER VERTIKAL<br><br>
+                [ Hubungi Redaksi ]
+            </div>
+        </aside>
+
+        <!-- KOLOM 2: AREA TENGAH (FOTO BERGESER MELEBAR MAKSIMAL) -->
         <main>
             <!-- 2. TAMPILAN FOTO BERGESER -->
             <section class="slider-container">
@@ -282,6 +323,7 @@
             </section>
         </main>
 
+        <!-- KOLOM 3: AREA KANAN -->
         <aside>
             <!-- 3. JAM DIGITAL & KALENDER -->
             <section class="card widget-time">
@@ -298,7 +340,7 @@
                 </div>
             </section>
 
-            <!-- 6. KOLOM IKLAN -->
+            <!-- 5. KOLOM IKLAN -->
             <section class="card" id="iklan">
                 <h2>Ruang Iklan Anda</h2>
                 <div class="banner-iklan">
@@ -309,7 +351,7 @@
         </aside>
     </div>
 
-    <!-- 7. KOLOM HAK CIPTA -->
+    <!-- 6. KOLOM HAK CIPTA -->
     <footer>
         <p>&copy; 2026 Portal Berita Anda. Hak Cipta Dilindungi Undang-Undang.</p>
     </footer>
