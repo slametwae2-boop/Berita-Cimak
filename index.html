@@ -17,21 +17,46 @@
             color: #333;
         }
 
-        /* 1. Header & Menu Navigasi */
+        /* 1. Header dengan Latar Belakang di Sebelah Kiri & Diperpanjang */
         header {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('logo.jpg') no-repeat center center;
-            background-size: contain;
+            /* Posisi background diganti ke 'left center' agar gambar merapat ke kiri */
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('logo.jpg') no-repeat left center;
+            /* Menggunakan 'cover' agar gambar memanjang dan memenuhi seluruh tinggi/lebar header */
+            background-size: cover; 
             color: white;
-            padding: 60px 20px;
-            text-align: center;
+            /* Padding atas dinaikkan ke 240px untuk memperpanjang ruang ke bawah agar tulisan CIMAK tidak terpotong */
+            padding: 240px 20px 40px 20px; 
+            position: relative;
+            width: 100%;
         }
-
+        .header-container {
+            max-width: 1400px; 
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column; 
+            align-items: flex-start; 
+            gap: 15px; 
+        }
+        
         header h1 {
-            margin-bottom: 20px;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            font-size: 2.3rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+            font-weight: bold;
+            letter-spacing: 1px;
         }
 
+        /* Menu Navigasi - Total Tanpa Background Samar Kotak Abu-Abu */
+        nav {
+            background-color: transparent !important; /* Menghapus warna latar belakang samar total */
+            display: flex;
+            justify-content: flex-start; 
+            flex-wrap: wrap;
+            padding: 5px 0; 
+            border-radius: 0;
+            backdrop-filter: none !important; /* Menghilangkan efek blur abu-abu */
+            box-shadow: none !important; /* Menghilangkan bayangan kotak */
+        }
+        
         nav {
             background-color: rgba(51, 51, 51, 0.9);
             display: flex;
