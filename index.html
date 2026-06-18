@@ -42,7 +42,7 @@
             display: inline-block;
         }
 
-        /* BARIS NAVIGASI: BACKGROUND GELAP DIHILANGKAN TOTAL (TRANSPARAN) */
+        /* BARIS NAVIGASI: TRANSPARAN TOTAL (TANPA BACKGROUND KOTAK GELAP) */
         .nav-bar {
             background-color: transparent; 
             width: 100%;
@@ -59,7 +59,6 @@
         }
 
         nav a {
-            /* Teks berwarna gelap agar sangat jelas terbaca di atas warna dasar abu-abu web */
             color: #1a252f; 
             text-decoration: none;
             padding: 12px 20px;
@@ -74,20 +73,22 @@
             border-radius: 4px;
         }
 
-        /* Tata Letak Utama Menggunakan Flexbox yang Kokoh & Stabil */
+        /* Tata Letak Utama - DIKUNCI MATI SELALU 3 KOLOM SEJAJAR KE SAMPING */
         .container {
+            width: 100%;
             max-width: 1400px; 
             margin: 10px auto 30px auto; 
             padding: 0 15px;
-            display: flex;
-            gap: 25px;
+            display: flex !important; /* Memaksa elemen berdiri sejajar menyamping */
+            flex-direction: row !important; /* Mengunci baris menyamping, bukan vertikal */
+            gap: 20px;
         }
 
-        /* KOLOM 1: SISI SEBELAH KIRI (Lebar Tetap 220px) */
+        /* KOLOM 1: SISI SEBELAH KIRI (Lebar Dikunci 200px) */
         .sidebar-left {
-            width: 220px;
+            width: 200px !important;
             flex-shrink: 0; 
-            display: flex;
+            display: flex !important;
             flex-direction: column;
             gap: 20px;
         }
@@ -96,13 +97,13 @@
         .widget-kurs {
             background: white;
             border-radius: 8px;
-            padding: 15px;
+            padding: 12px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             border-top: 4px solid #e65100;
         }
 
         .widget-kurs h3 {
-            font-size: 1rem;
+            font-size: 0.95rem;
             margin-bottom: 10px;
             text-align: center;
             color: #333;
@@ -113,12 +114,12 @@
         .table-kurs {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-align: left;
         }
 
         .table-kurs th, .table-kurs td {
-            padding: 8px 4px;
+            padding: 6px 2px;
             border-bottom: 1px solid #eee;
         }
 
@@ -139,7 +140,7 @@
         }
 
         .kurs-update {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #999;
             text-align: center;
             margin-top: 8px;
@@ -150,11 +151,11 @@
         .ads-vertical-placeholder {
             background-color: #fff3cd;
             border: 2px dashed #ffeeba;
-            padding: 30px 10px;
+            padding: 20px 10px;
             text-align: center;
             color: #856404;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             min-height: 250px;
@@ -163,20 +164,20 @@
             justify-content: center;
         }
 
-        /* KOLOM 2: AREA TENGAH KONTEN (Melebar Dinamis Mengikuti Monitor) */
+        /* KOLOM 2: AREA TENGAH KONTEN (Melebar Dinamis Mengambil Sisa Ruang Monitor) */
         main {
-            flex: 1; 
-            display: flex;
+            flex: 1 !important; 
+            display: flex !important;
             flex-direction: column;
             gap: 25px;
             min-width: 0; 
         }
 
-        /* KOLOM 3: AREA SEBELAH KANAN WIDGET (Lebar Tetap 320px) */
+        /* KOLOM 3: AREA SEBELAH KANAN WIDGET (Lebar Dikunci 300px) */
         aside {
-            width: 320px;
+            width: 300px !important;
             flex-shrink: 0; 
-            display: flex;
+            display: flex !important;
             flex-direction: column;
             gap: 25px;
         }
@@ -310,25 +311,6 @@
             font-size: 0.9rem;
             border-top: 4px solid #ff9900;
         }
-
-        /* Responsif untuk Layar HP */
-        @media (max-width: 1024px) {
-            .container {
-                flex-direction: column;
-            }
-            .sidebar-left, aside {
-                width: 100%;
-            }
-            .slider-container {
-                height: 350px;
-            }
-            .nav-bar {
-                padding-left: 0;
-            }
-            nav {
-                justify-content: center;
-            }
-        }
     </style>
 </head>
 <body>
@@ -351,7 +333,7 @@
         </nav>
     </div>
 
-    <!-- KONTEN UTAMA 3 KOLOM SEJAJAR (STRUKTUR DIV SUDAH DIPERBAIKI TOTAL) -->
+    <!-- KONTEN UTAMA - 3 KOLOM DIKUNCI PERMANEN MENYAMPING -->
     <div class="container">
         
         <!-- KOLOM 1: SISI SEBELAH KIRI (KURS & BANNER) -->
@@ -367,6 +349,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td class="currency">USD (Dolar AS)</td>
+                            <td class="value">17.789</td>
+                        </tr>
+                        <tr>
+                            <td class="currency">SGD (Dolar Sing)</td>
+                            <td class="value">13.185</td>
+                        </tr>
                         <tr>
         
         <!-- KOLOM 1: RUANG IKLAN KIRI -->
