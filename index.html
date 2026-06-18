@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Berita & Informasi</title>
     <style>
+        /* RESET DASAR */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -17,13 +18,13 @@
             color: #333;
         }
 
-        /* 1. Header Khusus Gambar Latar Belakang (Merapat Ke Kiri) */
+        /* 1. HEADER DENGAN BACKGROUND LOGO MERAPAT KE KIRI */
         header {
             background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('logo.jpg') no-repeat left center;
             background-size: cover; 
             padding: 240px 20px 40px 20px; 
             width: 100%;
-            position: relative;
+            clear: both;
         }
 
         .header-container {
@@ -38,21 +39,18 @@
             text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
             font-weight: bold;
             letter-spacing: 1px;
-            display: inline-block;
         }
 
-        /* BARIS NAVIGASI: BERSIH TANPA BACKGROUND BOX SAMAR */
+        /* MENU NAVIGASI TRANSPARAN */
         .nav-bar {
             background-color: transparent; 
             width: 100%;
-            padding-left: 20px; 
+            padding-left: 20px;
+            clear: both;
         }
 
         nav {
             width: 100%;
-            display: flex;
-            justify-content: flex-start; 
-            flex-wrap: wrap;
             padding: 15px 0;
         }
 
@@ -62,6 +60,7 @@
             padding: 12px 20px;
             font-weight: bold;
             font-size: 1rem;
+            display: inline-block;
             transition: 0.3s;
         }
 
@@ -71,24 +70,26 @@
             border-radius: 4px;
         }
 
-        /* Tata Letak Utama - DIKUNCI MATI SELALU 3 KOLOM SEJAJAR KE SAMPING */
-        .container {
-            max-width: 1400px; 
-            margin: 10px auto 30px auto; 
+        /* KONTAINER UTAMA PEMBUNGKUS 3 KOLOM */
+        .main-wrapper {
+            max-width: 1400px;
+            margin: 15px auto 40px auto;
             padding: 0 15px;
-            display: flex !important; 
-            flex-direction: row !important; 
-            gap: 25px;
             width: 100%;
         }
 
+        /* METODE CLEARFIX AGAR KOLOM SEJAJAR DAN TIDAK MENUMPUK */
+        .main-wrapper::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
         /* KOLOM 1: SISI SEBELAH KIRI (KURS & BANNER VERTIKAL) */
-        .sidebar-left {
-            width: 220px !important;
-            flex-shrink: 0; 
-            display: flex !important;
-            flex-direction: column;
-            gap: 20px;
+        .kolom-kiri-kurs {
+            width: 16%; /* Mengunci lebar kolom kiri */
+            float: left;
+            padding-right: 15px;
         }
 
         .widget-kurs {
@@ -97,10 +98,12 @@
             padding: 15px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             border-top: 4px solid #e65100;
+            margin-bottom: 20px;
+            width: 100%;
         }
 
         .widget-kurs h3 {
-            font-size: 1rem;
+            font-size: 0.95rem;
             margin-bottom: 10px;
             text-align: center;
             border-bottom: 2px solid #ff9900;
@@ -110,11 +113,11 @@
         .table-kurs {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
         .table-kurs th, .table-kurs td {
-            padding: 8px 4px;
+            padding: 8px 2px;
             border-bottom: 1px solid #eee;
         }
 
@@ -136,16 +139,222 @@
             text-align: center;
             color: #856404;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             min-height: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 100%;
         }
 
         /* KOLOM 2: AREA TENGAH KONTEN (SLIDER, VIDEO, BERITA UTAMA) */
+        .kolom-tengah-konten {
+            width: 61%; /* Mengunci lebar area tengah agar mendominasi layar */
+            float: left;
+            padding: 0 10px;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 480px; 
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+
+        .slider {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            flex-shrink: 0;
+        }
+
+        .slide-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+            z-index: 10;
+            font-weight: bold;
+        }
+
+        .slide-btn:hover { background-color: #ff9900; color: #111; }
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+
+        /* KOLOM 3: AREA SEBELAH KANAN WIDGET (JAM, KALENDER, ADSENSE) */
+        .kolom-kanan-widget {
+            width: 23%; /* Mengunci lebar kolom kanan */
+            float: left;
+            padding-left: 15px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            width: 100%;
+        }
+
+        .card h2 {
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ff9900;
+            padding-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .widget-time {
+            text-align: center;
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border: 1px solid #ffcc80;
+        }
+
+        #clock {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #e65100;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        #date {
+            color: #4e342e;
+            font-weight: bold;
+            font-size: 1.05rem;
+        }
+
+        .adsense-placeholder {
+            background-color: #f9f9f9;
+            border: 2px dashed #ccc;
+            padding: 40px 10px;
+            text-align: center;
+            color: #888;
+            font-style: italic;
+        }
+
+        .banner-iklan {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 20px;
+            text-align: center;
+            color: #856404;
+            font-weight: bold;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 4px;
+        }
+
+        /* FOOTER HAK CIPTA */
+        footer {
+            background-color: #1a252f; 
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            border-top: 4px solid #ff9900;
+            width: 100%;
+            clear: both; /* Memaksa footer berada di paling bawah */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. HEADER (PORTAL INFORMASI) -->
+    <header>
+        <div class="header-container">
+            <h1>Portal Informasi & Berita</h1>
+        </div>
+    </header>
+
+    <!-- BARIS NAVIGASI MENU -->
+    <div class="nav-bar">
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#berita">Berita</a>
+            <a href="#olahraga">Hiburan & Olahraga</a>
+            <a href="#wisata">Wisata & Kuliner</a>
+            <a href="#iklan">Pasang Iklan</a>
+        </nav>
+    </div>
+
+    <!-- KONTAINER UTAMA (MENGGUNAKAN METODE FLOAT YANG DIKUNCI MATI KE SAMPING) -->
+    <div class="main-wrapper">
+        
+        <!-- KOLOM 1: KIRI (KURS & BANNER IKLAN) -->
+        <div class="kolom-kiri-kurs">
+            <!-- Widget Kurs -->
+            <div class="widget-kurs">
+                <h3>Kurs Rupiah (BI)</h3>
+                <table class="table-kurs">
+                    <thead>
+                        <tr>
+                            <th>Mata Uang</th>
+                            <th style="text-align: right;">Nilai</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="currency">USD (Dolar AS)</td>
+                            <td class="value">17.789</td>
+                        </tr>
+                        <tr>
+                            <td class="currency">SGD (Singapura)</td>
+                            <td class="value">13.185</td>
+                        </tr>
+                        <tr>
+                            <td class="currency">EUR (Euro)</td>
+                            <td class="value">19.120</td>
+                        </tr>
+                        <tr>
+                            <td class="currency">AUD (Australia)</td>
+                            <td class="value">11.830</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="kurs-update">Ref: JISDOR BI</div>
+            </div>
+
+            <!-- Banner Vertikal -->
+            <div class="ads-vertical-placeholder">
+                RUANG IKLAN<br>BANNER VERTIKAL<br><br>
+                [ Hubungi Redaksi ]
+            </div>
+        </div>
+
+        <!-- KOLOM 2: TENGAH (SLIDER FOTO, VIDEO, BERITA UTAMA) -->
+        <div class="kolom-tengah-konten">
         main {
             flex: 1 !important; 
             display: flex !important;
