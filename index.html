@@ -44,16 +44,16 @@
             letter-spacing: 1px;
         }
 
-        /* Menu Navigasi Ditempatkan di Bawah Judul Teks (Sisi Kiri) */
+        /* Menu Navigasi Tanpa Background Samar */
         nav {
-            background-color: rgba(20, 20, 20, 0.85); 
+            background-color: transparent; /* Menghilangkan background samar hitam */
             display: flex;
-            justify-content: flex-start; /* Mengatur menu berderet mulai dari kiri */
+            justify-content: flex-start; 
             flex-wrap: wrap;
-            padding: 8px 12px;
-            border-radius: 6px;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            padding: 8px 0; /* Padding samping dinolkan agar lurus dengan judul */
+            border-radius: 0;
+            backdrop-filter: none; /* Menghilangkan efek blur */
+            box-shadow: none; /* Menghilangkan bayangan kotak */
         }
 
         nav a {
