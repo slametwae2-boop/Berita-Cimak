@@ -345,12 +345,76 @@
             </div>
         </section> <!-- SELESAI SISI KIRI -->
         
-        <!-- SISI KANAN: SIDEBAR KALENDER (SEKARANG SUDAH SEJAJAR) -->
+        <!-- SISI KANAN -->
         <aside class="sidebar">
             <div class="card">
                 <h2>Kalender Kegiatan</h2>
-                <div class="calendar-header" id="monthYear">Januari 2026</div>
+                <div class="calendar-header" id="monthYear"></div>
                 <div class="calendar-days">
                     <span>M</span><span>S</span><span>S</span><span>R</span><span>K</span><span>J</span><span>S</span>
                 </div>
                 <div class="calendar-dates" id="calendarDates">
+
+                    <!-- ... batas akhir konten HTML halaman Anda ... -->
+    </main>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> <span class="copyright-brand">Berita Cimak</span>. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <!-- Library Swiper Eksternal -->
+    <script src="https://jsdelivr.net"></script>
+
+    <!-- DI SINI TEMPAT KODE JAVASCRIPT YANG ANDA MAKSUD -->
+    <script>
+        // 1. Logika Swiper Slider
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            autoplay: { delay: 3500, disableOnInteraction: false },
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+            pagination: { el: ".swiper-pagination", clickable: true },
+        });
+
+        // 2. KODE DARI FOTO ANDA DIMASUKKAN DI SINI
+        function generateCalendarAndFooter() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth();
+            const today = now.getDate();
+
+            document.getElementById("currentYear").innerText = year;
+
+            const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", 
+                                "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            
+            document.getElementById("monthYear").innerText = `${monthNames[month]} ${year}`;
+
+            const firstDayIndex = new Date(year, month, 1).getDay();
+            const lastDay = new Date(year, month + 1, 0).getDate();
+
+            const datesContainer = document.getElementById("calendarDates");
+            datesContainer.innerHTML = "";
+
+            for (let i = 0; i < firstDayIndex; i++) {
+                const emptySpan = document.createElement("span");
+                emptySpan.classList.add("empty-day");
+                datesContainer.appendChild(emptySpan);
+            }
+
+            for (let day = 1; day <= lastDay; day++) {
+                const dateSpan = document.createElement("span");
+                dateSpan.innerText = day;
+
+                if (day === today) {
+                    dateSpan.classList.add("today");
+                }
+
+                datesContainer.appendChild(dateSpan);
+            }
+        }
+
+        // Menjalankan fungsi di atas saat halaman dibuka
+        document.addEventListener("DOMContentLoaded", generateCalendarAndFooter);
+    </script>
+</body>
+</html>
