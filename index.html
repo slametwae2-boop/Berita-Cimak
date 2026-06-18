@@ -41,16 +41,22 @@
             display: inline-block;
         }
 
-        /* BARIS NAVIGASI */
-        .nav-bar {
-            background-color: transparent; 
+        /* BARIS NAVIGASI & KANAL ATAS */
+        .top-bar-container {
             width: 100%;
-            box-shadow: none; 
-            padding-left: 20px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 40px 5px 20px;
+            background-color: transparent;
+            flex-wrap: wrap;
+        }
+
+        .nav-bar {
+            flex: 1;
         }
 
         nav {
-            width: 100%;
             display: flex;
             justify-content: flex-start; 
             flex-wrap: wrap;
@@ -70,6 +76,31 @@
             background-color: #ff9900;
             color: #111;
             border-radius: 4px;
+        }
+
+        /* WIDGET JAM BARU DI POJOK KANAN ATAS */
+        .header-time-widget {
+            text-align: right;
+            padding: 10px 15px;
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            min-width: 200px;
+        }
+
+        #clock {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #856404;
+            line-height: 1.2;
+        }
+
+        #date {
+            font-size: 0.85rem;
+            color: #856404;
+            margin-top: 2px;
+            font-weight: 500;
         }
 
         /* Tata Letak Utama */
@@ -135,7 +166,7 @@
             font-size: 1.3rem;
         }
 
-        /* 2. Tampilan Foto Bergeser */
+        /* Tampilan Foto Bergeser */
         .slider-container {
             position: relative;
             width: 100%;
@@ -184,7 +215,7 @@
         .prev-btn { left: 10px; }
         .next-btn { right: 10px; } 
 
-        /* Tambahan CSS Pelengkap yang Hilang */
+        /* Tambahan CSS Pelengkap */
         .video-container {
             position: relative;
             padding-bottom: 56.25%;
@@ -198,21 +229,6 @@
             width: 100%;
             height: 100%;
             border: 0;
-        }
-        .widget-time {
-            text-align: center;
-            background: #fff3cd;
-            border: 1px solid #ffeeba;
-        }
-        #clock {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #856404;
-        }
-        #date {
-            font-size: 1rem;
-            color: #856404;
-            margin-top: 5px;
         }
         .adsense-placeholder {
             background: #eee;
@@ -250,15 +266,23 @@
         </div>
     </header>
 
-    <!-- BARIS NAVIGASI BARU -->
-    <div class="nav-bar">
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#berita">Berita</a>
-            <a href="#olahraga">Hiburan & Olahraga</a>
-            <a href="#wisata">Wisata & Kuliner</a>
-            <a href="#iklan">Pasang Iklan</a>
-        </nav>
+    <!-- BARIS NAVIGASI DAN JAM (SEJAJAR DI KANAN-KIRI) -->
+    <div class="top-bar-container">
+        <div class="nav-bar">
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#berita">Berita</a>
+                <a href="#olahraga">Hiburan & Olahraga</a>
+                <a href="#wisata">Wisata & Kuliner</a>
+                <a href="#iklan">Pasang Iklan</a>
+            </nav>
+        </div>
+        
+        <!-- POSISI JAM BARU: POJOK KANAN ATAS MENU -->
+        <div class="header-time-widget">
+            <div id="clock">00:00:00</div>
+            <div id="date">Memuat waktu...</div>
+        </div>
     </div>
 
     <!-- KONTEN UTAMA 3 KOLOM YANG SEIMBANG -->
@@ -274,7 +298,7 @@
 
         <!-- KOLOM 2: AREA TENGAH -->
         <main>
-            <!-- 2. TAMPILAN FOTO BERGESER -->
+            <!-- TAMPILAN FOTO BERGESER -->
             <section class="slider-container">
                 <button class="slide-btn prev-btn" onclick="moveSlide(-1)">&lt;</button>
                 <div class="slider" id="slider">
@@ -286,7 +310,7 @@
                 <button class="slide-btn next-btn" onclick="moveSlide(1)">&gt;</button>
             </section>
 
-            <!-- 5. KOLOM VIDEO -->
+            <!-- KOLOM VIDEO -->
             <section class="card">
                 <h2>Video Terkini</h2>
                 <div class="video-container">
@@ -303,13 +327,7 @@
 
         <!-- KOLOM 3: AREA KANAN -->
         <aside>
-            <!-- 3. JAM DIGITAL & KALENDER -->
-            <section class="card widget-time">
-                <div id="clock">00:00:00</div>
-                <div id="date">Hari, Tanggal Bulan Tahun</div>
-            </section>
-
-            <!-- 4. KOLOM GOOGLE ADSENSE -->
+            <!-- KOLOM GOOGLE ADSENSE -->
             <section class="card">
                 <h2>Sponsor (Google AdSense)</h2>
                 <div class="adsense-placeholder">
@@ -317,7 +335,7 @@
                 </div>
             </section>
 
-            <!-- 5. KOLOM IKLAN -->
+            <!-- KOLOM IKLAN 1 -->
             <section class="card">
                 <h2>Ruang Iklan Anda</h2>
                 <div class="banner-iklan">
@@ -326,7 +344,7 @@
                 </div>
             </section>
 
-            <!-- 6. KOLOM IKLAN -->
+            <!-- KOLOM IKLAN 2 -->
             <section class="card">
                 <h2>Ruang Iklan Anda</h2>
                 <div class="banner-iklan">
