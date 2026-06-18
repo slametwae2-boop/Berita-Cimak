@@ -17,15 +17,14 @@
             color: #333;
         }
         
-        /* 1. Header Memanjang Penuh & Diperlebar Tingginya */
+        /* 1. Header Diperlebar Maksimal agar Logo Terlihat Utuh */
         header {
-            /* Ditambahkan linear-gradient sedikit lebih gelap agar tulisan "Portal Informasi" dan menu tetap kontras */
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('logo.jpg') no-repeat center center;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('logo.jpg') no-repeat center center;
             background-size: cover;
             color: white;
-            /* Padding atas & bawah diperbesar menjadi 120px agar gambar latar belakang "BERITA CIMAK" terlihat utuh dan jelas */
-            padding: 120px 20px; 
-            transition: all 0.3s ease;
+            /* Padding atas dan bawah dinaikkan menjadi 220px agar tulisan "CIMAK" di bawah terlihat penuh */
+            padding: 220px 20px 40px 20px; 
+            position: relative;
         }
 
         /* Pembungkus di dalam header agar tata letak teks dan menu rapi */
