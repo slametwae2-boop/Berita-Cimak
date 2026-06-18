@@ -16,14 +16,16 @@
             background-color: #f4f4f4;
             color: #333;
         }
-
-        /* 1. Header Memanjang Penuh & Kontainer Navigasi Kanan */
+        
+        /* 1. Header Memanjang Penuh & Diperlebar Tingginya */
         header {
-            /* Menggunakan 'cover' agar gambar memenuhi seluruh lebar layar tanpa terpotong kotak abu-abu */
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('logo.jpg') no-repeat center center;
+            /* Ditambahkan linear-gradient sedikit lebih gelap agar tulisan "Portal Informasi" dan menu tetap kontras */
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('logo.jpg') no-repeat center center;
             background-size: cover;
             color: white;
-            padding: 40px 20px;
+            /* Padding atas & bawah diperbesar menjadi 120px agar gambar latar belakang "BERITA CIMAK" terlihat utuh dan jelas */
+            padding: 120px 20px; 
+            transition: all 0.3s ease;
         }
 
         /* Pembungkus di dalam header agar tata letak teks dan menu rapi */
@@ -31,17 +33,19 @@
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between; /* Membuat judul di kiri, menu di kanan */
+            justify-content: space-between; 
             align-items: center;
             flex-wrap: wrap;
             gap: 20px;
         }
         
         header h1 {
-            font-size: 2rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            font-size: 2.3rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
             flex: 1;
             min-width: 280px;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
         
         nav {
