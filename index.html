@@ -22,7 +22,7 @@
             background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('logo.jpg') no-repeat center center;
             background-size: cover; 
             color: white;
-            padding: 180px 20px 60px 20px; 
+            padding: 140px 40px 60px 20px; 
             position: relative;
             width: 100%;
         }
@@ -41,19 +41,41 @@
             display: inline-block;
         }
 
-        /* BARIS NAVIGASI & KANAL ATAS */
+        /* WIDGET JAM BARU DI POJOK KANAN ATAS HEADER (TANPA BACKGROUND) */
+        .header-time-widget {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            text-align: right;
+            min-width: 200px;
+            z-index: 10;
+        }
+
+        #clock {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffffff; /* Menggunakan warna putih agar kontras dengan gambar header */
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            line-height: 1.2;
+        }
+
+        #date {
+            font-size: 0.95rem;
+            color: #ffffff; /* Menggunakan warna putih agar kontras dengan gambar header */
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+            margin-top: 2px;
+            font-weight: 500;
+        }
+
+        /* BARIS NAVIGASI */
         .top-bar-container {
             width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px 40px 5px 20px;
+            padding-left: 20px;
             background-color: transparent;
-            flex-wrap: wrap;
         }
 
         .nav-bar {
-            flex: 1;
+            width: 100%;
         }
 
         nav {
@@ -76,31 +98,6 @@
             background-color: #ff9900;
             color: #111;
             border-radius: 4px;
-        }
-
-        /* WIDGET JAM BARU DI POJOK KANAN ATAS */
-        .header-time-widget {
-            text-align: right;
-            padding: 10px 15px;
-            background: #fff3cd;
-            border: 1px solid #ffeeba;
-            border-radius: 6px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            min-width: 200px;
-        }
-
-        #clock {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: #856404;
-            line-height: 1.2;
-        }
-
-        #date {
-            font-size: 0.85rem;
-            color: #856404;
-            margin-top: 2px;
-            font-weight: 500;
         }
 
         /* Tata Letak Utama */
@@ -264,9 +261,15 @@
         <div class="header-container">
             <h1>Portal Informasi & Berita</h1>
         </div>
+
+        <!-- POSISI JAM BARU: POJOK KANAN ATAS DI DALAM HEADER GAMBAR -->
+        <div class="header-time-widget">
+            <div id="clock">00:00:00</div>
+            <div id="date">Memuat waktu...</div>
+        </div>
     </header>
 
-    <!-- BARIS NAVIGASI DAN JAM (SEJAJAR DI KANAN-KIRI) -->
+    <!-- BARIS NAVIGASI -->
     <div class="top-bar-container">
         <div class="nav-bar">
             <nav>
@@ -276,12 +279,6 @@
                 <a href="#wisata">Wisata & Kuliner</a>
                 <a href="#iklan">Pasang Iklan</a>
             </nav>
-        </div>
-        
-        <!-- POSISI JAM BARU: POJOK KANAN ATAS MENU -->
-        <div class="header-time-widget">
-            <div id="clock">00:00:00</div>
-            <div id="date">Memuat waktu...</div>
         </div>
     </div>
 
@@ -336,6 +333,15 @@
             </section>
 
             <!-- KOLOM IKLAN 1 -->
+            <section class="card">
+                <h2>Ruang Iklan Anda</h2>
+                <div class="banner-iklan">
+                    IKLAN HUBUNGI KAMI<br>
+                    WA: 0812-XXXX-XXXX
+                </div>
+            </section>
+
+            <!-- KOLOM IKLAN 2 -->
             <section class="card">
                 <h2>Ruang Iklan Anda</h2>
                 <div class="banner-iklan">
