@@ -27,15 +27,14 @@
             position: relative;
         }
 
-        /* Pembungkus di dalam header agar tata letak teks dan menu rapi */
+        /* Diubah menjadi kolom vertikal ke bawah agar menu berada di bawah judul teks */
         .header-container {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between; 
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
+            flex-direction: column; 
+            align-items: flex-start; /* Meratakan judul dan menu ke sebelah kiri */
+            gap: 20px; /* Jarak antara teks judul dengan barisan menu di bawahnya */
         }
         
         header h1 {
