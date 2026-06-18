@@ -17,21 +17,33 @@
             color: #333;
         }
 
-        /* 1. Header & Menu Navigasi */
+        /* 1. Header Memanjang Penuh & Kontainer Navigasi Kanan */
         header {
+            /* Menggunakan 'cover' agar gambar memenuhi seluruh lebar layar tanpa terpotong kotak abu-abu */
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('logo.jpg') no-repeat center center;
-            background-size: contain;
+            background-size: cover;
             color: white;
-            padding: 60px 20px;
-            text-align: center;
+            padding: 40px 20px;
         }
 
+        /* Pembungkus di dalam header agar tata letak teks dan menu rapi */
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between; /* Membuat judul di kiri, menu di kanan */
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
         header h1 {
-            margin-bottom: 20px;
-            font-size: 2.5rem;
+            font-size: 2rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            flex: 1;
+            min-width: 280px;
         }
-
+        
         nav {
             background-color: rgba(51, 51, 51, 0.9);
             display: flex;
