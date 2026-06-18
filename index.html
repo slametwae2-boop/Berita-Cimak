@@ -27,7 +27,6 @@
             width: 100%;
         }
 
-        /* Menghilangkan max-width agar teks judul mepet ke kiri layar browser */
         .header-container {
             width: 100%; 
             padding-left: 20px; 
@@ -41,12 +40,12 @@
             display: inline-block;
         }
 
-        /* BARIS NAVIGASI: BACKGROUND GELAP DIHILANGKAN TOTAL (MENJADI TRANSPARAN) */
+        /* BARIS NAVIGASI: TRANSPARAN TOTAL (TANPA BACKGROUND KOTAK GELAP) */
         .nav-bar {
-            background-color: transparent; /* Menghilangkan background gelap menu */
+            background-color: transparent; 
             width: 100%;
-            box-shadow: none; /* Menghilangkan bayangan garis menu */
-            padding-left: 20px; /* Agar menu ikut mepet ke kiri sejajar dengan judul */
+            box-shadow: none; 
+            padding-left: 20px; 
         }
 
         nav {
@@ -58,7 +57,6 @@
         }
 
         nav a {
-            /* Mengubah warna teks menjadi hitam/gelap agar terbaca jelas di atas background abu-abu web */
             color: #1a252f; 
             text-decoration: none;
             padding: 12px 20px;
@@ -76,18 +74,76 @@
         /* Tata Letak Utama Menggunakan Flexbox yang Fleksibel & Stabil */
         .container {
             max-width: 1400px; 
-            margin: 10px auto 30px auto; /* Mengurangi margin atas agar menu lebih rapat ke konten */
+            margin: 10px auto 30px auto; 
             padding: 0 15px;
             display: flex;
             gap: 25px;
         }
 
-        /* Kolom Kiri (Iklan Banner Vertikal) */
+        /* Kolom Kiri (Sekarang Menampung Kurs & Iklan) */
         .sidebar-left {
-            width: 200px;
+            width: 220px; /* Sedikit diperlebar agar tabel kurs muat dengan lega */
             flex-shrink: 0; 
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
+        /* Tampilan Widget Kurs Rupiah */
+        .widget-kurs {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-top: 4px solid #e65100;
+        }
+
+        .widget-kurs h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #333;
+            border-bottom: 2px solid #ff9900;
+            padding-bottom: 5px;
+        }
+
+        .table-kurs {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            text-align: left;
+        }
+
+        .table-kurs th, .table-kurs td {
+            padding: 8px 4px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .table-kurs th {
+            color: #666;
+            font-weight: bold;
+        }
+
+        .table-kurs td.currency {
+            font-weight: bold;
+            color: #1a252f;
+        }
+
+        .table-kurs td.value {
+            text-align: right;
+            font-weight: bold;
+            color: #e65100;
+        }
+
+        .kurs-update {
+            font-size: 0.75rem;
+            color: #999;
+            text-align: center;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* Ruang Iklan Banner Vertikal Kiri */
         .ads-vertical-placeholder {
             background-color: #fff3cd;
             border: 2px dashed #ffeeba;
@@ -98,7 +154,7 @@
             font-size: 0.9rem;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            min-height: 500px;
+            min-height: 250px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -274,14 +330,14 @@
 </head>
 <body>
 
-    <!-- HEADER: TEKS JUDUL SEKARANG MEPEK PENUH KE KIRI LAYAR -->
+    <!-- HEADER -->
     <header>
         <div class="header-container">
             <h1>Portal Informasi & Berita</h1>
         </div>
     </header>
 
-    <!-- BARIS NAVIGASI: TRANSPARAN TOTAL (TANPA BACKGROUND KOTAK GELAP) -->
+    <!-- BARIS NAVIGASI -->
     <div class="nav-bar">
         <nav>
             <a href="#home">Home</a>
@@ -294,6 +350,29 @@
 
     <!-- KONTEN UTAMA -->
     <div class="container">
+        
+        <!-- KOLOM 1: RUANG SEBELAH KIRI (KURS RUPIAH & BANNER IKLAN) -->
+        <aside class="sidebar-left">
+            <!-- Widget Kurs Rupiah Terkini -->
+            <div class="widget-kurs">
+                <h3>Kurs Rupiah (BI)</h3>
+                <table class="table-kurs">
+                    <thead>
+                        <tr>
+                            <th>Mata Uang</th>
+                            <th style="text-align: right;">Nilai (IDR)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="currency">USD (Dolar AS)</td>
+                            <td class="value">17.814</td>
+                        </tr>
+                        <tr>
+                            <td class="currency">SGD (Dolar Sing)</td>
+                            <td class="value">13.185</td>
+                        </tr>
+                        <tr>
         
         <!-- KOLOM 1: RUANG IKLAN KIRI -->
         <aside class="sidebar-left">
