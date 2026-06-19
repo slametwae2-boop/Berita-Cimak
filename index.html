@@ -530,32 +530,34 @@
         setInterval(updateDateTime, 1000);
         updateDateTime();
 
-        // Fungsi Slider Foto Manual & Otomatis
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slider img');
-        const totalSlides = slides.length;
-        const sliderElement = document.getElementById('slider');
-        
-        let autoSlideInterval = setInterval(function() {
-            moveSlide(1);
-        }, 5000);
+       // Fungsi Slider Foto Manual & Otomatis (Sudah Diperbaiki)
+let currentIndex = 0; // Memperbaiki 'et' menjadi 'let'
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+const sliderElement = document.querySelector('.slider'); // Menggunakan class .slider yang sesuai dengan CSS Anda
 
-        function moveSlide(direction) {
-            clearInterval(autoSlideInterval);
-            
-            currentSlide += direction;
+let autoSlideInterval = setInterval(function() {
+    moveSlide(1);
+}, 5000);
 
-            if (currentSlide >= totalSlides) {
-                currentSlide = 0;
-            } else if (currentSlide < 0) {
-                currentSlide = totalSlides - 1;
-            }
+function moveSlide(direction) {
+    clearInterval(autoSlideInterval);
 
-            sliderElement.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
-            
-            autoSlideInterval = setInterval(function() {
-                moveSlide(1);
-            }, 5000);
+    // Menyamakan penggunaan nama variabel menjadi currentIndex
+    currentIndex += direction;
+
+    if (currentIndex >= totalSlides) {
+        currentIndex = 0;
+    } else if (currentIndex < 0) {
+        currentIndex = totalSlides - 1;
+    }
+
+    // Menggeser tepat 100% per gambar
+    sliderElement.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+
+    autoSlideInterval = setInterval(function() {
+        moveSlide(1);
+    }, 5000);
         }
     </script>
 </body>
