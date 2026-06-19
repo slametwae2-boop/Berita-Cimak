@@ -4,22 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Berita & Informasi</title>
+    <!-- Menggunakan Font Inter agar tampilan teks setara portal berita nasional -->
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', Arial, sans-serif;
         }
 
         body {
-            background-color: #f4f4f4;
+            background-color: #f4f6f9;
             color: #333;
         }
 
         /* 1. Header Khusus Gambar Latar Belakang */
         header {
-            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('logo.jpg') no-repeat center center;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('logo.jpg') no-repeat center center;
             background-size: cover; 
             color: white;
             padding: 140px 40px 60px 20px; 
@@ -71,7 +73,9 @@
         .top-bar-container {
             width: 100%;
             padding-left: 20px;
-            background-color: transparent;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e1e8ed;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         .nav-bar {
@@ -82,22 +86,59 @@
             display: flex;
             justify-content: flex-start; 
             flex-wrap: wrap;
-            padding: 15px 0;
+            padding: 0;
         }
 
         nav a {
             color: #1a252f; 
             text-decoration: none;
-            padding: 12px 20px;
+            padding: 18px 20px;
             font-weight: bold;
             font-size: 1rem;
             transition: 0.3s;
+            border-bottom: 3px solid transparent;
         }
 
-        nav a:hover {
-            background-color: #ff9900;
+        nav a:hover, nav a.active {
+            background-color: transparent;
+            color: #ff9900;
+            border-bottom: 3px solid #ff9900;
+        }
+
+        /* RUNNING TEXT (BERITA BREAKING) Agar Web Lebih Dinamis */
+        .ticker-container {
+            background: #ff9900;
             color: #111;
-            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            font-size: 0.9rem;
+            font-weight: bold;
+            height: 40px;
+            width: 100%;
+        }
+
+        .ticker-title {
+            background: #d35400;
+            color: white;
+            padding: 0 20px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            z-index: 2;
+        }
+
+        .ticker-text {
+            display: inline-block;
+            white-space: nowrap;
+            animation: ticker 25s linear infinite;
+            padding-left: 100%;
+        }
+
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
         }
 
         /* Tata Letak Utama */
@@ -111,24 +152,35 @@
      
         /* Kolom Kiri (Iklan Banner Vertikal) */
         .sidebar-left {
-            width: 300px;
+            width: 260px;
             flex-shrink: 0; 
         }
 
         .ads-vertical-placeholder {
-            background-color: #fff3cd;
-            border: 2px dashed #ffeeba;
-            padding: 30px 10px;
+            background-color: #fff8e1;
+            border: 2px dashed #ffe082;
+            padding: 30px 15px;
             text-align: center;
-            color: #856404;
+            color: #b78103;
             font-weight: bold;
             font-size: 0.9rem;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             min-height: 650px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            gap: 15px;
+        }
+
+        .ads-vertical-placeholder span {
+            font-size: 0.75rem;
+            background: white;
+            color: #333;
+            padding: 5px 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         /* Area Konten Tengah */
@@ -160,17 +212,19 @@
             margin-bottom: 15px;
             border-bottom: 2px solid #ff9900;
             padding-bottom: 5px;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         /* Tampilan Foto Bergeser */
         .slider-container {
             position: relative;
             width: 100%;
-            height: 480px; 
+            height: 440px; 
             overflow: hidden;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .slider {
@@ -180,11 +234,55 @@
             transition: transform 0.5s ease-in-out;
         }
 
-        .slider img {
+        /* Modifikasi Slide: Menggabungkan Gambar dan Hamparan Teks Judul Berita */
+        .slide {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+        }
+
+        .slide img {
             width: 100%;
             height: 100%;
             object-fit: cover; 
-            flex-shrink: 0;
+        }
+
+        /* Hamparan Teks Informasi Di Atas Gambar Bergeser */
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            color: white;
+            padding: 30px 25px 25px;
+            z-index: 5;
+        }
+
+        .slide-badge {
+            background: #ff4757;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .slide-caption h3 {
+            font-size: 1.5rem;
+            line-height: 1.3;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .slide-caption p {
+            font-size: 0.9rem;
+            color: #ddd;
+            opacity: 0.9;
         }
 
         /* Tombol Geser Manual < > */
@@ -192,16 +290,19 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
-            padding: 15px 20px;
-            font-size: 1.5rem;
+            width: 45px;
+            height: 45px;
+            font-size: 1.2rem;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 50%;
             transition: 0.3s;
             z-index: 10;
-            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .slide-btn:hover {
@@ -209,15 +310,18 @@
             color: #111;
         }
 
-        .prev-btn { left: 10px; }
-        .next-btn { right: 10px; } 
+        .prev-btn { left: 15px; }
+        .next-btn { right: 15px; } 
 
-        /* Tambahan CSS Pelengkap */
+        /* Tambahan CSS Pelengkap Video */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%;
+            width: 100%;
+            padding-bottom: 56.25%; /* Rasio Aspek 16:9 */
             height: 0;
             overflow: hidden;
+            border-radius: 6px;
+            background: #111;
         }
         .video-container iframe {
             position: absolute;
@@ -244,6 +348,42 @@
             color: #ff9900;
             border-radius: 4px;
         }
+
+        .video-thumbnail-placeholder {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://unsplash.com') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.video-play-btn {
+    width: 55px;
+    height: 55px;
+    background: #ff4757;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(255, 71, 87, 0.4);
+    transition: transform 0.2s;
+}
+
+.video-thumbnail-placeholder:hover .video-play-btn {
+    transform: scale(1.1);
+}
+
+.video-play-btn::after {
+    content: '';
+    position: absolute;
+    top: 18px; left: 22px;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 10px 0 10px 15px;
+    border-color: transparent transparent transparent #fff;
+}
+        
         footer {
     background-color: #0b132b;
     color: white;
