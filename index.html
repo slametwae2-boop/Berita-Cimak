@@ -219,34 +219,35 @@
 
         /* Tampilan Foto Bergeser */
         .slider-container {
-            position: relative;
-            width: 100%;
-            height: 440px; 
-            overflow: hidden; /* Kunci agar gambar lain di luar kotak tersembunyi */
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    position: relative;
+    width: 100%;
+    height: 280px; 
+    overflow: hidden; /* Memotong gambar ke-2 agar tidak terlihat */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+
         }
         .slider {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.5s ease-in-out;
-            flex-shrink: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
         }
 
         /* Modifikasi Slide: Menggabungkan Gambar dan Hamparan Teks Judul Berita */
         .slide {
-            position: relative;
-            width: 100%;       /* Memastikan setiap slide berukuran penuh */
-            height: 100%;
-            flex: 0 0 100%;    /* KUNCI UTAMA: Mencegah slide mengecil atau membesar dari 100% */
+    position: relative;
+    width: 100%;       
+    height: 100%;
+    flex: 0 0 100%;    /* Memaksa foto pertama mengambil 100% ruang */
+    min-width: 100%;   /* Mencegah kolom flex menciutkan ukuran foto */
         }
 
         .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
         }
 
         /* Hamparan Teks Informasi Di Atas Gambar Bergeser */
