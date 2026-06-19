@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Informasi & Berita</title>
     <style>
+        /* CSS RESET & GENERAL STYLES */
         * {
             margin: 0;
             padding: 0;
@@ -15,6 +16,8 @@
             background-color: #f4f6f9;
             color: #333;
         }
+
+        /* HEADER (Menggunakan logo.jpg sebagai latar belakang penuh) */
         header {
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('logo.jpg') no-repeat center center/cover;
             color: white;
@@ -24,6 +27,7 @@
             align-items: center;
             position: relative;
             min-height: 120px;
+            z-index: 1;
         }
         .header-title {
             font-size: 24px;
@@ -39,7 +43,7 @@
             text-align: right;
             font-family: 'Courier New', Courier, monospace;
             text-shadow: 2px 2px 4px rgba(0,0,0,1);
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             padding: 8px 12px;
             border-radius: 5px;
             border: 1px solid rgba(255,255,255,0.2);
@@ -55,6 +59,8 @@
             color: #ffcc00;
             font-weight: bold;
         }
+
+        /* NAVIGATION BAR & EFEK KLIK WARNA ORANGE */
         nav {
             background-color: #ffffff;
             border-bottom: 1px solid #e0e0e0;
@@ -62,6 +68,8 @@
             display: flex;
             gap: 25px;
             overflow-x: auto;
+            position: relative;
+            z-index: 10;
         }
         nav a {
             text-decoration: none;
@@ -69,11 +77,16 @@
             font-size: 13px;
             font-weight: bold;
             white-space: nowrap;
-            transition: color 0.2s ease;
+            transition: color 0.2s ease, border-bottom 0.2s ease;
+            padding-bottom: 5px;
+            cursor: pointer;
         }
         nav a:hover, nav a.active {
-            color: #0056b3; 
+            color: #ff6600 !important; /* Warna teks berubah orange saat diklik/aktif */
+            border-bottom: 2px solid #ff6600; /* Garis bawah orange */
         }
+
+        /* MAIN LAYOUT STRUCTURE */
         .container {
             max-width: 1200px;
             margin: 20px auto;
@@ -81,7 +94,11 @@
             display: grid;
             grid-template-columns: 180px 1fr 250px;
             gap: 20px;
+            position: relative;
+            z-index: 2;
         }
+
+        /* SIDEBARS & CONTENT BLOCKS */
         .sidebar-left, .sidebar-right {
             display: flex;
             flex-direction: column;
@@ -109,6 +126,8 @@
             display: block;
             font-size: 11px;
         }
+
+        /* MAIN CONTENT AREA */
         .main-content {
             background-color: #ffffff;
             border: 1px solid #e0e0e0;
@@ -124,6 +143,8 @@
             margin-bottom: 15px;
             color: #222;
         }
+        
+        /* SLIDER / CAROUSEL SYSTEM (4 FOTO) */
         .news-hero {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -154,6 +175,8 @@
             height: 100%;
             object-fit: cover;
         }
+
+        /* Tombol Manual Kiri & Kanan */
         .slider-btn {
             position: absolute;
             top: 50%;
@@ -170,11 +193,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 10;
+            z-index: 15;
         }
         .slider-btn:hover { background: rgba(0,0,0,0.8); }
         .slider-btn.prev { left: 10px; }
         .slider-btn.next { right: 10px; }
+
+        /* Indikator Dots */
         .slider-dots {
             position: absolute;
             bottom: 10px;
@@ -182,7 +207,7 @@
             transform: translateX(-50%);
             display: flex;
             gap: 8px;
-            z-index: 10;
+            z-index: 15;
         }
         .dot {
             width: 8px;
@@ -193,10 +218,11 @@
             transition: background 0.3s;
         }
         .dot.active {
-            background: #ffcc00;
+            background: #ff6600;
             width: 18px;
             border-radius: 4px;
         }
+
         .news-welcome {
             font-size: 14px;
             line-height: 1.6;
@@ -251,7 +277,6 @@
         }
     </style>
 </head>
-<body>
 
     <header>
         <div class="header-title">Portal Informasi & Berita</div>
@@ -263,12 +288,12 @@
         </div>
     </header>
 
-    <nav>
-        <a href="#home" class="active">Home</a>
-        <a href="#berita">Berita</a>
-        <a href="#hiburan">Hiburan & Olahraga</a>
-        <a href="#wisata">Wisata & Kuliner</a>
-        <a href="#pasang-iklan">Pasang Iklan</a>
+    <nav id="mainNav">
+        <a onclick="changeMenu(this)" class="active">Home</a>
+        <a onclick="changeMenu(this)">Berita</a>
+        <a onclick="changeMenu(this)">Hiburan & Olahraga</a>
+        <a onclick="changeMenu(this)">Wisata & Kuliner</a>
+        <a onclick="changeMenu(this)">Pasang Iklan</a>
     </nav>
 
     <div class="container">
@@ -336,6 +361,7 @@
     </footer>
 
     <script>
+        // 1. FUNGSI JAM & TANGGAL AKTIF AKTUAL
         function updateDateTime() {
             const now = new Date();
             const hours = String(now.getHours()).padStart(2, '0');
@@ -349,6 +375,14 @@
         setInterval(updateDateTime, 1000);
         updateDateTime();
 
+        // 2. FUNGSI INTERAKSI KLIK MENU WARNA ORANGE
+        function changeMenu(element) {
+            const links = document.querySelectorAll('#mainNav a');
+            links.forEach(link => link.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        // 3. FUNGSI SLIDER OTOMATIS & KLIK MANUAL (4 FOTO)
         let currentIndex = 0;
         const totalSlides = 4;
         const wrapper = document.getElementById('sliderWrapper');
@@ -384,3 +418,4 @@
     </script>
 </body>
 </html>
+<body
