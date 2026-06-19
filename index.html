@@ -228,29 +228,30 @@
             margin-bottom: 20px;
             margin-left: -20px;
             margin-right: -20px;
-            width: calc(100% + 40px);
+            width: calc(100% + 40px) !important;
         }
 
         .slider {
-            display: flex;
-            width: 100%; 
-            height: 100%;
+            display: flex !important;
+            width: 100% !important; 
+            height: 100% !important;
             transition: transform 0.5s ease-in-out;
         }
-
+        
         /* Modifikasi Slide: Menggabungkan Gambar dan Hamparan Teks Judul Berita */
         .slide {
             position: relative;
-            width: 100%;
-            height: 100%;
-            flex: 0 0 100%; /* Memaksa ukuran tetap 100% dan tidak mengecil */
+            width: 100% !important;
+            height: 100% !important;
+            flex: 0 0 100% !important; /* Memaksa mutlak 1 slide = 1 halaman penuh */
+            max-width: 100% !important;
         }
 
         .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; 
-            display: block;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important; 
+            display: block !important;
         }
 
         /* Hamparan Teks Informasi Di Atas Gambar Bergeser */
