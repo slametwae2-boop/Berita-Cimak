@@ -19,55 +19,65 @@
 
         /* HEADER & HERO BANNER */
         header {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('lapangan-hijau.jpg') no-repeat center center/cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('lapangan-hijau.jpg') no-repeat center center/cover;
             color: white;
-            padding: 40px 20px;
-            text-align: left;
+            padding: 35px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             position: relative;
+            min-height: 110px;
         }
         .header-title {
             font-size: 24px;
             font-weight: bold;
-            margin-bottom: 5px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
         }
-        .header-logo-container {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+        .header-meta-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
         .header-logo {
-            height: 50px;
+            height: 45px;
             width: auto;
-            border-radius: 5px;
+            border-radius: 4px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        .live-datetime {
+            text-align: right;
+            font-family: monospace;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
         }
         .live-clock {
-            font-size: 14px;
-            background: rgba(0,0,0,0.5);
-            padding: 5px 10px;
-            border-radius: 4px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .live-date {
+            font-size: 11px;
+            margin-top: 2px;
+            color: #e0e0e0;
         }
 
         /* NAVIGATION BAR */
         nav {
             background-color: #ffffff;
             border-bottom: 1px solid #e0e0e0;
-            padding: 12px 20px;
+            padding: 14px 20px;
             display: flex;
-            gap: 20px;
+            gap: 25px;
             overflow-x: auto;
         }
         nav a {
             text-decoration: none;
-            color: #555;
-            font-size: 14px;
+            color: #444;
+            font-size: 13px;
             font-weight: bold;
             white-space: nowrap;
+            transition: color 0.2s ease;
         }
         nav a:hover, nav a.active {
-            color: #007bff;
+            color: #0056b3; /* Mengubah warna teks saat aktif/diarahkan tanpa blok warna */
         }
 
         /* MAIN LAYOUT STRUCTURE */
@@ -117,7 +127,7 @@
             padding: 20px;
         }
         .section-title {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
             text-transform: uppercase;
             border-bottom: 2px solid #ffcc00;
@@ -126,7 +136,7 @@
             color: #222;
         }
         
-        /* NEWS HERO SLIDER / BLOCK */
+        /* NEWS AREA */
         .news-hero {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -195,10 +205,19 @@
                 grid-template-columns: 1fr;
             }
             .sidebar-left {
-                display: none; /* Menyembunyikan iklan kiri di layar kecil */
+                display: none;
             }
             .news-hero {
                 grid-template-columns: 1fr;
+            }
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .header-meta-container {
+                width: 100%;
+                justify-content: space-between;
             }
         }
     </style>
@@ -209,20 +228,25 @@
     <header>
         <div class="header-title">Portal Informasi & Berita</div>
         
-        <div class="header-logo-container">
-            <!-- Menampilkan logo.jpg milik Anda di kanan atas -->
+        <div class="header-meta-container">
+            <!-- Menampilkan logo.jpg -->
             <img src="logo.jpg" alt="Logo" class="header-logo">
-            <div class="live-clock" id="clock">20:47:52</div>
+            
+            <!-- Tempat Waktu dan Tanggal -->
+            <div class="live-datetime">
+                <div class="live-clock" id="clock">00:00:00</div>
+                <div class="live-date" id="date">Memuat tanggal...</div>
+            </div>
         </div>
     </header>
 
-    <!-- NAVIGATION BAR -->
+    <!-- NAVIGATION BAR (Bisa diklik & Tanpa Blok Biru) -->
     <nav>
-        <a href="#" class="active">Home</a>
-        <a href="#">Berita</a>
-        <a href="#">Hiburan & Olahraga</a>
-        <a href="#">Wisata & Kuliner</a>
-        <a href="#">Pasang Iklan</a>
+        <a href="#home" class="active">Home</a>
+        <a href="#berita">Berita</a>
+        <a href="#hiburan">Hiburan & Olahraga</a>
+        <a href="#wisata">Wisata & Kuliner</a>
+        <a href="#pasang-iklan">Pasang Iklan</a>
     </nav>
 
     <!-- MAIN CONTAINER -->
@@ -243,7 +267,6 @@
             <!-- SEKSI BERITA UTAMA -->
             <div class="section-title">Berita Utama</div>
             <div class="news-hero">
-                <!-- Menggunakan aset gambar masjid.jpg dan olahraga-taman.jpg Anda -->
                 <img src="masjid.jpg" alt="Berita Utama">
                 <div class="news-welcome">
                     <p>Selamat datang di portal informasi kami. Temukan berita terupdate seputar olahraga, destinasi wisata, kuliner halal, hingga hiburan terkini di sini.</p>
@@ -284,18 +307,23 @@
 
     <!-- FOOTER -->
     <footer>
-        &copy; 2026 Portal Berita Cimak. Copyright All Rights Reserved.
+        &copy; 2026 Portal Berita Anda. Copyright All Rights Reserved.
     </footer>
 
-    <!-- SCRIPT JAM REALTIME -->
+    <!-- SCRIPT JAM & TANGGAL REALTIME -->
     <script>
-        function updateClock() {
+        function updateDateTime() {
             const now = new Date();
-            const timeString = now.toTimeString().split(' ')[0];
-            document.getElementById('clock').textContent = timeString;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
+            
+            // Format Jam (HH:MM:SS)
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+            
+            // Format Tanggal (Hari, DD Bulan YYYY)
+            const opsiTanggal = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateString = now.toLocaleDateString('id-ID', opsiTanggal);
     </script>
 </body>
 </html>
