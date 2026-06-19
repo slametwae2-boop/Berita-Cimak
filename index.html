@@ -17,7 +17,7 @@
             color: #333;
         }
 
-        /* HEADER (Menggunakan logo.jpg sebagai latar belakang penuh) */
+        /* HEADER */
         header {
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('logo.jpg') no-repeat center center/cover;
             color: white;
@@ -27,7 +27,6 @@
             align-items: center;
             position: relative;
             min-height: 120px;
-            z-index: 1;
         }
         .header-title {
             font-size: 24px;
@@ -43,24 +42,23 @@
             text-align: right;
             font-family: 'Courier New', Courier, monospace;
             text-shadow: 2px 2px 4px rgba(0,0,0,1);
-            background: rgba(0, 0, 0, 0.6);
-            padding: 8px 12px;
-            border-radius: 5px;
-            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0;
+            background: none;
+            border: none;
         }
         .live-clock {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             color: #fff;
         }
         .live-date {
-            font-size: 11px;
+            font-size: 12px;
             margin-top: 3px;
             color: #ffcc00;
             font-weight: bold;
         }
 
-        /* NAVIGATION BAR & EFEK KLIK WARNA ORANGE */
+        /* NAVIGATION BAR - PERBAIKAN WARNA SEBELUM & SESUDAH DIKLIK */
         nav {
             background-color: #ffffff;
             border-bottom: 1px solid #e0e0e0;
@@ -68,21 +66,20 @@
             display: flex;
             gap: 25px;
             overflow-x: auto;
-            position: relative;
-            z-index: 10;
         }
         nav a {
             text-decoration: none;
-            color: #444;
+            color: #444; /* Warna default menu sebelum diklik */
             font-size: 13px;
             font-weight: bold;
             white-space: nowrap;
             transition: color 0.2s ease, border-bottom 0.2s ease;
             padding-bottom: 5px;
             cursor: pointer;
+            border-bottom: 2px solid transparent;
         }
         nav a:hover, nav a.active {
-            color: #ff6600 !important; /* Warna teks berubah orange saat diklik/aktif */
+            color: #ff6600 !important; /* Berubah menjadi orange penuh saat aktif */
             border-bottom: 2px solid #ff6600; /* Garis bawah orange */
         }
 
@@ -94,8 +91,6 @@
             display: grid;
             grid-template-columns: 180px 1fr 250px;
             gap: 20px;
-            position: relative;
-            z-index: 2;
         }
 
         /* SIDEBARS & CONTENT BLOCKS */
@@ -144,7 +139,7 @@
             color: #222;
         }
         
-        /* SLIDER / CAROUSEL SYSTEM (4 FOTO) */
+        /* SLIDER SYSTEM */
         .news-hero {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -175,8 +170,6 @@
             height: 100%;
             object-fit: cover;
         }
-
-        /* Tombol Manual Kiri & Kanan */
         .slider-btn {
             position: absolute;
             top: 50%;
@@ -199,7 +192,6 @@
         .slider-btn.prev { left: 10px; }
         .slider-btn.next { right: 10px; }
 
-        /* Indikator Dots */
         .slider-dots {
             position: absolute;
             bottom: 10px;
@@ -222,7 +214,6 @@
             width: 18px;
             border-radius: 4px;
         }
-
         .news-welcome {
             font-size: 14px;
             line-height: 1.6;
@@ -277,6 +268,7 @@
         }
     </style>
 </head>
+<body>
 
     <header>
         <div class="header-title">Portal Informasi & Berita</div>
@@ -361,7 +353,7 @@
     </footer>
 
     <script>
-        // 1. FUNGSI JAM & TANGGAL AKTIF AKTUAL
+        // 1. MANAGEMENT TIME & DATE REALTIME
         function updateDateTime() {
             const now = new Date();
             const hours = String(now.getHours()).padStart(2, '0');
@@ -375,14 +367,14 @@
         setInterval(updateDateTime, 1000);
         updateDateTime();
 
-        // 2. FUNGSI INTERAKSI KLIK MENU WARNA ORANGE
+        // 2. MANAGEMENT KLIK NAVIGASI MENU (WARNA ORANGE AKTIF)
         function changeMenu(element) {
             const links = document.querySelectorAll('#mainNav a');
             links.forEach(link => link.classList.remove('active'));
             element.classList.add('active');
         }
 
-        // 3. FUNGSI SLIDER OTOMATIS & KLIK MANUAL (4 FOTO)
+        // 3. MANAGEMENT SLIDER AUTO & MANUAL SYSTEM
         let currentIndex = 0;
         const totalSlides = 4;
         const wrapper = document.getElementById('sliderWrapper');
@@ -418,4 +410,3 @@
     </script>
 </body>
 </html>
-<body
