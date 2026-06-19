@@ -58,7 +58,7 @@
             font-weight: bold;
         }
 
-        /* NAVIGATION BAR - FIX WARNA JALUR TUNGGAL */
+        /* NAVIGATION BAR - OPTIMASI RESPONSIVITAS KLIK */
         nav {
             background-color: #ffffff;
             border-bottom: 1px solid #e0e0e0;
@@ -69,17 +69,21 @@
         }
         nav a {
             text-decoration: none;
-            color: #444 !important; /* Warna default abu-abu tua untuk semua menu */
+            color: #444 !important;
             font-size: 13px;
             font-weight: bold;
             white-space: nowrap;
-            transition: all 0.2s ease;
             padding-bottom: 5px;
-            cursor: pointer;
+            display: inline-block;
+            cursor: pointer !important; /* Memaksa kursor berubah menjadi ikon tangan */
             border-bottom: 2px solid transparent;
+            transition: all 0.15s ease-in-out; /* Animasi transisi halus saat disorot */
+        }
+        nav a:hover {
+            color: #ff6600 !important; /* Efek warna saat kursor melintas */
         }
         nav a.active {
-            color: #ff6600 !important; /* Hanya menu aktif saja yang bisa orange */
+            color: #ff6600 !important;
             border-bottom: 2px solid #ff6600 !important;
         }
 
@@ -333,11 +337,12 @@
     </header>
 
     <nav id="mainNav">
-        <a onclick="changeMenu(this)" class="active">Home</a>
-        <a onclick="changeMenu(this)">Berita</a>
-        <a onclick="changeMenu(this)">Hiburan & Olahraga</a>
-        <a onclick="changeMenu(this)">Wisata & Kuliner</a>
-        <a onclick="changeMenu(this)">Pasang Iklan</a>
+        <!-- Menambahkan href agar peramban mengenalnya sebagai link aktif yang empuk diklik -->
+        <a href="javascript:void(0)" onclick="changeMenu(this)" class="active">Home</a>
+        <a href="javascript:void(0)" onclick="changeMenu(this)">Berita</a>
+        <a href="javascript:void(0)" onclick="changeMenu(this)">Hiburan & Olahraga</a>
+        <a href="javascript:void(0)" onclick="changeMenu(this)">Wisata & Kuliner</a>
+        <a href="javascript:void(0)" onclick="changeMenu(this)">Pasang Iklan</a>
     </nav>
 
     <div class="container">
@@ -426,7 +431,7 @@
         setInterval(updateDateTime, 1000);
         updateDateTime();
 
-        // 2. REFIXED LOGIC MENU JALUR TUNGGAL
+        // 2. MANAGEMENT KLIK NAVIGASI MENU
         function changeMenu(element) {
             const links = document.querySelectorAll('#mainNav a');
             links.forEach(link => {
