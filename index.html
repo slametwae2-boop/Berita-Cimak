@@ -566,16 +566,30 @@
         // 5. SISTEM LOGIKA JAVASCRIPT ENGINE UNTUK HALAMAN KELOLA BERITA
         // ==========================================================================
         
-        // Fungsi Buka-Tutup Jendela Formulir Kelola Berita
+        // Fungsi Buka-Tutup Jendela Formulir Kelola Berita (DILINDUNGI PASSWORD)
         function toggleAdminPanel() {
             const adminSection = document.getElementById('adminPanelSection');
-            if (adminSection) {
-                if (adminSection.style.display === 'none' || adminSection.style.display === '') {
-                    adminSection.style.display = 'flex';
-                } else {
-                    adminSection.style.display = 'none';
+            if (!adminSection) return;
+
+            // Jika posisi jendela sedang tertutup, minta password dulu saat mau dibuka
+            if (adminSection.style.display === 'none' || adminSection.style.display === '') {
+                
+                // SILAKAN GANTI TULISAN "admincimak123" DI BAWAH INI DENGAN PASSWORD KEINGINAN ANDA
+                const passwordRahasia = "ownercimak121245"; 
+                
+                const inputUser = prompt("Masukkan Password Rahaksi / Admin Berita Cimak:");
+                
+                if (inputUser === passwordRahasia) {
+                    adminSection.style.display = 'flex'; // Password benar, formulir terbuka
+                } else if (inputUser !== null) {
+                    alert("Password SALAH! Akses ditolak."); // Password salah
                 }
+                
+            } else {
+                // Jika posisi jendela sedang terbuka, langsung tutup saja tanpa minta password
+                adminSection.style.display = 'none';
             }
+        }
         }
 
         // Fungsi Memproses dan Menerbitkan Berita Baru ke Depan Layar
