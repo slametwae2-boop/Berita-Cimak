@@ -344,12 +344,10 @@
         </aside>
     </div>
 
-    <!-- FOOTER AREA DENGAN TOMBOL RAHASIA LOGIN KELOLA BERITA -->
+    <!-- FOOTER CLEAN (TOMBOL KELOLA RAHASIA SUDAH DIHAPUS) -->
     <footer>
-        <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; padding: 0 15px; flex-wrap: wrap; gap: 10px;">
+        <div style="text-align: center; max-width: 1200px; margin: auto; padding: 0 15px;">
             <span>&copy; 2026 Portal Berita Terintegrasi. Copyright All Rights Reserved.</span>
-            <!-- Tombol Kelola Berita -->
-            <button onclick="toggleAdminPanel()" style="background: #1a2a40; color: #fff; border: 1px solid #334e68; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold; transition: all 0.2s;">⚙️ Kelola Berita</button>
         </div>
     </footer>
 
@@ -557,9 +555,20 @@
             if("Enter" === e.key) searchArticles();
         });
 
-        window.onload = () => {
-            renderArticles(articlesDatabase);
+        window.onload = () => { 
+            renderArticles(articlesDatabase); 
             updateClock();
+            
+            // Otomatis aktifkan warna oranye awal di menu Home
+            const homeMenu = document.querySelector("#mainNav a");
+            if(homeMenu) { homeMenu.style.setProperty('color', '#ff6600', 'important'); homeMenu.style.setProperty('border-bottom', '2px solid #ff6600', 'important'); }
+            
+            // --- DETEKSI LINK RAHASIA ADMIN ---
+            // Jika Anda mengetik beritacimak.my.id/?akses=admin, formulir langsung terbuka!
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('akses') === 'admin') {
+                toggleAdminPanel();
+            }
         };
 
         // ==========================================================================
