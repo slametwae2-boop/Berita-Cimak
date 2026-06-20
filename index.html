@@ -94,6 +94,29 @@
             .search-wrapper-box { width: 100%; justify-content: space-between; }
             .search-input { width: 100% !important; }
         }
+        
+        /* PENATAAN MENU ELEGAN & BIRU TUA */
+        #mainNav a {
+            text-decoration: none !important; /* Menghapus garis bawah bawaan */
+            color: #1a2a40 !important;       /* Warna biru tua gelap yang elegan */
+            font-size: 13px !important;       /* Ukuran teks diperkecil */
+            font-weight: 600 !important;      /* Ketebalan teks sedang */
+            padding-bottom: 6px !important;
+            border-bottom: 2px solid transparent !important;
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Saat Menu Aktif / Diklik (Berubah menjadi Oranye Elegan) */
+        #mainNav a.active {
+            color: #ff6600 !important;
+            border-bottom: 2px solid #ff6600 !important;
+        }
+
+        /* Saat Kursor Mouse Lewat di Atas Menu */
+        #mainNav a:hover {
+            color: #ff6600 !important;
+            border-bottom: 2px solid #ff6600 !important;
+        }
     </style>
 </head>
     <body>
