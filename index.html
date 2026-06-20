@@ -243,9 +243,9 @@
             <a href="javascript:void(0)" onclick="filterCategory('iklan', this)">Pasang Iklan</a>
         </div>
         
-        <!-- Lajur Kotak Pencarian Kanan bentuk Kapsul Soft -->
+        <!-- Lajur Kotak Pencarian Kanan bentuk Kapsul Soft (Teks Hilang Saat Diklik) -->
         <div class="search-wrapper-box">
-            <input type="text" id="searchInput" placeholder="Apa yang kamu cari?">
+            <input type="text" id="searchInput" placeholder="Apa yang kamu cari?" onfocus="this.placeholder=''" onblur="this.placeholder='Apa yang kamu cari?'">
             <button onclick="searchArticles()">Search</button>
         </div>
     </div>
