@@ -70,10 +70,10 @@
         </div>
     </header>
 
-    <!-- 2. NAVIGATION BAR + SEARCH BAR DI POJOK KANAN -->
-    <nav id="mainNav" style="display: flex; justify-content: space-between; align-items: center; overflow-x: visible;">
+    <!-- 2. NAVIGATION BAR + SEARCH BAR (FIX TOMBOL TIDAK BISA DIKLIK) -->
+    <nav id="mainNav" style="display: flex; justify-content: space-between; align-items: center; background-color: #ffffff; border-bottom: 1px solid #e0e0e0; padding: 10px 20px; position: relative; z-index: 99; gap: 15px;">
         <!-- Deretan Menu Kiri -->
-        <div style="display: flex; gap: 25px; align-items: center;">
+        <div style="display: flex; gap: 25px; align-items: center; overflow-x: auto; white-space: nowrap; padding-vertical: 5px;">
             <a href="javascript:void(0)" onclick="filterCategory('semua', this)" class="active">Home</a>
             <a href="javascript:void(0)" onclick="filterCategory('berita', this)">Berita</a>
             <a href="javascript:void(0)" onclick="filterCategory('olahraga', this)">Hiburan & Olahraga</a>
@@ -81,13 +81,13 @@
             <a href="javascript:void(0)" onclick="filterCategory('iklan', this)">Pasang Iklan</a>
         </div>
         
-        <!-- Kotak Pencarian Baru di Pojok Kanan Menu -->
-        <div class="search-container" style="margin-left: auto;">
-            <input type="text" id="searchInput" class="search-input" placeholder="Cari artikel berita...">
-            <button class="search-btn" onclick="searchArticles()">Cari</button>
+        <!-- Kotak Pencarian Pojok Kanan (Z-Index Diperkuat agar Bisa Diklik) -->
+        <div class="search-container" style="display: flex; background: #fff; padding: 5px; border-radius: 4px; border: 1px solid #ccc; flex-shrink: 0; position: relative; z-index: 100;">
+            <input type="text" id="searchInput" class="search-input" placeholder="Cari artikel berita..." style="border: none; padding: 6px 10px; outline: none; font-size: 13px; width: 180px;">
+            <button class="search-btn" onclick="searchArticles()" style="background: #ff6600; color: white; border: none; padding: 6px 12px; border-radius: 3px; cursor: pointer; font-size: 12px; font-weight: bold;">Cari</button>
         </div>
     </nav>
-
+    
     <!-- 3. MAIN LAYOUT STRUCTURE -->
     <div class="container">
         <!-- Sidebar Kiri (Iklan) -->
