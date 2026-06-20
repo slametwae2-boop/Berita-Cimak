@@ -59,14 +59,10 @@
 </head>
 <body>
 
-    <!-- 1. HEADER AREA WITH INTEGRATED SEARCH -->
+     <!-- 1. HEADER AREA (PENCARIAN SUDAH DIHAPUS DARI SINI) -->
     <header>
         <div class="header-title">Portal Informasi & Berita</div>
         <div class="header-meta-container">
-            <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="Cari artikel berita...">
-                <button class="search-btn" onclick="searchArticles()">Cari</button>
-            </div>
             <div class="live-datetime">
                 <div class="live-clock" id="clock">00:00:00</div>
                 <div class="live-date" id="date">Memuat tanggal...</div>
@@ -74,13 +70,22 @@
         </div>
     </header>
 
-    <!-- 2. NAVIGATION BAR -->
-    <nav id="mainNav">
-        <a href="javascript:void(0)" onclick="filterCategory('semua', this)" class="active">Home</a>
-        <a href="javascript:void(0)" onclick="filterCategory('berita', this)">Berita</a>
-        <a href="javascript:void(0)" onclick="filterCategory('olahraga', this)">Hiburan & Olahraga</a>
-        <a href="javascript:void(0)" onclick="filterCategory('kuliner', this)">Wisata & Kuliner</a>
-        <a href="javascript:void(0)" onclick="filterCategory('iklan', this)">Pasang Iklan</a>
+    <!-- 2. NAVIGATION BAR + SEARCH BAR DI POJOK KANAN -->
+    <nav id="mainNav" style="display: flex; justify-content: space-between; align-items: center; overflow-x: visible;">
+        <!-- Deretan Menu Kiri -->
+        <div style="display: flex; gap: 25px; align-items: center;">
+            <a href="javascript:void(0)" onclick="filterCategory('semua', this)" class="active">Home</a>
+            <a href="javascript:void(0)" onclick="filterCategory('berita', this)">Berita</a>
+            <a href="javascript:void(0)" onclick="filterCategory('olahraga', this)">Hiburan & Olahraga</a>
+            <a href="javascript:void(0)" onclick="filterCategory('kuliner', this)">Wisata & Kuliner</a>
+            <a href="javascript:void(0)" onclick="filterCategory('iklan', this)">Pasang Iklan</a>
+        </div>
+        
+        <!-- Kotak Pencarian Baru di Pojok Kanan Menu -->
+        <div class="search-container" style="margin-left: auto;">
+            <input type="text" id="searchInput" class="search-input" placeholder="Cari artikel berita...">
+            <button class="search-btn" onclick="searchArticles()">Cari</button>
+        </div>
     </nav>
 
     <!-- 3. MAIN LAYOUT STRUCTURE -->
@@ -174,6 +179,7 @@
 
     <!-- 6. ENGINE CONTROLLER JAVASCRIPT SYSTEM -->
     <script>
+        // DATABASE ARTIKEL BERITA LENGKAP & BERBOBOT (Tetap Pertahankan Ini)
         const articlesDatabase = [
             {
                 id: 1,
@@ -222,6 +228,69 @@
             }
         ];
 
+        // --- BARIS DI BAWAH INI ADALAH FUNGSI BARU YANG DIPERBARUI ---
+
+        // 1. ENGINE RENDER GRID BERITA UTAMA
+        function renderArticles(e) {
+            const t = document.getElementById("newsGridArea");
+            if (t.innerHTML = "", 0 === e.length) {
+                t.innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:30px;color:#999;">Tidak ada artikel.</p>';
+                return;
+            }
+            e.forEach(e => {
+                const n = document.createElement("div");
+                n.className = "news-card";
+                n.onclick = () => showDetailArticle(e.id);
+                n.innerHTML = `<img src="${e.image}"><div class="news-card-body"><span class="news-card-tag">${e.category}</span><h3 class="news-card-title">${e.title.substring(0,65)}...</h3></div>`;
+                t.appendChild(n);
+            });
+        }
+
+        // 2. JAM & TANGGAL LIVE REALTIME INDONESIA
+        function updateClock() {
+            const e = new Date();
+            const t = String(e.getHours()).padStart(2, "0");
+            const n = String(e.getMinutes()).padStart(2, "0");
+            const r = String(e.getSeconds()).padStart(2, "0");
+            if(document.getElementById("clock")) document.getElementById("clock").innerText = `${t}:${n}:${r}`;
+            const i = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+            if(document.getElementById("date")) document.getElementById("date").innerText = e.toLocaleDateString("id-ID", i);
+        }
+
+        // 3. FUNGSI FILTER KATEGORI MENU NAVIGASI DINAMIS (FIX LOGIKANYA)
+        function filterCategory(e, t) {
+            // Hapus semua garis oranye aktif dari seluruh menu terlebih dahulu
+            document.querySelectorAll("#mainNav a").forEach(el => el.classList.remove("active"));
+            
+            // Tambahkan garis oranye aktif HANYA pada menu yang baru saja diklik
+            if(t) t.classList.add("active");
+            
+            const n = document.getElementById("heroSection");
+            if ("semua" === e) {
+                n.style.display = "grid";
+                document.getElementById("contentTitle").textContent = "Berita Utama";
+                renderArticles(articlesDatabase);
+            } else {
+                n.style.display = "none";
+                document.getElementById("contentTitle").textContent = "Kategori: " + e.toUpperCase();
+                renderArticles(articlesDatabase.filter(t => t.category === e));
+            }
+            backToGrid();
+        }
+
+        // 4. FUNGSI SEARCH ENGINE INTERNAL (OTOMATIS RESET MENU AKTIF)
+        function searchArticles() {
+            const e = document.getElementById("searchInput").value.toLowerCase().trim();
+            document.getElementById("heroSection").style.display = "none";
+            document.getElementById("contentTitle").textContent = 'Hasil Pencarian: "' + e + '"';
+            
+            // Saat mencari berita, hilangkan garis oranye aktif dari semua kategori menu
+            document.querySelectorAll("#mainNav a").forEach(el => el.classList.remove("active"));
+            
+            renderArticles(articlesDatabase.filter(t => t.title.toLowerCase().includes(e) || t.content.toLowerCase().includes(e)));
+            backToGrid();
+        }
+
         function renderArticles(e) {
             const t = document.getElementById("newsGridArea");
             if (t.innerHTML = "", 0 === e.length) {
@@ -248,8 +317,8 @@
         }
 
         function filterCategory(e, t) {
-            document.querySelectorAll("#mainNav a").forEach(e => e.classList.remove("active"));
-            t.classList.add("active");
+            document.querySelectorAll("#mainNav a").forEach(el => el.classList.remove("active"));
+            if(t) t.classList.add("active");
             const n = document.getElementById("heroSection");
             if ("semua" === e) {
                 n.style.display = "grid";
@@ -267,6 +336,7 @@
             const e = document.getElementById("searchInput").value.toLowerCase().trim();
             document.getElementById("heroSection").style.display = "none";
             document.getElementById("contentTitle").textContent = 'Hasil Pencarian: "' + e + '"';
+            document.querySelectorAll("#mainNav a").forEach(el => el.classList.remove("active"));
             renderArticles(articlesDatabase.filter(t => t.title.toLowerCase().includes(e) || t.content.toLowerCase().includes(e)));
             backToGrid();
         }
@@ -330,4 +400,3 @@
     </script>
 </body>
 </html>
-    
