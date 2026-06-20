@@ -81,48 +81,55 @@
         }
 
         /* ==========================================================================
-           HANYA ADA 1: PENATAAN KOTAK PENCARIAN PREMIUM & MINIMALIS (TANPA BG & GARIS)
+           PENATAAN KOTAK PENCARIAN KAPSUL MODERN, SOFT, DAN TIPIS
            ========================================================================== */
         .search-wrapper-box {
             display: flex !important;
             align-items: center !important;
-            background: transparent !important; /* Latar belakang menyatu polos dengan bar menu */
-            border: none !important;             /* Menghapus semua garis kotak bingkai luar */
-            padding: 0 !important;
+            background: #ffffff !important;      /* Latar belakang putih bersih */
+            border: 1px solid #e0e0e0 !important; /* Garis bingkai abu-abu yang sangat tipis dan soft */
+            border-radius: 50px !important;       /* Bentuk bulat kapsul melengkung halus */
+            padding: 2px 4px 2px 14px !important; /* Jarak ruang di dalam kapsul */
             margin: 0 !important;
             position: relative !important;
-            z-index: 99999 !important; /* Menaruh di lapisan paling depan agar sensitif saat diklik */
+            z-index: 99999 !important;
         }
         
         .search-wrapper-box input {
             display: inline-block !important;
-            border: none !important;             /* Menghapus total garis kotak input abu-abu kaku */
-            border-bottom: 1px solid #1a2a40 !important; /* Memberikan 1 garis bawah tipis biru tua yang mewah */
-            background: transparent !important;  
-            padding: 6px 10px !important;
-            outline: none !important;            /* Menghapus garis biru tebal saat kotak diklik ketik */
+            border: none !important;              /* Menghapus semua garis bawaan kotak input */
+            background: transparent !important;
+            padding: 6px 0 !important;
+            outline: none !important;             /* Menghapus garis biru saat kotak diklik */
             font-size: 13px !important;
-            width: 150px !important;
-            color: #1a2a40 !important;           /* Warna teks ketikan mengikuti biru tua menu */
+            width: 160px !important;
+            color: #444 !important;               /* Warna teks ketikan abu-abu gelap yang lembut */
+        }
+        
+        /* Mengubah warna teks petunjuk tulisan di dalam kotak (placeholder) jadi abu-abu soft */
+        .search-wrapper-box input::placeholder {
+            color: #b0b0b0 !important;
         }
         
         .search-wrapper-box button {
             display: inline-block !important;
-            background: transparent !important;  /* Menghapus kotak abu-abu tebal bawaan browser */
-            color: #ff6600 !important;           /* Tulisan "Cari" berubah warna menjadi oranye elegan */
-            border: none !important;             
-            padding: 6px 10px !important;
+            background: #ff6600 !important;       /* Tombol berwarna oranye khas web Anda */
+            color: #ffffff !important;            /* Teks tulisan Search warna putih bersih */
+            border: none !important;
+            padding: 5px 16px !important;
+            border-radius: 50px !important;       /* Tombol ikut berbentuk bulat kapsul */
             cursor: pointer !important;
-            font-size: 13px !important;
+            font-size: 12px !important;
             font-weight: bold !important;
-            transition: color 0.2s ease;
+            margin-left: 10px !important;
+            transition: background 0.2s ease;
         }
         
         .search-wrapper-box button:hover {
-            color: #e65c00 !important;           /* Efek oranye menggelap sedikit saat kursor lewat */
+            background: #e65c00 !important;       /* Oranye menjadi agak gelap saat didekati kursor */
         }
 
-        /* SEMBUNYIKAN SEKALIGUS INPUTAN LAIN YANG TERSALIP DI LUAR JALUR RESMI */
+        /* Sembunyikan inputan liar lain di luar container */
         body > input, body > button, .search-container {
             display: none !important;
             opacity: 0 !important;
@@ -236,10 +243,10 @@
             <a href="javascript:void(0)" onclick="filterCategory('iklan', this)">Pasang Iklan</a>
         </div>
         
-        <!-- Lajur Kotak Pencarian Kanan (Diberi ID Khusus agar Fungsi Cari Aktif) -->
+        <!-- Lajur Kotak Pencarian Kanan bentuk Kapsul Soft -->
         <div class="search-wrapper-box">
-            <input type="text" id="searchInput" placeholder="Cari...">
-            <button onclick="searchArticles()">Cari</button>
+            <input type="text" id="searchInput" placeholder="Apa yang kamu cari?">
+            <button onclick="searchArticles()">Search</button>
         </div>
     </div>
         
