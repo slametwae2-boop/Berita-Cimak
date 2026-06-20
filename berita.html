@@ -55,7 +55,7 @@
             font-weight: bold;
         }
 
-        /* SEARCH BAR COMPONENT - BARU */
+        /* SEARCH BAR COMPONENT */
         .search-container {
             display: flex;
             background: #fff;
@@ -118,7 +118,7 @@
             border-bottom: 2px solid #ff6600 !important;
         }
 
-        /* LAYOUT CONTENT */
+        /* LAYOUT MAIN CONTAINER STRUCTURE */
         .container {
             max-width: 1200px;
             margin: 20px auto;
@@ -155,7 +155,7 @@
             font-size: 11px;
         }
 
-        /* MAIN AREA & NEWS GRID CARD - BARU */
+        /* MAIN AREA & NEWS GRID CARD */
         .main-content {
             background-color: #ffffff;
             border: 1px solid #e0e0e0;
@@ -212,7 +212,7 @@
             line-height: 1.4;
         }
 
-        /* SLIDER SYSTEM */
+        /* SLIDER BANNER SYSTEM STYLES */
         .news-hero {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -282,7 +282,7 @@
             color: #444;
         }
 
-        /* DETAIL BERITA AREA COMPONENT - BARU */
+        /* DETAIL BERITA AREA COMPONENT */
         .detail-container {
             display: none;
         }
@@ -316,7 +316,7 @@
             text-align: justify;
         }
 
-        /* VIDEO & FOOTER */
+        /* VIDEO AREA & FOOTER STYLES */
         .video-box {
             background-color: #000;
             width: 100%;
@@ -364,14 +364,13 @@
             width: 55px;
             height: 55px;
             border-radius: 50%;
-            display: flex;
-          <body>
+            <body>
 
     <!-- 1. HEADER AREA WITH INTEGRATED SEARCH -->
     <header>
         <div class="header-title">Portal Informasi & Berita</div>
         <div class="header-meta-container">
-            <!-- Komponen Fitur Pencarian Artikel Baru -->
+            <!-- Komponen Fitur Pencarian Artikel -->
             <div class="search-container">
                 <input type="text" id="searchInput" class="search-input" placeholder="Cari artikel berita...">
                 <button class="search-btn" onclick="searchArticles()">Cari</button>
@@ -385,7 +384,6 @@
 
     <!-- 2. NAVIGATION BAR (KATEGORI BERITA DINAMIS) -->
     <nav id="mainNav">
-        <!-- Fungsi filterCategory() mendeteksi nama kategori untuk memfilter data secara dinamis -->
         <a href="javascript:void(0)" onclick="filterCategory('semua', this)" class="active">Home</a>
         <a href="javascript:void(0)" onclick="filterCategory('berita', this)">Berita</a>
         <a href="javascript:void(0)" onclick="filterCategory('olahraga', this)">Hiburan & Olahraga</a>
@@ -437,7 +435,7 @@
 
                 <!-- Wadah Penampung Grid Card Berita Hasil Filter Dinamis -->
                 <div class="news-grid" id="newsGridArea">
-                    <!-- Artikel akan dirender otomatis oleh JavaScript di Tahap 3 -->
+                    <!-- Artikel akan dirender otomatis oleh JavaScript di Tahap 3 & 4 -->
                 </div>
 
                 <div class="section-title" style="margin-top: 30px;">Video Terkini</div>
@@ -469,6 +467,10 @@
                 <strong>RUANG IKLAN ANDA</strong>
                 <span class="ad-link">IKLAN HUBUNGI KAMI<br>WA: 0812-XXXX-XXXX</span>
             </div>
+            <div class="ad-space">
+                <strong>RUANG IKLAN ANDA</strong>
+                <span class="ad-link">IKLAN HUBUNGI KAMI<br>WA: 0812-XXXX-XXXX</span>
+            </div>
         </aside>
     </div>
 
@@ -477,74 +479,73 @@
         &copy; 2026 Portal Berita Terintegrasi. Copyright All Rights Reserved.
     </footer>
 
-           <!-- 5. FLOATING WHATSAPP BUTTON WITH SVG ICON -->
+    <!-- TOMBOL FLOATING WHATSAPP -->
     <a href="https://wa.me" class="whatsapp-float" target="_blank" title="Hubungi Kami via WhatsApp">
         <svg viewBox="0 0 448 512">
             <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
         </svg>
     </a>
-
-    <!-- 6. ENGINE CONTROLLER JAVASCRIPT SYSTEM -->
+            <!-- 6. ENGINE CONTROLLER JAVASCRIPT SYSTEM -->
     <script>
-        // DATA LOKAL SIMULASI (DATABASE ARTIKEL BERITA)
+        // DATABASE ARTIKEL BERITA LENGKAP & BERBOBOT
         const articlesDatabase = [
             {
                 id: 1,
-                title: "Peresmian Megah Masjid Raya Kota untuk Umum",
+                title: "Peresmian Megah Masjid Raya Kota Menjadi Pusat Peradaban dan Edukasi Modern",
                 category: "berita",
                 image: "masjid.jpg",
                 author: "Andi Saputra",
                 date: "20 Juni 2026",
-                content: "Masjid Raya Kota akhirnya resmi dibuka untuk seluruh masyarakat umum mulai hari ini. Acara peresmian ini dihadiri oleh jajaran petinggi daerah dan ribuan warga setempat yang antusias. Kompleks masjid yang megah ini juga dilengkapi dengan perpustakaan digital modern serta fasilitas ruang terbuka ramah anak."
+                content: "Masjid Raya Kota akhirnya resmi dibuka untuk seluruh masyarakat umum mulai hari ini setelah melalui proses renovasi total selama dua tahun terakhir. Acara peresmian yang megah ini dihadiri langsung oleh gubernur, jajaran tokoh lintas agama, serta ribuan warga setempat yang memadati area pelataran sejak pagi hari. Selain berfungsi sebagai tempat ibadah utama, kompleks masjid baru ini juga didesain untuk menjadi pusat peradaban baru bagi generasi muda. Pengelola telah menyediakan fasilitas perpustakaan digital modern dengan akses ribuan jurnal ilmiah, ruang pertemuan berbasis teknologi, serta area taman terbuka hijau yang ramah anak. Gubernur dalam pidatonya menyampaikan harapan besar agar tempat ibadah ini tidak hanya ramai saat waktu salat saja, melainkan juga dipenuhi oleh aktivitas produktif kemasyarakatan, kajian ilmiah, serta kegiatan ekonomi syariah yang dapat membantu menyejahterakan warga di sekitar lingkungan masjid."
             },
             {
                 id: 2,
-                title: "Persiapan Pemeliharaan Rumput Stadion Utama",
+                title: "Persiapan Intensif Pemeliharaan Rumput Stadion Utama Menjelang Kompetisi Internasional",
                 category: "olahraga",
                 image: "lapangan-hijau.jpg",
                 author: "Budi Pratama",
                 date: "19 Juni 2026",
-                content: "Menjelang kompetisi olahraga nasional yang akan datang, pengelola stadion mulai melakukan perawatan intensif dan pemeliharaan kualitas rumput jenis khusus. Langkah ini diambil untuk memastikan performa para atlet tetap optimal dan menghindari risiko cedera akibat kontur tanah lapangan yang tidak rata."
+                content: "Menjelang bergulirnya kompetisi sepak bola internasional yang akan mempertemukan klub-klub besar bulan depan, pengelola stadion utama mulai melakukan perawatan dan sterilisasi rumput lapangan secara intensif. Jenis rumput khusus yang digunakan saat ini memerlukan teknik penyiraman dan pemotongan berkala dengan standar tinggi agar kelenturan serta ketebalannya tetap terjaga dengan baik. Tim ahli agronomi dikerahkan untuk memantau kadar keasaman tanah serta sistem drainase di bawah lapangan guna mengantisipasi terjadinya genangan air jika hujan deras mengguyur selama pertandingan berlangsung. Kepala pengelola stadion menegaskan bahwa pemeliharaan ini dilakukan secara menyeluruh demi memastikan performa para atlet di lapangan dapat keluar secara optimal, menjaga keselamatan pemain dari risiko cedera akibat kontur tanah yang tidak rata, serta memenuhi seluruh regulasi kelayakan stadion yang ditetapkan oleh federasi sepak bola dunia."
             },
             {
                 id: 3,
-                title: "Panduan Olahraga Ringan di Taman Kota Sore Hari",
+                title: "Panduan dan Manfaat Olahraga Ringan di Area Terbuka Hijau pada Sore Hari",
                 category: "olahraga",
                 image: "olahraga-taman.jpg",
                 author: "Siti Rahma",
                 date: "18 Juni 2026",
-                content: "Melakukan aktivitas fisik ringan seperti jogging, peregangan otot, atau jalan santai di area ruang terbuka hijau sangat baik bagi metabolisme tubuh. Beberapa warga rutin memanfaatkan fasilitas lintasan lari di taman kota ini setiap sore hari demi menjaga kesegaran fisik di tengah padatnya rutinitas pekerjaan harian."
+                content: "Melakukan aktivitas fisik ringan seperti jogging, berjalan santai, atau yoga di area ruang terbuka hijau ternyata memiliki dampak yang sangat positif bagi kesehatan tubuh dan mental manusia. Berdasarkan studi kesehatan terbaru, berolahraga di bawah paparan udara segar sore hari yang dikelilingi pepohonan mampu menurunkan kadar hormon kortisol penyebab stres secara signifikan setelah seharian penuh bergelut dengan rutinitas pekerjaan. Di kota-kota besar, fasilitas lintasan lari (jogging track) yang disediakan pemerintah di taman kota kini mulai ramai dipadati warga setiap pukul empat sore. Selain gratis, berolahraga di fasilitas umum seperti ini juga membangun interaksi sosial yang sehat antar warga. Para ahli kesehatan menyarankan masyarakat untuk meluangkan waktu minimal tiga puluh menit setiap hari untuk bergerak aktif demi menjaga stabilitas metabolisme, meningkatkan kualitas tidur malam, serta memperkuat sistem kekebalan tubuh dari berbagai ancaman penyakit."
             },
             {
                 id: 4,
-                title: "Keseruan Turnamen Tenis Meja Antar Komunitas",
+                title: "Keseruan Turnamen Tenis Meja Antar Komunitas Guna Menjaring Bibit Atlet Muda Berbakat",
                 category: "olahraga",
                 image: "pingpong.jpg",
                 author: "Rian Hidayat",
                 date: "17 Juni 2026",
-                content: "Turnamen tenis meja amatir lokal sukses mempertemukan berbagai klub pingpong dari berbagai wilayah. Kegiatan positif ini diselenggarakan untuk memupuk sportivitas sekaligus mencari bibit atlet muda berbakat baru yang ke depannya diharapkan mampu mewakili daerah di kancah nasional."
+                content: "Turnamen tenis meja amatir tingkat regional akhir pekan ini sukses mempertemukan puluhan klub dan komunitas pingpong dari berbagai pelosok daerah. Kompetisi yang berlangsung ketat selama tiga hari berturut-turut ini tidak hanya menyajikan tontonan olahraga yang menghibur, tetapi juga menjadi ajang pembuktian bakat bagi para pemain non-profesional. Pihak panitia penyelenggara menjelaskan bahwa tujuan utama diadakannya turnamen ini adalah untuk kembali membangkitkan gairah olahraga tenis meja di tingkat akar rumput sekaligus melakukan pemantauan terhadap bakat-bakat terpendam dari para pemain usia remaja. Para pemenang dari turnamen ini nantinya akan mendapatkan pembinaan khusus dan beasiswa pelatihan dari dinas pemuda dan olahraga setempat agar mereka siap diterjunkan ke ajang kejuaraan resmi yang berskala lebih besar, baik di tingkat provinsi maupun nasional pada musim depan."
             },
             {
                 id: 5,
-                title: "Festival Kuliner Halal Tradisional Nusantara Resmi Dibuka",
+                title: "Festival Kuliner Tradisional Nusantara Resmi Dibuka dengan Jaminan Produk Halal",
                 category: "kuliner",
-                image: "lapangan-hijau.jpg", // Menggunakan resource gambar lokal Anda
+                image: "lapangan-hijau.jpg",
                 author: "Dewi Lestari",
                 date: "16 Juni 2026",
-                content: "Puluhan stan makanan tradisional dari Sabang sampai Merauke ikut meramaikan gelaran festival kuliner tahun ini. Selain menyajikan cita rasa khas rempah nusantara yang autentik, seluruh produk makanan dan minuman yang dijual dipastikan telah melalui proses sertifikasi penjaminan mutu halal."
+                content: "Gelaran tahunan Festival Kuliner Nusantara resmi dibuka hari ini dengan menghadirkan lebih dari seratus stan makanan tradisional autentik yang berasal dari berbagai daerah di seluruh penjuru Indonesia. Mulai dari makanan berat seperti rendang khas Minang dan gudeg Jogja, hingga jajanan pasar yang mulai langka, semuanya dapat ditemukan di area festival ini. Yang menarik dari festival tahun ini adalah aturan ketat dari pihak penyelenggara yang mewajibkan seluruh pelaku usaha kuliner untuk memiliki sertifikasi halal resmi. Langkah ini diambil guna memberikan rasa aman, nyaman, dan kepastian bagi para pengunjung yang ingin mencicipi aneka ragam kuliner nusantara tanpa rasa ragu. Dinas pariwisata setempat menargetkan festival ini mampu menarik puluhan ribu wisatawan domestik maupun mancanegara serta membantu mendongkrak roda perekonomian para pelaku UMKM sektor makanan pasca masa pandemi."
             },
             {
                 id: 6,
-                title: "Promo Space Iklan Banner Strategis Portal Berita",
+                title: "Penawaran Khusus Slot Iklan Banner Strategis untuk Mengembangkan Bisnis UMKM Anda",
                 category: "iklan",
                 image: "masjid.jpg",
                 author: "Tim Pemasaran",
                 date: "15 Juni 2026",
-                content: "Tingkatkan konversi penjualan bisnis Anda dengan memasang banner iklan strategis di portal berita kami yang memiliki jangkauan pembaca luas setiap harinya. Tersedia slot iklan banner sisi kiri vertikal dan sisi kanan responsif dengan harga khusus UMKM selama bulan ini."
+                content: "Bagi Anda para pemilik usaha kecil dan menengah (UMKM) yang ingin memperluas jangkauan pasar dan meningkatkan volume penjualan produk, portal berita kami membuka kesempatan emas promosi melalui slot iklan banner digital. Berdasarkan data analitik bulanan, portal informasi kami dikunjungi oleh ratusan ribu pembaca aktif setiap harinya dengan tingkat interaksi halaman yang sangat tinggi. Kami menyediakan berbagai pilihan posisi iklan yang sangat strategis, mulai dari banner vertikal pada bagian menu kiri halaman, banner tengah di sela-sela artikel berita, hingga banner premium di bagian bawah menu navigasi utama. Khusus untuk bulan ini, tim pemasaran kami memberikan potongan harga sewa slot iklan hingga lima puluh persen bagi pelaku usaha lokal, lengkap dengan fasilitas bantuan pembuatan desain grafis promo banner secara gratis agar materi iklan Anda terlihat menarik dan profesional bagi calon konsumen."
             }
         ];
 
-        // RENDER JAM & TANGGAL REALTIME
+         // 1. MANAJEMEN LIVE CLOCK & DATETIME REALTIME
         function updateDateTime() {
             const now = new Date();
             const hours = String(now.getHours()).padStart(2, '0');
@@ -558,13 +559,13 @@
         setInterval(updateDateTime, 1000);
         updateDateTime();
 
-        // INTEGRASI FUNGSI RENDER GRID DATA ARTIKEL
+        // 2. FUNGSI UTAMA UNTUK RENDERING GRID CARD BERITA
         function renderArticles(articlesList) {
             const gridArea = document.getElementById('newsGridArea');
             gridArea.innerHTML = "";
 
             if (articlesList.length === 0) {
-                gridArea.innerHTML = "<p style='grid-column: 1/-1; text-align:center; padding: 20px; color:#999;'>Artikel tidak ditemukan...</p>";
+                gridArea.innerHTML = "<p style='grid-column: 1/-1; text-align:center; padding: 35px 20px; color:#999; font-size:13px;'>Maaf, artikel berita tidak ditemukan atau kata kunci tidak cocok...</p>";
                 return;
             }
 
@@ -584,14 +585,12 @@
             });
         }
 
-        // FUNGSI FILTER KATEGORI DINAMIS
+        // 3. FUNGSI FILTER KATEGORI MENU NAVIGASI DINAMIS
         function filterCategory(categoryName, element) {
-            // Update UI Menu Navigasi Aktif
             const links = document.querySelectorAll('#mainNav a');
             links.forEach(link => link.classList.remove('active'));
             element.classList.add('active');
 
-            // Kontrol Visibilitas Banner Hero (Hanya Muncul di Menu Home / Semua)
             const hero = document.getElementById('heroSection');
             if (categoryName === 'semua') {
                 hero.style.display = "grid";
@@ -606,7 +605,7 @@
             backToGrid();
         }
 
-        // FUNGSI PENCARIAN ARTIKEL (SEARCH BAR ENGINE)
+        // 4. FUNGSI SEARCH ENGINE INTERNAL (PENCARIAN KATA KUNCI)
         function searchArticles() {
             const keyword = document.getElementById('searchInput').value.toLowerCase().trim();
             const hero = document.getElementById('heroSection');
@@ -621,9 +620,16 @@
             
             renderArticles(results);
             backToGrid();
+            
+            // Tambahan agar input box mendeteksi tombol Enter
+            document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchArticles();
+                }
+            });
         }
 
-        // FUNGSI MEMBUKA DETAIL ISI BERITA
+        // 5. FUNGSI MENAMPILKAN DETAIL ISI BERITA LENGKAP (SPA SYSTEM)
         function showDetailArticle(id) {
             const article = articlesDatabase.find(art => art.id === id);
             if (!article) return;
@@ -632,7 +638,7 @@
             
             const detailArea = document.getElementById('detailContent');
             document.getElementById('detailTitle').textContent = article.title;
-            document.getElementById('detailMeta').textContent = `Kategori: ${article.category} | Penulis: ${article.author} | ${article.date}`;
+            document.getElementById('detailMeta').textContent = `Kategori: ${article.category.toUpperCase()} | Penulis: ${article.author} | Terbit: ${article.date}`;
             document.getElementById('detailImage').src = article.image;
             document.getElementById('detailBody').textContent = article.content;
             
@@ -640,15 +646,46 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // FUNGSI TOMBOL KEMBALI
+        // 6. FUNGSI TOMBOL KEMBALI KE BERANDA GRID
         function backToGrid() {
             document.getElementById('detailContent').style.display = "none";
             document.getElementById('dynamicContent').style.display = "block";
         }
 
-        // INTERAKSI BANNER SLIDER SISTEM
+        // 7. INTERAKSI BANNER SLIDER BERITA UTAMA AUTOMATIC / MANUAL
         let currentIndex = 0;
         const totalSlides = 4;
         const wrapper = document.getElementById('sliderWrapper');
         const dots = document.querySelectorAll('.dot');
         let slideInterval = setInterval(autoSlide, 4000);
+
+        function updateSliderPosition() {
+            wrapper.style.transform = 'translateX(' + (-currentIndex * 25) + '%)';
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === currentIndex);
+            });
+        }
+        function autoSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateSliderPosition();
+        }
+        function moveSlide(direction) {
+            clearInterval(slideInterval);
+            currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+            updateSliderPosition();
+            slideInterval = setInterval(autoSlide, 4000);
+        }
+        function currentSlide(index) {
+            clearInterval(slideInterval);
+            currentIndex = index;
+            updateSliderPosition();
+            slideInterval = setInterval(autoSlide, 4000);
+        }
+
+        // MENJALANKAN RENDERING DATA PERTAMA KALI KETIKA WEBSITE DIBUKA
+        window.onload = () => {
+            renderArticles(articlesDatabase);
+        };
+    </script>
+</body>
+</html>
