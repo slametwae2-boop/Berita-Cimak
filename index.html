@@ -126,8 +126,13 @@
         }
         
         .search-wrapper-box button:hover {
-            background: #e65c00 !important;       /* Oranye menjadi agak gelap saat didekati kursor */
-        }
+    background: #e65c00 !important; /* Oranye menjadi agak gelap saat didekati kursor */
+}
+.search-wrapper-box button:active {
+    transform: scale(0.92) !important;
+    background-color: #cc5200 !important;
+    transition: transform 0.05s ease-in-out !important;
+}
 
         /* Sembunyikan inputan liar lain di luar container */
         body > input, body > button, .search-container {
