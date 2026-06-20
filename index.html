@@ -48,11 +48,52 @@
         footer { background-color: #111; color: #aaa; text-align: center; padding: 15px; font-size: 12px; margin-top: 40px; }
         .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 100; }
         .whatsapp-float svg { width: 30px; height: 30px; fill: white; }
-        #mainNav a { text-decoration: none; color: #000; font-size: 14px; font-weight: bold; padding-bottom: 5px; border-bottom: 2px solid transparent; transition: all 0.15s; cursor: pointer; }
-       #mainNav a.active {
-    color: #ff6600;
-    border-bottom: 2px solid #ff6600;
-}
+        /* CSS RESPONSIF UNTUK MENU & UTILITY BAR */
+        .nav-responsive-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 14px 20px;
+            position: relative;
+            z-index: 100;
+            gap: 15px;
+            flex-wrap: wrap; /* Membuat menu otomatis turun rapi jika layar HP sempit */
+        }
+        #mainNav {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto; /* Mengaktifkan fitur geser (scroll) ke samping di layar HP */
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 5px;
+            flex: 1;
+        }
+        #mainNav::-webkit-scrollbar {
+            height: 4px; /* Membuat garis scrollbar sangat tipis dan estetik di HP */
+        }
+        #mainNav::-webkit-scrollbar-thumb {
+            background: #e0e0e0;
+            border-radius: 4px;
+        }
+        .search-wrapper-box {
+            display: flex;
+            background: #ffffff;
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 200;
+        }
+        @media (max-width: 768px) {
+            /* Penataan khusus saat dibuka dari Handphone */
+            .nav-responsive-container { padding: 10px 15px; }
+            #mainNav { gap: 15px; margin-bottom: 5px; }
+            .search-wrapper-box { width: 100%; justify-content: space-between; }
+            .search-input { width: 100% !important; }
+        }
     </style>
 </head>
     <body>
@@ -68,21 +109,23 @@
         </div>
     </header>
 
-    <!-- 2. NAVIGATION BAR & INTEGRATED SEARCH BAR POJOK KANAN -->
-    <div style="display: flex; justify-content: space-between; align-items: center; background: #ffffff; border-bottom: 1px solid #e0e0e0; padding: 14px 20px; position: relative; z-index: 100;">
-        <div id="mainNav" style="display: flex; gap: 25px;">
+    <!-- 2. NAVIGATION BAR & INTEGRATED SEARCH BAR POJOK KANAN (RESPONSIF VERSION) -->
+    <div class="nav-responsive-container">
+        <!-- Lajur Menu Kiri (Bisa Digeser di HP) -->
+        <div id="mainNav">
             <a href="javascript:void(0)" onclick="filterCategory('semua', this)" class="active">Home</a>
             <a href="javascript:void(0)" onclick="filterCategory('berita', this)">Berita</a>
             <a href="javascript:void(0)" onclick="filterCategory('olahraga', this)">Hiburan & Olahraga</a>
             <a href="javascript:void(0)" onclick="filterCategory('kuliner', this)">Wisata & Kuliner</a>
             <a href="javascript:void(0)" onclick="filterCategory('iklan', this)">Pasang Iklan</a>
         </div>
-        <div style="display: flex; background: #ffffff; padding: 5px; border-radius: 4px; border: 1px solid #ccc; flex-shrink: 0; margin-left: 20px; position: relative; z-index: 200;">
-            <input type="text" id="searchInput" style="border: none; padding: 6px 10px; outline: none; font-size: 13px; width: 180px;" placeholder="Cari...">
-            <button onclick="searchArticles()" style="background: #ff6600; color: white; border: none; padding: 6px 12px; border-radius: 3px; cursor: pointer; font-size: 12px; font-weight: bold; position: relative; z-index: 300;">Cari</button>
+        
+        <!-- Lajur Kotak Pencarian Kanan -->
+        <div class="search-wrapper-box">
+            <input type="text" id="searchInput" class="search-input" placeholder="Cari..." style="border: none; padding: 6px 10px; outline: none; font-size: 13px; width: 180px;">
+            <button class="search-btn" onclick="searchArticles()" style="background: #ff6600; color: white; border: none; padding: 6px 12px; border-radius: 3px; cursor: pointer; font-size: 12px; font-weight: bold; position: relative; z-index: 300;">Cari</button>
         </div>
     </div>
-
     <!-- 3. MAIN LAYOUT STRUCTURE -->
     <div class="container">
         <!-- Sidebar Kiri -->
