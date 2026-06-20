@@ -80,16 +80,53 @@
             height: 0px !important; /* Sembunyikan garis scrollbar agar bersih */
         }
 
-        /* 3. Kotak Pembungkus Search */
+        /* ==========================================================================
+           HANYA ADA 1: PENATAAN KOTAK PENCARIAN PREMIUM & MINIMALIS (TANPA BG & GARIS)
+           ========================================================================== */
         .search-wrapper-box {
             display: flex !important;
-            background: #ffffff !important;
-            padding: 5px !important;
-            border-radius: 4px !important;
-            border: 1px solid #ccc !important;
-            flex-shrink: 0 !important;
+            align-items: center !important;
+            background: transparent !important; /* Latar belakang menyatu polos dengan bar menu */
+            border: none !important;             /* Menghapus semua garis kotak bingkai luar */
+            padding: 0 !important;
+            margin: 0 !important;
             position: relative !important;
-            z-index: 9999 !important;
+            z-index: 99999 !important; /* Menaruh di lapisan paling depan agar sensitif saat diklik */
+        }
+        
+        .search-wrapper-box input {
+            display: inline-block !important;
+            border: none !important;             /* Menghapus total garis kotak input abu-abu kaku */
+            border-bottom: 1px solid #1a2a40 !important; /* Memberikan 1 garis bawah tipis biru tua yang mewah */
+            background: transparent !important;  
+            padding: 6px 10px !important;
+            outline: none !important;            /* Menghapus garis biru tebal saat kotak diklik ketik */
+            font-size: 13px !important;
+            width: 150px !important;
+            color: #1a2a40 !important;           /* Warna teks ketikan mengikuti biru tua menu */
+        }
+        
+        .search-wrapper-box button {
+            display: inline-block !important;
+            background: transparent !important;  /* Menghapus kotak abu-abu tebal bawaan browser */
+            color: #ff6600 !important;           /* Tulisan "Cari" berubah warna menjadi oranye elegan */
+            border: none !important;             
+            padding: 6px 10px !important;
+            cursor: pointer !important;
+            font-size: 13px !important;
+            font-weight: bold !important;
+            transition: color 0.2s ease;
+        }
+        
+        .search-wrapper-box button:hover {
+            color: #e65c00 !important;           /* Efek oranye menggelap sedikit saat kursor lewat */
+        }
+
+        /* SEMBUNYIKAN SEKALIGUS INPUTAN LAIN YANG TERSALIP DI LUAR JALUR RESMI */
+        body > input, body > button, .search-container {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
         }
 
         /* ==========================================================================
