@@ -136,7 +136,7 @@
     <div class="nav-responsive-container">
         <!-- Lajur Menu Kiri (Bisa Digeser di HP) -->
         <div id="mainNav">
-            <a href="javascript:void(0)" onclick="filterCategory('semua', this)" class="active">Home</a>
+            <a href="javascript:void(0)" onclick="filterCategory('semua', this)">Home</a>
             <a href="javascript:void(0)" onclick="filterCategory('berita', this)">Berita</a>
             <a href="javascript:void(0)" onclick="filterCategory('olahraga', this)">Hiburan & Olahraga</a>
             <a href="javascript:void(0)" onclick="filterCategory('kuliner', this)">Wisata & Kuliner</a>
@@ -312,16 +312,18 @@
         }
 
         function filterCategory(e, t) {
-            // 1. Ambil semua elemen menu tautan
+            // 1. Paksa semua menu kembali jadi biru tua dan tanpa garis bawah
             const links = document.querySelectorAll("#mainNav a");
+            links.forEach(el => {
+                el.style.setProperty('color', '#1a2a40', 'important');
+                el.style.setProperty('border-bottom', '2px solid transparent', 'important');
+            });
             
-            // 2. Hapus class active secara total dari setiap menu tanpa terkecuali
-            for (let i = 0; i < links.length; i++) {
-                links[i].className = "";
+            // 2. Paksa menu yang diklik berubah jadi Oranye!
+            if (t) {
+                t.style.setProperty('color', '#ff6600', 'important');
+                t.style.setProperty('border-bottom', '2px solid #ff6600', 'important');
             }
-            
-            // 3. Berikan class active HANYA pada menu yang baru saja diklik
-            if (t) t.className = "active";
             
             const n = document.getElementById("heroSection");
             if ("semua" === e) {
@@ -342,11 +344,12 @@
             if(n) n.style.display = "none";
             document.getElementById("contentTitle").textContent = 'Hasil Pencarian: "' + e + '"';
             
-            // Matikan semua garis aktif menu saat melakukan pencarian kata kunci
+            // Matikan semua garis menu saat mengetik pencarian
             const links = document.querySelectorAll("#mainNav a");
-            for (let i = 0; i < links.length; i++) {
-                links[i].className = "";
-            }
+            links.forEach(el => {
+                el.style.setProperty('color', '#1a2a40', 'important');
+                el.style.setProperty('border-bottom', '2px solid transparent', 'important');
+            });
             
             renderArticles(articlesDatabase.filter(t => t.title.toLowerCase().includes(e) || t.content.toLowerCase().includes(e)));
             backToGrid();
