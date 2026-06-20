@@ -88,24 +88,33 @@
         
         /* ATURAN KHUSUS UNTUK LAYAR HANDPHONE (RESPONSIVE ENGINE) */
         @media (max-width: 768px) {
-            .nav-responsive-container {
-                flex-direction: column; /* Membuat kotak search turun rapi di bawah menu saat di HP */
-                align-items: stretch;
-                padding: 10px 15px;
-                gap: 10px;
-            }
-            #mainNav {
-                width: 100%;
-                padding-bottom: 8px;
-            }
-            .search-wrapper-box {
-                width: 100%;
-                justify-content: space-between;
-            }
-            .search-wrapper-box input {
-                width: 100% !important; /* Kotak search melebar penuh memenuhi layar HP */
-            }
-        }
+    /* --- TAMBAHKAN KODE BARU INI DI SINI --- */
+    .container {
+        grid-template-columns: 1fr !important; /* Paksa layout menjadi 1 kolom vertikal ke bawah */
+        gap: 15px !important;
+        margin: 10px auto !important;
+    }
+    .sidebar-left {
+        order: 2; /* Iklan kiri turun ke bawah setelah konten berita utama */
+    }
+    .main-content {
+        order: 1; /* Konten utama / Berita berada di paling atas layar HP */
+    }
+    .sidebar-right {
+        order: 3; /* Iklan kanan berada di paling bawah */
+    }
+    .ad-space.vertical {
+        min-height: 150px !important; /* Perkecil tinggi kotak iklan banner di HP agar tidak terlalu panjang */
+    }
+    .news-hero {
+        grid-template-columns: 1fr !important; /* Paksa area slider banner dan teks ucapan selamat datang tersusun ke bawah */
+        gap: 15px !important;
+    }
+    .slider-container {
+        height: 180px !important; /* Sesuaikan tinggi slider gambar agar proporsional di layar HP */
+    }
+}
+
         
         /* PENATAAN MENU ELEGAN BIRU TUA MURNI */
         #mainNav a {
