@@ -312,13 +312,16 @@
         }
 
         function filterCategory(e, t) {
-            // Bersihkan class active dari semua menu tanpa mencampuri warnanya
-            document.querySelectorAll("#mainNav a").forEach(el => {
-                el.classList.remove("active");
-            });
+            // 1. Ambil semua elemen menu tautan
+            const links = document.querySelectorAll("#mainNav a");
             
-            // Pasang class active HANYA pada menu yang diklik
-            if(t) t.classList.add("active");
+            // 2. Hapus class active secara total dari setiap menu tanpa terkecuali
+            for (let i = 0; i < links.length; i++) {
+                links[i].className = "";
+            }
+            
+            // 3. Berikan class active HANYA pada menu yang baru saja diklik
+            if (t) t.className = "active";
             
             const n = document.getElementById("heroSection");
             if ("semua" === e) {
@@ -339,10 +342,11 @@
             if(n) n.style.display = "none";
             document.getElementById("contentTitle").textContent = 'Hasil Pencarian: "' + e + '"';
             
-            // Matikan semua garis menu saat melakukan pencarian
-            document.querySelectorAll("#mainNav a").forEach(el => {
-                el.classList.remove("active");
-            });
+            // Matikan semua garis aktif menu saat melakukan pencarian kata kunci
+            const links = document.querySelectorAll("#mainNav a");
+            for (let i = 0; i < links.length; i++) {
+                links[i].className = "";
+            }
             
             renderArticles(articlesDatabase.filter(t => t.title.toLowerCase().includes(e) || t.content.toLowerCase().includes(e)));
             backToGrid();
