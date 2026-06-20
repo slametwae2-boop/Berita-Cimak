@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Informasi & Berita</title>
+    <title>Portal Informasi & Berita Terintegrasi</title>
     <style>
         /* CSS RESET & GENERAL STYLES */
         * {
@@ -19,9 +19,9 @@
 
         /* HEADER STYLES */
         header {
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('logo.jpg') no-repeat center center/cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('logo.jpg') no-repeat center center/cover;
             color: white;
-            padding: 35px 20px;
+            padding: 30px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -42,9 +42,6 @@
             text-align: right;
             font-family: 'Courier New', Courier, monospace;
             text-shadow: 2px 2px 4px rgba(0,0,0,1);
-            padding: 0;
-            background: none;
-            border: none;
         }
         .live-clock {
             font-size: 20px;
@@ -58,7 +55,36 @@
             font-weight: bold;
         }
 
-        /* NAVIGATION BAR - LOGIKA HOVER DINAMIS */
+        /* SEARCH BAR COMPONENT */
+        .search-container {
+            display: flex;
+            background: #fff;
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .search-input {
+            border: none;
+            padding: 6px 10px;
+            outline: none;
+            font-size: 13px;
+            width: 180px;
+        }
+        .search-btn {
+            background: #ff6600;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .search-btn:hover {
+            background: #e65c00;
+        }
+
+        /* NAVIGATION BAR WITH DINAMIC HOVER */
         nav {
             background-color: #ffffff;
             border-bottom: 1px solid #e0e0e0;
@@ -69,7 +95,7 @@
         }
         nav a {
             text-decoration: none;
-            color: #000000; /* Warna dasar semua teks adalah hitam pekat */
+            color: #000000;
             font-size: 14px; 
             font-weight: bold;
             white-space: nowrap;
@@ -79,26 +105,20 @@
             border-bottom: 2px solid transparent; 
             transition: color 0.15s ease-in-out, border-bottom 0.15s ease-in-out;
         }
-        
-        /* 1. Kondisi awal (Menu Home aktif warna oranye & bergaris bawah) */
         nav a.active {
             color: #ff6600;
             border-bottom: 2px solid #ff6600;
         }
-
-        /* 2. Saat kursor masuk area nav, matikan warna oranye pada menu Home yang aktif */
         nav:hover a.active {
             color: #000000;
             border-bottom: 2px solid transparent;
         }
-
-        /* 3. Nyalakan warna oranye HANYA pada menu yang sedang ditunjuk kursor saat ini */
         nav a:hover {
             color: #ff6600 !important;
-            border-bottom: 2px solid #ff6600 !important; /* Memunculkan garis bawah oranye saat di-hover */
+            border-bottom: 2px solid #ff6600 !important;
         }
 
-        /* MAIN LAYOUT STRUCTURE */
+        /* LAYOUT MAIN CONTAINER STRUCTURE */
         .container {
             max-width: 1200px;
             margin: 20px auto;
@@ -107,8 +127,6 @@
             grid-template-columns: 180px 1fr 250px;
             gap: 20px;
         }
-
-        /* SIDEBARS & CONTENT BLOCKS */
         .sidebar-left, .sidebar-right {
             display: flex;
             flex-direction: column;
@@ -137,7 +155,7 @@
             font-size: 11px;
         }
 
-        /* MAIN CONTENT AREA */
+        /* MAIN AREA & NEWS GRID CARD */
         .main-content {
             background-color: #ffffff;
             border: 1px solid #e0e0e0;
@@ -154,7 +172,47 @@
             color: #222;
         }
         
-        /* SLIDER SYSTEM STYLE */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .news-card {
+            border: 1px solid #eee;
+            border-radius: 4px;
+            overflow: hidden;
+            background: #fff;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .news-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .news-card img {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+        }
+        .news-card-body {
+            padding: 10px;
+        }
+        .news-card-tag {
+            font-size: 10px;
+            color: #ff6600;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .news-card-title {
+            font-size: 13px;
+            font-weight: bold;
+            margin: 5px 0;
+            color: #222;
+            line-height: 1.4;
+        }
+
+        /* SLIDER BANNER SYSTEM STYLES */
         .news-hero {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -168,7 +226,6 @@
             height: 220px;
             overflow: hidden;
             border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         .slider-wrapper {
             display: flex;
@@ -196,17 +253,8 @@
             height: 32px;
             border-radius: 50%;
             cursor: pointer;
-            font-weight: bold;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             z-index: 15;
         }
-        .slider-btn:hover { background: rgba(0,0,0,0.8); }
-        .slider-btn.prev { left: 10px; }
-        .slider-btn.next { right: 10px; }
-
         .slider-dots {
             position: absolute;
             bottom: 10px;
@@ -222,7 +270,6 @@
             background: rgba(255,255,255,0.5);
             border-radius: 50%;
             cursor: pointer;
-            transition: background 0.3s;
         }
         .dot.active {
             background: #ff6600;
@@ -234,6 +281,42 @@
             line-height: 1.6;
             color: #444;
         }
+
+        /* DETAIL BERITA AREA COMPONENT */
+        .detail-container {
+            display: none;
+        }
+        .btn-back {
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 6px 15px;
+            font-size: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+        .btn-back:hover { background: #555; }
+        .detail-img {
+            width: 100%;
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .detail-meta {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .detail-content {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #333;
+            text-align: justify;
+        }
+
+        /* VIDEO AREA & FOOTER STYLES */
         .video-box {
             background-color: #000;
             width: 100%;
@@ -243,7 +326,6 @@
             align-items: center;
             justify-content: center;
             color: white;
-            position: relative;
         }
         .play-button {
             width: 60px;
@@ -254,7 +336,6 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
         .play-button::after {
             content: '';
@@ -274,8 +355,6 @@
             font-size: 12px;
             margin-top: 40px;
         }
-
-        /* FLOATING WHATSAPP STYLES */
         .whatsapp-float {
             position: fixed;
             bottom: 20px;
@@ -285,63 +364,17 @@
             width: 55px;
             height: 55px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-            z-index: 100;
-            text-decoration: none;
-            transition: transform 0.2s ease;
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-        }
-        .whatsapp-float svg {
-            width: 30px;
-            height: 30px;
-            fill: white;
-        }
+            <body>
 
-        /* RESPONSIVE HP MODIFIER */
-        @media (max-width: 900px) {
-            .container {
-                grid-template-columns: 1fr;
-                margin: 10px auto;
-                gap: 15px;
-            }
-            .sidebar-left {
-                display: none;
-            }
-            .news-hero {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            .slider-container {
-                height: 180px;
-            }
-            header {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
-                padding: 20px 10px;
-            }
-            .header-meta-container {
-                width: 100%;
-                justify-content: center;
-            }
-            .live-datetime {
-                text-align: center;
-            }
-        }
-    </style>
-</head>
-
-    <body>
-
-    <!-- 1. HEADER AREA -->
+    <!-- 1. HEADER AREA WITH INTEGRATED SEARCH -->
     <header>
         <div class="header-title">Portal Informasi & Berita</div>
         <div class="header-meta-container">
+            <!-- Komponen Fitur Pencarian Artikel -->
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Cari artikel berita...">
+                <button class="search-btn" onclick="searchArticles()">Cari</button>
+            </div>
             <div class="live-datetime">
                 <div class="live-clock" id="clock">00:00:00</div>
                 <div class="live-date" id="date">Memuat tanggal...</div>
@@ -349,18 +382,18 @@
         </div>
     </header>
 
-    <!-- 2. NAVIGATION BAR (HOVER DINAMIS) -->
+    <!-- 2. NAVIGATION BAR (KATEGORI BERITA DINAMIS) -->
     <nav id="mainNav">
-        <a href="javascript:void(0)" onclick="changeMenu(this)" class="active">Home</a>
-        <a href="javascript:void(0)" onclick="changeMenu(this)">Berita</a>
-        <a href="javascript:void(0)" onclick="changeMenu(this)">Hiburan & Olahraga</a>
-        <a href="javascript:void(0)" onclick="changeMenu(this)">Wisata & Kuliner</a>
-        <a href="javascript:void(0)" onclick="changeMenu(this)">Pasang Iklan</a>
+        <a href="javascript:void(0)" onclick="filterCategory('semua', this)" class="active">Home</a>
+        <a href="javascript:void(0)" onclick="filterCategory('berita', this)">Berita</a>
+        <a href="javascript:void(0)" onclick="filterCategory('olahraga', this)">Hiburan & Olahraga</a>
+        <a href="javascript:void(0)" onclick="filterCategory('kuliner', this)">Wisata & Kuliner</a>
+        <a href="javascript:void(0)" onclick="filterCategory('iklan', this)">Pasang Iklan</a>
     </nav>
 
     <!-- 3. MAIN LAYOUT STRUCTURE -->
     <div class="container">
-        <!-- Sidebar Kiri -->
+        <!-- Sidebar Kiri (Iklan) -->
         <aside class="sidebar-left">
             <div class="ad-space vertical">
                 <div>
@@ -370,35 +403,58 @@
             </div>
         </aside>
 
-        <!-- Konten Utama Tengah -->
+        <!-- Area Konten Utama -->
         <main class="main-content">
-            <div class="section-title">Berita Utama</div>
-            <div class="news-hero">
-                <div class="slider-container">
-                    <button class="slider-btn prev" onclick="moveSlide(-1)">❮</button>
-                    <button class="slider-btn next" onclick="moveSlide(1)">❯</button>
-                    <div class="slider-wrapper" id="sliderWrapper">
-                        <div class="slide"><img src="masjid.jpg" alt="Slide 1"></div>
-                        <div class="slide"><img src="lapangan-hijau.jpg" alt="Slide 2"></div>
-                        <div class="slide"><img src="olahraga-taman.jpg" alt="Slide 3"></div>
-                        <div class="slide"><img src="pingpong.jpg" alt="Slide 4"></div>
+            
+            <!-- BLOK CONTAINER BERANDA UTAMA (DAFTAR BERITA & SLIDER) -->
+            <div id="dynamicContent">
+                <div class="section-title" id="contentTitle">Berita Utama</div>
+                
+                <!-- Sistem Slider Banner Utama -->
+                <div class="news-hero" id="heroSection">
+                    <div class="slider-container">
+                        <button class="slider-btn" style="left:10px;" onclick="moveSlide(-1)">❮</button>
+                        <button class="slider-btn" style="right:10px;" onclick="moveSlide(1)">❯</button>
+                        <div class="slider-wrapper" id="sliderWrapper">
+                            <div class="slide"><img src="masjid.jpg" alt="Slide 1"></div>
+                            <div class="slide"><img src="lapangan-hijau.jpg" alt="Slide 2"></div>
+                            <div class="slide"><img src="olahraga-taman.jpg" alt="Slide 3"></div>
+                            <div class="slide"><img src="pingpong.jpg" alt="Slide 4"></div>
+                        </div>
+                        <div class="slider-dots">
+                            <div class="dot active" onclick="currentSlide(0)"></div>
+                            <div class="dot" onclick="currentSlide(1)"></div>
+                            <div class="dot" onclick="currentSlide(2)"></div>
+                            <div class="dot" onclick="currentSlide(3)"></div>
+                        </div>
                     </div>
-                    <div class="slider-dots">
-                        <div class="dot active" onclick="currentSlide(0)"></div>
-                        <div class="dot" onclick="currentSlide(1)"></div>
-                        <div class="dot" onclick="currentSlide(2)"></div>
-                        <div class="dot" onclick="currentSlide(3)"></div>
+                    <div class="news-welcome">
+                        <p>Selamat datang di portal informasi kami. Temukan berita terupdate seputar olahraga, destinasi wisata, kuliner halal, hingga hiburan terkini di sini secara berkala setiap hari.</p>
                     </div>
                 </div>
-                <div class="news-welcome">
-                    <p>Selamat datang di portal informasi kami. Temukan berita terupdate seputar olahraga, destinasi wisata, kuliner halal, hingga hiburan terkini di sini secara berkala setiap hari.</p>
+
+                <!-- Wadah Penampung Grid Card Berita Hasil Filter Dinamis -->
+                <div class="news-grid" id="newsGridArea">
+                    <!-- Artikel akan dirender otomatis oleh JavaScript di Tahap 3 & 4 -->
+                </div>
+
+                <div class="section-title" style="margin-top: 30px;">Video Terkini</div>
+                <div class="video-box">
+                    <div class="play-button"></div>
                 </div>
             </div>
 
-            <div class="section-title">Video Terkini</div>
-            <div class="video-box">
-                <div class="play-button"></div>
+            <!-- BLOK CONTAINER DETAIL BERITA (SEMUNYI SECARA DEFAULT) -->
+            <div id="detailContent" class="detail-container">
+                <button class="btn-back" onclick="backToGrid()">❮ Kembali ke Beranda</button>
+                <h2 id="detailTitle" style="margin-bottom: 10px; color: #222;">Judul Berita</h2>
+                <div class="detail-meta" id="detailMeta">Oleh: Redaksi | 20 Juni 2026</div>
+                <img id="detailImage" class="detail-img" src="" alt="Gambar Detail">
+                <div class="detail-content" id="detailBody">
+                    <!-- Isi lengkap artikel berita akan diisi di sini -->
+                </div>
             </div>
+
         </main>
 
         <!-- Sidebar Kanan -->
@@ -418,21 +474,78 @@
         </aside>
     </div>
 
-    <!-- 4. FOOTER AREA -->
+    <!-- FOOTER AREA -->
     <footer>
-        &copy; 2026 Portal Berita Anda. Copyright All Rights Reserved.
+        &copy; 2026 Portal Berita Terintegrasi. Copyright All Rights Reserved.
     </footer>
 
-        <!-- 5. FLOATING WHATSAPP BUTTON WITH SVG ICON -->
+    <!-- TOMBOL FLOATING WHATSAPP -->
     <a href="https://wa.me" class="whatsapp-float" target="_blank" title="Hubungi Kami via WhatsApp">
         <svg viewBox="0 0 448 512">
             <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
         </svg>
     </a>
-
-    <!-- 6. SYSTEM JAVASCRIPT CONTROLLER -->
+            <!-- 6. ENGINE CONTROLLER JAVASCRIPT SYSTEM -->
     <script>
-        // MANAJEMEN JAM REALTIME
+        // DATABASE ARTIKEL BERITA LENGKAP & BERBOBOT
+        const articlesDatabase = [
+            {
+                id: 1,
+                title: "Peresmian Megah Masjid Raya Kota Menjadi Pusat Peradaban dan Edukasi Modern",
+                category: "berita",
+                image: "masjid.jpg",
+                author: "Andi Saputra",
+                date: "20 Juni 2026",
+                content: "Masjid Raya Kota akhirnya resmi dibuka untuk seluruh masyarakat umum mulai hari ini setelah melalui proses renovasi total selama dua tahun terakhir. Acara peresmian yang megah ini dihadiri langsung oleh gubernur, jajaran tokoh lintas agama, serta ribuan warga setempat yang memadati area pelataran sejak pagi hari. Selain berfungsi sebagai tempat ibadah utama, kompleks masjid baru ini juga didesain untuk menjadi pusat peradaban baru bagi generasi muda. Pengelola telah menyediakan fasilitas perpustakaan digital modern dengan akses ribuan jurnal ilmiah, ruang pertemuan berbasis teknologi, serta area taman terbuka hijau yang ramah anak. Gubernur dalam pidatonya menyampaikan harapan besar agar tempat ibadah ini tidak hanya ramai saat waktu salat saja, melainkan juga dipenuhi oleh aktivitas produktif kemasyarakatan, kajian ilmiah, serta kegiatan ekonomi syariah yang dapat membantu menyejahterakan warga di sekitar lingkungan masjid."
+            },
+            {
+                id: 2,
+                title: "Persiapan Intensif Pemeliharaan Rumput Stadion Utama Menjelang Kompetisi Internasional",
+                category: "olahraga",
+                image: "lapangan-hijau.jpg",
+                author: "Budi Pratama",
+                date: "19 Juni 2026",
+                content: "Menjelang bergulirnya kompetisi sepak bola internasional yang akan mempertemukan klub-klub besar bulan depan, pengelola stadion utama mulai melakukan perawatan dan sterilisasi rumput lapangan secara intensif. Jenis rumput khusus yang digunakan saat ini memerlukan teknik penyiraman dan pemotongan berkala dengan standar tinggi agar kelenturan serta ketebalannya tetap terjaga dengan baik. Tim ahli agronomi dikerahkan untuk memantau kadar keasaman tanah serta sistem drainase di bawah lapangan guna mengantisipasi terjadinya genangan air jika hujan deras mengguyur selama pertandingan berlangsung. Kepala pengelola stadion menegaskan bahwa pemeliharaan ini dilakukan secara menyeluruh demi memastikan performa para atlet di lapangan dapat keluar secara optimal, menjaga keselamatan pemain dari risiko cedera akibat kontur tanah yang tidak rata, serta memenuhi seluruh regulasi kelayakan stadion yang ditetapkan oleh federasi sepak bola dunia."
+            },
+            {
+                id: 3,
+                title: "Panduan dan Manfaat Olahraga Ringan di Area Terbuka Hijau pada Sore Hari",
+                category: "olahraga",
+                image: "olahraga-taman.jpg",
+                author: "Siti Rahma",
+                date: "18 Juni 2026",
+                content: "Melakukan aktivitas fisik ringan seperti jogging, berjalan santai, atau yoga di area ruang terbuka hijau ternyata memiliki dampak yang sangat positif bagi kesehatan tubuh dan mental manusia. Berdasarkan studi kesehatan terbaru, berolahraga di bawah paparan udara segar sore hari yang dikelilingi pepohonan mampu menurunkan kadar hormon kortisol penyebab stres secara signifikan setelah seharian penuh bergelut dengan rutinitas pekerjaan. Di kota-kota besar, fasilitas lintasan lari (jogging track) yang disediakan pemerintah di taman kota kini mulai ramai dipadati warga setiap pukul empat sore. Selain gratis, berolahraga di fasilitas umum seperti ini juga membangun interaksi sosial yang sehat antar warga. Para ahli kesehatan menyarankan masyarakat untuk meluangkan waktu minimal tiga puluh menit setiap hari untuk bergerak aktif demi menjaga stabilitas metabolisme, meningkatkan kualitas tidur malam, serta memperkuat sistem kekebalan tubuh dari berbagai ancaman penyakit."
+            },
+            {
+                id: 4,
+                title: "Keseruan Turnamen Tenis Meja Antar Komunitas Guna Menjaring Bibit Atlet Muda Berbakat",
+                category: "olahraga",
+                image: "pingpong.jpg",
+                author: "Rian Hidayat",
+                date: "17 Juni 2026",
+                content: "Turnamen tenis meja amatir tingkat regional akhir pekan ini sukses mempertemukan puluhan klub dan komunitas pingpong dari berbagai pelosok daerah. Kompetisi yang berlangsung ketat selama tiga hari berturut-turut ini tidak hanya menyajikan tontonan olahraga yang menghibur, tetapi juga menjadi ajang pembuktian bakat bagi para pemain non-profesional. Pihak panitia penyelenggara menjelaskan bahwa tujuan utama diadakannya turnamen ini adalah untuk kembali membangkitkan gairah olahraga tenis meja di tingkat akar rumput sekaligus melakukan pemantauan terhadap bakat-bakat terpendam dari para pemain usia remaja. Para pemenang dari turnamen ini nantinya akan mendapatkan pembinaan khusus dan beasiswa pelatihan dari dinas pemuda dan olahraga setempat agar mereka siap diterjunkan ke ajang kejuaraan resmi yang berskala lebih besar, baik di tingkat provinsi maupun nasional pada musim depan."
+            },
+            {
+                id: 5,
+                title: "Festival Kuliner Tradisional Nusantara Resmi Dibuka dengan Jaminan Produk Halal",
+                category: "kuliner",
+                image: "lapangan-hijau.jpg",
+                author: "Dewi Lestari",
+                date: "16 Juni 2026",
+                content: "Gelaran tahunan Festival Kuliner Nusantara resmi dibuka hari ini dengan menghadirkan lebih dari seratus stan makanan tradisional autentik yang berasal dari berbagai daerah di seluruh penjuru Indonesia. Mulai dari makanan berat seperti rendang khas Minang dan gudeg Jogja, hingga jajanan pasar yang mulai langka, semuanya dapat ditemukan di area festival ini. Yang menarik dari festival tahun ini adalah aturan ketat dari pihak penyelenggara yang mewajibkan seluruh pelaku usaha kuliner untuk memiliki sertifikasi halal resmi. Langkah ini diambil guna memberikan rasa aman, nyaman, dan kepastian bagi para pengunjung yang ingin mencicipi aneka ragam kuliner nusantara tanpa rasa ragu. Dinas pariwisata setempat menargetkan festival ini mampu menarik puluhan ribu wisatawan domestik maupun mancanegara serta membantu mendongkrak roda perekonomian para pelaku UMKM sektor makanan pasca masa pandemi."
+            },
+            {
+                id: 6,
+                title: "Penawaran Khusus Slot Iklan Banner Strategis untuk Mengembangkan Bisnis UMKM Anda",
+                category: "iklan",
+                image: "masjid.jpg",
+                author: "Tim Pemasaran",
+                date: "15 Juni 2026",
+                content: "Bagi Anda para pemilik usaha kecil dan menengah (UMKM) yang ingin memperluas jangkauan pasar dan meningkatkan volume penjualan produk, portal berita kami membuka kesempatan emas promosi melalui slot iklan banner digital. Berdasarkan data analitik bulanan, portal informasi kami dikunjungi oleh ratusan ribu pembaca aktif setiap harinya dengan tingkat interaksi halaman yang sangat tinggi. Kami menyediakan berbagai pilihan posisi iklan yang sangat strategis, mulai dari banner vertikal pada bagian menu kiri halaman, banner tengah di sela-sela artikel berita, hingga banner premium di bagian bawah menu navigasi utama. Khusus untuk bulan ini, tim pemasaran kami memberikan potongan harga sewa slot iklan hingga lima puluh persen bagi pelaku usaha lokal, lengkap dengan fasilitas bantuan pembuatan desain grafis promo banner secara gratis agar materi iklan Anda terlihat menarik dan profesional bagi calon konsumen."
+            }
+        ];
+
+         // 1. MANAJEMEN LIVE CLOCK & DATETIME REALTIME
         function updateDateTime() {
             const now = new Date();
             const hours = String(now.getHours()).padStart(2, '0');
@@ -446,17 +559,100 @@
         setInterval(updateDateTime, 1000);
         updateDateTime();
 
-        // MANAJEMEN KLIK NAVIGASI MENU (KLIK PERMANEN)
-        function changeMenu(element) {
-            const links = document.querySelectorAll('#mainNav a');
-            links.forEach(link => {
-                link.classList.remove('active');
+        // 2. FUNGSI UTAMA UNTUK RENDERING GRID CARD BERITA
+        function renderArticles(articlesList) {
+            const gridArea = document.getElementById('newsGridArea');
+            gridArea.innerHTML = "";
+
+            if (articlesList.length === 0) {
+                gridArea.innerHTML = "<p style='grid-column: 1/-1; text-align:center; padding: 35px 20px; color:#999; font-size:13px;'>Maaf, artikel berita tidak ditemukan atau kata kunci tidak cocok...</p>";
+                return;
+            }
+
+            articlesList.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "news-card";
+                card.onclick = () => showDetailArticle(item.id);
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    <div class="news-card-body">
+                        <span class="news-card-tag">${item.category}</span>
+                        <h4 class="news-card-title">${item.title}</h4>
+                        <p style="font-size:11px; color:#777;">${item.date}</p>
+                    </div>
+                `;
+                gridArea.appendChild(card);
             });
-            // Saat diklik, menu tersebut menjadi menu aktif utama menggantikan Home
-            element.classList.add('active');
         }
 
-        // MANAJEMEN BANNER SLIDER AUTOMATIC / MANUAL
+        // 3. FUNGSI FILTER KATEGORI MENU NAVIGASI DINAMIS
+        function filterCategory(categoryName, element) {
+            const links = document.querySelectorAll('#mainNav a');
+            links.forEach(link => link.classList.remove('active'));
+            element.classList.add('active');
+
+            const hero = document.getElementById('heroSection');
+            if (categoryName === 'semua') {
+                hero.style.display = "grid";
+                document.getElementById('contentTitle').textContent = "Berita Utama";
+                renderArticles(articlesDatabase);
+            } else {
+                hero.style.display = "none";
+                document.getElementById('contentTitle').textContent = "Kategori: " + categoryName;
+                const filtered = articlesDatabase.filter(art => art.category === categoryName);
+                renderArticles(filtered);
+            }
+            backToGrid();
+        }
+
+        // 4. FUNGSI SEARCH ENGINE INTERNAL (PENCARIAN KATA KUNCI)
+        function searchArticles() {
+            const keyword = document.getElementById('searchInput').value.toLowerCase().trim();
+            const hero = document.getElementById('heroSection');
+            hero.style.display = "none";
+            
+            document.getElementById('contentTitle').textContent = "Hasil Pencarian: \"" + keyword + "\"";
+            
+            const results = articlesDatabase.filter(art => 
+                art.title.toLowerCase().includes(keyword) || 
+                art.content.toLowerCase().includes(keyword)
+            );
+            
+            renderArticles(results);
+            backToGrid();
+            
+            // Tambahan agar input box mendeteksi tombol Enter
+            document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchArticles();
+                }
+            });
+        }
+
+        // 5. FUNGSI MENAMPILKAN DETAIL ISI BERITA LENGKAP (SPA SYSTEM)
+        function showDetailArticle(id) {
+            const article = articlesDatabase.find(art => art.id === id);
+            if (!article) return;
+
+            document.getElementById('dynamicContent').style.display = "none";
+            
+            const detailArea = document.getElementById('detailContent');
+            document.getElementById('detailTitle').textContent = article.title;
+            document.getElementById('detailMeta').textContent = `Kategori: ${article.category.toUpperCase()} | Penulis: ${article.author} | Terbit: ${article.date}`;
+            document.getElementById('detailImage').src = article.image;
+            document.getElementById('detailBody').textContent = article.content;
+            
+            detailArea.style.display = "block";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 6. FUNGSI TOMBOL KEMBALI KE BERANDA GRID
+        function backToGrid() {
+            document.getElementById('detailContent').style.display = "none";
+            document.getElementById('dynamicContent').style.display = "block";
+        }
+
+        // 7. INTERAKSI BANNER SLIDER BERITA UTAMA AUTOMATIC / MANUAL
         let currentIndex = 0;
         const totalSlides = 4;
         const wrapper = document.getElementById('sliderWrapper');
@@ -466,11 +662,7 @@
         function updateSliderPosition() {
             wrapper.style.transform = 'translateX(' + (-currentIndex * 25) + '%)';
             dots.forEach((dot, idx) => {
-                if(idx === currentIndex) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
+                dot.classList.toggle('active', idx === currentIndex);
             });
         }
         function autoSlide() {
@@ -489,6 +681,11 @@
             updateSliderPosition();
             slideInterval = setInterval(autoSlide, 4000);
         }
+
+        // MENJALANKAN RENDERING DATA PERTAMA KALI KETIKA WEBSITE DIBUKA
+        window.onload = () => {
+            renderArticles(articlesDatabase);
+        };
     </script>
 </body>
 </html>
