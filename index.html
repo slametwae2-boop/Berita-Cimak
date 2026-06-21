@@ -601,21 +601,21 @@ if (typeof renderArticles === "function") {
         }
 
        function filterCategory(e, t) {
-    // 1. Paksa semua menu kembali jadi biru tua, tanpa garis bawah, dan HAPUS class active
+    // 1. Hapus class 'active' dari semua menu navigasi
     const links = document.querySelectorAll("#mainNav a");
     links.forEach(el => {
-        el.classList.remove('active'); 
-        el.style.setProperty('color', '#1a2a40', 'important');
-        el.style.setProperty('border-bottom', '2px solid transparent', 'important');
+        el.classList.remove('active');
+        // Bersihkan sisa style warna manual lama jika ada
+        el.style.removeProperty('color');
+        el.style.removeProperty('border-bottom');
     });
 
-    // 2. Paksa menu yang diklik berubah jadi Oranye!
+    // 2. Tambahkan class 'active' HANYA ke menu yang sedang diklik
     if (t) {
-        t.style.setProperty('color', '#ff6600', 'important');
-        t.style.setProperty('border-bottom', '2px solid #ff6600', 'important');
+        t.classList.add('active');
     }
 
-    // 3. Logika Filter Artikel (Sekarang berada di dalam fungsi yang sama)
+    // 3. Logika filter konten utama halaman Home
     const n = document.getElementById("heroSection");
     if ("semua" === e) {
         if (n) n.style.display = "grid";
