@@ -229,8 +229,12 @@
 
     <!-- 1. HEADER AREA WITH LIVE CLOCK -->
     <header>
+        <!-- Judul Utama Portal Berita Anda -->
+        <div class="header-title">BERITA CIMAK</div>
+        
         <div class="header-meta-container" style="margin-left: auto;">
             <div class="live-datetime">
+                <!-- ID di sini menggunakan 'clock' dan 'date' -->
                 <div class="live-clock" id="clock">00:00:00</div>
                 <div class="live-date" id="date">Memuat tanggal...</div>
             </div>
@@ -248,17 +252,10 @@
             <a href="javascript:void(0)" onclick="filterCategory('iklan', this)">Pasang Iklan</a>
         </div>
         
-        <!-- Lajur Kotak Pencarian Kanan bentuk Kapsul Soft (Teks Hilang Saat Diklik) -->
+        <!-- Lajur Kotak Pencarian Kanan bentuk Kapsul Soft -->
         <div class="search-wrapper-box">
             <input type="text" id="searchInput" placeholder="Apa yang kamu cari?" onfocus="this.placeholder=''" onblur="this.placeholder='Apa yang kamu cari?'">
             <button onclick="searchArticles()">Search</button>
-        </div>
-    </div>
-        
-        <!-- Lajur Kotak Pencarian Kanan -->
-        <div class="search-wrapper-box">
-            <input type="text" id="searchInput" class="search-input" placeholder="Cari..." style="border: none; padding: 6px 10px; outline: none; font-size: 13px; width: 180px;">
-            <button class="search-btn" onclick="searchArticles()" style="background: #ff6600; color: white; border: none; padding: 6px 12px; border-radius: 3px; cursor: pointer; font-size: 12px; font-weight: bold; position: relative; z-index: 300;">Cari</button>
         </div>
     </div>
         
@@ -316,6 +313,7 @@
                         style="border: none;">
                     </iframe>
                 </div>
+            </div> <!-- PERBAIKAN: Tag penutup /div untuk dynamicContent yang sempat hilang wajib dipasang di sini -->
 
             <!-- BLOK CONTAINER DETAIL BERITA -->
             <div id="detailContent" class="detail-container">
@@ -344,7 +342,7 @@
         </aside>
     </div>
 
-    <!-- FOOTER CLEAN (TOMBOL KELOLA RAHASIA SUDAH DIHAPUS) -->
+    <!-- FOOTER CLEAN -->
     <footer>
         <div style="text-align: center; max-width: 1200px; margin: auto; padding: 0 15px;">
             <span>&copy; 2026 Portal Berita Terintegrasi. Copyright All Rights Reserved.</span>
@@ -583,10 +581,9 @@
             // Jika posisi jendela sedang tertutup, minta password dulu saat mau dibuka
             if (adminSection.style.display === 'none' || adminSection.style.display === '') {
                 
-                // SILAKAN GANTI TULISAN "admincimak123" DI BAWAH INI DENGAN PASSWORD KEINGINAN ANDA
+                // SILAKAN GANTI TULISAN DI BAWAH INI DENGAN PASSWORD KEINGINAN ANDA
                 const passwordRahasia = "ownercimak121245"; 
-                
-                const inputUser = prompt("Masukkan Password Rahaksi / Admin Berita Cimak:");
+                const inputUser = prompt("Masukkan Password Redaksi / Admin Berita Cimak:");
                 
                 if (inputUser === passwordRahasia) {
                     adminSection.style.display = 'flex'; // Password benar, formulir terbuka
@@ -598,8 +595,7 @@
                 // Jika posisi jendela sedang terbuka, langsung tutup saja tanpa minta password
                 adminSection.style.display = 'none';
             }
-        }
-        }
+        } // PERBAIKAN: Kelebihan kurung kurawal ganda yang merusak skrip sudah dihapus dari sini
 
         // Fungsi Memproses dan Menerbitkan Berita Baru ke Depan Layar
         function saveNewArticle() {
