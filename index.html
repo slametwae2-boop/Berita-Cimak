@@ -385,7 +385,7 @@
                     <h3>Tambah Artikel Berita Baru</h3>
                     
                     <label>Judul Berita:</label>
-                    <input type="text" id="txTitle" placeholder="Masukkan judul berita panjang...">
+                    <input type="text" id="txTitle" placeholder="Masukkan judul berita panjang..." onfocus="this.placeholder=''" onblur="this.placeholder='Masukkan judul berita panjang...'">
                     
                     <label>Kategori:</label>
                     <select id="lmCategory">
@@ -398,11 +398,10 @@
 <input type="file" id="fiMedia" accept="image/*,video/*" style="padding: 5px; background: #fff; width: 100%; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 15px; box-sizing: border-box;">
 
 <label>Nama Penulis:</label>
-<input type="text" id="txAuthor" placeholder="Contoh: Redaksi">
+<input type="text" id="txAuthor" placeholder="Contoh: Redaksi" onfocus="this.placeholder=''" onblur="this.placeholder='Contoh: Redaksi'">
 
 <label>Isi Lengkap Artikel Berita:</label>
-<textarea id="txContent" placeholder="Tuliskan isi paragraf berita secara lengkap di sini..."></textarea>
-
+<textarea id="txContent" placeholder="Tuliskan isi paragraf berita secara lengkap di sini..." onfocus="this.placeholder=''" onblur="this.placeholder='Tuliskan isi paragraf berita secara lengkap di sini...'"></textarea>
 <button class="btn-submit" onclick="window.parent.processNewArticle(
     document.getElementById('txTitle').value,
     document.getElementById('lmCategory').value,
