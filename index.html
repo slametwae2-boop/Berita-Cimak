@@ -349,34 +349,117 @@
         </div>
     </footer>
 
-    <!-- BLOK HALAMAN KELOLA BERITA (ADMIN PANEL - ANTI BLOKIR CSS) -->
+    <!-- BLOK HALAMAN KELOLA BERITA (ADMIN PANEL - SOLUSI ISOLASI IFRAME) -->
     <div id="adminPanelSection" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 999999; justify-content: center; align-items: center; padding: 15px;">
-        <div style="background: #fff; width: 100%; max-width: 500px; padding: 25px; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.2); position: relative; max-height: 90vh; overflow-y: auto;">
-            <span onclick="toggleAdminPanel()" style="position: absolute; top: 15px; right: 20px; font-size: 22px; cursor: pointer; color: #999;">&times;</span>
-            <h3 style="margin-bottom: 20px; color: #1a2a40; border-bottom: 2px solid #ff6600; padding-bottom: 8px;">Tambah Artikel Berita Baru</h3>
+        <div style="background: #fff; width: 100%; max-width: 500px; height: 520px; padding: 10px; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.2); position: relative;">
             
-            <!-- Menggunakan TEXTAREA agar tidak terblokir oleh CSS body > input -->
-            <label style="display:block; font-size:12px; font-weight:bold; margin-bottom:5px; color:#555;">Judul Berita:</label>
-            <textarea id="adminTitle" style="width:100%; height:40px; padding:8px; margin-bottom:15px; border:1px solid #ccc; border-radius:4px; outline:none; font-family:Arial; resize:none;" placeholder="Masukkan judul berita panjang..."></textarea>
+            <!-- Tombol silang untuk menutup panel admin -->
+            <span onclick="document.getElementById('adminPanelSection').style.display='none'" style="position: absolute; top: 10px; right: 20px; font-size: 26px; cursor: pointer; color: #999; z-index: 1000000; font-weight: bold;">&times;</span>
             
-            <label style="display:block; font-size:12px; font-weight:bold; margin-bottom:5px; color:#555;">Kategori:</label>
-            <select id="adminCategory" style="width:100%; padding:8px; margin-bottom:15px; border:1px solid #ccc; border-radius:4px; outline:none;">
-                <option value="berita">Berita</option>
-                <option value="olahraga">Hiburan & Olahraga</option>
-                <option value="kuliner">Wisata & Kuliner</option>
-            </select>
-            
-            <!-- Menggunakan TEXTAREA agar tidak terblokir oleh CSS body > input -->
-            <label style="display:block; font-size:12px; font-weight:bold; margin-bottom:5px; color:#555;">Nama Penulis:</label>
-            <textarea id="adminAuthor" style="width:100%; height:40px; padding:8px; margin-bottom:15px; border:1px solid #ccc; border-radius:4px; outline:none; font-family:Arial; resize:none;" placeholder="Contoh: Redaksi"></textarea>
-            
-            <label style="display:block; font-size:12px; font-weight:bold; margin-bottom:5px; color:#555;">Isi Lengkap Artikel Berita:</label>
-            <textarea id="adminContent" style="width:100%; height:120px; padding:8px; margin-bottom:20px; border:1px solid #ccc; border-radius:4px; outline:none; font-family:Arial; resize:vertical;" placeholder="Tuliskan isi paragraf berita secara lengkap di sini..."></textarea>
-            
-            <!-- Tombol diganti menjadi tag DIV yang menyamar jadi tombol agar tidak disembunyikan CSS -->
-            <div onclick="saveNewArticle()" style="width:100%; background:#ff6600; color:#fff; text-align:center; padding:12px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:14px; user-select:none;">🚀 Terbitkan Berita</div>
+            <!-- Ruang Isolasi Mandiri: Kebal terhadap semua aturan CSS Brutal di luar -->
+            <iframe id="adminFrame" style="width: 100%; height: 100%; border: none; overflow: hidden;"></iframe>
         </div>
     </div>
+
+    <!-- Sistem injeksi formulir anti-blokir -->
+    <script>
+        (function() {
+            const frame = document.getElementById('adminFrame');
+            const doc = frame.contentDocument || frame.contentWindow.document;
+            
+            const formHTML = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <style>
+                        body { font-family: Arial, sans-serif; margin: 0; padding: 15px; color: #333; background: #fff; }
+                        h3 { margin-top: 0; margin-bottom: 20px; color: #1a2a40; border-bottom: 2px solid #ff6600; padding-bottom: 8px; font-size: 18px; }
+                        label { display: block; font-size: 12px; font-weight: bold; margin-bottom: 5px; color: #555; }
+                        input, select, textarea { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 13px; outline: none; }
+                        textarea { height: 100px; resize: vertical; }
+                        .btn-submit { width: 100%; background: #ff6600; color: #fff; border: none; padding: 12px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 14px; text-align: center; }
+                        .btn-submit:hover { background: #e65c00; }
+                    </style>
+                </head>
+                <body>
+                    <h3>Tambah Artikel Berita Baru</h3>
+                    
+                    <label>Judul Berita:</label>
+                    <input type="text" id="txTitle" placeholder="Masukkan judul berita panjang...">
+                    
+                    <label>Kategori:</label>
+                    <select id="lmCategory">
+                        <option value="berita">Berita</option>
+                        <option value="olahraga">Hiburan & Olahraga</option>
+                        <option value="kuliner">Wisata & Kuliner</option>
+                    </select>
+                    
+                    <label>Nama Penulis:</label>
+                    <input type="text" id="txAuthor" placeholder="Contoh: Redaksi">
+                    
+                    <label>Isi Lengkap Artikel Berita:</label>
+                    <textarea id="txContent" placeholder="Tuliskan isi paragraf berita secara lengkap di sini..."></textarea>
+                    
+                    <button class="btn-submit" onclick="window.parent.processNewArticle(
+                        document.getElementById('txTitle').value,
+                        document.getElementById('lmCategory').value,
+                        document.getElementById('txAuthor').value,
+                        document.getElementById('txContent').value
+                    )">🚀 Terbitkan Berita</button>
+                </body>
+                </html>
+            `;
+            doc.open();
+            doc.write(formHTML);
+            doc.close();
+        })();
+
+        // Jembatan data untuk memproses inputan dari dalam iframe ke database utama Anda
+        function processNewArticle(title, category, author, content) {
+            const titleInput = title.trim();
+            const categoryInput = category;
+            const authorInput = author.trim();
+            const contentInput = content.trim();
+
+            if (!titleInput || !authorInput || !contentInput) {
+                alert("Mohon maaf, semua kolom input data berita wajib diisi lengkap!");
+                return;
+            }
+
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = now.toLocaleDateString('id-ID', options);
+
+            let imageDefault = "lapangan-hijau.jpg";
+            if (categoryInput === 'berita') imageDefault = "masjid.jpg";
+            if (categoryInput === 'kuliner') imageDefault = "olahraga-taman.jpg";
+
+            const newArticle = {
+                id: articlesDatabase.length + 1,
+                title: titleInput,
+                category: categoryInput,
+                image: imageDefault,
+                author: authorInput,
+                date: formattedDate,
+                content: contentInput
+            };
+
+            articlesDatabase.unshift(newArticle);
+            renderArticles(articlesDatabase);
+
+            // Bersihkan form di dalam iframe setelah sukses terbit
+            const frameDoc = document.getElementById('adminFrame').contentDocument;
+            frameDoc.getElementById('txTitle').value = '';
+            frameDoc.getElementById('txAuthor').value = '';
+            frameDoc.getElementById('txContent').value = '';
+
+            // Tutup panel admin
+            document.getElementById('adminPanelSection').style.display = 'none';
+            alert("Selamat! Berita baru Anda berhasil diterbitkan secara live di beranda.");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+Use code with caution.💡 Apa Saja yang Berubah?Kebal CSS: Karena form ditaruh di dalam dokumen terpisah (iframe), dia tidak akan bisa dijangkau atau dihapus lagi oleh kode pengunci CSS eksternal Anda. Kotak judul dan nama penulis dipastikan akan muncul dengan aman.Pembersihan Fungsi: Kode ini mengganti fungsi penampung lama dengan processNewArticle yang bertugas sebagai jembatan data agar pengiriman teks berita baru ke halaman depan tetap berjalan normal tanpa kendala.Silakan ganti bagian tersebut, simpan file, lalu uji coba kembali. Kotak input ketikan Anda kini pasti sudah keluar secara utuh!
 
     <!-- TOMBOL FLOATING WHATSAPP (SUDAH TERHUBUNG KE NOMOR ANDA) -->
     <a href="https://wa.me..." class="whatsapp-float" target="_blank" title="Hubungi Kami via WhatsApp">
