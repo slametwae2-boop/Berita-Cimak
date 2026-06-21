@@ -267,7 +267,7 @@ header {
         <!-- Lajur Menu Kiri -->
         <div id="mainNav" class="nav-links">
     <a href="#" class="nav-link active" onclick="filterCategory('semua', this)">Home</a>
-    <a href="berita.html">Berita</a>
+    <a href="#" class="nav-link" onclick="filterCategory('berita', this)">Berita</a>
     <a href="hiburan-olahraga.html">Hiburan & Olahraga</a> <!-- Sesuai nama file Anda -->
     <a href="wisata-kuliner.html">Wisata & Kuliner</a>   <!-- Sesuai nama file Anda -->
     <a href="pasang-iklan.html" class="btn-ads">Pasang Iklan</a> <!-- Sesuai nama file Anda -->
@@ -601,20 +601,23 @@ if (typeof renderArticles === "function") {
         }
 
        function filterCategory(e, t) {
-    // 1. Hapus class 'active' dari semua menu navigasi agar tidak ganda
-    const links = document.querySelectorAll('.nav-link, nav a'); 
+    // 1. Bersihkan class 'active' dan style oranye dari SEMUA link navigasi di halaman
+    const links = document.querySelectorAll('.nav-link, .nav-tabs a, nav a, [onclick^="filterCategory"]'); 
     links.forEach(el => {
         el.classList.remove('active');
         el.style.removeProperty('color');
         el.style.removeProperty('border-bottom');
     });
 
-    // 2. Tambahkan class 'active' hanya ke menu yang diklik
+    // 2. Tambahkan warna aktif HANYA pada menu yang baru saja diklik
     if (t) {
         t.classList.add('active');
+    } else if (event && event.currentTarget) {
+        // Cadangan otomatis jika browser mendeteksi klik lewat event global
+        event.currentTarget.classList.add('active');
     }
 
-    // 3. Logika filter konten utama halaman bawaan Anda
+    // 3. Logika filter konten utama halaman bawaan website Anda
     const n = document.getElementById("heroSlider");
     if ("semua" === e || "home" === e) {
         if (n) n.style.display = "grid";
@@ -623,7 +626,10 @@ if (typeof renderArticles === "function") {
     } else {
         if (n) n.style.display = "none";
         document.getElementById("contentTitle").textContent = e.toUpperCase();
-        renderArticles(articlesDatabase.filter(art => art.category.toLowerCase() === e.toLowerCase()));
+        
+        // Filter artikel berdasarkan kategori yang dipilih
+        const filtered = articlesDatabase.filter(art => art.category.toLowerCase() === e.toLowerCase());
+        renderArticles(filtered);
     }
 }
 
