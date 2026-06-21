@@ -515,7 +515,7 @@ header {
         
         <!-- 4. ENGINE CONTROLLER JAVASCRIPT SYSTEM -->
     <script>
-        const articlesDatabase = [
+        let articlesDatabase = [
             {
                 id: 6,
                 title: "Menikmati Wajah Baru Wisata Situ Cipondoh Tangerang yang Mirip Opera House",
@@ -721,7 +721,62 @@ header {
         document.getElementById("searchInput").addEventListener("keypress", function(e) {
             if("Enter" === e.key) searchArticles();
         });
+// FUNGSI UNTUK MENERIMA INPUT DARI FORM DAN MEMASUKKANNYA KE BERANDA
+function terbitkanBerita() {
+    // 1. Ambil nilai berdasarkan ID asli dari form Anda
+    const judulInput = document.getElementById('txTitle');
+    const kategoriSelect = document.getElementById('lmCategory');
+    const penulisInput = document.getElementById('txAuthor');
+    const isiTextarea = document.getElementById('txContent');
+    const fileInput = document.getElementById('fiMedia');
 
+    if (!judulInput || !isiTextarea) {
+        alert("Sistem gagal mendeteksi form. Pastikan elemen form terpasang dengan benar.");
+        return;
+    }
+
+    // 2. SINKRONISASI: Ubah teks panjang dari form dropdown menjadi kata kunci filter navigasi Anda
+    let kategoriFix = "semua";
+    const kategoriRaw = kategoriSelect ? kategoriSelect.value : "";
+    
+    if (kategoriRaw.includes("Berita")) kategoriFix = "berita";
+    else if (kategoriRaw.includes("Olahraga") || kategoriRaw.includes("Hiburan")) kategoriFix = "olahraga";
+    else if (kategoriRaw.includes("Kuliner") || kategoriRaw.includes("Wisata")) kategoriFix = "kuliner";
+    else if (kategoriRaw.includes("Iklan")) kategoriFix = "iklan";
+
+    // 3. Ambil nama file gambar jika ada, jika tidak pakai gambar default
+    let namaGambar = "lapangan-hijau.jpg";
+    if (fileInput && fileInput.files.length > 0) {
+        namaGambar = fileInput.files[0].name; // Mengambil nama file yang diunggah
+    }
+
+    // 4. Buat struktur objek artikel baru agar sama persis dengan database Anda
+    const artikelBaru = {
+        id: Date.now(), // Membuat ID unik berdasarkan waktu milidetik saat ini
+        title: judulInput.value,
+        category: kategoriFix,
+        image: namaGambar,
+        author: penulisInput ? penulisInput.value : "Redaksi",
+        date: new Date().toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" }),
+        content: isiTextarea.value
+    };
+
+    // 5. Masukkan ke dalam database di urutan paling atas (unshift)
+    articlesDatabase.unshift(artikelBaru);
+
+    // 6. Jalankan fungsi penampil bawaan Anda agar layar beranda langsung terbarui otomatis
+    renderArticles(articlesDatabase);
+
+    // 7. Berikan notifikasi sukses kepada user
+    alert("Selamat! Berita baru Anda beserta medianya berhasil diterbitkan secara live di beranda.");
+
+    // 8. Kosongkan kembali isi form setelah berhasil terbit
+    judulInput.value = "";
+    isiTextarea.value = "";
+    if (penulisInput) penulisInput.value = "";
+    if (fileInput) fileInput.value = "";
+}
+        
         window.onload = () => { 
             renderArticles(articlesDatabase); 
             updateClock();
