@@ -604,20 +604,19 @@ header {
         t.style.setProperty('color', '#ff6600', 'important');
         t.style.setProperty('border-bottom', '2px solid #ff6600', 'important');
     }
+
+    // 3. Logika Filter Artikel (Sekarang berada di dalam fungsi yang sama)
+    const n = document.getElementById("heroSection");
+    if ("semua" === e) {
+        if (n) n.style.display = "grid";
+        document.getElementById("contentTitle").textContent = "Berita Utama";
+        renderArticles(articlesDatabase);
+    } else {
+        if (n) n.style.display = "none";
+        document.getElementById("contentTitle").textContent = "Kategori: " + e.toUpperCase();
+        renderArticles(articlesDatabase.filter(t => t.category === e));
+    }
 }
-        
-            const n = document.getElementById("heroSection");
-            if ("semua" === e) {
-                if(n) n.style.display = "grid";
-                document.getElementById("contentTitle").textContent = "Berita Utama";
-                renderArticles(articlesDatabase);
-            } else {
-                if(n) n.style.display = "none";
-                document.getElementById("contentTitle").textContent = "Kategori: " + e.toUpperCase();
-                renderArticles(articlesDatabase.filter(t => t.category === e));
-            }
-            backToGrid();
-        }
 
         function searchArticles() {
             const e = document.getElementById("searchInput").value.toLowerCase().trim();
