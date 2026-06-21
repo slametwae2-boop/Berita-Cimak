@@ -394,18 +394,22 @@
                         <option value="kuliner">Wisata & Kuliner</option>
                     </select>
                     
-                    <label>Nama Penulis:</label>
-                    <input type="text" id="txAuthor" placeholder="Contoh: Redaksi">
-                    
-                    <label>Isi Lengkap Artikel Berita:</label>
-                    <textarea id="txContent" placeholder="Tuliskan isi paragraf berita secara lengkap di sini..."></textarea>
-                    
-                    <button class="btn-submit" onclick="window.parent.processNewArticle(
-                        document.getElementById('txTitle').value,
-                        document.getElementById('lmCategory').value,
-                        document.getElementById('txAuthor').value,
-                        document.getElementById('txContent').value
-                    )">🚀 Terbitkan Berita</button>
+                    <label>Unggah Media (Foto / Video):</label>
+<input type="file" id="fiMedia" accept="image/*,video/*" style="padding: 5px; background: #fff; width: 100%; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 15px; box-sizing: border-box;">
+
+<label>Nama Penulis:</label>
+<input type="text" id="txAuthor" placeholder="Contoh: Redaksi">
+
+<label>Isi Lengkap Artikel Berita:</label>
+<textarea id="txContent" placeholder="Tuliskan isi paragraf berita secara lengkap di sini..."></textarea>
+
+<button class="btn-submit" onclick="window.parent.processNewArticle(
+    document.getElementById('txTitle').value,
+    document.getElementById('lmCategory').value,
+    document.getElementById('txAuthor').value,
+    document.getElementById('txContent').value,
+    document.getElementById('fiMedia').files
+)">🚀 Terbitkan Berita</button>
                 </body>
                 </html>
             `;
@@ -414,8 +418,8 @@
             doc.close();
         })();
 
-        // Jembatan data untuk memproses inputan dari dalam iframe ke database utama Anda
-        function processNewArticle(title, category, author, content) {
+        // Jembatan data untuk memproses inputan termasuk file media lokal temporer
+        function processNewArticle(title, category, author, content, mediaFiles) {
             const titleInput = title.trim();
             const categoryInput = category;
             const authorInput = author.trim();
@@ -430,32 +434,54 @@
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             const formattedDate = now.toLocaleDateString('id-ID', options);
 
-            let imageDefault = "lapangan-hijau.jpg";
-            if (categoryInput === 'berita') imageDefault = "masjid.jpg";
-            if (categoryInput === 'kuliner') imageDefault = "olahraga-taman.jpg";
+            // Menentukan media default jika pengguna tidak mengunggah file apapun
+            let mediaUrl = "lapangan-hijau.jpg";
+            let isVideo = false;
+
+            // Jika pengguna mengunggah file lewat tombol attach
+            if (mediaFiles && mediaFiles.length > 0) {
+                const fileFisik = mediaFiles[0];
+                mediaUrl = URL.createObjectURL(fileFisik); // Membuat link lokal temporer dari file asli
+                if (fileFisik.type.startsWith('video/')) {
+                    isVideo = true;
+                }
+            } else {
+                // Gambar default berdasarkan kategori jika kolom file dikosongkan
+                if (categoryInput === 'berita') mediaUrl = "masjid.jpg";
+                if (categoryInput === 'kuliner') mediaUrl = "olahraga-taman.jpg";
+            }
 
             const newArticle = {
                 id: articlesDatabase.length + 1,
                 title: titleInput,
                 category: categoryInput,
-                image: imageDefault,
+                image: isVideo ? "" : mediaUrl, // Jika video, kosongkan jalur gambar
+                video: isVideo ? mediaUrl : "", // Jika video, isi jalur video player
                 author: authorInput,
                 date: formattedDate,
                 content: contentInput
             };
 
+            // Masukkan berita baru ke tumpukan paling atas database
             articlesDatabase.unshift(newArticle);
-            renderArticles(articlesDatabase);
+            
+            // Render ulang kartu berita agar langsung muncul live di depan layar
+            if (typeof renderArticles === "function") {
+                renderArticles(articlesDatabase);
+            }
 
-            // Bersihkan form di dalam iframe setelah sukses terbit
+            // Bersihkan form di dalam ruang iframe setelah sukses terbit
             const frameDoc = document.getElementById('adminFrame').contentDocument;
-            frameDoc.getElementById('txTitle').value = '';
-            frameDoc.getElementById('txAuthor').value = '';
-            frameDoc.getElementById('txContent').value = '';
+            if (frameDoc) {
+                if (frameDoc.getElementById('txTitle')) frameDoc.getElementById('txTitle').value = '';
+                if (frameDoc.getElementById('txAuthor')) frameDoc.getElementById('txAuthor').value = '';
+                if (frameDoc.getElementById('txContent')) frameDoc.getElementById('txContent').value = '';
+                if (frameDoc.getElementById('fiMedia')) frameDoc.getElementById('fiMedia').value = ''; // Reset pilihan berkas
+            }
 
-            // Tutup panel admin
+            // Tutup panel admin secara otomatis
             document.getElementById('adminPanelSection').style.display = 'none';
-            alert("Selamat! Berita baru Anda berhasil diterbitkan secara live di beranda.");
+            alert("Selamat! Berita baru Anda beserta medianya berhasil diterbitkan secara live di beranda.");
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
@@ -591,9 +617,45 @@ Use code with caution.💡 Apa Saja yang Berubah?Kebal CSS: Karena form ditaruh 
             const t = articlesDatabase.find(t => t.id === e);
             if(t) {
                 document.getElementById("dynamicContent").style.display = "none";
+                const heroSection = document.getElementById("heroSection");
+                if (heroSection) heroSection.style.display = "none";
+                
                 document.getElementById("detailTitle").textContent = t.title;
-                document.getElementById("detailMeta").textContent = `Kategori: ${t.category.toUpperCase()} | Penulis: ${t.author}`;
-                document.getElementById("detailImage").src = t.image;
+                document.getElementById("detailMeta").textContent = `Kategori: ${t.category.toUpperCase()} | Penulis: ${t.author} | Tanggal: ${t.date}`;
+                
+                const imgElement = document.getElementById("detailImage");
+                
+                // Hapus video player lama jika sebelumnya pernah ada sisa pemutaran
+                const oldVideo = document.getElementById("detailVideoPlayer");
+                if (oldVideo) oldVideo.remove();
+
+                // LOGIKA CERDAS: Jika berita bertipe video, buat tag video player otomatis
+                if (t.video) {
+                    if (imgElement) imgElement.style.display = "none"; // Sembunyikan elemen gambar biasa
+                    
+                    const videoPlayer = document.createElement("video");
+                    videoPlayer.id = "detailVideoPlayer";
+                    videoPlayer.src = t.video;
+                    videoPlayer.controls = true;
+                    videoPlayer.style.width = "100%";
+                    videoPlayer.style.maxHeight = "350px";
+                    videoPlayer.style.borderRadius = "4px";
+                    videoPlayer.style.marginBottom = "15px";
+                    videoPlayer.style.backgroundColor = "#000";
+                    
+                    // Masukkan video player tepat di atas teks isi berita
+                    const bodyElement = document.getElementById("detailBody");
+                    if (bodyElement && bodyElement.parentNode) {
+                        bodyElement.parentNode.insertBefore(videoPlayer, bodyElement);
+                    }
+                } else {
+                    // Jika bertipe gambar biasa, tampilkan gambarnya dengan normal
+                    if (imgElement) {
+                        imgElement.src = t.image;
+                        imgElement.style.display = "block";
+                    }
+                }
+
                 document.getElementById("detailBody").textContent = t.content;
                 document.getElementById("detailContent").style.display = "block";
                 window.scrollTo({ top: 0, behavior: "smooth" });
