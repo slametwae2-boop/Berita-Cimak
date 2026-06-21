@@ -266,8 +266,8 @@ header {
     <div class="nav-responsive-container">
         <!-- Lajur Menu Kiri -->
         <div id="mainNav" class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="berita.html" class="active">Berita</a>
+    <a href="index.html" class="active">Home</a>
+    <a href="berita.html">Berita</a>
     <a href="hiburan-olahraga.html">Hiburan & Olahraga</a> <!-- Sesuai nama file Anda -->
     <a href="wisata-kuliner.html">Wisata & Kuliner</a>   <!-- Sesuai nama file Anda -->
     <a href="pasang-iklan.html" class="btn-ads">Pasang Iklan</a> <!-- Sesuai nama file Anda -->
@@ -488,18 +488,17 @@ header {
             
             // Memaksa halaman berita hanya merender artikel dengan kategori 'berita'
 if (typeof renderArticles === "function") {
-    // 1. Tampilkan hanya artikel dengan kategori berita
-    renderArticles(articlesDatabase.filter(item => item.category === 'berita'));
+    // 1. Tampilkan SEMUA artikel tanpa filter kategori di halaman Home
+    renderArticles(articlesDatabase);
     
-    // 2. Mengubah judul section halaman menjadi Kategori: BERITA
+    // 2. Mengubah judul section halaman utama menjadi Berita Utama
     const contentTitle = document.getElementById("contentTitle");
-    if (contentTitle) contentTitle.textContent = "Kategori: BERITA";
+    if (contentTitle) contentTitle.textContent = "Berita Utama";
 
-    // 3. TAMBAHAN: Hapus paksa warna oranye manual dari menu Home agar tidak dobel
+    // 3. Pastikan menu Home yang menyala aktif secara visual
     const homeLink = document.querySelector('#mainNav a[href="index.html"]');
     if (homeLink) {
-        homeLink.style.removeProperty('color');
-        homeLink.style.removeProperty('border-bottom');
+        homeLink.classList.add('active');
     }
 }
             
