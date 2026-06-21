@@ -601,30 +601,29 @@ if (typeof renderArticles === "function") {
         }
 
        function filterCategory(e, t) {
-    // 1. Hapus class 'active' dari semua menu navigasi
-    const links = document.querySelectorAll("#mainNav a");
+    // 1. Hapus class 'active' dari semua menu navigasi agar tidak ganda
+    const links = document.querySelectorAll('.nav-link, nav a'); 
     links.forEach(el => {
         el.classList.remove('active');
-        // Bersihkan sisa style warna manual lama jika ada
         el.style.removeProperty('color');
         el.style.removeProperty('border-bottom');
     });
 
-    // 2. Tambahkan class 'active' HANYA ke menu yang sedang diklik
+    // 2. Tambahkan class 'active' hanya ke menu yang diklik
     if (t) {
         t.classList.add('active');
     }
 
-    // 3. Logika filter konten utama halaman Home
-    const n = document.getElementById("heroSection");
-    if ("semua" === e) {
+    // 3. Logika filter konten utama halaman bawaan Anda
+    const n = document.getElementById("heroSlider");
+    if ("semua" === e || "home" === e) {
         if (n) n.style.display = "grid";
-        document.getElementById("contentTitle").textContent = "Berita Utama";
+        document.getElementById("contentTitle").textContent = "BERITA UTAMA";
         renderArticles(articlesDatabase);
     } else {
         if (n) n.style.display = "none";
-        document.getElementById("contentTitle").textContent = "Kategori: " + e.toUpperCase();
-        renderArticles(articlesDatabase.filter(t => t.category === e));
+        document.getElementById("contentTitle").textContent = e.toUpperCase();
+        renderArticles(articlesDatabase.filter(art => art.category.toLowerCase() === e.toLowerCase()));
     }
 }
 
