@@ -55,30 +55,29 @@
         
         /* 1. Pembungkus Navigasi Utama */
         .nav-responsive-container {
-            display: flex !important;
-            justify-content: space-between !important;
-            align-items: center !important;
-            background: #ffffff !important;
-            border-bottom: 1px solid #e0e0e0 !important;
-            padding: 14px 20px !important;
-            position: relative !important;
-            z-index: 999 !important;
-            gap: 15px !important;
-        }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 14px 20px;
+  position: relative;
+  z-index: 999;
+  gap: 15px;
+}
 
         /* 2. Jalur Menu Teks Kiri */
         #mainNav {
-            display: flex !important;
-            gap: 25px !important;
-            overflow-x: auto !important; /* Menu bisa di-swipe/geser ke samping di HP */
-            white-space: nowrap !important;
-            -webkit-overflow-scrolling: touch !important;
-            padding-bottom: 5px !important;
-            flex: 1 !important;
-        }
+  display: flex !important;
+  gap: 25px !important;
+  overflow-x: auto !important; /* Tetap aktifkan swipe HP */
+  white-space: nowrap !important;
+  -webkit-overflow-scrolling: touch !important;
+  padding-bottom: 5px !important;
+}
         #mainNav::-webkit-scrollbar {
-            height: 0px !important; /* Sembunyikan garis scrollbar agar bersih */
-        }
+  height: 0px !important; /* Sembunyikan garis scrollbar */
+}
 
         /* ==========================================================================
            PENATAAN KOTAK PENCARIAN KAPSUL MODERN, SOFT, DAN TIPIS
@@ -267,19 +266,21 @@ header {
     <div class="nav-responsive-container">
         <!-- Lajur Menu Kiri -->
         <div id="mainNav" class="nav-links">
+    <!-- HANYA Home yang diberi class="active" di awal -->
     <a href="javascript:void(0)" onclick="filterCategory('semua', this)" class="active">Home</a>
     <a href="javascript:void(0)" onclick="filterCategory('berita', this)">Berita</a>
-    <a href="javascript:void(0)" onclick="filterCategory('olahraga', this)" class="active">Hiburan & Olahraga</a>
+    <a href="javascript:void(0)" onclick="filterCategory('olahraga', this)">Hiburan & Olahraga</a>
     <a href="javascript:void(0)" onclick="filterCategory('kuliner', this)">Wisata & Kuliner</a>
     <a href="javascript:void(0)" onclick="filterCategory('iklan', this)" class="btn-ads">Pasang Iklan</a>
   </div>
         
         <!-- Lajur Kotak Pencarian Kanan bentuk Kapsul Soft -->
         <div class="search-wrapper-box">
-            <input type="text" id="searchInput" placeholder="Apa yang kamu cari?" onfocus="this.placeholder=''" onblur="this.placeholder='Apa yang kamu cari?'">
-            <button onclick="searchArticles()">Search</button>
-        </div>
-    </div>
+    <input type="text" id="searchInput" placeholder="Apa yang kamu cari?" onfocus="this.placeholder=''" onblur="this.placeholder='Apa yang kamu cari?'">
+    <button onclick="searchArticles()">Search</button>
+  </div>
+  
+</div>
         
     <!-- 3. MAIN LAYOUT STRUCTURE -->
     <div class="container">
@@ -590,12 +591,12 @@ header {
         }
 
         function filterCategory(e, t) {
-            // 1. Paksa semua menu kembali jadi biru tua dan tanpa garis bawah
-            const links = document.querySelectorAll("#mainNav a");
-            links.forEach(el => {
-                el.style.setProperty('color', '#1a2a40', 'important');
-                el.style.setProperty('border-bottom', '2px solid transparent', 'important');
-            });
+  // 1. Paksa semua menu kembali jadi biru tua dan tanpa garis bawah
+  const links = document.querySelectorAll("#mainNav a");
+  links.forEach(el => {
+    el.style.setProperty('color', '#1a2a40', 'important');
+    el.style.setProperty('border-bottom', '2px solid transparent', 'important');
+  });
             
             // 2. Paksa menu yang diklik berubah jadi Oranye!
             if (t) {
