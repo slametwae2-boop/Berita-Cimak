@@ -488,13 +488,21 @@ header {
             
             // Memaksa halaman berita hanya merender artikel dengan kategori 'berita'
 if (typeof renderArticles === "function") {
+    // 1. Tampilkan hanya artikel dengan kategori berita
     renderArticles(articlesDatabase.filter(item => item.category === 'berita'));
     
-    // Mengubah judul section halaman menjadi Kategori: BERITA
+    // 2. Mengubah judul section halaman menjadi Kategori: BERITA
     const contentTitle = document.getElementById("contentTitle");
     if (contentTitle) contentTitle.textContent = "Kategori: BERITA";
-}
 
+    // 3. TAMBAHAN: Hapus paksa warna oranye manual dari menu Home agar tidak dobel
+    const homeLink = document.querySelector('#mainNav a[href="index.html"]');
+    if (homeLink) {
+        homeLink.style.removeProperty('color');
+        homeLink.style.removeProperty('border-bottom');
+    }
+}
+            
             // Bersihkan form di dalam ruang iframe setelah sukses terbit
             const frameDoc = document.getElementById('adminFrame').contentDocument;
             if (frameDoc) {
