@@ -266,13 +266,12 @@ header {
     <div class="nav-responsive-container">
         <!-- Lajur Menu Kiri -->
         <div id="mainNav" class="nav-links">
-    <!-- HANYA Home yang diberi class="active" di awal -->
-    <a href="javascript:void(0)" onclick="filterCategory('semua', this)" class="active">Home</a>
-    <a href="javascript:void(0)" onclick="filterCategory('berita', this)">Berita</a>
-    <a href="javascript:void(0)" onclick="filterCategory('olahraga', this)">Hiburan & Olahraga</a>
-    <a href="javascript:void(0)" onclick="filterCategory('kuliner', this)">Wisata & Kuliner</a>
-    <a href="javascript:void(0)" onclick="filterCategory('iklan', this)" class="btn-ads">Pasang Iklan</a>
-  </div>
+    <a href="index.html">Home</a>
+    <a href="berita.html" class="active">Berita</a>
+    <a href="hiburan-olahraga.html">Hiburan & Olahraga</a> <!-- Sesuai nama file Anda -->
+    <a href="wisata-kuliner.html">Wisata & Kuliner</a>   <!-- Sesuai nama file Anda -->
+    <a href="pasang-iklan.html" class="btn-ads">Pasang Iklan</a> <!-- Sesuai nama file Anda -->
+</div>
         
         <!-- Lajur Kotak Pencarian Kanan bentuk Kapsul Soft -->
         <div class="search-wrapper-box">
@@ -487,10 +486,14 @@ header {
             // Masukkan berita baru ke tumpukan paling atas database
             articlesDatabase.unshift(newArticle);
             
-            // Render ulang kartu berita agar langsung muncul live di depan layar
-            if (typeof renderArticles === "function") {
-                renderArticles(articlesDatabase);
-            }
+            // Memaksa halaman berita hanya merender artikel dengan kategori 'berita'
+if (typeof renderArticles === "function") {
+    renderArticles(articlesDatabase.filter(item => item.category === 'berita'));
+    
+    // Mengubah judul section halaman menjadi Kategori: BERITA
+    const contentTitle = document.getElementById("contentTitle");
+    if (contentTitle) contentTitle.textContent = "Kategori: BERITA";
+}
 
             // Bersihkan form di dalam ruang iframe setelah sukses terbit
             const frameDoc = document.getElementById('adminFrame').contentDocument;
