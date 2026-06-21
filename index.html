@@ -590,19 +590,22 @@ header {
             if(document.getElementById("date")) document.getElementById("date").innerText = e.toLocaleDateString("id-ID", i);
         }
 
-        function filterCategory(e, t) {
-  // 1. Paksa semua menu kembali jadi biru tua dan tanpa garis bawah
-  const links = document.querySelectorAll("#mainNav a");
-  links.forEach(el => {
-    el.style.setProperty('color', '#1a2a40', 'important');
-    el.style.setProperty('border-bottom', '2px solid transparent', 'important');
-  });
-            
-            // 2. Paksa menu yang diklik berubah jadi Oranye!
-            if (t) {
-                t.style.setProperty('color', '#ff6600', 'important');
-                t.style.setProperty('border-bottom', '2px solid #ff6600', 'important');
-            }
+       function filterCategory(e, t) {
+    // 1. Paksa semua menu kembali jadi biru tua, tanpa garis bawah, dan HAPUS class active
+    const links = document.querySelectorAll("#mainNav a");
+    links.forEach(el => {
+        el.classList.remove('active'); // <-- INI YANG MEMBUAT HOME TIDAK IKUT ORANYE LAGI
+        el.style.setProperty('color', '#1a2a40', 'important');
+        el.style.setProperty('border-bottom', '2px solid transparent', 'important');
+    });
+
+    // 2. Paksa menu yang diklik berubah jadi Oranye dan beri class active
+    if (t) {
+        t.classList.add('active'); // <-- Tambahkan kelas active ke menu baru yang diklik
+        t.style.setProperty('color', '#ff6600', 'important');
+        t.style.setProperty('border-bottom', '2px solid #ff6600', 'important');
+    }
+}
             
             const n = document.getElementById("heroSection");
             if ("semua" === e) {
