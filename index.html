@@ -950,10 +950,7 @@ function terbitkanBerita() {
                 date: formattedDate,
                 content: contentInput
             };
-
-            articlesDatabase.unshift(newArticle);
-            renderArticles(articlesDatabase);
-
+            
             document.getElementById('adminTitle').value = '';
             document.getElementById('adminAuthor').value = '';
             document.getElementById('adminContent').value = '';
@@ -961,8 +958,11 @@ function terbitkanBerita() {
             toggleAdminPanel();
             alert("Selamat! Berita baru Anda berhasil diterbitkan secara live di beranda.");
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
         
+            if (typeof articlesDatabase !== "undefined") {
+    renderArticles(articlesDatabase);
+}
+            
     </script>
 </body>
 </html>
