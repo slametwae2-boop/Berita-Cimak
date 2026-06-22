@@ -277,195 +277,6 @@ function jalankanJamOtomatis() {
 }
 setInterval(jalankanJamOtomatis, 1000);
 jalankanJamOtomatis();
-        
-// ==================== FUNGSI UTAMA PENAMPIL BERITA & SLIDER (FINAL) ====================
-function renderArticles(data) {
-    // 1. Cari area penampung baris berita kecil di atas
-    const topGrid = document.getElementById("topNewsGrid") || document.querySelector(".top-news-grid");
-    // 2. Cari area penampung berita utama besar (Headline) di bawah
-    const headlineArea = document.getElementById("headlineArea") || document.querySelector(".headline-container");
-
-    if (!data || data.length === 0) return;
-
-    // --- BAGIAN A: MERENDER 5 BERITA KECIL DI BARIS ATAS ---
-    if (topGrid) {
-        topGrid.innerHTML = ""; // Bersihkan konten lama
-        // Ambil maksimal 5 artikel pertama untuk baris atas
-        const topArticles = data.slice(0, 5); 
-        
-        topArticles.forEach(article => {
-            const card = document.createElement("div");
-            card.className = "top-news-card"; 
-            card.onclick = () => { if (typeof showDetailArticle === "function") showDetailArticle(article.id); };
-            
-            card.innerHTML = `
-                <div class="top-news-thumb">
-                    <img src="${article.image}" alt="${article.title}">
-                </div>
-                <div class="top-news-title">
-                    <h3>${article.title}</h3>
-                </div>
-            `;
-            topGrid.appendChild(card);
-        });
-    }
-
-    // --- BAGIAN B: MERENDER BERITA UTAMA BESAR DI BAWAH (PERBAIKAN SLIDER) ---
-    if (headlineArea) {
-        headlineArea.innerHTML = ""; // Bersihkan konten lama
-        
-        // Ambil semua artikel mulai dari indeks ke-5 dan seterusnya untuk dijadikan slider
-        const sliderArticles = data.slice(5); 
-        
-        // Jika sisa artikel kosong, gunakan semua data yang ada agar tidak kosong
-        const articlesToRender = sliderArticles.length > 0 ? sliderArticles : data;
-
-        if (articlesToRender.length > 0) {
-            // Buat pembungkus Carousel Bootstrap
-            let carouselHTML = `
-                <div id="carouselHeadline" class="carousel slide" data-bs-ride="carousel">
-                    <!-- Indikator Titik di Bawah -->
-                    <div class="carousel-indicators">
-            `;
-            
-            // Loop untuk membuat titik indikator slider
-            articlesToRender.forEach((article, index) => {
-                carouselHTML += `
-                    <button type="button" data-bs-target="#carouselHeadline" data-bs-slide-to="${index}" class="${index === 0 ? 'active' : ''}" aria-current="${index === 0 ? 'true' : 'false'}"></button>
-                `;
-            });
-            
-            carouselHTML += `
-                    </div>
-                    <!-- Konten Gambar Slider -->
-                    <div class="carousel-inner">
-            `;
-
-            // Loop untuk memasukkan foto-foto artikel ke dalam slider
-            articlesToRender.forEach((article, index) => {
-                carouselHTML += `
-                    <div class="carousel-item ${index === 0 ? 'active' : ''}" onclick="showDetailArticle(${article.id})" style="cursor:pointer;">
-                        <img src="${article.image}" class="d-block w-100" alt="${article.title}" onerror="this.src='images/default-placeholder.jpg';">
-                        <div class="headline-overlay">
-                            <h2>${article.title}</h2>
-                            <span class="headline-time">Terbaru</span>
-                        </div>
-                    </div>
-                `;
-            });
-
-            // Tambahkan Tombol Navigasi Panah Kiri dan Kanan
-            carouselHTML += `
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselHeadline" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselHeadline" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            `;
-
-            // Masukkan seluruh struktur slider ke dalam headline area
-            headlineArea.innerHTML = carouselHTML;
-            
-            // Inisialisasi ulang jalannya carousel agar otomatis bergeser jika menggunakan Bootstrap 5
-            if (window.bootstrap && bootstrap.Carousel) {
-                new bootstrap.Carousel(document.getElementById('carouselHeadline'), {
-                    interval: 3000, // Bergeser setiap 3 detik
-                    ride: 'carousel'
-                });
-            }
-        }
-    }
-
-// Logika Filter Otomatis Berdasarkan Halaman URL
-function eksekusiFilterHalamanOtomatis() {
-    if (typeof articlesDatabase === "undefined") return;
-    const urlHalaman = window.location.pathname;
-    
-    if (urlHalaman.includes("berita.html")) {
-        const filterBerita = articlesDatabase.filter(art => ["olahraga", "hiburan", "wisata", "kuliner"].includes(art.category.toLowerCase()));
-        renderArticles(filterBerita);
-    } else if (urlHalaman.includes("hiburan-olahraga.html")) {
-        const filterHiburanOlahraga = articlesDatabase.filter(art => ["hiburan", "olahraga"].includes(art.category.toLowerCase()));
-        renderArticles(filterHiburanOlahraga);
-    } else if (urlHalaman.includes("wisata-kuliner.html")) {
-        const filterWisataKuliner = articlesDatabase.filter(art => ["wisata", "kuliner"].includes(art.category.toLowerCase()));
-        renderArticles(filterWisataKuliner);
-    } else {
-        renderArticles(articlesDatabase); // Halaman Home (index.html) tampilkan semua
-    }
-}
-
-// Menjalankan fungsi pemicu setelah semua elemen dan data selesai dimuat browser
-window.addEventListener("load", () => {
-    eksekusiFilterHalamanOtomatis();
-    
-    // Memicu ulang fungsi autoSlide gambar Anda agar langsung berjalan kembali
-    if (typeof autoSlide === "function" && typeof slideInterval === "undefined") {
-        slideInterval = setInterval(autoSlide, 4000);
-    }
-});
-    </script>
-        
-    <!-- 2. NAVIGATION BAR & SEARCH BAR (HANYA ADA 1 DAN FULL RESPONSIF) -->
-    <div class="nav-responsive-container">
-        <!-- Lajur Menu Kiri -->
-        <div id="mainNav" class="nav-links">
-  <a href="index.html" class="nav-link">Home</a>
-  <a href="berita.html" class="nav-link">Berita</a>
-  <a href="hiburan-olahraga.html" class="nav-link">Hiburan & Olahraga</a> 
-  <a href="wisata-kuliner.html" class="nav-link">Wisata & Kuliner</a> 
-  <a href="pasang-iklan.html" class="nav-link btn-ads">Pasang Iklan</a> 
-</div>
-        
-        <!-- Lajur Kotak Pencarian Kanan bentuk Kapsul Soft -->
-        <div class="search-wrapper-box">
-    <input type="text" id="searchInput" placeholder="Apa yang kamu cari?" onfocus="this.placeholder=''" onblur="this.placeholder='Apa yang kamu cari?'">
-    <button onclick="searchArticles()">Search</button>
-  </div>
-  
-</div>
-        
-    <!-- 3. MAIN LAYOUT STRUCTURE -->
-    <div class="container">
-        <!-- Sidebar Kiri -->
-        <aside class="sidebar-left">
-            <div class="ad-space vertical">
-                <div>RUANG IKLAN BANNER VERTICAL<br><span class="ad-link">(Hubungi Redaksi)</span></div>
-            </div>
-        </aside>
-
-        <!-- Area Konten Utama -->
-        <main class="main-content">
-            <div id="dynamicContent">
-                <div class="section-title" id="contentTitle">Headline News</div>
-                
-                <!-- Sistem Slider Banner Utama -->
-                <div class="news-hero" id="heroSection">
-                    <div class="slider-container">
-                        <button class="slider-btn" style="left:10px;" onclick="moveSlide(-1)">❮</button>
-                        <button class="slider-btn" style="right:10px;" onclick="moveSlide(1)">❯</button>
-                        <div class="slider-wrapper" id="sliderWrapper">
-                            <div class="slide"><img src="masjid.jpg" alt="Slide 1"></div>
-                            <div class="slide"><img src="lapangan-hijau.jpg" alt="Slide 2"></div>
-                            <div class="slide"><img src="olahraga-taman.jpg" alt="Slide 3"></div>
-                            <div class="slide"><img src="pingpong.jpg" alt="Slide 4"></div>
-                        </div>
-                        <div class="slider-dots">
-                            <div class="dot active" onclick="currentSlide(0)"></div>
-                            <div class="dot" onclick="currentSlide(1)"></div>
-                            <div class="dot" onclick="currentSlide(2)"></div>
-                            <div class="dot" onclick="currentSlide(3)"></div>
-                        </div>
-                    </div>
-                    <div class="news-welcome">
-                        <p>Selamat datang di portal informasi kami. Temukan berita terupdate seputar olahraga, destinasi wisata, kuliner halal, hingga hiburan terkini di sini secara berkala setiap hari.</p>
-                    </div>
-                </div>
 </script>
         
     <!-- 2. NAVIGATION BAR & SEARCH BAR (HANYA ADA 1 DAN FULL RESPONSIF) -->
@@ -499,7 +310,7 @@ window.addEventListener("load", () => {
         <!-- Area Konten Utama -->
         <main class="main-content">
             <div id="dynamicContent">
-                <div class="section-title" id="contentTitle">Headline News</div>
+                <div class="section-title" id="contentTitle">Berita Utama</div>
                 
                 <!-- Sistem Slider Banner Utama -->
                 <div class="news-hero" id="heroSection">
@@ -692,21 +503,22 @@ window.addEventListener("load", () => {
             // Masukkan berita baru ke tumpukan paling atas database
             articlesDatabase.unshift(newArticle);
             
-            // Perbaikan Logika Render agar sinkron dengan sistem Multi-Halaman Anda
+            // Memaksa halaman berita hanya merender artikel dengan kategori 'berita'
 if (typeof renderArticles === "function") {
-    // 1. Jalankan fungsi filter otomatis berdasarkan URL halaman saat ini
-    if (typeof eksekusiFilterHalamanOtomatis === "function") {
-        eksekusiFilterHalamanOtomatis();
-    } else {
-        renderArticles(articlesDatabase);
-    }
+    // 1. Tampilkan SEMUA artikel tanpa filter kategori di halaman Home
+    renderArticles(articlesDatabase);
     
-    // 2. Judul section utama hanya berubah jika elemennya memang ada di halaman tersebut
+    // 2. Mengubah judul section halaman utama menjadi Berita Utama
     const contentTitle = document.getElementById("contentTitle");
-    if (contentTitle && window.location.pathname.includes("index.html")) {
-        contentTitle.textContent = "Berita Utama";
+    if (contentTitle) contentTitle.textContent = "Berita Utama";
+
+    // 3. Pastikan menu Home yang menyala aktif secara visual
+    const homeLink = document.querySelector('#mainNav a[href="index.html"]');
+    if (homeLink) {
+        homeLink.classList.add('active');
     }
-} 
+}
+            
             // Bersihkan form di dalam ruang iframe setelah sukses terbit
             const frameDoc = document.getElementById('adminFrame').contentDocument;
             if (frameDoc) {
@@ -1058,7 +870,10 @@ function terbitkanBerita() {
                 date: formattedDate,
                 content: contentInput
             };
-            
+
+            articlesDatabase.unshift(newArticle);
+            renderArticles(articlesDatabase);
+
             document.getElementById('adminTitle').value = '';
             document.getElementById('adminAuthor').value = '';
             document.getElementById('adminContent').value = '';
@@ -1066,11 +881,8 @@ function terbitkanBerita() {
             toggleAdminPanel();
             alert("Selamat! Berita baru Anda berhasil diterbitkan secara live di beranda.");
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
         
-            if (typeof articlesDatabase !== "undefined") {
-    renderArticles(articlesDatabase);
-}
-            
     </script>
 </body>
 </html>
