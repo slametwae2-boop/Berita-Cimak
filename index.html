@@ -600,23 +600,6 @@ if (typeof renderArticles === "function") {
             if(document.getElementById("date")) document.getElementById("date").innerText = e.toLocaleDateString("id-ID", i);
         }
 
-       function filterCategory(e, t) {
-    // 1. Bersihkan class 'active' dan style oranye dari SEMUA link navigasi di halaman
-    const links = document.querySelectorAll('.nav-link, .nav-tabs a, nav a, [onclick^="filterCategory"]'); 
-    links.forEach(el => {
-        el.classList.remove('active');
-        el.style.removeProperty('color');
-        el.style.removeProperty('border-bottom');
-    });
-
-    // 2. Tambahkan warna aktif HANYA pada menu yang baru saja diklik
-    if (t) {
-        t.classList.add('active');
-    } else if (event && event.currentTarget) {
-        // Cadangan otomatis jika browser mendeteksi klik lewat event global
-        event.currentTarget.classList.add('active');
-    }
-
     // 3. Logika filter konten utama halaman bawaan website Anda
     const n = document.getElementById("heroSlider");
     if ("semua" === e || "home" === e) {
