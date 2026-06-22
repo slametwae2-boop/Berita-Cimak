@@ -692,7 +692,28 @@ function filterCategory(e, t) {
             document.getElementById("dynamicContent").style.display = "block";
         }
 
-        setInterval(updateClock, 1000);
+        function updateClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const timeString = `${hours}:${minutes}:${seconds}`;
+    
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const dateString = now.toLocaleDateString('id-ID', options);
+    
+    const timeElement = document.getElementById('jam') || document.querySelector('.time-container'); 
+    const dateElement = document.getElementById('tanggal') || document.querySelector('.date-container');
+
+    if(timeElement) timeElement.textContent = timeString;
+    if(dateElement) dateElement.textContent = dateString;
+}
+setInterval(updateClock, 1000);
+updateClock(); 
+
+function filterCategory(e, t) {
+    // Sengaja dikosongkan
+}
         let currentIndex = 0;
         const wrapper = document.getElementById("sliderWrapper");
         const dots = document.querySelectorAll(".dot");
