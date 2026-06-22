@@ -589,21 +589,6 @@ if (typeof renderArticles === "function") {
                 t.appendChild(n);
             });
         }
-
-        function updateClock() {
-            const e = new Date();
-            const t = String(e.getHours()).padStart(2, "0");
-            const n = String(e.getMinutes()).padStart(2, "0");
-            const r = String(e.getSeconds()).padStart(2, "0");
-            if(document.getElementById("clock")) document.getElementById("clock").innerText = `${t}:${n}:${r}`;
-            const i = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
-            if(document.getElementById("date")) document.getElementById("date").innerText = e.toLocaleDateString("id-ID", i);
-        }
-
-        // Biarkan fungsinya ada, tetapi isinya dikosongkan agar tidak merusak kode jam
-function filterCategory(e, t) {
-    // Isinya kosong agar tidak memindahkan class active secara otomatis lagi
-}
         
     // 3. Logika filter konten utama halaman bawaan website Anda
     const n = document.getElementById("heroSlider");
@@ -692,28 +677,34 @@ function filterCategory(e, t) {
             document.getElementById("dynamicContent").style.display = "block";
         }
 
-        function updateClock() {
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
-    const timeString = `${hours}:${minutes}:${seconds}`;
+        // ==================== SATU-SATUNYA KODE JAM YANG BENAR ====================
+function updateClock() {
+    const e = new Date();
+    const t = String(e.getHours()).padStart(2, "0");
+    const n = String(e.getMinutes()).padStart(2, "0");
+    const r = String(e.getSeconds()).padStart(2, "0");
     
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    const dateString = now.toLocaleDateString('id-ID', options);
+    // Menggunakan ID "clock" sesuai HTML Anda
+    if(document.getElementById("clock")) {
+        document.getElementById("clock").innerText = `${t}:${n}:${r}`;
+    }
     
-    const timeElement = document.getElementById('jam') || document.querySelector('.time-container'); 
-    const dateElement = document.getElementById('tanggal') || document.querySelector('.date-container');
-
-    if(timeElement) timeElement.textContent = timeString;
-    if(dateElement) dateElement.textContent = dateString;
+    const i = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+    
+    // Menggunakan ID "date" sesuai HTML Anda
+    if(document.getElementById("date")) {
+        document.getElementById("date").innerText = e.toLocaleDateString("id-ID", i);
+    }
 }
+// Jalankan jam otomatis setiap 1 detik
 setInterval(updateClock, 1000);
-updateClock(); 
+updateClock();
 
+// Fungsi filter dikosongkan agar tidak merusak navbar HTML baru
 function filterCategory(e, t) {
     // Sengaja dikosongkan
 }
+// =========================================================================
         let currentIndex = 0;
         const wrapper = document.getElementById("sliderWrapper");
         const dots = document.querySelectorAll(".dot");
