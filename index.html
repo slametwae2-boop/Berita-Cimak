@@ -310,25 +310,76 @@ function renderArticles(data) {
         });
     }
 
-    // --- BAGIAN B: MERENDER BERITA UTAMA BESAR DI BAWAH ---
+    // --- BAGIAN B: MERENDER BERITA UTAMA BESAR DI BAWAH (PERBAIKAN SLIDER) ---
     if (headlineArea) {
         headlineArea.innerHTML = ""; // Bersihkan konten lama
-        // Ambil artikel ke-6 (indeks ke-5) atau artikel utama yang tersedia sebagai Headline besar
-        const headlineArticle = data[5] || data[0]; 
         
-        if (headlineArticle) {
-            headlineArea.innerHTML = `
-                <div class="main-headline-card" onclick="showDetailArticle(${headlineArticle.id})">
-                    <img src="${headlineArticle.image}" alt="${headlineArticle.title}">
-                    <div class="headline-overlay">
-                        <h2>${headlineArticle.title}</h2>
-                        <span class="headline-time">17 menit yang lalu</span>
+        // Ambil semua artikel mulai dari indeks ke-5 dan seterusnya untuk dijadikan slider
+        const sliderArticles = data.slice(5); 
+        
+        // Jika sisa artikel kosong, gunakan semua data yang ada agar tidak kosong
+        const articlesToRender = sliderArticles.length > 0 ? sliderArticles : data;
+
+        if (articlesToRender.length > 0) {
+            // Buat pembungkus Carousel Bootstrap
+            let carouselHTML = `
+                <div id="carouselHeadline" class="carousel slide" data-bs-ride="carousel">
+                    <!-- Indikator Titik di Bawah -->
+                    <div class="carousel-indicators">
+            `;
+            
+            // Loop untuk membuat titik indikator slider
+            articlesToRender.forEach((article, index) => {
+                carouselHTML += `
+                    <button type="button" data-bs-target="#carouselHeadline" data-bs-slide-to="${index}" class="${index === 0 ? 'active' : ''}" aria-current="${index === 0 ? 'true' : 'false'}"></button>
+                `;
+            });
+            
+            carouselHTML += `
                     </div>
+                    <!-- Konten Gambar Slider -->
+                    <div class="carousel-inner">
+            `;
+
+            // Loop untuk memasukkan foto-foto artikel ke dalam slider
+            articlesToRender.forEach((article, index) => {
+                carouselHTML += `
+                    <div class="carousel-item ${index === 0 ? 'active' : ''}" onclick="showDetailArticle(${article.id})" style="cursor:pointer;">
+                        <img src="${article.image}" class="d-block w-100" alt="${article.title}" onerror="this.src='images/default-placeholder.jpg';">
+                        <div class="headline-overlay">
+                            <h2>${article.title}</h2>
+                            <span class="headline-time">Terbaru</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Tambahkan Tombol Navigasi Panah Kiri dan Kanan
+            carouselHTML += `
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselHeadline" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselHeadline" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             `;
+
+            // Masukkan seluruh struktur slider ke dalam headline area
+            headlineArea.innerHTML = carouselHTML;
+            
+            // Inisialisasi ulang jalannya carousel agar otomatis bergeser jika menggunakan Bootstrap 5
+            if (window.bootstrap && bootstrap.Carousel) {
+                new bootstrap.Carousel(document.getElementById('carouselHeadline'), {
+                    interval: 3000, // Bergeser setiap 3 detik
+                    ride: 'carousel'
+                });
+            }
         }
     }
-}
 
 // Logika Filter Otomatis Berdasarkan Halaman URL
 function eksekusiFilterHalamanOtomatis() {
