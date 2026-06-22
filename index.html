@@ -280,29 +280,54 @@ jalankanJamOtomatis();
         
 // ==================== FUNGSI UTAMA PENAMPIL BERITA & SLIDER (FINAL) ====================
 function renderArticles(data) {
-    const gridArea = document.getElementById("newsGridArea") || document.querySelector(".news-grid");
-    if (!gridArea) return;
-    
-    gridArea.innerHTML = ""; 
-    if (!data || data.length === 0) {
-        gridArea.innerHTML = `<p style="text-align: center; padding: 20px; color: #999;">Tidak ada artikel.</p>`;
-        return;
-    }
-    
-    data.forEach(article => {
-        const card = document.createElement("div");
-        card.className = "news-card";
-        card.onclick = () => { if (typeof showDetailArticle === "function") showDetailArticle(article.id); };
+    // 1. Cari area penampung baris berita kecil di atas
+    const topGrid = document.getElementById("topNewsGrid") || document.querySelector(".top-news-grid");
+    // 2. Cari area penampung berita utama besar (Headline) di bawah
+    const headlineArea = document.getElementById("headlineArea") || document.querySelector(".headline-container");
+
+    if (!data || data.length === 0) return;
+
+    // --- BAGIAN A: MERENDER 5 BERITA KECIL DI BARIS ATAS ---
+    if (topGrid) {
+        topGrid.innerHTML = ""; // Bersihkan konten lama
+        // Ambil maksimal 5 artikel pertama untuk baris atas
+        const topArticles = data.slice(0, 5); 
         
-        card.innerHTML = `
-            <img src="${article.image}" alt="${article.title}" style="width:100%; height:200px; object-fit:cover; border-radius:8px;">
-            <div class="news-card-body">
-                <span class="news-card-tag" style="background:orange; color:white; padding:2px 8px; border-radius:4px; font-size:12px;">${article.category}</span>
-                <h3 style="margin-top:10px; font-size:16px; color:#002d62; font-weight:bold;">${article.title}</h3>
-            </div>
-        `;
-        gridArea.appendChild(card);
-    });
+        topArticles.forEach(article => {
+            const card = document.createElement("div");
+            card.className = "top-news-card"; 
+            card.onclick = () => { if (typeof showDetailArticle === "function") showDetailArticle(article.id); };
+            
+            card.innerHTML = `
+                <div class="top-news-thumb">
+                    <img src="${article.image}" alt="${article.title}">
+                </div>
+                <div class="top-news-title">
+                    <h3>${article.title}</h3>
+                </div>
+            `;
+            topGrid.appendChild(card);
+        });
+    }
+
+    // --- BAGIAN B: MERENDER BERITA UTAMA BESAR DI BAWAH ---
+    if (headlineArea) {
+        headlineArea.innerHTML = ""; // Bersihkan konten lama
+        // Ambil artikel ke-6 (indeks ke-5) atau artikel utama yang tersedia sebagai Headline besar
+        const headlineArticle = data[5] || data[0]; 
+        
+        if (headlineArticle) {
+            headlineArea.innerHTML = `
+                <div class="main-headline-card" onclick="showDetailArticle(${headlineArticle.id})">
+                    <img src="${headlineArticle.image}" alt="${headlineArticle.title}">
+                    <div class="headline-overlay">
+                        <h2>${headlineArticle.title}</h2>
+                        <span class="headline-time">17 menit yang lalu</span>
+                    </div>
+                </div>
+            `;
+        }
+    }
 }
 
 // Logika Filter Otomatis Berdasarkan Halaman URL
