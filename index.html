@@ -600,6 +600,11 @@ if (typeof renderArticles === "function") {
             if(document.getElementById("date")) document.getElementById("date").innerText = e.toLocaleDateString("id-ID", i);
         }
 
+        // Biarkan fungsinya ada, tetapi isinya dikosongkan agar tidak merusak kode jam
+function filterCategory(e, t) {
+    // Isinya kosong agar tidak memindahkan class active secara otomatis lagi
+}
+        
     // 3. Logika filter konten utama halaman bawaan website Anda
     const n = document.getElementById("heroSlider");
     if ("semua" === e || "home" === e) {
