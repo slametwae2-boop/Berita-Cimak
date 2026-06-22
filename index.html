@@ -503,22 +503,21 @@ jalankanJamOtomatis();
             // Masukkan berita baru ke tumpukan paling atas database
             articlesDatabase.unshift(newArticle);
             
-            // Memaksa halaman berita hanya merender artikel dengan kategori 'berita'
+            // Perbaikan Logika Render agar sinkron dengan sistem Multi-Halaman Anda
 if (typeof renderArticles === "function") {
-    // 1. Tampilkan SEMUA artikel tanpa filter kategori di halaman Home
-    renderArticles(articlesDatabase);
-    
-    // 2. Mengubah judul section halaman utama menjadi Berita Utama
-    const contentTitle = document.getElementById("contentTitle");
-    if (contentTitle) contentTitle.textContent = "Berita Utama";
-
-    // 3. Pastikan menu Home yang menyala aktif secara visual
-    const homeLink = document.querySelector('#mainNav a[href="index.html"]');
-    if (homeLink) {
-        homeLink.classList.add('active');
+    // 1. Jalankan fungsi filter otomatis berdasarkan URL halaman saat ini
+    if (typeof eksekusiFilterHalamanOtomatis === "function") {
+        eksekusiFilterHalamanOtomatis();
+    } else {
+        renderArticles(articlesDatabase);
     }
-}
-            
+    
+    // 2. Judul section utama hanya berubah jika elemennya memang ada di halaman tersebut
+    const contentTitle = document.getElementById("contentTitle");
+    if (contentTitle && window.location.pathname.includes("index.html")) {
+        contentTitle.textContent = "Berita Utama";
+    }
+} 
             // Bersihkan form di dalam ruang iframe setelah sukses terbit
             const frameDoc = document.getElementById('adminFrame').contentDocument;
             if (frameDoc) {
