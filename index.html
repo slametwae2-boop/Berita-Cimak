@@ -249,10 +249,10 @@ header {
 </head>
     <body>
 
-    <!-- 1. HEADER AREA WITH LIVE CLOCK -->
+   <!-- 1. HEADER AREA WITH LIVE CLOCK -->
     <header>
         <!-- Judul Utama Portal Berita Anda -->
-        
+        <div class="header-title" style="display:none;">BERITA CIPONDOH</div>
         <div class="header-meta-container">
             <div class="live-datetime">
                 <!-- ID di sini menggunakan 'clock' dan 'date' -->
@@ -261,7 +261,7 @@ header {
             </div>
         </div>
     </header>
-
+        
     <script>
 function jalankanJamOtomatis() {
     const e = new Date();
@@ -283,7 +283,7 @@ jalankanJamOtomatis();
     <div class="nav-responsive-container">
         <!-- Lajur Menu Kiri -->
         <div id="mainNav" class="nav-links">
-  <a href="index.html" class="nav-link">Home</a>
+  <a href="index.html" class="nav-link active">Home</a>
   <a href="berita.html" class="nav-link">Berita</a>
   <a href="hiburan-olahraga.html" class="nav-link">Hiburan & Olahraga</a> 
   <a href="wisata-kuliner.html" class="nav-link">Wisata & Kuliner</a> 
@@ -323,60 +323,37 @@ jalankanJamOtomatis();
                             <div class="slide"><img src="olahraga-taman.jpg" alt="Slide 3"></div>
                             <div class="slide"><img src="pingpong.jpg" alt="Slide 4"></div>
                         </div>
-                        <div class="slider-dots">
-                            <div class="dot active" onclick="currentSlide(0)"></div>
-                            <div class="dot" onclick="currentSlide(1)"></div>
-                            <div class="dot" onclick="currentSlide(2)"></div>
-                            <div class="dot" onclick="currentSlide(3)"></div>
+                        <div class="slider-dots" id="dotsContainer">
+                            <!-- Indikator titik dibuat otomatis oleh script di bawah -->
                         </div>
                     </div>
+                    
                     <div class="news-welcome">
                         <p>Selamat datang di portal informasi kami. Temukan berita terupdate seputar olahraga, destinasi wisata, kuliner halal, hingga hiburan terkini di sini secara berkala setiap hari.</p>
                     </div>
                 </div>
 
-                <!-- Wadah Penampung Grid Berita -->
-                <div class="news-grid" id="newsGridArea"></div>
-
-                <!-- BAGIAN PEMUTAR VIDEO LIVE SITU CIPONDOH TANGERANG -->
-                <div class="section-title" style="margin-top: 30px;">Video Terkini: Wisata Situ Cipondoh</div>
-                <div class="video-box" style="background-color: #000; width: 100%; aspect-ratio: 16/9; border-radius: 4px; overflow: hidden; border: none;">
-                    <iframe 
-                        width="100%" 
-                        height="100%" 
-                        src="https://youtube.com" 
-                        title="Situ Cipondoh review terbaru || wisata danau Cipondoh Tangerang" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        allowfullscreen 
-                        style="border: none;">
-                    </iframe>
+                <!-- Bagian Video Terkini (Memperbaiki gambar pecah pada tangkapan layar Anda) -->
+                <div class="section-title">Video Terkini: Wisata Situ Cipondoh</div>
+                <div class="video-box" style="position: relative; overflow: hidden;">
+                    <img src="situ-cipondoh.jpg" alt="Thumbnail Situ Cipondoh" style="width: 100%; height: 100%; object-fit: cover; position: absolute; opacity: 0.5;">
+                    <div class="play-button" style="z-index: 2;"></div>
                 </div>
-            </div> <!-- PERBAIKAN: Tag penutup /div untuk dynamicContent yang sempat hilang wajib dipasang di sini -->
-
-            <!-- BLOK CONTAINER DETAIL BERITA -->
-            <div id="detailContent" class="detail-container">
-                <button class="btn-back" onclick="backToGrid()">❮ Kembali ke Beranda</button>
-                <h2 id="detailTitle" style="margin-bottom: 10px; color: #222;">Judul Berita</h2>
-                <div class="detail-meta" id="detailMeta">Oleh: Redaksi | 20 Juni 2026</div>
-                <img id="detailImage" class="detail-img" src="" alt="Gambar Detail">
-                <div class="detail-content" id="detailBody"></div>
             </div>
         </main>
 
         <!-- Sidebar Kanan -->
         <aside class="sidebar-right">
             <div class="ad-space">
-                <strong>SPONSOR (GOOGLE ADSENSE)</strong>
-                <div style="margin-top: 10px; font-size: 11px; color: #999;">[ Tampilkan Kode Iklan Google Adsense Di Sini ]</div>
+                <p>SPONSOR (GOOGLE ADSENSE)</p>
             </div>
             <div class="ad-space">
-                <strong>RUANG IKLAN ANDA</strong>
-                <span class="ad-link">IKLAN HUBUNGI KAMI<br>WA: 0812-XXXX-XXXX</span>
+                <p>RUANG IKLAN ANDA</p>
+                <a href="#" class="ad-link">IKLAN HUBUNGI KAMI<br>WA: 0812-XXXX-XXXX</a>
             </div>
             <div class="ad-space">
-                <strong>RUANG IKLAN ANDA</strong>
-                <span class="ad-link">IKLAN HUBUNGI KAMI<br>WA: 0812-XXXX-XXXX</span>
+                <p>RUANG IKLAN ANDA</p>
+                <a href="#" class="ad-link">IKLAN HUBUNGI KAMI<br>WA: 0812-XXXX-XXXX</a>
             </div>
         </aside>
     </div>
@@ -406,6 +383,7 @@ jalankanJamOtomatis();
             const frame = document.getElementById('adminFrame');
             const doc = frame.contentDocument || frame.contentWindow.document;
             
+            // Menyusun isi HTML utuh di dalam iframe agar formulir muncul sempurna
             const formHTML = `
                 <!DOCTYPE html>
                 <html>
@@ -421,10 +399,10 @@ jalankanJamOtomatis();
                     </style>
                 </head>
                 <body>
-                    <h3>Tambah Artikel Berita Baru</h3>
-                    
-                    <label>Judul Berita:</label>
-                    <input type="text" id="txTitle" placeholder="Masukkan judul berita panjang..." onfocus="this.placeholder=''" onblur="this.placeholder='Masukkan judul berita panjang...'">
+                    <h3>Kelola & Tambah Berita Baru</h3>
+                    <form id="newsForm">
+                        <label for="title">Judul Berita</label>
+                        <input type="text" id="title" placeholder="Masukkan judul berita utama..." required>
                     
                     <label>Kategori:</label>
                     <select id="lmCategory">
@@ -434,20 +412,21 @@ jalankanJamOtomatis();
                     </select>
                     
                     <label>Unggah Media (Foto / Video):</label>
-<input type="file" id="fiMedia" accept="image/*,video/*" style="padding: 5px; background: #fff; width: 100%; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 15px; box-sizing: border-box;">
+                    <input type="file" id="fiMedia" accept="image/*,video/*" style="padding: 5px; background: #fff; width: 100%; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 15px; box-sizing: border-box;">
 
-<label>Nama Penulis:</label>
-<input type="text" id="txAuthor" placeholder="Contoh: Redaksi" onfocus="this.placeholder=''" onblur="this.placeholder='Contoh: Redaksi'">
+                    <label>Nama Penulis:</label>
+                    <input type="text" id="txAuthor" placeholder="Contoh: Redaksi" onfocus="this.placeholder=''" onblur="this.placeholder='Contoh: Redaksi'">
 
-<label>Isi Lengkap Artikel Berita:</label>
-<textarea id="txContent" placeholder="Tuliskan isi paragraf berita secara lengkap di sini..." onfocus="this.placeholder=''" onblur="this.placeholder='Tuliskan isi paragraf berita secara lengkap di sini...'"></textarea>
-<button class="btn-submit" onclick="window.parent.processNewArticle(
-    document.getElementById('txTitle').value,
-    document.getElementById('lmCategory').value,
-    document.getElementById('txAuthor').value,
-    document.getElementById('txContent').value,
-    document.getElementById('fiMedia').files
-)">🚀 Terbitkan Berita</button>
+                    <label>Isi Lengkap Artikel Berita:</label>
+                    <textarea id="txContent" placeholder="Tuliskan isi paragraf berita secara lengkap di sini..." onfocus="this.placeholder=''" onblur="this.placeholder='Tuliskan isi paragraf berita secara lengkap di sini...'"></textarea>
+                    
+                    <button class="btn-submit" onclick="window.parent.processNewArticle(
+                        document.getElementById('txTitle').value,
+                        document.getElementById('lmCategory').value,
+                        document.getElementById('txAuthor').value,
+                        document.getElementById('txContent').value,
+                        document.getElementById('fiMedia').files
+                    )">🚀 Terbitkan Berita</button>
                 </body>
                 </html>
             `;
@@ -462,7 +441,6 @@ jalankanJamOtomatis();
             const categoryInput = category;
             const authorInput = author.trim();
             const contentInput = content.trim();
-
             if (!titleInput || !authorInput || !contentInput) {
                 alert("Mohon maaf, semua kolom input data berita wajib diisi lengkap!");
                 return;
@@ -483,12 +461,17 @@ jalankanJamOtomatis();
                 if (fileFisik.type.startsWith('video/')) {
                     isVideo = true;
                 }
+            
             } else {
                 // Gambar default berdasarkan kategori jika kolom file dikosongkan
                 if (categoryInput === 'berita') mediaUrl = "masjid.jpg";
                 if (categoryInput === 'kuliner') mediaUrl = "olahraga-taman.jpg";
             }
 
+            if (typeof articlesDatabase === "undefined") {
+                window.articlesDatabase = []; 
+            }
+            
             const newArticle = {
                 id: articlesDatabase.length + 1,
                 title: titleInput,
@@ -503,30 +486,36 @@ jalankanJamOtomatis();
             // Masukkan berita baru ke tumpukan paling atas database
             articlesDatabase.unshift(newArticle);
             
-            // Memaksa halaman berita hanya merender artikel dengan kategori 'berita'
-if (typeof renderArticles === "function") {
-    // 1. Tampilkan SEMUA artikel tanpa filter kategori di halaman Home
-    renderArticles(articlesDatabase);
-    
-    // 2. Mengubah judul section halaman utama menjadi Berita Utama
-    const contentTitle = document.getElementById("contentTitle");
-    if (contentTitle) contentTitle.textContent = "Berita Utama";
+            if (typeof renderArticles === "function") {
+                // Tampilkan SEMUA artikel tanpa filter kategori di halaman Home
+                renderArticles(articlesDatabase);
+                
+                // Mengubah judul section halaman utama menjadi Berita Utama
+                const contentTitle = document.getElementById("contentTitle");
+                if (contentTitle) contentTitle.textContent = "Berita Utama";
 
-    // 3. Pastikan menu Home yang menyala aktif secara visual
-    const homeLink = document.querySelector('#mainNav a[href="index.html"]');
-    if (homeLink) {
-        homeLink.classList.add('active');
+                // Pastikan menu Home yang menyala aktif secara visual
+                const homeLink = document.querySelector('#mainNav a[href="index.html"]');
+                if (homeLink) {
+                    // Hapus kelas active dari menu lain terlebih dahulu
+                    document.querySelectorAll('#mainNav a').forEach(link => link.classList.remove('active'));
+                    homeLink.classList.add('active');
+                }
+            }
+            
+           const frameDoc = document.getElementById('adminFrame').contentDocument;
+if (frameDoc) {
+    // Mencari elemen <form> apa saja di dalam iframe lalu direset otomatis
+    const adminForm = frameDoc.querySelector('form') || frameDoc.body;
+    if (adminForm && typeof adminForm.reset === 'function') {
+        adminForm.reset();
+    } else {
+        // Jika tidak dibungkus tag <form>, hapus manual lewat selector tag input
+        frameDoc.querySelectorAll('input, textarea, select').forEach(el => {
+            if(el.type !== 'submit' && el.type !== 'button') el.value = '';
+        });
     }
 }
-            
-            // Bersihkan form di dalam ruang iframe setelah sukses terbit
-            const frameDoc = document.getElementById('adminFrame').contentDocument;
-            if (frameDoc) {
-                if (frameDoc.getElementById('txTitle')) frameDoc.getElementById('txTitle').value = '';
-                if (frameDoc.getElementById('txAuthor')) frameDoc.getElementById('txAuthor').value = '';
-                if (frameDoc.getElementById('txContent')) frameDoc.getElementById('txContent').value = '';
-                if (frameDoc.getElementById('fiMedia')) frameDoc.getElementById('fiMedia').value = ''; // Reset pilihan berkas
-            }
 
             // Tutup panel admin secara otomatis
             document.getElementById('adminPanelSection').style.display = 'none';
