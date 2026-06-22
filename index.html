@@ -262,6 +262,23 @@ header {
         </div>
     </header>
 
+    <script>
+function jalankanJamOtomatis() {
+    const e = new Date();
+    const t = String(e.getHours()).padStart(2, "0");
+    const n = String(e.getMinutes()).padStart(2, "0");
+    const r = String(e.getSeconds()).padStart(2, "0");
+    
+    const clockEl = document.getElementById("clock");
+    const dateEl = document.getElementById("date");
+    
+    if (clockEl) clockEl.innerText = `${t}:${n}:${r}`;
+    if (dateEl) dateEl.innerText = e.toLocaleDateString("id-ID", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+}
+setInterval(jalankanJamOtomatis, 1000);
+jalankanJamOtomatis();
+</script>
+        
     <!-- 2. NAVIGATION BAR & SEARCH BAR (HANYA ADA 1 DAN FULL RESPONSIF) -->
     <div class="nav-responsive-container">
         <!-- Lajur Menu Kiri -->
@@ -542,7 +559,6 @@ updateClock();
 function filterCategory(e, t) {
     // Sengaja dikosongkan agar menu navbar tidak dobel oranye
 }
-        
         let articlesDatabase = [
             {
                 id: 1,
