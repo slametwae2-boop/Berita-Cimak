@@ -262,12 +262,29 @@ header {
         </div>
     </header>
 
+    <script>
+function jalankanJamOtomatis() {
+    const e = new Date();
+    const t = String(e.getHours()).padStart(2, "0");
+    const n = String(e.getMinutes()).padStart(2, "0");
+    const r = String(e.getSeconds()).padStart(2, "0");
+    
+    const clockEl = document.getElementById("clock");
+    const dateEl = document.getElementById("date");
+    
+    if (clockEl) clockEl.innerText = `${t}:${n}:${r}`;
+    if (dateEl) dateEl.innerText = e.toLocaleDateString("id-ID", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+}
+setInterval(jalankanJamOtomatis, 1000);
+jalankanJamOtomatis();
+</script>
+        
     <!-- 2. NAVIGATION BAR & SEARCH BAR (HANYA ADA 1 DAN FULL RESPONSIF) -->
     <div class="nav-responsive-container">
         <!-- Lajur Menu Kiri -->
         <div id="mainNav" class="nav-links">
   <a href="index.html" class="nav-link">Home</a>
-  <a href="berita.html" class="nav-link active">Berita</a>
+  <a href="berita.html" class="nav-link">Berita</a>
   <a href="hiburan-olahraga.html" class="nav-link">Hiburan & Olahraga</a> 
   <a href="wisata-kuliner.html" class="nav-link">Wisata & Kuliner</a> 
   <a href="pasang-iklan.html" class="nav-link btn-ads">Pasang Iklan</a> 
@@ -488,18 +505,17 @@ header {
             
             // Memaksa halaman berita hanya merender artikel dengan kategori 'berita'
 if (typeof renderArticles === "function") {
-    // 1. Tampilkan hanya artikel dengan kategori berita
-    renderArticles(articlesDatabase.filter(item => item.category === 'berita'));
+    // 1. Tampilkan SEMUA artikel tanpa filter kategori di halaman Home
+    renderArticles(articlesDatabase);
     
-    // 2. Mengubah judul section halaman menjadi Kategori: BERITA
+    // 2. Mengubah judul section halaman utama menjadi Berita Utama
     const contentTitle = document.getElementById("contentTitle");
-    if (contentTitle) contentTitle.textContent = "Kategori: BERITA";
+    if (contentTitle) contentTitle.textContent = "Berita Utama";
 
-    // 3. TAMBAHAN: Hapus paksa warna oranye manual dari menu Home agar tidak dobel
+    // 3. Pastikan menu Home yang menyala aktif secara visual
     const homeLink = document.querySelector('#mainNav a[href="index.html"]');
     if (homeLink) {
-        homeLink.style.removeProperty('color');
-        homeLink.style.removeProperty('border-bottom');
+        homeLink.classList.add('active');
     }
 }
             
@@ -526,6 +542,23 @@ if (typeof renderArticles === "function") {
         
         <!-- 4. ENGINE CONTROLLER JAVASCRIPT SYSTEM -->
     <script>
+        
+        // ==================== KODE JAM & TANGGAL (TARUH DI SINI) ====================
+function updateClock() {
+    const e = new Date();
+    const t = String(e.getHours()).padStart(2, "0");
+    const n = String(e.getMinutes()).padStart(2, "0");
+    const r = String(e.getSeconds()).padStart(2, "0");
+    if(document.getElementById("clock")) document.getElementById("clock").innerText = `${t}:${n}:${r}`;
+    const i = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+    if(document.getElementById("date")) document.getElementById("date").innerText = e.toLocaleDateString("id-ID", i);
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+function filterCategory(e, t) {
+    // Sengaja dikosongkan agar menu navbar tidak dobel oranye
+}
         let articlesDatabase = [
             {
                 id: 1,
@@ -590,29 +623,21 @@ if (typeof renderArticles === "function") {
                 t.appendChild(n);
             });
         }
-
-        function updateClock() {
-            const e = new Date();
-            const t = String(e.getHours()).padStart(2, "0");
-            const n = String(e.getMinutes()).padStart(2, "0");
-            const r = String(e.getSeconds()).padStart(2, "0");
-            if(document.getElementById("clock")) document.getElementById("clock").innerText = `${t}:${n}:${r}`;
-            const i = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
-            if(document.getElementById("date")) document.getElementById("date").innerText = e.toLocaleDateString("id-ID", i);
-        }
-
-    // 3. Logika Filter Artikel (Sekarang berada di dalam fungsi yang sama)
-    const n = document.getElementById("heroSection");
-    if ("semua" === e) {
+        
+    // 3. Logika filter konten utama halaman bawaan website Anda
+    const n = document.getElementById("heroSlider");
+    if ("semua" === e || "home" === e) {
         if (n) n.style.display = "grid";
-        document.getElementById("contentTitle").textContent = "Berita Utama";
+        document.getElementById("contentTitle").textContent = "BERITA UTAMA";
         renderArticles(articlesDatabase);
     } else {
         if (n) n.style.display = "none";
-        document.getElementById("contentTitle").textContent = "Kategori: " + e.toUpperCase();
-        renderArticles(articlesDatabase.filter(t => t.category === e));
+        document.getElementById("contentTitle").textContent = e.toUpperCase();
+        
+        // Filter artikel berdasarkan kategori yang dipilih
+        const filtered = articlesDatabase.filter(art => art.category.toLowerCase() === e.toLowerCase());
+        renderArticles(filtered);
     }
-}
 
         function searchArticles() {
             const e = document.getElementById("searchInput").value.toLowerCase().trim();
@@ -629,7 +654,6 @@ if (typeof renderArticles === "function") {
             
             renderArticles(articlesDatabase.filter(t => t.title.toLowerCase().includes(e) || t.content.toLowerCase().includes(e)));
             backToGrid();
-        }
 
         function showDetailArticle(e) {
             const t = articlesDatabase.find(t => t.id === e);
@@ -685,7 +709,6 @@ if (typeof renderArticles === "function") {
             document.getElementById("dynamicContent").style.display = "block";
         }
 
-        setInterval(updateClock, 1000);
         let currentIndex = 0;
         const wrapper = document.getElementById("sliderWrapper");
         const dots = document.querySelectorAll(".dot");
