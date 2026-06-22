@@ -621,7 +621,6 @@ if (typeof renderArticles === "function") {
             
             renderArticles(articlesDatabase.filter(t => t.title.toLowerCase().includes(e) || t.content.toLowerCase().includes(e)));
             backToGrid();
-        }
 
         function showDetailArticle(e) {
             const t = articlesDatabase.find(t => t.id === e);
