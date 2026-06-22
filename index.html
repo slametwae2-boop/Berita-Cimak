@@ -638,7 +638,6 @@ function filterCategory(e, t) {
         const filtered = articlesDatabase.filter(art => art.category.toLowerCase() === e.toLowerCase());
         renderArticles(filtered);
     }
-}
 
         function searchArticles() {
             const e = document.getElementById("searchInput").value.toLowerCase().trim();
