@@ -262,13 +262,30 @@ header {
         </div>
     </header>
 
+    <script>
+function jalankanJamOtomatis() {
+    const e = new Date();
+    const t = String(e.getHours()).padStart(2, "0");
+    const n = String(e.getMinutes()).padStart(2, "0");
+    const r = String(e.getSeconds()).padStart(2, "0");
+    
+    const clockEl = document.getElementById("clock");
+    const dateEl = document.getElementById("date");
+    
+    if (clockEl) clockEl.innerText = `${t}:${n}:${r}`;
+    if (dateEl) dateEl.innerText = e.toLocaleDateString("id-ID", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+}
+setInterval(jalankanJamOtomatis, 1000);
+jalankanJamOtomatis();
+</script>
+        
     <!-- 2. NAVIGATION BAR & SEARCH BAR (HANYA ADA 1 DAN FULL RESPONSIF) -->
     <div class="nav-responsive-container">
         <!-- Lajur Menu Kiri -->
         <div id="mainNav" class="nav-links">
   <a href="index.html" class="nav-link">Home</a>
   <a href="berita.html" class="nav-link">Berita</a>
-  <a href="hiburan-olahraga.html" class="nav-link active">Hiburan & Olahraga</a> 
+  <a href="hiburan-olahraga.html" class="nav-link">Hiburan & Olahraga</a> 
   <a href="wisata-kuliner.html" class="nav-link">Wisata & Kuliner</a> 
   <a href="pasang-iklan.html" class="nav-link btn-ads">Pasang Iklan</a> 
 </div>
@@ -525,6 +542,23 @@ if (typeof renderArticles === "function") {
         
         <!-- 4. ENGINE CONTROLLER JAVASCRIPT SYSTEM -->
     <script>
+        
+        // ==================== KODE JAM & TANGGAL (TARUH DI SINI) ====================
+function updateClock() {
+    const e = new Date();
+    const t = String(e.getHours()).padStart(2, "0");
+    const n = String(e.getMinutes()).padStart(2, "0");
+    const r = String(e.getSeconds()).padStart(2, "0");
+    if(document.getElementById("clock")) document.getElementById("clock").innerText = `${t}:${n}:${r}`;
+    const i = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+    if(document.getElementById("date")) document.getElementById("date").innerText = e.toLocaleDateString("id-ID", i);
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+function filterCategory(e, t) {
+    // Sengaja dikosongkan agar menu navbar tidak dobel oranye
+}
         let articlesDatabase = [
             {
                 id: 1,
@@ -589,17 +623,7 @@ if (typeof renderArticles === "function") {
                 t.appendChild(n);
             });
         }
-
-        function updateClock() {
-            const e = new Date();
-            const t = String(e.getHours()).padStart(2, "0");
-            const n = String(e.getMinutes()).padStart(2, "0");
-            const r = String(e.getSeconds()).padStart(2, "0");
-            if(document.getElementById("clock")) document.getElementById("clock").innerText = `${t}:${n}:${r}`;
-            const i = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
-            if(document.getElementById("date")) document.getElementById("date").innerText = e.toLocaleDateString("id-ID", i);
-        }
-
+        
     // 3. Logika filter konten utama halaman bawaan website Anda
     const n = document.getElementById("heroSlider");
     if ("semua" === e || "home" === e) {
@@ -614,7 +638,6 @@ if (typeof renderArticles === "function") {
         const filtered = articlesDatabase.filter(art => art.category.toLowerCase() === e.toLowerCase());
         renderArticles(filtered);
     }
-}
 
         function searchArticles() {
             const e = document.getElementById("searchInput").value.toLowerCase().trim();
@@ -631,7 +654,6 @@ if (typeof renderArticles === "function") {
             
             renderArticles(articlesDatabase.filter(t => t.title.toLowerCase().includes(e) || t.content.toLowerCase().includes(e)));
             backToGrid();
-        }
 
         function showDetailArticle(e) {
             const t = articlesDatabase.find(t => t.id === e);
@@ -687,7 +709,6 @@ if (typeof renderArticles === "function") {
             document.getElementById("dynamicContent").style.display = "block";
         }
 
-        setInterval(updateClock, 1000);
         let currentIndex = 0;
         const wrapper = document.getElementById("sliderWrapper");
         const dots = document.querySelectorAll(".dot");
@@ -865,4 +886,3 @@ function terbitkanBerita() {
     </script>
 </body>
 </html>
-
