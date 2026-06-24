@@ -723,19 +723,24 @@ function filterCategory(e, t) {
             updateSliderPosition();
         }
 
-        function moveSlide(e) {
-            clearInterval(slideInterval);
-            currentIndex = (currentIndex + e + 4) % 4;
-            updateSliderPosition();
-            slideInterval = setInterval(autoSlide, 4000);
-        }
-
-        function currentSlide(e) {
-            clearInterval(slideInterval);
-            currentIndex = e;
-            updateSliderPosition();
-            slideInterval = setInterval(autoSlide, 4000);
-        }
+        function moveSlide(n) {
+    const slides = document.querySelectorAll('.slide');
+    if (!slides.length) return;
+    
+    currentIndex += n;
+    
+    if (currentIndex >= slides.length) {
+        currentIndex = 0;
+    }
+    if (currentIndex < 0) {
+        currentIndex = slides.length - 1;
+    }
+    
+    const wrapper = document.getElementById('sliderWrapper');
+    if (wrapper) {
+        wrapper.style.setProperty('transform', `translateX(${-currentIndex * 100}%)`, 'important');
+    }
+}
 
         document.getElementById("searchInput").addEventListener("keypress", function(e) {
             if("Enter" === e.key) searchArticles();
