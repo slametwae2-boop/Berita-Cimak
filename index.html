@@ -603,8 +603,22 @@ function filterCategory(e, t) {
                 author: "Dewi Lestari",
                 date: "16 Juni 2026",
                 content: "Gelaran tahunan Festival Kuliner Nusantara resmi dibuka hari ini dengan menghadirkan lebih dari seratus stan makanan tradisional autentik."
-            }
+            
         };
+
+        let currentSlide = 0;
+         function moveSlide(direction) {
+         const wrapper = document.getElementById('sliderWrapper');
+         const slides = document.querySelectorAll('.slide');
+         if (!wrapper || slides.length === 0) return;
+     
+         currentSlide += direction;
+         if (currentSlide >= slides.length) { currentSlide = 0; }
+         if (currentSlide < 0) { currentSlide = slides.length - 1; }
+     
+         const offset = -currentSlide * 100;
+         wrapper.style.transform = `translateX(${offset}%)`;
+         }
 
         function renderArticles(e) {
             const t = document.getElementById("newsGridArea");
