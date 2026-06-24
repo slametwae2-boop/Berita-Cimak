@@ -709,27 +709,34 @@ function filterCategory(e, t) {
         }
 
         let currentIndex = 0;
-        const wrapper = document.getElementById("sliderWrapper");
-        const dots = document.querySelectorAll(".dot");
-        let slideInterval = setInterval(autoSlide, 4000);
+const wrapper = document.getElementById("sliderWrapper");
+const dots = document.querySelectorAll(".dot");
+let slideInterval = setInterval(autoSlide, 4000);
 
-        function updateSliderPosition() {
-            if(wrapper) wrapper.style.transform = "translateX(" + 25 * -currentIndex + "%)";
-            dots.forEach((e, t) => e.classList.toggle("active", t === currentIndex));
-        }
+function updateSliderPosition() {
+    const slides = document.querySelectorAll('.slide');
+    if (wrapper && slides.length > 0) {
+        wrapper.style.setProperty('transform', 'translateX(' + (-currentIndex * 100) + '%)', 'important');
+    }
+    if (dots) {
+        dots.forEach((e, t) => e.classList.toggle("active", t === currentIndex));
+    }
+}
 
-        function autoSlide() {
-            currentIndex = (currentIndex + 1) % 4;
-            updateSliderPosition();
-        }
+function autoSlide() {
+    const slides = document.querySelectorAll('.slide');
+    if (slides.length > 0) {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSliderPosition();
+    }
+}
 
-        function moveSlide(n) {
+function moveSlide(n) {
     clearInterval(slideInterval);
     const slides = document.querySelectorAll('.slide');
     if (!slides.length) return;
 
-    // Menghitung index baru berdasarkan parameter tombol (n)
-    currentIndex = (typeof currentIndex === 'undefined' ? 0 : currentIndex) + n;
+    currentIndex = currentIndex + n;
 
     if (currentIndex >= slides.length) {
         currentIndex = 0;
@@ -738,16 +745,8 @@ function filterCategory(e, t) {
         currentIndex = slides.length - 1;
     }
 
-    // Menggerakkan wrapper secara paksa melewati batas !important CSS
-    const wrapper = document.getElementById('sliderWrapper');
-    if (wrapper) {
-        wrapper.style.setProperty('transform', `translateX(${-currentIndex * 100}%)`, 'important');
-    }
-
-    // Menyalakan kembali otomatisasi geser setelah tombol ditekan
-    if (typeof autoSlide === 'function') {
-        slideInterval = setInterval(autoSlide, 3000); 
-    }
+    updateSliderPosition();
+    slideInterval = setInterval(autoSlide, 4000);
 }
         document.getElementById("searchInput").addEventListener("keypress", function(e) {
             if("Enter" === e.key) searchArticles();
