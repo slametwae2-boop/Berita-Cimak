@@ -643,6 +643,13 @@ window.addEventListener('load', function() {
             cap.innerText = teksKeterangan[index];
             slide.appendChild(cap);
         }
+        // Deteksi otomatis tautan ?akses=admin dari URL browser
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('akses') === 'admin') {
+        if (typeof toggleAdminPanel === 'function') {
+            toggleAdminPanel();
+        }
+    }
     });
 
     // Jalankan mesin geser otomatis 4 detik
