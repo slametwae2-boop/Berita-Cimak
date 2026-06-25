@@ -623,7 +623,7 @@ function moveSlide(direction) {
 }
 
 window.addEventListener('load', function() {
-    // Array berisi teks keterangan untuk masing-masing 6 slide gambar Anda
+    // Array teks keterangan slide
     const teksKeterangan = [
         "Pesona Keindahan Wisata Alam Danau Situ Cipondoh Terkini",
         "Fasilitas Lapangan Hijau Baru untuk Kegiatan Olahraga Warga",
@@ -633,17 +633,21 @@ window.addEventListener('load', function() {
         "Rekomendasi Wisata Kuliner Halal Populer di Sekitar Tangerang"
     ];
 
-    // Sisipkan teks ke setiap slide secara otomatis
+    // Suntikkan teks keterangan ke elemen slide
     const slides = document.querySelectorAll('.slide');
-    slides.forEach((slide, index) => {
-        if (teksKeterangan[index]) {
-            slide.style.position = 'relative';
-            const cap = document.createElement('div');
-            cap.style.cssText = "position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.85)); color: #fff; padding: 15px 10px; font-size: 13px; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); box-sizing: border-box; text-align: left; white-space: normal;";
-            cap.innerText = teksKeterangan[index];
-            slide.appendChild(cap);
-        }
-        // Deteksi otomatis tautan ?akses=admin dari URL browser
+    if (slides && slides.length > 0) {
+        slides.forEach((slide, index) => {
+            if (teksKeterangan[index]) {
+                slide.style.position = 'relative';
+                const cap = document.createElement('div');
+                cap.style.cssText = "position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.85)); color: #fff; padding: 15px 10px; font-size: 13px; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); box-sizing: border-box; text-align: left; white-space: normal;";
+                cap.innerText = teksKeterangan[index];
+                slide.appendChild(cap);
+            }
+        });
+    }
+
+    // MEMBUKA ADMIN PANEL SECARA OTOMATIS JIKA URL MENGANDUNG ?akses=admin
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('akses') === 'admin') {
         if (typeof toggleAdminPanel === 'function') {
