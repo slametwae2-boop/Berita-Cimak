@@ -913,7 +913,15 @@ function saveNewArticle() {
     toggleAdminPanel();
     alert("Selamat! Berita baru Anda berhasil diterbitkan secara live di beranda.");
     window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-</script>
-</body>
-</html>
+    }
+    
+    // Paksa jalankan geser otomatis slider setiap 4 detik secara mandiri
+     setInterval(function() {
+         if (typeof moveSlide === 'function') {
+             moveSlide(1);
+         }
+     }, 4000);
+     
+ </script>
+ </body>
+ </html>
