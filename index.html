@@ -650,11 +650,12 @@ window.addEventListener('load', function() {
             toggleAdminPanel();
         }
     }
-    });
 
     // Jalankan mesin geser otomatis 4 detik
     setInterval(function() {
-        moveSlide(1);
+        if (typeof moveSlide === 'function') {
+            moveSlide(1);
+        }
     }, 4000);
 });
         function renderArticles(e) {
