@@ -848,23 +848,19 @@ function toggleAdminPanel() {
     const adminSection = document.getElementById('adminPanelSection');
     if (!adminSection) return;
 
-    // Jika posisi jendela sedang tertutup, minta password dulu saat mau dibuka
     if (adminSection.style.display === 'none' || adminSection.style.display === '') {
-
-        // SILAKAN GANTI TULISAN DI BAWAH INI DENGAN PASSWORD KEINGINAN ANDA
         const passwordRahasia = "ownercimak121245";
         const inputUser = prompt("Masukkan Password Redaksi / Admin Berita Cimak:");
 
         if (inputUser === passwordRahasia) {
-            adminSection.style.display = 'flex'; // Password benar, formulir terbuka
+            adminSection.style.display = 'flex';
         } else if (inputUser !== null) {
-            alert("Password SALAH! Akses ditolak."); // Password salah
+            alert("Password SALAH! Akses ditolak.");
         }
-        
     } else {
-        // Jika posisi jendela sedang terbuka, langsung tutup saja tanpa minta password
         adminSection.style.display = 'none';
     }
+}
 } // PERBAIKAN: Tanda penutup fungsi toggleAdminPanel yang benar
 
 // Fungsi Memproses dan Menerbitkan Berita Baru ke Depan Layar
