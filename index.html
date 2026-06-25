@@ -844,71 +844,74 @@ function terbitkanBerita() {
         // ==========================================================================
         
         // Fungsi Buka-Tutup Jendela Formulir Kelola Berita (DILINDUNGI PASSWORD)
-        function toggleAdminPanel() {
-            const adminSection = document.getElementById('adminPanelSection');
-            if (!adminSection) return;
+function toggleAdminPanel() {
+    const adminSection = document.getElementById('adminPanelSection');
+    if (!adminSection) return;
 
-            // Jika posisi jendela sedang tertutup, minta password dulu saat mau dibuka
-            if (adminSection.style.display === 'none' || adminSection.style.display === '') {
-                
-                // SILAKAN GANTI TULISAN DI BAWAH INI DENGAN PASSWORD KEINGINAN ANDA
-                const passwordRahasia = "ownercimak121245"; 
-                const inputUser = prompt("Masukkan Password Redaksi / Admin Berita Cimak:");
-                
-                if (inputUser === passwordRahasia) {
-                    adminSection.style.display = 'flex'; // Password benar, formulir terbuka
-                } else if (inputUser !== null) {
-                    alert("Password SALAH! Akses ditolak."); // Password salah
-                }
-        }    
-            } else {
-                // Jika posisi jendela sedang terbuka, langsung tutup saja tanpa minta password
-                adminSection.style.display = 'none';
-            }
-        // PERBAIKAN: Kelebihan kurung kurawal ganda yang merusak skrip sudah dihapus dari sini
+    // Jika posisi jendela sedang tertutup, minta password dulu saat mau dibuka
+    if (adminSection.style.display === 'none' || adminSection.style.display === '') {
 
-        // Fungsi Memproses dan Menerbitkan Berita Baru ke Depan Layar
-        function saveNewArticle() {
-            const titleInput = document.getElementById('adminTitle').value.trim();
-            const categoryInput = document.getElementById('adminCategory').value;
-            const authorInput = document.getElementById('adminAuthor').value.trim();
-            const contentInput = document.getElementById('adminContent').value.trim();
+        // SILAKAN GANTI TULISAN DI BAWAH INI DENGAN PASSWORD KEINGINAN ANDA
+        const passwordRahasia = "ownercimak121245";
+        const inputUser = prompt("Masukkan Password Redaksi / Admin Berita Cimak:");
 
-            if (!titleInput || !authorInput || !contentInput) {
-                alert("Mohon maaf, semua kolom input data berita wajib diisi lengkap!");
-                return;
-            }
-
-            const now = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const formattedDate = now.toLocaleDateString('id-ID', options);
-
-            let imageDefault = "lapangan-hijau.jpg";
-            if (categoryInput === 'berita') imageDefault = "masjid.jpg";
-            if (categoryInput === 'kuliner') imageDefault = "olahraga-taman.jpg";
-
-            const newArticle = {
-                id: articlesDatabase.length + 1,
-                title: titleInput,
-                category: categoryInput,
-                image: imageDefault,
-                author: authorInput,
-                date: formattedDate,
-                content: contentInput
-            };
-
-            articlesDatabase.unshift(newArticle);
-            renderArticles(articlesDatabase);
-
-            document.getElementById('adminTitle').value = '';
-            document.getElementById('adminAuthor').value = '';
-            document.getElementById('adminContent').value = '';
-
-            toggleAdminPanel();
-            alert("Selamat! Berita baru Anda berhasil diterbitkan secara live di beranda.");
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (inputUser === passwordRahasia) {
+            adminSection.style.display = 'flex'; // Password benar, formulir terbuka
+        } else if (inputUser !== null) {
+            alert("Password SALAH! Akses ditolak."); // Password salah
         }
         
-    </script>
+    } else {
+        // Jika posisi jendela sedang terbuka, langsung tutup saja tanpa minta password
+        adminSection.style.display = 'none';
+    }
+} // PERBAIKAN: Tanda penutup fungsi toggleAdminPanel yang benar
+
+// Fungsi Memproses dan Menerbitkan Berita Baru ke Depan Layar
+function saveNewArticle() {
+    const titleInput = document.getElementById('adminTitle') ? document.getElementById('adminTitle').value.trim() : '';
+    const categoryInput = document.getElementById('adminCategory') ? document.getElementById('adminCategory').value.trim() : '';
+    const authorInput = document.getElementById('adminAuthor') ? document.getElementById('adminAuthor').value.trim() : '';
+    const contentInput = document.getElementById('adminContent') ? document.getElementById('adminContent').value.trim() : '';
+
+    if (!titleInput || !authorInput || !contentInput) {
+        alert("Mohon maaf, semua kolom input data berita wajib diisi lengkap!");
+        return;
+    }
+
+    const now = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = now.toLocaleDateString('id-ID', options);
+
+    let imageDefault = "lapangan-hijau.jpg";
+    if (categoryInput === 'berita') imageDefault = "masjid.jpg";
+    if (categoryInput === 'kuliner') imageDefault = "olahraga-taman.jpg";
+
+    const newArticle = {
+        id: typeof articlesDatabase !== 'undefined' ? articlesDatabase.length + 1 : 1,
+        title: titleInput,
+        category: categoryInput,
+        image: imageDefault,
+        author: authorInput,
+        date: formattedDate,
+        content: contentInput
+    };
+
+    if (typeof articlesDatabase !== 'undefined') {
+        articlesDatabase.unshift(newArticle);
+    }
+    if (typeof renderArticles === 'function') {
+        renderArticles(articlesDatabase);
+    }
+
+    if (document.getElementById('adminTitle')) document.getElementById('adminTitle').value = '';
+    if (document.getElementById('adminAuthor')) document.getElementById('adminAuthor').value = '';
+    if (document.getElementById('adminContent')) document.getElementById('adminContent').value = '';
+
+    toggleAdminPanel();
+    alert("Selamat! Berita baru Anda berhasil diterbitkan secara live di beranda.");
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
 </body>
 </html>
