@@ -608,19 +608,24 @@ function filterCategory(e, t) {
        ];
 
          let currentSlide = 0;
-         function moveSlide(direction) {
-         const wrapper = document.getElementById('sliderWrapper');
-         const slides = document.querySelectorAll('.slide');
-         if (!wrapper || slides.length === 0) return;
-     
-         currentSlide += direction;
-         if (currentSlide >= slides.length) { currentSlide = 0; }
-         if (currentSlide < 0) { currentSlide = slides.length - 1; }
-     
-         const offset = -currentSlide * 100;
-         wrapper.style.transform = `translateX(${offset}%)`;
-         }
 
+function moveSlide(direction) {
+    const wrapper = document.getElementById('sliderWrapper');
+    const slides = document.querySelectorAll('.slide');
+    if (!wrapper || slides.length === 0) return;
+
+    currentSlide += direction;
+    if (currentSlide >= slides.length) { currentSlide = 0; }
+    if (currentSlide < 0) { currentSlide = slides.length - 1; }
+
+    const offset = -currentSlide * 100;
+    wrapper.style.transform = `translateX(${offset}%)`;
+}
+
+// Skrip tambahan untuk geser otomatis setiap 5 detik
+setInterval(function() {
+    moveSlide(1);
+}, 5000);
         function renderArticles(e) {
             const t = document.getElementById("newsGridArea");
             if (!t) return;
